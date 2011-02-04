@@ -1,0 +1,1 @@
+ctags -h .py -f python.ctags -R -L python_lib_dirs

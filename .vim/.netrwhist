@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/jsatt/dev/conaff/conaff/reputation-management'
+let g:netrw_dirhist_2='/home/jsatt/dev/opentundra/python/invision/portal/management/commands'
+let g:netrw_dirhist_3='/home/jsatt/.virtualenvs/conaff/lib/python2.6/site-packages/django'
