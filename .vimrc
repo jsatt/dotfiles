@@ -69,6 +69,8 @@ function <SID>PythonGrep(tool)
   let &grepformat = '%f:%l:%m'
   if a:tool == "pylint"
     let &grepprg = 'pylint --output-format=parseable --reports=n'
+  elseif a:tool == "pyflakes"
+    let &grepprg = 'pyflakes'
   elseif a:tool == "pychecker"
     let &grepprg = 'pychecker --quiet -q'
   else
@@ -94,13 +96,23 @@ function <SID>PythonGrep(tool)
   redraw!
 endfunction
 
-if ( !hasmapto('<SID>PythonGrep(pylint)') && (maparg('<F4>') == '') )
-  map <F4> :call <SID>PythonGrep('pylint')<CR>
-  map! <F4> :call <SID>PythonGrep('pylint')<CR>
+if ( !hasmapto('<SID>PythonGrep(pyflakes)') && (maparg('<F4>') == '') )
+  map <F4> :call <SID>PythonGrep('pyflakes')<CR>
+  map! <F4> :call <SID>PythonGrep('pyflakes')<CR>
+else
+  if ( !has("gui_running") || has("win32") )
+    echo "Python Pyflakes Error: No Key mapped.\n".
+          \ "<F4> is taken and a replacement was not assigned."
+  endif
+endif
+
+if ( !hasmapto('<SID>PythonGrep(pylint)') && (maparg('<F5>') == '') )
+  map <F5> :call <SID>PythonGrep('pylint')<CR>
+  map! <F5> :call <SID>PythonGrep('pylint')<CR>
 else
   if ( !has("gui_running") || has("win32") )
     echo "Python Pylint Error: No Key mapped.\n".
-          \ "<F4> is taken and a replacement was not assigned."
+          \ "<F5> is taken and a replacement was not assigned."
   endif
 endif
 
