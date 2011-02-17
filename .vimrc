@@ -28,11 +28,11 @@ if &term =~ "xterm" || &term =~ "screen"
 "	set scrolloff=999
 endif
 
-"Highlight python code if lines over 80 columns
+"Highlight python code if lines over 79 columns
 if has("colorcolumn")
-    autocmd FileType python set colorcolumn=80
+    autocmd FileType python set colorcolumn=79
 else
-    autocmd FileType python au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    autocmd FileType python au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 endif
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
