@@ -46,6 +46,7 @@ let Tlist_Show_Menu = 1
 
 "NERDTree
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
+let g:netrw_list_hide=".*\.pyc$"
 
 "Vim Sessions
 "nnoremap <silent> <F4> :mksession<CR>
@@ -73,6 +74,8 @@ function <SID>PythonGrep(tool)
     let &grepprg = 'pyflakes'
   elseif a:tool == "pychecker"
     let &grepprg = 'pychecker --quiet -q'
+  elseif a:tool == "pep8"
+    let &grepprg = 'pep8'
   else
     echohl WarningMsg
     echo "PythonGrep Error: Unknown Tool"
@@ -106,13 +109,23 @@ else
   endif
 endif
 
-if ( !hasmapto('<SID>PythonGrep(pylint)') && (maparg('<F5>') == '') )
-  map <F5> :call <SID>PythonGrep('pylint')<CR>
-  map! <F5> :call <SID>PythonGrep('pylint')<CR>
+if ( !hasmapto('<SID>PythonGrep(pep8)') && (maparg('<F5>') == '') )
+  map <F5> :call <SID>PythonGrep('pep8')<CR>
+  map! <F5> :call <SID>PythonGrep('pep8')<CR>
+else
+  if ( !has("gui_running") || has("win32") )
+    echo "Python pep8 Error: No Key mapped.\n".
+          \ "<F5> is taken and a replacement was not assigned."
+  endif
+endif
+
+if ( !hasmapto('<SID>PythonGrep(pylint)') && (maparg('<F6>') == '') )
+  map <F6> :call <SID>PythonGrep('pylint')<CR>
+  map! <F6> :call <SID>PythonGrep('pylint')<CR>
 else
   if ( !has("gui_running") || has("win32") )
     echo "Python Pylint Error: No Key mapped.\n".
-          \ "<F5> is taken and a replacement was not assigned."
+          \ "<F6> is taken and a replacement was not assigned."
   endif
 endif
 
