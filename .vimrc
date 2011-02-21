@@ -75,7 +75,7 @@ function <SID>PythonGrep(tool)
   elseif a:tool == "pychecker"
     let &grepprg = 'pychecker --quiet -q'
   elseif a:tool == "pep8"
-    let &grepprg = 'pep8'
+    let &grepprg = 'pep8 -r'
   else
     echohl WarningMsg
     echo "PythonGrep Error: Unknown Tool"
