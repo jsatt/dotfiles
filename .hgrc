@@ -21,7 +21,8 @@ kdiff3.priority = 1
 users = *
 group = *
 
-
-
 [gtools]
 diffbottom = True
+
+[extensions]
+fetch =
