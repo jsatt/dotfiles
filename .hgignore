@@ -1,3 +1,4 @@
 syntax: glob
 .netrwhist
 .VimballRecord
+*.ctags
