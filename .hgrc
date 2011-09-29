@@ -25,5 +25,10 @@ group = *
 diffbottom = True
 
 [extensions]
-fetch =
-mq =
+fetch=
+hgshelve=~/.hgext/hgshelve/hgshelve.py
+mq=
+pager=
+
+[pager]
+pager = LESS='FSRX' less
