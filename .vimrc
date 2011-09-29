@@ -39,6 +39,9 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
 set tags +=$HOME/.vim/tags/python.ctags
 
+"Autocompile CoffeeScript to js
+autocmd BufWritePost *.coffee CoffeeMake
+
 "Taglist
 nnoremap <silent> <F2> :TlistToggle<CR>
 let Tlist_Process_File_Alway = 1
