@@ -36,6 +36,9 @@ let Tlist_Show_Menu = 1
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 let g:netrw_list_hide=".*\.pyc$"
 
+"Gundo
+nnoremap <silent> <C-z> :GundoToggle<CR>
+
 "Highlight end of line whitespace.
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
