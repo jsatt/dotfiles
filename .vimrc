@@ -1,4 +1,5 @@
 set nocompatible
+call pathogen#infect()
 syntax enable
 filetype on
 filetype plugin on
@@ -18,29 +19,13 @@ set hlsearch
 set incsearch
 set history=1000
 set undolevels=1000
-"More syntax highlighting.
-let python_highlight_all = 1
 
 if &term =~ "xterm" || &term =~ "screen"
 	set mouse=a
     set ttymouse=xterm2
-"else
-"	set scrolloff=999
 endif
 
-"Highlight python code if lines over 79 columns
-if has("colorcolumn")
-    autocmd FileType python set colorcolumn=79
-else
-    autocmd FileType python au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
-endif
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
-set tags +=$HOME/.vim/tags/python.ctags
-
-"Autocompile CoffeeScript to js
-autocmd BufWritePost *.coffee CoffeeMake
 
 "Taglist
 nnoremap <silent> <F2> :TlistToggle<CR>
@@ -51,18 +36,11 @@ let Tlist_Show_Menu = 1
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 let g:netrw_list_hide=".*\.pyc$"
 
-"Vim Sessions
-"nnoremap <silent> <F4> :mksession<CR>
-
-":make to check python syntax errors
-set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-
 "Highlight end of line whitespace.
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 
-function <SID>PythonGrep(tool)
+function ToolGrep(tool)
   set lazyredraw
   " Close any existing cwindows.
   cclose
@@ -81,7 +59,7 @@ function <SID>PythonGrep(tool)
     let &grepprg = 'pep8 -r'
   else
     echohl WarningMsg
-    echo "PythonGrep Error: Unknown Tool"
+    echo "ToolGrep Error: Unknown Tool"
     echohl none
   endif
   if &readonly == 0 | update | endif
@@ -101,44 +79,3 @@ function <SID>PythonGrep(tool)
   set nolazyredraw
   redraw!
 endfunction
-
-if ( !hasmapto('<SID>PythonGrep(pyflakes)') && (maparg('<F4>') == '') )
-  map <F4> :call <SID>PythonGrep('pyflakes')<CR>
-  map! <F4> :call <SID>PythonGrep('pyflakes')<CR>
-else
-  if ( !has("gui_running") || has("win32") )
-    echo "Python Pyflakes Error: No Key mapped.\n".
-          \ "<F4> is taken and a replacement was not assigned."
-  endif
-endif
-
-if ( !hasmapto('<SID>PythonGrep(pep8)') && (maparg('<F5>') == '') )
-  map <F5> :call <SID>PythonGrep('pep8')<CR>
-  map! <F5> :call <SID>PythonGrep('pep8')<CR>
-else
-  if ( !has("gui_running") || has("win32") )
-    echo "Python pep8 Error: No Key mapped.\n".
-          \ "<F5> is taken and a replacement was not assigned."
-  endif
-endif
-
-if ( !hasmapto('<SID>PythonGrep(pylint)') && (maparg('<F6>') == '') )
-  map <F6> :call <SID>PythonGrep('pylint')<CR>
-  map! <F6> :call <SID>PythonGrep('pylint')<CR>
-else
-  if ( !has("gui_running") || has("win32") )
-    echo "Python Pylint Error: No Key mapped.\n".
-          \ "<F6> is taken and a replacement was not assigned."
-  endif
-endif
-
-"if ( !hasmapto('<SID>PythonGrep(pychecker)') && (maparg('<F5>') == '') )
-"  map <F5> :call <SID>PythonGrep('pychecker')<CR>
-"  map! <F5> :call <SID>PythonGrep('pychecker')<CR>
-"else
-"  if ( !has("gui_running") || has("win32") )
-"    echo "Python Pychecker Error: No Key mapped.\n".
-"          \ "<F5> is taken and a replacement was not assigned."
-"  endif
-"endif
-
