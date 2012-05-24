@@ -3,7 +3,7 @@ let python_highlight_all = 1
 au BufWinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-set tags +=$HOME/.vim/tags/python.ctags
+set tags+=$HOME/.vim/tags/python.ctags
 
 map <buffer> <s-c-D> Oimport ipdb; ipdb.set_trace()<esc>
 map! <buffer> <s-c-D> import ipdb; ipdb.set_trace()
