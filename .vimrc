@@ -1,45 +1,57 @@
-set nocompatible
-call pathogen#infect()
-syntax enable
-filetype on
-filetype plugin on
-filetype indent on
-set autoindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-set laststatus=2
-set wildchar=<Tab>
-set whichwrap=h,l
-set formatoptions=l
-set lbr
-set hlsearch
-set incsearch
-set history=1000
-set undolevels=1000
+"http://vimdoc.sourceforge.net/htmldoc/
+set nocompatible "don't be Vi compatible
+call pathogen#infect() "load pathogen bundles
+syntax enable "enable syntax highlighting
+filetype on "enable filetype detection
+filetype plugin on "filetype specific plugins
+filetype indent on "filetype specific indents
+set autoindent "copy indent from current line when starting new line
+set autoread "auto read if file has changed outside vim but not inside
+set clipboard=unnamedplus "copy/paste to/from system slipboard
+set expandtab "use spaces instead of tabs
+set formatoptions=l "don't wrap long lines
+set history=1000 "remember the last 1000 commands used
+set hlsearch "highlight matchs when searching
+set incsearch "jump to next match when searching
+set laststatus=2 "show status line
+set linebreak "visually wrap long lines
+set shiftwidth=4 "4 spaces for indents when using << or >>
+set smarttab "use <BS> too delete shiftwidth worth of space at start of line
+set softtabstop=4 "4 spaces for tabs in INSERT mode
+set tabstop=4 "4 space for tabs
+set undolevels=1000 "number of changes that can be undone
+set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
+set wildchar=<Tab> "<Tab> to start wildcard completion
+set wildmenu "enhaced completion mode
+"remap increment to not clash w/ screen
+nnoremap <C-c> <C-a>
 
-if &term =~ "xterm" || &term =~ "screen"
-	set mouse=a
-    set ttymouse=xterm2
+if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
+	set mouse=a "enable mouse in all modes
+    set ttymouse=xterm2 "enable xterm mouse handling
 endif
 
-inoremap <Nul> <C-x><C-o>
+au BufEnter * checkt "check for changes more often for autoread
 
 "Taglist
+"toggle Taglist w/ <F2>
 nnoremap <silent> <F2> :TlistToggle<CR>
-let Tlist_Process_File_Alway = 1
-let Tlist_Show_Menu = 1
+let Tlist_Process_File_Alway = 1 "process tags even with taglist closed
+let Tlist_Show_Menu = 1 "show tags menu in gvim
+let Tlist_Exit_OnlyWindow = 1 "exit vim if taglist is the only window
+let Tlist_Show_One_File = 1 "only show tags from current file
+let Tlist_Sort_Type = "name" "sort by name by default
 
 "NERDTree
+"toggle NERDTree w/ <F3>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
-let g:netrw_list_hide=".*\.pyc$"
+let g:netrw_list_hide=".*\.pyc$" "hide pyc files from nerdtree
 
 "Gundo
+"toggle Gundo w/ Crtl-Z
 nnoremap <silent> <C-z> :GundoToggle<CR>
 
-"Highlight end of line whitespace.
+"Highlight end of line whitespace in red
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 
