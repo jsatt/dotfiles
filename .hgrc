@@ -26,6 +26,7 @@ group = *
 diffbottom = True
 
 [extensions]
+color=
 fetch=
 hgext.extdiff =
 hgk=
