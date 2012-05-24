@@ -17,9 +17,9 @@ alias la='ls -A'
 alias lal='ls -al'
 alias l.='ls -d .*'
 alias pdbtest='./manage.py test -sx --pdb --pdb-failures'
-alias q='exit'
-alias rscp='rsync --progress -r --rsh=ssh'
-alias ZZ='exit'
+alias ipdbtest='./manage.py test -sx --ipdb --ipdb-failures'
+alias rscp='rsync --progress -r --rsh=ssh':w
+
 
 if [ $UID -ne 0 ]; then
     gdr() { sudo killall -SIGHUP gunicorn_django; }
