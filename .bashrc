@@ -104,3 +104,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 #pip
 export PIP_RESPECT_VIRTUALENV=true
 
+#nvm
+source $HOME/.nvm/nvm.sh
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+nvm use default > /dev/null
