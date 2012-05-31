@@ -3,3 +3,6 @@ syntax: glob
 .VimballRecord
 *.ctags
 .git
+*.bak
+*.orig
+*.pyc
