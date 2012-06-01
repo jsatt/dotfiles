@@ -98,13 +98,17 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+if [ `which virtualenvwrapper.sh` ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source `which virtualenvwrapper.sh`
+fi
 
 #pip
 export PIP_RESPECT_VIRTUALENV=true
 
 #nvm
-source $HOME/.nvm/nvm.sh
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-nvm use default > /dev/null
+if [ -f $HOME/.nvm/nvm.sh ]; then
+    source $HOME/.nvm/nvm.sh
+    [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+    nvm use default > /dev/null
+fi
