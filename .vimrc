@@ -1,6 +1,32 @@
 "http://vimdoc.sourceforge.net/htmldoc/
 set nocompatible "don't be Vi compatible
-call pathogen#infect() "load pathogen bundles
+"call pathogen#infect() "load pathogen bundles
+
+filetype off "turn off filetype detection for vundle
+set rtp+=~/.vim/bundle/vundle "add vundle
+call vundle#rc() "start vundle
+Bundle 'gmarik/vundle'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'lambdalisue/vim-django-support'
+Bundle 'scrooloose/nerdtree'
+Bundle 'wavded/vim-stylus'
+Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-surround'
+Bundle 'git://repo.or.cz/vcscommand'
+Bundle 'vim-scripts/AutoTag'
+Bundle 'vim-scripts/css3-mod'
+Bundle 'mjbrownie/vim-htmldjango_omnicomplete'
+Bundle 'vim-scripts/django.vim'
+Bundle 'vim-scripts/Gundo'
+Bundle 'vim-scripts/JSON.vim'
+Bundle 'vim-scripts/nginx.vim'
+Bundle 'vim-scripts/pythoncomplete'
+Bundle 'vim-scripts/Rename2'
+Bundle 'vim-scripts/taglist-plus'
+Bundle 'vim-scripts/indentpython.vim--nianyang'
+Bundle 'jsatt/python_fn'
+Bundle 'jsatt/python_syntax'
+
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
 filetype plugin on "filetype specific plugins
@@ -36,11 +62,11 @@ au BufEnter * checkt "check for changes more often for autoread
 "Taglist
 "toggle Taglist w/ <F2>
 nnoremap <silent> <F2> :TlistToggle<CR>
-let Tlist_Process_File_Alway = 1 "process tags even with taglist closed
-let Tlist_Show_Menu = 1 "show tags menu in gvim
-let Tlist_Exit_OnlyWindow = 1 "exit vim if taglist is the only window
-let Tlist_Show_One_File = 1 "only show tags from current file
-let Tlist_Sort_Type = "name" "sort by name by default
+let Tlist_Process_File_Alway=1 "process tags even with taglist closed
+let Tlist_Show_Menu=1 "show tags menu in gvim
+let Tlist_Exit_OnlyWindow=1 "exit vim if taglist is the only window
+let Tlist_Show_One_File=1 "only show tags from current file
+let Tlist_Sort_Type="name" "sort by name by default
 
 "NERDTree
 "toggle NERDTree w/ <F3>
@@ -94,3 +120,9 @@ function ToolGrep(tool)
   set nolazyredraw
   redraw!
 endfunction
+
+
+"Filetype detection
+au BufRead,BufNewFile *.css set ft=css syntax=css3
+au! BufRead,BufNewFile *.json set filetype=json
+au! BufRead,BufNewFile *.html set filetype=htmldjango
