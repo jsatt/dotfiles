@@ -19,7 +19,8 @@ alias l.='ls -d .*'
 alias pdbtest='./manage.py test -sx --pdb --pdb-failures'
 alias ipdbtest='./manage.py test -sx --ipdb --ipdb-failures'
 alias rscp='rsync --progress -r --rsh=ssh'
-alias pep8='pep8 --exclude=migrations'
+alias pep8='pep8 -r --exclude=migrations'
+alias flake8='flake8 -r --exclude=migrations'
 
 
 if [ $UID -ne 0 ]; then

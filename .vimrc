@@ -26,6 +26,7 @@ Bundle 'vim-scripts/taglist-plus'
 Bundle 'vim-scripts/indentpython.vim--nianyang'
 Bundle 'jsatt/python_fn'
 Bundle 'jsatt/python_syntax'
+Bundle 'mattn/zencoding-vim.git'
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
@@ -73,8 +74,12 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 let g:netrw_list_hide=".*\.pyc$" "hide pyc files from nerdtree
 
 "Gundo
-"toggle Gundo w/ Crtl-Z
+"toggle Gundo w/ Ctrl-Z
 nnoremap <silent> <C-z> :GundoToggle<CR>
+
+"ZenCoding
+"expand w/ Ctrl-e
+let g:user_zen_expandabbr_key='<c-e>'
 
 "Highlight end of line whitespace in red
 highlight WhitespaceEOL ctermbg=red guibg=red
@@ -97,6 +102,8 @@ function ToolGrep(tool)
     let &grepprg = 'pychecker --quiet -q'
   elseif a:tool == "pep8"
     let &grepprg = 'pep8 -r'
+  elseif a:tool == "flake8"
+    let &grepprg = 'flake8 -r'
   else
     echohl WarningMsg
     echo "ToolGrep Error: Unknown Tool"
