@@ -27,6 +27,7 @@ Bundle 'vim-scripts/indentpython.vim--nianyang'
 Bundle 'jsatt/python_fn'
 Bundle 'jsatt/python_syntax'
 Bundle 'mattn/zencoding-vim.git'
+Bundle 'plasticboy/vim-markdown'
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
