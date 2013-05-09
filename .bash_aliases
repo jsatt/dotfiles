@@ -21,6 +21,7 @@ alias ipdbtest='./manage.py test -sx --ipdb --ipdb-failures'
 alias rscp='rsync --progress -r --rsh=ssh'
 alias pep8='pep8 -r --exclude=migrations'
 alias flake8='flake8 -r --exclude=migrations'
+alias watchredis='redis-cli -n 1 monitor | cut -b -200'
 
 
 if [ $UID -ne 0 ]; then
