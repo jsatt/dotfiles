@@ -28,6 +28,7 @@ Bundle 'jsatt/python_fn'
 Bundle 'jsatt/python_syntax'
 Bundle 'mattn/zencoding-vim.git'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'lepture/vim-jinja.git'
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
