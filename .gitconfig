@@ -1,0 +1,18 @@
+[core]
+    editor = vi
+[color]
+	ui = auto
+[user]
+	name = Jeremy Satterfield
+	email = jsatt22@gmail.com
+[merge]
+	tool = kdiff3
+
+[alias]
+    st = status
+    ci = commit
+    cia = commit --all
+    amend = commit --amend
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    up = checkout -m
+    update = up
