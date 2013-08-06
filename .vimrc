@@ -105,7 +105,7 @@ function ToolGrep(tool)
   elseif a:tool == "pep8"
     let &grepprg = 'pep8 -r'
   elseif a:tool == "flake8"
-    let &grepprg = 'flake8 -r'
+    let &grepprg = 'flake8'
   else
     echohl WarningMsg
     echo "ToolGrep Error: Unknown Tool"
