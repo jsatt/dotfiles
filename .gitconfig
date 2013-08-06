@@ -2,6 +2,7 @@
     editor = vi
 [color]
 	ui = auto
+    decorate = auto
 [user]
 	name = Jeremy Satterfield
 	email = jsatt22@gmail.com
@@ -14,5 +15,10 @@
     cia = commit --all
     amend = commit --amend
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    co = checkout
     up = checkout -m
     update = up
+    out = !git fetch && git log FETCH_HEAD..
+    outgoing = !git fetch && git log FETCH_HEAD..
+    in = !git fetch && git log ..FETCH_HEAD
+    incoming = !git fetch && git log ..FETCH_HEAD
