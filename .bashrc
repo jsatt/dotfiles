@@ -112,3 +112,8 @@ if [ -f $HOME/.nvm/nvm.sh ]; then
     [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
     nvm use default > /dev/null
 fi
+
+### Added by the Heroku Toolbelt
+#export PATH="/usr/local/heroku/bin:$PATH"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
