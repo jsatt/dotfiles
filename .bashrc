@@ -101,17 +101,15 @@ fi
 if [ `which virtualenvwrapper.sh` ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     source `which virtualenvwrapper.sh`
+    export PIP_RESPECT_VIRTUALENV=true
 fi
-
-#pip
-export PIP_RESPECT_VIRTUALENV=true
 
 #nvm
-if [ -f $HOME/.nvm/nvm.sh ]; then
-    source $HOME/.nvm/nvm.sh
-    [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-    nvm use default > /dev/null
-fi
+#if [ -f $HOME/.nvm/nvm.sh ]; then
+#    source $HOME/.nvm/nvm.sh
+#    [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+#    nvm use default > /dev/null
+#fi
 
 ### Added by the Heroku Toolbelt
 #export PATH="/usr/local/heroku/bin:$PATH"
