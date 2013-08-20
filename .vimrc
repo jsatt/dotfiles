@@ -1,6 +1,5 @@
 "http://vimdoc.sourceforge.net/htmldoc/
 set nocompatible "don't be Vi compatible
-"call pathogen#infect() "load pathogen bundles
 
 filetype off "turn off filetype detection for vundle
 set rtp+=~/.vim/bundle/vundle "add vundle
@@ -29,6 +28,7 @@ Bundle 'jsatt/python_syntax'
 Bundle 'mattn/zencoding-vim.git'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'lepture/vim-jinja.git'
+Bundle 'scrooloose/syntastic'
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
@@ -37,6 +37,7 @@ filetype indent on "filetype specific indents
 set autoindent "copy indent from current line when starting new line
 set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
+set colorcolumn=80 "highlight at column 80 for visual indication of long line
 set expandtab "use spaces instead of tabs
 set formatoptions=l "don't wrap long lines
 set history=1000 "remember the last 1000 commands used
@@ -44,6 +45,8 @@ set hlsearch "highlight matchs when searching
 set incsearch "jump to next match when searching
 set laststatus=2 "show status line
 set linebreak "visually wrap long lines
+set number "show line numbers
+set numberwidth=4 "width of line number column
 set shiftwidth=4 "4 spaces for indents when using << or >>
 set smarttab "use <BS> too delete shiftwidth worth of space at start of line
 set softtabstop=4 "4 spaces for tabs in INSERT mode
@@ -54,6 +57,10 @@ set wildchar=<Tab> "<Tab> to start wildcard completion
 set wildmenu "enhaced completion mode
 "remap increment to not clash w/ screen
 nnoremap <C-c> <C-a>
+
+"set color of line number column
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
 
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
 	set mouse=a "enable mouse in all modes
@@ -84,8 +91,9 @@ nnoremap <silent> <C-z> :GundoToggle<CR>
 let g:user_zen_expandabbr_key='<c-e>'
 
 "Highlight end of line whitespace in red
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
+highlight BadWhitespace ctermbg=red guibg=red
+match BadWhitespace /\s\+$/
+match BadWhitespace /^\t\+/
 
 function ToolGrep(tool)
   set lazyredraw

@@ -1,6 +1,6 @@
 "set python_highlight_all=1
 "Highlight python code if lines over 79 columns
-au BufWinEnter,WinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
+"au BufWinEnter,WinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 set tags+=$HOME/.vim/tags/python.ctags
