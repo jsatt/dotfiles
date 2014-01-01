@@ -26,7 +26,7 @@ Bundle 'vim-scripts/Toggle'
 Bundle 'vim-scripts/indentpython.vim--nianyang'
 Bundle 'jsatt/python_fn'
 Bundle 'jsatt/python_syntax'
-Bundle 'mattn/zencoding-vim.git'
+Bundle 'mattn/emmet-vim.git'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'lepture/vim-jinja.git'
 Bundle 'scrooloose/syntastic'
@@ -89,7 +89,7 @@ nnoremap <silent> <C-z> :GundoToggle<CR>
 
 "ZenCoding
 "expand w/ Ctrl-e
-let g:user_zen_expandabbr_key='<c-e>'
+let g:user_emmet_expandabbr_key='<c-e>'
 
 "Highlight end of line whitespace in red
 highlight BadWhitespace ctermbg=red guibg=red
