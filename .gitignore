@@ -6,4 +6,5 @@ syntax: glob
 *.bak
 *.orig
 *.pyc
-.vim/bundle/*
+*.swp
+vim/bundle/*

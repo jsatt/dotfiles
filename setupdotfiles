@@ -1,0 +1,10 @@
+#!/bin/bash
+
+excluded_files='setupdotfiles README'
+
+for file in *
+do
+    if [[ ! $excluded_files =~ $file ]]; then
+        ln -sf $PWD/$file ~/.$file
+    fi
+done
