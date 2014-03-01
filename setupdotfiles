@@ -5,6 +5,9 @@ excluded_files='setupdotfiles README'
 for file in *
 do
     if [[ ! $excluded_files =~ $file ]]; then
-        ln -sf $PWD/$file ~/.$file
+        ln -sf $PWD/$file $HOME/.$file
     fi
 done
+
+git submodule update --init --recursive
+vim +BundleInstall +qa
