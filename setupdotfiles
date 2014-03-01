@@ -2,12 +2,18 @@
 
 excluded_files='setupdotfiles README'
 
-for file in *
+pushd `dirname $0` > /dev/null
+SCRIPT_PATH=`pwd -P`
+popd > /dev/null
+
+for file in $SCRIPT_PATH/*
 do
-    if [[ ! $excluded_files =~ $file ]]; then
-        ln -sf $PWD/$file $HOME/.$file
+    filename=`basename $file`
+    if [[ ! $excluded_files =~ $filename ]]; then
+        echo "linking .$filename"
+        ln -sf $file $HOME/.$filename
     fi
 done
 
-git submodule update --init --recursive
+(cd $SCRIPT_PATH && git submodule update --init --recursive)
 vim +BundleInstall +qa
