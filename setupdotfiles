@@ -11,9 +11,12 @@ do
     filename=`basename $file`
     if [[ ! $excluded_files =~ $filename ]]; then
         echo "linking .$filename"
-        ln -sf $file $HOME/.$filename
+        ln -snf $file $HOME/.$filename
     fi
 done
 
+echo "cloning submodules"
 (cd $SCRIPT_PATH && git submodule update --init --recursive)
-vim +BundleInstall +qa
+
+echo "installing vim bundles"
+vim +BundleInstall +qa &> /dev/null
