@@ -104,6 +104,9 @@ if [ `which virtualenvwrapper.sh` ]; then
     export PIP_RESPECT_VIRTUALENV=true
 fi
 
+# autoenv
+source $HOME/.autoenv/activate.sh
+
 #nvm
 #if [ -f $HOME/.nvm/nvm.sh ]; then
 #    source $HOME/.nvm/nvm.sh
