@@ -33,6 +33,8 @@
     br = branch
     ci = commit
     co = checkout
+    di = diff
+    dc = diff --cached
     st = status
 
     amend = commit --amend
