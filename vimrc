@@ -39,6 +39,7 @@ set autoindent "copy indent from current line when starting new line
 set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
 set colorcolumn=80 "highlight at column 80 for visual indication of long line
+set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
 set formatoptions=l "don't wrap long lines
 set history=1000 "remember the last 1000 commands used
