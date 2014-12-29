@@ -30,6 +30,7 @@ Bundle 'mattn/emmet-vim.git'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'lepture/vim-jinja.git'
 Bundle 'scrooloose/syntastic'
+Bundle 'editorconfig/editorconfig'
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
