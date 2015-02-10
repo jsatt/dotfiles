@@ -42,6 +42,8 @@ set clipboard=unnamedplus "copy/paste to/from system slipboard
 set colorcolumn=80 "highlight at column 80 for visual indication of long line
 set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
+set foldmethod=indent "enable manual code folding
+set foldlevelstart=6 "don't automatically close folds on open unless 6 folds deep
 set formatoptions=l "don't wrap long lines
 set history=1000 "remember the last 1000 commands used
 set hlsearch "highlight matchs when searching
