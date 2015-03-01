@@ -95,8 +95,9 @@ let g:user_emmet_expandabbr_key='<c-e>'
 
 "Highlight end of line whitespace in red
 highlight BadWhitespace ctermbg=red guibg=red
-match BadWhitespace /\s\+$/
-match BadWhitespace /^\t\+/
+let m = matchadd('BadWhitespace', '\s\+$')
+"Highlight tabs used instead of spaces in red
+let m = matchadd('BadWhitespace', '^\t\+')
 
 function ToolGrep(tool)
   set lazyredraw
