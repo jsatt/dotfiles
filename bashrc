@@ -97,6 +97,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# enable up and down to search history based on text already typed
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
 #virtualenvwrapper
 if [ `which virtualenvwrapper.sh` ]; then
     export WORKON_HOME=$HOME/.virtualenvs
