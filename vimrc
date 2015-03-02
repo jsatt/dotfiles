@@ -13,7 +13,7 @@ Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-surround'
 Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'vim-scripts/AutoTag'
-Bundle 'lepture/vim-css'
+"Bundle 'lepture/vim-css'
 Bundle 'mjbrownie/vim-htmldjango_omnicomplete'
 Bundle 'vim-scripts/django.vim'
 Bundle 'vim-scripts/Gundo'
@@ -31,6 +31,7 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'lepture/vim-jinja.git'
 Bundle 'scrooloose/syntastic'
 Bundle 'editorconfig/editorconfig'
+Bundle 'groenewege/vim-less'
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
