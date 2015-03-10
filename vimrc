@@ -148,3 +148,4 @@ endfunction
 "Filetype detection
 au! BufRead,BufNewFile *.json set filetype=json
 au! BufRead,BufNewFile *.html set filetype=htmldjango
+au! BufRead,BufNewFile *.sls set filetype=yaml
