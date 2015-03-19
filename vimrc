@@ -3,35 +3,44 @@ set nocompatible "don't be Vi compatible
 
 filetype off "turn off filetype detection for vundle
 set rtp+=~/.vim/bundle/vundle "add vundle
-call vundle#rc() "start vundle
-Bundle 'gmarik/vundle'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'lambdalisue/vim-django-support'
-Bundle 'scrooloose/nerdtree'
-Bundle 'wavded/vim-stylus'
-Bundle 'ervandew/supertab'
-Bundle 'tpope/vim-surround'
-Bundle 'git://repo.or.cz/vcscommand'
-Bundle 'vim-scripts/AutoTag'
-"Bundle 'lepture/vim-css'
-Bundle 'mjbrownie/vim-htmldjango_omnicomplete'
-Bundle 'vim-scripts/django.vim'
-Bundle 'vim-scripts/Gundo'
-Bundle 'vim-scripts/JSON.vim'
-Bundle 'vim-scripts/nginx.vim'
-Bundle 'vim-scripts/pythoncomplete'
-Bundle 'vim-scripts/Rename'
-Bundle 'vim-scripts/taglist-plus'
-Bundle 'vim-scripts/Toggle'
-Bundle 'vim-scripts/indentpython.vim--nianyang'
-Bundle 'jsatt/python_fn'
-Bundle 'jsatt/python_syntax'
-Bundle 'mattn/emmet-vim.git'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'lepture/vim-jinja.git'
-Bundle 'scrooloose/syntastic'
-Bundle 'editorconfig/editorconfig'
-Bundle 'groenewege/vim-less'
+call vundle#begin() "start vundle
+Plugin 'gmarik/vundle'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'lambdalisue/vim-django-support'
+Plugin 'scrooloose/nerdtree'
+Plugin 'wavded/vim-stylus'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround'
+Plugin 'git://repo.or.cz/vcscommand'
+Plugin 'vim-scripts/AutoTag'
+"Plugin 'lepture/vim-css'
+Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
+Plugin 'vim-scripts/django.vim'
+Plugin 'vim-scripts/Gundo'
+Plugin 'vim-scripts/JSON.vim'
+Plugin 'vim-scripts/nginx.vim'
+Plugin 'vim-scripts/pythoncomplete'
+Plugin 'vim-scripts/Rename'
+Plugin 'vim-scripts/taglist-plus'
+Plugin 'vim-scripts/Toggle'
+Plugin 'vim-scripts/indentpython.vim--nianyang'
+Plugin 'jsatt/python_fn'
+Plugin 'jsatt/python_syntax'
+Plugin 'mattn/emmet-vim.git'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'lepture/vim-jinja.git'
+Plugin 'scrooloose/syntastic'
+Plugin 'editorconfig/editorconfig'
+Plugin 'groenewege/vim-less'
+Plugin 'bling/vim-airline'
+
+call vundle#end()
+
+" enable 256 colors
+if (&term =~ "xterm") || (&term =~ "screen")
+    set t_Co=256
+endif
+colorscheme slate
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
@@ -69,7 +78,7 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
 
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
-	set mouse=a "enable mouse in all modes
+    set mouse=a "enable mouse in all modes
     set ttymouse=xterm2 "enable xterm mouse handling
 endif
 
@@ -101,6 +110,13 @@ highlight BadWhitespace ctermbg=red guibg=red
 let m = matchadd('BadWhitespace', '\s\+$')
 "Highlight tabs used instead of spaces in red
 let m = matchadd('BadWhitespace', '^\t\+')
+
+
+"Airline
+let g:airline_powerline_fonts = 0
+let g:airline_theme = 'murmur'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 
 function ToolGrep(tool)
   set lazyredraw
