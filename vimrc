@@ -11,8 +11,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'wavded/vim-stylus'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
-Plugin 'git://repo.or.cz/vcscommand'
+"Plugin 'git://repo.or.cz/vcscommand'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/AutoTag'
+Plugin 'wesQ3/vim-windowswap'
 "Plugin 'lepture/vim-css'
 Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
 Plugin 'vim-scripts/django.vim'
@@ -33,7 +36,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'editorconfig/editorconfig'
 Plugin 'groenewege/vim-less'
 Plugin 'bling/vim-airline'
-
 call vundle#end()
 
 " enable 256 colors
@@ -111,12 +113,14 @@ let m = matchadd('BadWhitespace', '\s\+$')
 "Highlight tabs used instead of spaces in red
 let m = matchadd('BadWhitespace', '^\t\+')
 
-
 "Airline
-let g:airline_powerline_fonts = 0
 let g:airline_theme = 'murmur'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#tab_nr_type = 2
+let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 function ToolGrep(tool)
   set lazyredraw
