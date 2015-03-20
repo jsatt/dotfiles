@@ -5,37 +5,49 @@ filetype off "turn off filetype detection for vundle
 set rtp+=~/.vim/bundle/vundle "add vundle
 call vundle#begin() "start vundle
 Plugin 'gmarik/vundle'
-Plugin 'kchmck/vim-coffee-script'
+
+" syntax highlighters
+Plugin 'vim-scripts/JSON.vim'
+Plugin 'lepture/vim-jinja.git'
+Plugin 'jsatt/python_syntax'
 Plugin 'lambdalisue/vim-django-support'
-Plugin 'scrooloose/nerdtree'
+Plugin 'kchmck/vim-coffee-script'
 Plugin 'wavded/vim-stylus'
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-surround'
-"Plugin 'git://repo.or.cz/vcscommand'
+Plugin 'groenewege/vim-less'
+Plugin 'vim-scripts/nginx.vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'scrooloose/syntastic'
+"Plugin 'lepture/vim-css'
+
+" VCS
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+"Plugin 'git://repo.or.cz/vcscommand'
+
+" Sidebars
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/taglist-plus'
+Plugin 'vim-scripts/Gundo'
+
+" Code Completion
+Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/AutoTag'
-Plugin 'wesQ3/vim-windowswap'
-"Plugin 'lepture/vim-css'
 Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
 Plugin 'vim-scripts/django.vim'
-Plugin 'vim-scripts/Gundo'
-Plugin 'vim-scripts/JSON.vim'
-Plugin 'vim-scripts/nginx.vim'
 Plugin 'vim-scripts/pythoncomplete'
-Plugin 'vim-scripts/Rename'
-Plugin 'vim-scripts/taglist-plus'
-Plugin 'vim-scripts/Toggle'
+Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/indentpython.vim--nianyang'
-Plugin 'jsatt/python_fn'
-Plugin 'jsatt/python_syntax'
 Plugin 'mattn/emmet-vim.git'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'lepture/vim-jinja.git'
-Plugin 'scrooloose/syntastic'
+
+" Commands
+Plugin 'jsatt/python_fn'
+Plugin 'vim-scripts/Rename'
+Plugin 'vim-scripts/Toggle'
+
+" Vim Config
 Plugin 'editorconfig/editorconfig'
-Plugin 'groenewege/vim-less'
 Plugin 'bling/vim-airline'
+Plugin 'wesQ3/vim-windowswap'
 call vundle#end()
 
 " enable 256 colors
