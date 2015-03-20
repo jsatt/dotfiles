@@ -50,10 +50,6 @@ Plugin 'bling/vim-airline'
 Plugin 'wesQ3/vim-windowswap'
 call vundle#end()
 
-" enable 256 colors
-if (&term =~ "xterm") || (&term =~ "screen")
-    set t_Co=256
-endif
 colorscheme slate
 
 syntax enable "enable syntax highlighting
@@ -126,7 +122,7 @@ let m = matchadd('BadWhitespace', '\s\+$')
 let m = matchadd('BadWhitespace', '^\t\+')
 
 "Airline
-let g:airline_theme = 'murmur'
+let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
