@@ -50,7 +50,7 @@ Plugin 'bling/vim-airline'
 Plugin 'wesQ3/vim-windowswap'
 call vundle#end()
 
-colorscheme slate
+colorscheme default
 
 syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
