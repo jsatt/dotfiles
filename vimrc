@@ -16,17 +16,14 @@ Plugin 'groenewege/vim-less'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/syntastic'
-"Plugin 'lepture/vim-css'
 
 " VCS
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'git://repo.or.cz/vcscommand'
 
 " Sidebars
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-"Plugin 'vim-scripts/taglist-plus'
 Plugin 'vim-scripts/Gundo'
 
 " Code Completion
@@ -98,15 +95,8 @@ endif
 
 au BufEnter * checkt "check for changes more often for autoread
 
-""Taglist
-""toggle Taglist w/ <F2>
-"nnoremap <silent> <F2> :TlistToggle<CR>
-"let Tlist_Process_File_Always=1 "process tags even with taglist closed
-"let Tlist_Exit_OnlyWindow=1 "exit vim if taglist is the only window
-""let Tlist_Show_One_File=1 "only show tags from current file !!this is broken
-"let Tlist_Sort_Type="name" "sort by name by default
-
 "Tagbar
+"toggle Tagbar w/ <F2>
 nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
@@ -192,7 +182,6 @@ function ToolGrep(tool)
   set nolazyredraw
   redraw!
 endfunction
-
 
 "Filetype detection
 au! BufRead,BufNewFile *.json set filetype=json
