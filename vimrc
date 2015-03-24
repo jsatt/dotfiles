@@ -9,7 +9,6 @@ Plugin 'gmarik/vundle'
 " syntax highlighters
 Plugin 'vim-scripts/JSON.vim'
 Plugin 'lepture/vim-jinja.git'
-Plugin 'jsatt/python_syntax'
 Plugin 'lambdalisue/vim-django-support'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'wavded/vim-stylus'
@@ -35,13 +34,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/AutoTag'
 Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
 Plugin 'vim-scripts/django.vim'
-Plugin 'vim-scripts/pythoncomplete'
 Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/indentpython.vim--nianyang'
 Plugin 'mattn/emmet-vim.git'
 
 " Commands
-Plugin 'jsatt/python_fn'
 Plugin 'vim-scripts/Rename'
 Plugin 'vim-scripts/Toggle'
 
@@ -49,6 +45,13 @@ Plugin 'vim-scripts/Toggle'
 Plugin 'editorconfig/editorconfig'
 Plugin 'bling/vim-airline'
 Plugin 'wesQ3/vim-windowswap'
+
+"Python
+Plugin 'klen/python-mode'
+"Plugin 'vim-scripts/indentpython.vim--nianyang'
+"Plugin 'jsatt/python_syntax'
+"Plugin 'vim-scripts/pythoncomplete'
+"Plugin 'jsatt/python_fn'
 call vundle#end()
 
 colorscheme default
@@ -137,6 +140,10 @@ let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tagbar#flags = 'fs'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
+
+"Python Mode
+let g:pymode_lint = 0
+let g:pymode_rope = 0
 
 function ToolGrep(tool)
   set lazyredraw
