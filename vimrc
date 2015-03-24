@@ -145,6 +145,12 @@ let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:pymode_lint = 0
 let g:pymode_rope = 0
 
+"Syntastic
+let g:syntastic_css_checkers = ['prettycss']
+let g:syntastic_html_checkers = ['jshint', 'w3', 'validator']
+let g:syntastic_filetype_map = {
+    \ "htmldjango": "html" }
+
 function ToolGrep(tool)
   set lazyredraw
   " Close any existing cwindows.
