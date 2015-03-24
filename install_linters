@@ -1,0 +1,41 @@
+#!/bin/bash
+
+if [ ! $VIRTUAL_ENV ]; then
+    echo -e "\e[31mThere is currently no active virtualenv. This script will"
+    echo -e "install the required linters globally."
+    echo -e "Are you sure you want to continue?\e[m"
+    read confirm
+    if [[ $confirm =~ ^(y|yes|Y|YES)$ ]]; then
+        echo -e "\e[33mContinuing to install linters globally.\e[m"
+    else
+        echo -e "\e[33mAborting\e[m"
+        exit
+    fi
+fi
+
+if [ `which npm` ]; then
+    echo -e "\e[32mInstalling jshint\e[m"
+    npm install -g jshint
+    echo -e "\e[32mInstalling less\e[m"
+    npm install -g less
+    echo -e "\e[32mInstalling PrettyCSS\e[m"
+    npm install -g PrettyCSS
+    echo -e "\e[32mInstalling js-yaml\e[m"
+    npm install -g js-yaml
+    echo -e "\e[32mInstalling coffee\e[m"
+    npm install -g coffee
+    echo -e "\e[32mInstalling jsonlint\e[m"
+    npm install -g jsonlint
+fi
+
+if [ `which pip` ]; then
+    echo -e "\e[32mInstalling flake8\e[m"
+    pip install --upgrade flake8
+    echo -e "\e[32mInstalling rstcheck\e[m"
+    pip install --upgrade rstcheck
+fi
+
+if [ `which gem` ]; then
+    echo -e "\e[32mInstalling mdl\e[m"
+    gem install mdl
+fi

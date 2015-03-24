@@ -1,6 +1,6 @@
 #!/bin/bash
 
-excluded_files='setupdotfiles README'
+excluded_files='setupdotfiles README bootstrap_venv install_linters'
 
 pushd `dirname $0` > /dev/null
 SCRIPT_PATH=`pwd -P`

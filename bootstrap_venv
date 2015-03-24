@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#Configures current active virtual env to handle Ruby and Node environments
+
+if [ ! $VIRTUAL_ENV ]; then
+    echo -e "\e[31mNot in a Virtual Environment. Aborting.\e[m"
+    exit
+fi
+
+post_activate_lines=(
+    'export GEM_HOME="$VIRTUAL_ENV/gems"'
+    'export GEM_PATH=""'
+    'export PATH=$PATH:"$GEM_HOME/bin"'
+    'autoenv_init'
+)
+for line in "${post_activate_lines[@]}"
+do
+    if [[ ! `grep "$line" $VIRTUAL_ENV/bin/postactivate` ]];then
+        echo -e "\e[32mAdding line to postactivate: $line\e[m"
+        echo "$line" >> $VIRTUAL_ENV/bin/postactivate
+    fi
+done
+
+if [[ ! `which nodeenv` ]]; then
+    echo -e "\e[32mInstalling nodeenv\e[m"
+    pip install nodeenv
+fi
+if [ ! `which node` ] || [ `which node` == "$VIRTUAL_ENV*" ]; then
+    echo -e "\e[32mInstalling node-js\e[m"
+    nodeenv -p install
+fi
