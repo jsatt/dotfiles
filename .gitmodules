@@ -3,4 +3,4 @@
 	url = https://github.com/gmarik/vundle
 [submodule "autoenv"]
 	path = autoenv
-	url = https://github.com/kennethreitz/autoenv.git
+	url = https://github.com/jsatt/autoenv.git
