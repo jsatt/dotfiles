@@ -26,7 +26,8 @@ Plugin 'airblade/vim-gitgutter'
 
 " Sidebars
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/taglist-plus'
+Plugin 'majutsushi/tagbar'
+"Plugin 'vim-scripts/taglist-plus'
 Plugin 'vim-scripts/Gundo'
 
 " Code Completion
@@ -94,13 +95,19 @@ endif
 
 au BufEnter * checkt "check for changes more often for autoread
 
-"Taglist
-"toggle Taglist w/ <F2>
-nnoremap <silent> <F2> :TlistToggle<CR>
-let Tlist_Process_File_Always=1 "process tags even with taglist closed
-let Tlist_Exit_OnlyWindow=1 "exit vim if taglist is the only window
-"let Tlist_Show_One_File=1 "only show tags from current file !!this is broken
-let Tlist_Sort_Type="name" "sort by name by default
+""Taglist
+""toggle Taglist w/ <F2>
+"nnoremap <silent> <F2> :TlistToggle<CR>
+"let Tlist_Process_File_Always=1 "process tags even with taglist closed
+"let Tlist_Exit_OnlyWindow=1 "exit vim if taglist is the only window
+""let Tlist_Show_One_File=1 "only show tags from current file !!this is broken
+"let Tlist_Sort_Type="name" "sort by name by default
+
+"Tagbar
+nnoremap <silent> <F2> :TagbarToggle<CR>
+let g:tagbar_left = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_show_linenumbers = 1
 
 "NERDTree
 "toggle NERDTree w/ <F3>
@@ -128,6 +135,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline#extensions#tagbar#flags = 'fs'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 function ToolGrep(tool)
