@@ -9,7 +9,7 @@ Plugin 'gmarik/vundle'
 " syntax highlighters
 Plugin 'vim-scripts/JSON.vim'
 Plugin 'lepture/vim-jinja.git'
-Plugin 'lambdalisue/vim-django-support'
+Plugin 'vim-scripts/django.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'wavded/vim-stylus'
 Plugin 'groenewege/vim-less'
@@ -29,10 +29,9 @@ Plugin 'vim-scripts/Gundo'
 " Code Completion
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/AutoTag'
-Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
-Plugin 'vim-scripts/django.vim'
 Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim.git'
+Plugin 'scrooloose/nerdcommenter'
 
 " Commands
 Plugin 'vim-scripts/Rename'
@@ -136,6 +135,7 @@ let g:pymode_lint = 0
 let g:pymode_rope = 0
 
 "Syntastic
+let g:syntastic_check_on_open = 1
 let g:syntastic_css_checkers = ['prettycss']
 let g:syntastic_html_checkers = ['jshint', 'w3', 'validator']
 let g:syntastic_filetype_map = {
