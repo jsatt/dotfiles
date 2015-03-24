@@ -1,1 +1,5 @@
+#!/bin/bash
 ctags -h .py -f python.ctags -R -L python_lib_dirs
+if [ $VIRTUAL_ENV ]; then
+    ctags -a -h .py -f python.ctags -R $VIRTUAL_ENV/lib/python2.7
+fi
