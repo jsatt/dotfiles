@@ -129,6 +129,13 @@ let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tagbar#flags = 'fs'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
+function AirlineInit()
+let g:airline_section_c = ''.
+    \ '%{airline#util#wrap(getcwd(), 0)}' .
+    \ '%{airline#util#append(" ", 0)}' .
+    \ g:airline_section_c
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
 
 "Python Mode
 let g:pymode_lint = 0
