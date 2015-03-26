@@ -34,25 +34,30 @@ Plugin 'mattn/emmet-vim.git'
 Plugin 'scrooloose/nerdcommenter'
 
 " Commands
-Plugin 'vim-scripts/Rename'
 Plugin 'vim-scripts/Toggle'
+"Plugin 'vim-scripts/Rename'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-speeddating'
 
 " Vim Config
 Plugin 'editorconfig/editorconfig'
 Plugin 'bling/vim-airline'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'flazz/vim-colorschemes'
 
 "Python
 Plugin 'klen/python-mode'
-"Plugin 'vim-scripts/indentpython.vim--nianyang'
-"Plugin 'jsatt/python_syntax'
-"Plugin 'vim-scripts/pythoncomplete'
-"Plugin 'jsatt/python_fn'
 call vundle#end()
 
-colorscheme default
+syntax enable "enable colors
+colorscheme badwolf
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE
+hi DiffDelete ctermbg=52
+hi DiffAdd ctermbg=22
+hi DiffChange ctermbg=58
+hi DiffText ctermbg=226 ctermfg=8
 
-syntax enable "enable syntax highlighting
 filetype on "enable filetype detection
 filetype plugin on "filetype specific plugins
 filetype indent on "filetype specific indents
@@ -80,12 +85,13 @@ set undolevels=1000 "number of changes that can be undone
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wildchar=<Tab> "<Tab> to start wildcard completion
 set wildmenu "enhaced completion mode
+"
 "remap increment to not clash w/ screen
 nnoremap <C-c> <C-a>
 
-"set color of line number column
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
+"map location map cycling
+nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lp :lprev<CR>
 
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
     set mouse=a "enable mouse in all modes
@@ -99,12 +105,16 @@ au BufEnter * checkt "check for changes more often for autoread
 nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
-let g:tagbar_show_linenumbers = 1
 
 "NERDTree
 "toggle NERDTree w/ <F3>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 let g:netrw_list_hide=".*\.pyc$" "hide pyc files from nerdtree
+
+"NERDCommenter
+let g:NERDCustomDelimiters = {
+    \ 'python': {'left': '# ', 'leftAlt': '#'},
+    \ }
 
 "Gundo
 "toggle Gundo w/ Ctrl-Z
@@ -143,6 +153,7 @@ let g:pymode_rope = 0
 
 "Syntastic
 let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_css_checkers = ['prettycss']
 let g:syntastic_html_checkers = ['jshint', 'w3', 'validator']
 let g:syntastic_filetype_map = {
