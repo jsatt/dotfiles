@@ -38,6 +38,8 @@ Plugin 'vim-scripts/Toggle'
 "Plugin 'vim-scripts/Rename'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-speeddating'
+Plugin 'tmhedberg/matchit'
+Plugin 'AndrewRadev/linediff.vim'
 
 " Vim Config
 Plugin 'editorconfig/editorconfig'
@@ -85,13 +87,15 @@ set undolevels=1000 "number of changes that can be undone
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wildchar=<Tab> "<Tab> to start wildcard completion
 set wildmenu "enhaced completion mode
-"
+
 "remap increment to not clash w/ screen
 nnoremap <C-c> <C-a>
 
 "map location map cycling
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprev<CR>
+
+map <leader>ld :Linediff<CR>
 
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
     set mouse=a "enable mouse in all modes
