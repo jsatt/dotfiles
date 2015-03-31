@@ -89,11 +89,11 @@ set wildchar=<Tab> "<Tab> to start wildcard completion
 set wildmenu "enhaced completion mode
 
 "remap increment to not clash w/ screen
-nnoremap <C-c> <C-a>
+map <C-c> <C-a>
 
 "map location map cycling
-nnoremap <leader>ln :lnext<CR>
-nnoremap <leader>lp :lprev<CR>
+map <leader>ln :lnext<CR>
+map <leader>lp :lprev<CR>
 
 map <leader>ld :Linediff<CR>
 
@@ -106,13 +106,13 @@ au BufEnter * checkt "check for changes more often for autoread
 
 "Tagbar
 "toggle Tagbar w/ <F2>
-nnoremap <silent> <F2> :TagbarToggle<CR>
+map <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
 
 "NERDTree
 "toggle NERDTree w/ <F3>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+map <silent> <F3> :NERDTreeToggle<CR>
 let g:netrw_list_hide=".*\.pyc$" "hide pyc files from nerdtree
 
 "NERDCommenter
@@ -122,7 +122,7 @@ let g:NERDCustomDelimiters = {
 
 "Gundo
 "toggle Gundo w/ Ctrl-Z
-nnoremap <silent> <C-z> :GundoToggle<CR>
+map <silent> <C-z> :GundoToggle<CR>
 
 "ZenCoding
 "expand w/ Ctrl-e

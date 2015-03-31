@@ -5,9 +5,8 @@
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 set tags+=$HOME/.vim/tags/python.ctags
 
-map <buffer> <leader>m oself.mock = mox.Mox()<CR><CR><BS>def tearDown(self):<CR>self.mock.UnsetStubs()<esc>
-map <buffer> <leader>l ologger = logging.getLogger(__name__)<esc>ggOimport logging<CR><esc>''
-map <buffer> <leader>u  i# -*- coding: utf-8 -*-<CR><esc>
+map <buffer> <leader>pl ologger = logging.getLogger(__name__)<esc>ggOimport logging<CR><esc>''
+map <buffer> <leader>pu i# -*- coding: utf-8 -*-<CR><esc>
 
 map <buffer> <F4> :call ToolGrep('flake8')<CR>
 map! <buffer> <F4> :call ToolGrep('flake8')<CR>
