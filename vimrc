@@ -7,7 +7,8 @@ call vundle#begin() "start vundle
 Plugin 'gmarik/vundle'
 
 " syntax highlighters
-Plugin 'vim-scripts/JSON.vim'
+"Plugin 'vim-scripts/JSON.vim'
+Plugin 'elzr/vim-json'
 Plugin 'lepture/vim-jinja.git'
 Plugin 'vim-scripts/django.vim'
 Plugin 'kchmck/vim-coffee-script'
@@ -32,6 +33,8 @@ Plugin 'vim-scripts/AutoTag'
 Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim.git'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'szw/vim-tags'
 
 " Commands
 Plugin 'vim-scripts/Toggle'
@@ -40,6 +43,7 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tmhedberg/matchit'
 Plugin 'AndrewRadev/linediff.vim'
+Plugin 'tpope/vim-dispatch'
 
 " Vim Config
 Plugin 'editorconfig/editorconfig'
@@ -60,6 +64,8 @@ hi DiffAdd ctermbg=22
 hi DiffChange ctermbg=58
 hi DiffText ctermbg=226 ctermfg=8
 
+set exrc "include .vimrc in CWD
+set secure "limit .vimrc commands allowed
 filetype on "enable filetype detection
 filetype plugin on "filetype specific plugins
 filetype indent on "filetype specific indents
@@ -96,6 +102,7 @@ map <leader>ln :lnext<CR>
 map <leader>lp :lprev<CR>
 
 map <leader>ld :Linediff<CR>
+map <leader>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
     set mouse=a "enable mouse in all modes
@@ -162,6 +169,13 @@ let g:syntastic_css_checkers = ['prettycss']
 let g:syntastic_html_checkers = ['jshint', 'w3', 'validator']
 let g:syntastic_filetype_map = {
     \ "htmldjango": "html" }
+
+"YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+let g:vim_tags_use_vim_dispatch = 1
+let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']
+let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} -h .py --exclude='*.js' {DIRECTORY} 2>/dev/null"
 
 function ToolGrep(tool)
   set lazyredraw
