@@ -1,2 +1,1 @@
-map <buffer> <s-c-D> Odebugger;<esc>
-map! <buffer> <s-c-D> debugger;
+map <buffer> <leader>b Odebugger;<esc>
