@@ -63,6 +63,8 @@ hi DiffDelete ctermbg=52
 hi DiffAdd ctermbg=22
 hi DiffChange ctermbg=58
 hi DiffText ctermbg=226 ctermfg=8
+hi htmlTag guibg=NONE ctermbg=NONE
+hi htmlEndTag guibg=NONE ctermbg=NONE
 
 set exrc "include .vimrc in CWD
 set secure "limit .vimrc commands allowed
@@ -77,22 +79,24 @@ set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
 set foldmethod=indent "enable manual code folding
 set foldlevelstart=6 "don't automatically close folds on open unless 6 folds deep
-set formatoptions=l "don't wrap long lines
+set formatoptions+=l " don't automatically wrap long lines in INSERT
 set history=1000 "remember the last 1000 commands used
 set hlsearch "highlight matchs when searching
 set incsearch "jump to next match when searching
 set laststatus=2 "show status line
-set linebreak "visually wrap long lines
+set linebreak "visually wrap long lines on breakat characters
 set number "show line numbers
 set numberwidth=4 "width of line number column
 set shiftwidth=4 "4 spaces for indents when using << or >>
 set smarttab "use <BS> too delete shiftwidth worth of space at start of line
 set softtabstop=4 "4 spaces for tabs in INSERT mode
 set tabstop=4 "4 space for tabs
+set textwidth=79 " format lines to <80 characters
 set undolevels=1000 "number of changes that can be undone
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wildchar=<Tab> "<Tab> to start wildcard completion
 set wildmenu "enhaced completion mode
+set wrap " visually wrap
 
 "remap increment to not clash w/ screen
 map <C-c> <C-a>
@@ -159,6 +163,7 @@ endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 "Python Mode
+let g:pymode_options_max_line_length = 79
 let g:pymode_lint = 0
 let g:pymode_rope = 0
 
