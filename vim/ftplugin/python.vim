@@ -6,7 +6,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 set tags+=$HOME/.vim/tags/python.ctags
 
 map <buffer> <leader>pl ologger = logging.getLogger(__name__)<esc>ggOimport logging<CR><esc>''
-map <buffer> <leader>pu i# -*- coding: utf-8 -*-<CR><esc>
+map <buffer> <leader>pu ggO# -*- coding: utf-8 -*-<CR>from __future__ import unicode_literals<esc>''
 
 map <buffer> <F4> :call ToolGrep('flake8')<CR>
 map! <buffer> <F4> :call ToolGrep('flake8')<CR>
