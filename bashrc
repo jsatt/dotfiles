@@ -110,15 +110,3 @@ fi
 
 # autoenv
 source $HOME/.autoenv/activate.sh
-
-#nvm
-#if [ -f $HOME/.nvm/nvm.sh ]; then
-#    source $HOME/.nvm/nvm.sh
-#    [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-#    nvm use default > /dev/null
-#fi
-
-### Added by the Heroku Toolbelt
-#export PATH="/usr/local/heroku/bin:$PATH"
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
