@@ -4,3 +4,6 @@
 [submodule "autoenv"]
 	path = autoenv
 	url = https://github.com/jsatt/autoenv.git
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = ./oh-my-zsh

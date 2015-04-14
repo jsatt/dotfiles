@@ -1,0 +1,5 @@
+#add zsh specific aliases here
+
+if [ -f $HOME/.aliases ]; then
+    source $HOME/.aliases
+fi
