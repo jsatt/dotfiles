@@ -154,13 +154,6 @@ let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tagbar#flags = 'fs'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
-function AirlineInit()
-let g:airline_section_c = ''.
-    \ '%{airline#util#wrap(getcwd(), 0)}' .
-    \ '%{airline#util#append(" ", 0)}' .
-    \ g:airline_section_c
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
 
 "Python Mode
 let g:pymode_options_max_line_length = 79
@@ -171,9 +164,14 @@ let g:pymode_rope = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_css_checkers = ['prettycss']
-let g:syntastic_html_checkers = ['jshint', 'w3', 'validator']
+let g:syntastic_html_checkers = ['jshint', 'tidy']
 let g:syntastic_filetype_map = {
     \ "htmldjango": "html" }
+let g:syntastic_html_tidy_ignore_errors = [
+    \ ' proprietary attribute ' ]
+let g:syntastic_html_tidy_blocklevel_tags = [
+    \ 'ng-switch'
+    \ ]
 
 "YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
