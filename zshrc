@@ -1,9 +1,10 @@
 export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME=agnoster
+#ZSH_THEME=agnoster
 #ZSH_THEME=kafeitu
 #ZSH_THEME=dpoggi
+
 CASE_SENSITIVE="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -26,6 +27,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh_theme
 
 if [ -f $HOME/.zsh_aliases ]; then
     source $HOME/.zsh_aliases
@@ -46,20 +48,3 @@ zstyle :compinstall filename '/home/jsatt/.zshrc'
 
 autoload -Uz compinit
 compinit
-
-#build_prompt() {
-  #prompt_context
-  #prompt_dir
-  #prompt_virtualenv
-  #prompt_git
-  #prompt_hg
-  #prompt_end
-#}
-
-#build_rprompt(){
-  #RETVAL=$?
-  #prompt_status
-#}
-
-#PS1='%{%f%b%k%}$(build_prompt) '
-#RPS1='%{%f%b%k%}$(build_rprompt) '
