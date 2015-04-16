@@ -31,6 +31,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 bindkey -e
+LESS+=F
 
 setopt appendhistory autocd extendedglob nomatch
 setopt completealiases
