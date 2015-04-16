@@ -26,6 +26,7 @@
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
 CURRENT_BG='NONE'
+CURRENT_RBG='NONE'
 SEGMENT_SEPARATOR=''
 RSEGMENT_SEPARATOR=''
 ALT_SEGMENT_SEPARATOR=''
@@ -63,12 +64,12 @@ rprompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $1 != $CURRENT_BG ]]; then
+  if [[ $1 != $CURRENT_RBG ]]; then
     echo -n "%{%F{$1}%}$RSEGMENT_SEPARATOR%{$bg$fg%}"
   else
     echo -n "%{$bg$fg%}$ALT_RSEGMENT_SEPARATOR"
   fi
-  CURRENT_BG=$1
+  CURRENT_RBG=$1
   [[ -n $3 ]] && echo -n $3
 }
 
@@ -82,6 +83,12 @@ prompt_end() {
   echo -n "%{%f%}"
   CURRENT_BG=''
 }
+
+rprompt_end(){
+  echo -n "%{%f%k%}"
+  CURRENT_RBG=''
+}
+
 
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
@@ -144,10 +151,10 @@ prompt_virtualenv() {
 
 prompt_jobs() {
   local bgjobs=$(jobs -l | wc -l)
-  [[ $bgjobs -gt 0 ]] && rprompt_segment 39 232 " ⚙ $bgjobs "
+  [[ $bgjobs -gt 0 ]] && echo -n " ⚙ $bgjobs "
 }
 prompt_retval(){
-  [[ $RETVAL -ne 0 ]] && rprompt_segment 166 232 " ✘ $RETVAL "
+  [[ $RETVAL -ne 0 ]] && rprompt_segment 166 232 " ✘ %? "
 }
 
 ## Main prompt
@@ -163,12 +170,27 @@ build_prompt() {
   prompt_end
 }
 
+build_prompt2() {
+  prompt_segment 39 232 ' %_ '
+  prompt_end
+}
+
 build_rprompt(){
   RETVAL=$?
+  rprompt_segment 235 121 ' %D{%F} %* '
+  rprompt_segment 238 214
   prompt_jobs
+  rprompt_segment 154 232
   prompt_retval
+  rprompt_end
+}
+build_rprompt2() {
+  rprompt_segment 39 232 ' ↲ '
+  rprompt_end
 }
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 PS1='%{%f%b%k%}$(build_prompt) '
-RPS1='%{%f%b%k%}$(build_rprompt) '
+PS2='%{%f%b%k%}$(build_prompt2) '
+RPS1=' %{%f%b%k%}$(build_rprompt)'
+RPS2=' %{%f%b%k%}$(build_rprompt2)'
