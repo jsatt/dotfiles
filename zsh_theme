@@ -169,5 +169,6 @@ build_rprompt(){
   prompt_retval
 }
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 PS1='%{%f%b%k%}$(build_prompt) '
 RPS1='%{%f%b%k%}$(build_rprompt) '

@@ -9,21 +9,15 @@ CASE_SENSITIVE="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
-    screen
     autoenv
-    git
-    python
-    django
-    pip
-    virtualenv
-    virtualenvwrapper
     celery
-    debian
     command-not-found
+    history-substring-search
     npm
+    python
+    pip
     sudo
     supervisor
-    history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -43,8 +37,15 @@ setopt completealiases
 setopt histignoredups histignorespace
 setopt noclobber
 
+# completion
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle :compinstall filename '/home/jsatt/.zshrc'
-
 autoload -Uz compinit
 compinit
+
+# virtualenvwrapper
+if [ `which virtualenvwrapper.sh` ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source `which virtualenvwrapper.sh`
+    export PIP_RESPECT_VIRTUALENV=true
+fi
