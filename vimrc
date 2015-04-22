@@ -44,6 +44,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tmhedberg/matchit'
 Plugin 'AndrewRadev/linediff.vim'
 Plugin 'tpope/vim-dispatch'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Vim Config
 Plugin 'editorconfig/editorconfig'
@@ -172,6 +173,10 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_html_tidy_blocklevel_tags = [
     \ 'ng-switch'
     \ ]
+
+"Multiple Cursors
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
 
 "YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
