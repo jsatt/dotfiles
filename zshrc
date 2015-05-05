@@ -37,6 +37,7 @@ setopt appendhistory autocd extendedglob nomatch
 setopt completealiases
 setopt histignoredups histignorespace
 setopt noclobber
+setopt noshare_history
 
 # completion
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
