@@ -33,11 +33,18 @@ SAVEHIST=10000
 bindkey -e
 LESS+=F
 
-setopt appendhistory autocd extendedglob nomatch
+setopt appendhistory
+setopt autocd
 setopt completealiases
-setopt histignoredups histignorespace
-setopt noclobber
-setopt noshare_history
+setopt correct
+setopt extendedglob
+setopt histignoredups
+setopt histignorespace
+setopt nomatch
+setopt menu_complete
+setopt rec_exact
+unsetopt share_history
+unsetopt clobber
 
 # completion
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
