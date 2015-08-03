@@ -7,6 +7,12 @@ if [ ! $VIRTUAL_ENV ]; then
     exit
 fi
 
+if [ $VIRTUALENVWRAPPER_HOOK_DIR ]; then
+    venv_hook_dir=$VIRTUALENVWRAPPER_HOOK_DIR
+else
+    venv_hook_dir=$HOME/.virtualenv
+fi
+
 post_activate_lines=(
     'export GEM_HOME="$VIRTUAL_ENV/gems"'
     'export GEM_PATH=""'
@@ -15,9 +21,9 @@ post_activate_lines=(
 )
 for line in "${post_activate_lines[@]}"
 do
-    if [[ ! `grep "$line" $VIRTUAL_ENV/bin/postactivate` ]];then
+    if [[ ! `grep "$line" $venv_hook_dir/postactivate` ]];then
         echo -e "\e[32mAdding line to postactivate: $line\e[m"
-        echo "$line" >> $VIRTUAL_ENV/bin/postactivate
+        echo "$line" >> $venv_hook_dir/postactivate
     fi
 done
 
