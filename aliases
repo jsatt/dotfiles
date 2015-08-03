@@ -5,7 +5,7 @@ alias ipdbtest='manage test -sx --ipdb --ipdb-failures'
 alias pep8='pep8 -r --exclude=migrations'
 alias flake8='flake8 --exclude=migrations'
 alias watchredis='redis-cli -n 1 monitor | cut -b -200'
-alias watchtest='py.test --looponfail --tb=short'
+alias watchtest='django-admin.py test --settings=test_settings --with-watcher --with-progressive --progressive-abs --progressive-bar-filled-color=154 --progressive-bar-empty-color=238 --progressive-function-color=214 --progressive-dim-color=51 --logging-clear-handlers'
 
 # ls, the common ones I use a lot shortened for rapid fire usage
 alias l='ls -lFh'     #size,show type,human readable
