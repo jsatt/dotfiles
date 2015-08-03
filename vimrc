@@ -38,7 +38,6 @@ Plugin 'szw/vim-tags'
 
 " Commands
 Plugin 'vim-scripts/Toggle'
-"Plugin 'vim-scripts/Rename'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tmhedberg/matchit'
@@ -47,7 +46,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'terryma/vim-multiple-cursors'
 
 " Vim Config
-Plugin 'editorconfig/editorconfig'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'bling/vim-airline'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'flazz/vim-colorschemes'
@@ -60,12 +59,14 @@ syntax enable "enable colors
 colorscheme badwolf
 hi Normal guibg=NONE ctermbg=NONE
 hi NonText guibg=NONE ctermbg=NONE
+hi TODO ctermbg=220 ctermfg=16
 hi DiffDelete ctermbg=52
 hi DiffAdd ctermbg=22
 hi DiffChange ctermbg=58
 hi DiffText ctermbg=226 ctermfg=8
 hi htmlTag guibg=NONE ctermbg=NONE
 hi htmlEndTag guibg=NONE ctermbg=NONE
+hi SyntasticWarningSign ctermfg=1 ctermbg=233
 
 set exrc "include .vimrc in CWD
 set secure "limit .vimrc commands allowed
@@ -80,7 +81,6 @@ set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
 set foldmethod=indent "enable manual code folding
 set foldlevelstart=6 "don't automatically close folds on open unless 6 folds deep
-set formatoptions+=l " don't automatically wrap long lines in INSERT
 set history=1000 "remember the last 1000 commands used
 set hlsearch "highlight matchs when searching
 set incsearch "jump to next match when searching
@@ -98,6 +98,7 @@ set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wildchar=<Tab> "<Tab> to start wildcard completion
 set wildmenu "enhaced completion mode
 set wrap " visually wrap
+au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
 
 "remap increment to not clash w/ screen
 map <C-c> <C-a>
