@@ -76,7 +76,6 @@ filetype indent on "filetype specific indents
 set autoindent "copy indent from current line when starting new line
 set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
-set colorcolumn=80 "highlight at column 80 for visual indication of long line
 set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
 set foldmethod=indent "enable manual code folding
@@ -92,7 +91,9 @@ set shiftwidth=4 "4 spaces for indents when using << or >>
 set smarttab "use <BS> too delete shiftwidth worth of space at start of line
 set softtabstop=4 "4 spaces for tabs in INSERT mode
 set tabstop=4 "4 space for tabs
-set textwidth=79 " format lines to <80 characters
+set textwidth=99 " format lines to <100 characters
+let textwidthbegin=&textwidth-9 " start considering line length before 100
+let &colorcolumn=join(range(textwidthbegin, &textwidth),",") "highlight columns for visual indication of long line
 set undolevels=1000 "number of changes that can be undone
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wildchar=<Tab> "<Tab> to start wildcard completion
@@ -158,7 +159,8 @@ let g:airline#extensions#tagbar#flags = 'fs'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 "Python Mode
-let g:pymode_options_max_line_length = 79
+let g:pymode_options_max_line_length = 89
+let g:pymode_options_colorcolumn = 0
 let g:pymode_lint = 0
 let g:pymode_rope = 0
 
