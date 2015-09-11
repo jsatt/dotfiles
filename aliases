@@ -1,5 +1,5 @@
 alias getip='wget -qO- icanhazip.com'
-alias clearpyc='find . -name "*.pyc" -delete'
+alias clearpyc='find . \( -type f -name "*.pyc" -o -type d -name __pycache__ \) -delete'
 alias manage='python manage.py'
 alias ipdbtest='manage test -sx --ipdb --ipdb-failures'
 alias pep8='pep8 -r --exclude=migrations'
@@ -21,3 +21,5 @@ alias lrt='ls -1Fcrt'
 alias grep='grep --color -nIE --exclude-dir=htmlcov --exclude-dir=.hg --exclude-dir=.git'
 
 alias rscp='rsync --progress -r --rsh=ssh'
+
+# vim: set filetype=sh:
