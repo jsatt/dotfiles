@@ -1,5 +1,10 @@
 #!/bin/bash
-ctags -h .py -f python.ctags -R -L python_lib_dirs
-if [ $VIRTUAL_ENV ]; then
-    ctags -a -h .py -f python.ctags -R $VIRTUAL_ENV/lib/python2.7
-fi
+ctags -h .py -f python2.ctags -R /usr/lib/python2.*
+ctags -a -h .py -f python2.ctags -R /usr/local/lib/python2.*
+ctags -a -h .py -f python2.ctags -R /var/lib/python-support/python2.*
+ctags -a -h .py -f python2.ctags -R $WORKON_HOME/*/lib/python2.*
+
+ctags -h .py -f python3.ctags -R /usr/lib/python3.*
+ctags -a -h .py -f python3.ctags -R /usr/local/lib/python3.*
+ctags -a -h .py -f python3.ctags -R /var/lib/python-support/python3.*
+ctags -a -h .py -f python3.ctags -R $WORKON_HOME/*/lib/python3.*

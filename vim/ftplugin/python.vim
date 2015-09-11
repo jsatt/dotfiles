@@ -3,7 +3,7 @@
 "au BufWinEnter,WinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-set tags+=$HOME/.vim/tags/python.ctags
+set tags+=$HOME/.vim/tags/python2.ctags,$HOME/.vim/tags/python3.ctags
 
 map <buffer> <leader>pl ologger = logging.getLogger(__name__)<esc>ggOimport logging<CR><esc>''
 map <buffer> <leader>pu ggO# -*- coding: utf-8 -*-<CR>from __future__ import unicode_literals<esc>''
