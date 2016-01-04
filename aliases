@@ -2,8 +2,6 @@ alias getip='wget -qO- icanhazip.com'
 alias clearpyc='find . \( -type f -name "*.pyc" -o -type d -name __pycache__ \) -delete'
 alias manage='python manage.py'
 alias ipdbtest='manage test -sx --ipdb --ipdb-failures'
-alias pep8='pep8 -r --exclude=migrations'
-alias flake8='flake8 --exclude=migrations'
 alias watchredis='redis-cli -n 1 monitor | cut -b -200'
 alias watchtest='django-admin.py test --settings=test_settings --with-watcher --with-progressive --progressive-abs --progressive-bar-filled-color=154 --progressive-bar-empty-color=238 --progressive-function-color=214 --progressive-dim-color=51 --logging-clear-handlers'
 
