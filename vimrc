@@ -129,7 +129,7 @@ let g:tagbar_autofocus = 1
 "NERDTree
 "toggle NERDTree w/ <F3>
 map <silent> <F3> :NERDTreeToggle<CR>
-let g:netrw_list_hide=".*\.pyc$" "hide pyc files from nerdtree
+let NERDTreeIgnore=['\~$', '__pycache__', '*.pyc']
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
