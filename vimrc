@@ -111,6 +111,8 @@ map <leader>lp :lprev<CR>
 map <leader>ld :Linediff<CR>
 map <leader>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+map <leader>sa :s/\%V\([^(),]*\), \([^(),]*\)/\2, \1/<CR>
+
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
     set mouse=a "enable mouse in all modes
     set ttymouse=xterm2 "enable xterm mouse handling
