@@ -31,6 +31,8 @@ fi
 if [ `which pip` ]; then
     echo -e "\e[32mInstalling flake8\e[m"
     pip install --upgrade flake8
+    echo -e "\e[32mInstalling pylint\e[m"
+    pip install --upgrade pylint
     echo -e "\e[32mInstalling rstcheck\e[m"
     pip install --upgrade rstcheck
 fi
