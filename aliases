@@ -20,4 +20,6 @@ alias grep='grep --color -nIE --exclude-dir=htmlcov --exclude-dir=.hg --exclude-
 
 alias rscp='rsync --progress -r --rsh=ssh'
 
+weather () {if [ $1 ]; then loc=$1; else loc='tul'; fi; curl wttr.in/$loc}
+
 # vim: set filetype=sh:

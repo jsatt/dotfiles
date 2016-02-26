@@ -26,7 +26,7 @@ color=
 fetch=
 hgext.extdiff =
 hgk=
-hgshelve=/home/jsatt/.hgext/hgshelve/hgshelve.py
+#hgshelve=/home/jsatt/.hgext/hgshelve/hgshelve.py
 mq=
 pager=
 
