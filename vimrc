@@ -17,6 +17,8 @@ Plugin 'groenewege/vim-less'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/syntastic'
+Plugin 'mxw/vim-jsx'
+Plugin 'mtscout6/vim-cjsx'
 
 " VCS
 Plugin 'tpope/vim-fugitive'
