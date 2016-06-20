@@ -1,5 +1,6 @@
 [core]
     editor = vi
+    pager = diff-so-fancy | less
 
 [color]
     ui = true
@@ -56,3 +57,7 @@
 
 [help]
     autocorrect = 15
+[diff]
+	compactionHeuristic = true
+[interactive]
+	diffFilter = diff-so-fancy

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-excluded_files='setupdotfiles README bootstrap_venv install_linters'
+excluded_files='setupdotfiles README bootstrap_venv install_linters bin'
 
 pushd `dirname $0` > /dev/null
 SCRIPT_PATH=`pwd -P`
@@ -12,6 +12,15 @@ do
     if [[ ! $excluded_files =~ $filename ]]; then
         echo "linking .$filename"
         ln -snf $file $HOME/.$filename
+    fi
+done
+
+for file in $SCRIPT_PATH/bin/*
+do
+    filename=`basename $file`
+    if [[ ! $excluded_files =~ $filename ]]; then
+        echo "linking bin/$filename"
+        ln -snf $file $HOME/bin/$filename
     fi
 done
 
