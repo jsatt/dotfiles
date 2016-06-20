@@ -21,3 +21,12 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+
+weather () {
+    if [ $1 ]; then
+        loc=$1;
+    else
+        loc='tul';
+    fi;
+    curl wttr.in/$loc
+}
