@@ -188,6 +188,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 
 "YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 let g:vim_tags_use_vim_dispatch = 1
 let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']

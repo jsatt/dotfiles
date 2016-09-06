@@ -21,4 +21,6 @@ alias grep='grep --color -nIE --exclude-dir=htmlcov --exclude-dir=.hg --exclude-
 alias rscp='rsync --progress -r --rsh=ssh'
 alias fixscreen='rm -r ~/.local/share/kscreen'
 
+alias serve='python3 -m http.server'
+
 # vim: set filetype=sh:
