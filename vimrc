@@ -46,6 +46,7 @@ Plugin 'tmhedberg/matchit'
 Plugin 'AndrewRadev/linediff.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'lambdalisue/vim-gista'
 
 " Vim Config
 Plugin 'editorconfig/editorconfig-vim'
