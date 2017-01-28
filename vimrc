@@ -50,7 +50,8 @@ Plugin 'lambdalisue/vim-gista'
 
 " Vim Config
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'flazz/vim-colorschemes'
 
