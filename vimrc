@@ -8,6 +8,7 @@ Plugin 'gmarik/vundle'
 
 " syntax highlighters
 "Plugin 'vim-scripts/JSON.vim'
+Plugin 'othree/html5.vim'
 Plugin 'elzr/vim-json'
 Plugin 'lepture/vim-jinja.git'
 Plugin 'vim-scripts/django.vim'
@@ -107,6 +108,7 @@ au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically w
 
 "remap increment to not clash w/ screen
 map <C-c> <C-a>
+map :qt :tabc
 
 "map location map cycling
 map <leader>ln :lnext<CR>
@@ -169,6 +171,8 @@ let g:pymode_options_max_line_length = 89
 let g:pymode_options_colorcolumn = 0
 let g:pymode_lint = 0
 let g:pymode_rope = 0
+let g:pymode_virtualenv = 1
+let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()  # XXX BREAKPOINT'
 
 "Syntastic
 let g:syntastic_check_on_open = 1
@@ -191,7 +195,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 
-let g:vim_tags_use_vim_dispatch = 1
+"let g:vim_tags_use_vim_dispatch = 1
 let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']
 let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} -h .py --exclude='*.js' {DIRECTORY} 2>/dev/null"
 
