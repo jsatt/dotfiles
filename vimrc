@@ -82,8 +82,10 @@ filetype indent on "filetype specific indents
 set autoindent "copy indent from current line when starting new line
 set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
+set cursorline  "highlight line that cursor is currently on
 set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
+set foldenable  "enable folding
 set foldmethod=indent "enable manual code folding
 set foldlevelstart=6 "don't automatically close folds on open unless 6 folds deep
 set history=1000 "remember the last 1000 commands used
@@ -111,7 +113,9 @@ au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically w
 map <C-c> <C-a>
 map :qt :tabc
 
-"map location map cycling
+command Isort !isort %
+
+map location map cycling
 map <leader>ln :lnext<CR>
 map <leader>lp :lprev<CR>
 
