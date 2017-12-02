@@ -58,5 +58,3 @@ if [ `which virtualenvwrapper.sh` ]; then
     source `which virtualenvwrapper.sh`
     export PIP_RESPECT_VIRTUALENV=true
 fi
-
-export GOROOT=$HOME/bin/golang

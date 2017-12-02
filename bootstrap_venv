@@ -14,11 +14,7 @@ else
 fi
 
 post_activate_lines=(
-    'export GEM_HOME="$VIRTUAL_ENV/gems"'
-    'export GEM_PATH=""'
     'export GOPATH="$VIRTUAL_ENV"'
-    'export PATH=$PATH:"$GEM_HOME/bin"'
-    'autoenv_init'
 )
 for line in "${post_activate_lines[@]}"
 do
