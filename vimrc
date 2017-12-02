@@ -17,7 +17,8 @@ Plugin 'wavded/vim-stylus'
 Plugin 'groenewege/vim-less'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'mxw/vim-jsx'
 Plugin 'mtscout6/vim-cjsx'
 
@@ -186,6 +187,9 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_html_tidy_blocklevel_tags = [
     \ 'ng-switch'
     \ ]
+
+"ALE
+let g:ale_linter_aliases = {'htmldjango': 'html'}
 
 "Multiple Cursors
 let g:multi_cursor_exit_from_visual_mode = 0
