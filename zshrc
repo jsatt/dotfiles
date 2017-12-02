@@ -10,14 +10,19 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
     autoenv
+    aws
     celery
     command-not-found
+    docker
+    docker-compose
     history-substring-search
+    kubectl
     npm
-    python
     pip
+    python
     sudo
     supervisor
+    virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -52,9 +57,5 @@ zstyle :compinstall filename '/home/jsatt/.zshrc'
 autoload -Uz compinit
 compinit
 
-# virtualenvwrapper
-if [ `which virtualenvwrapper.sh` ]; then
-    export WORKON_HOME=$HOME/.virtualenvs
-    source `which virtualenvwrapper.sh`
-    export PIP_RESPECT_VIRTUALENV=true
-fi
+# pipenv 
+export PIPENV_SHELL_FANCY=true
