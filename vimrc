@@ -236,7 +236,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 
 "YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
 "let g:vim_tags_use_vim_dispatch = 1
 let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']
@@ -288,3 +288,4 @@ endfunction
 au! BufRead,BufNewFile *.json set filetype=json
 au! BufRead,BufNewFile *.html set filetype=htmldjango
 au! BufRead,BufNewFile *.sls set filetype=yaml
+au! BufRead,BufNewFile Jenkinsfile* set filetype=groovy
