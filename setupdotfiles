@@ -24,6 +24,15 @@ do
     fi
 done
 
+for file in $SCRIPT_PATH/zsh_plugins/*
+do
+    filename=`basename $file`
+    if [[ ! $excluded_files =~ $filename ]]; then
+        echo "linking zsh_plugins/$filename"
+        ln -snf $file $HOME/.oh-my-zsh/custom/plugins/$filename
+    fi
+done
+
 echo "cloning submodules"
 (cd $SCRIPT_PATH && git submodule update --init --recursive)
 

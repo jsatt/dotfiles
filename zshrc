@@ -23,6 +23,8 @@ plugins=(
     sudo
     supervisor
     virtualenvwrapper
+
+    zshmarks
 )
 
 source $ZSH/oh-my-zsh.sh
