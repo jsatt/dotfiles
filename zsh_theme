@@ -27,10 +27,10 @@
 
 CURRENT_BG='NONE'
 CURRENT_RBG='NONE'
-SEGMENT_SEPARATOR=''
-RSEGMENT_SEPARATOR=''
-ALT_SEGMENT_SEPARATOR=''
-ALT_RSEGMENT_SEPARATOR=''
+SEGMENT_SEPARATOR=''
+RSEGMENT_SEPARATOR=''
+ALT_SEGMENT_SEPARATOR=''
+ALT_RSEGMENT_SEPARATOR=''
 
 #BADWOLF colors
 #ZSH_PROMPT_A=(232 154 232 39)
@@ -107,7 +107,7 @@ prompt_git() {
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     dirty=$(parse_git_dirty)
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref=" $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
 
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then
       mode=" <B>"
@@ -132,7 +132,7 @@ prompt_git() {
     }
     zstyle ':vcs_info:*' actionformats ' %u%c'
     vcs_info
-    echo -n " ${ref/refs\/heads\// }${vcs_info_msg_0_%% }${mode} "
+    echo -n " ${ref/refs\/heads\// }${vcs_info_msg_0_%% }${mode} "
   fi
 }
 
@@ -154,7 +154,7 @@ prompt_jobs() {
   [[ $bgjobs -gt 0 ]] && echo -n " ⚙ $bgjobs "
 }
 prompt_retval(){
-  [[ $RETVAL -ne 0 ]] && rprompt_segment 166 232 " ✘ %? "
+  [[ $RETVAL -ne 0 ]] && rprompt_segment 166 232 "  %? "
 }
 
 ## Main prompt

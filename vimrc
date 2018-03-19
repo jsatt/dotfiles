@@ -164,12 +164,34 @@ let m = matchadd('BadWhitespace', '^\t\+')
 "Airline
 let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
+let g:airline_detect_paste = 1
+let g:airline_detect_crypt = 1
+let g:airline_detect_modified = 1
+let g:airline_detect_spell = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = ' '
+let g:airline#extensions#ale#warning_symbol = ' '
+let g:airline#extensions#ale#open_lnum_symbol = ''
+let g:airline#extensions#ale#close_lnum_symbol = ''
+let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#hunks#hunk_symbols = [' ', ' ', ' ']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tagbar#flags = 'fs'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline_right_sep=''
+let g:airline_right_alt_sep = ''
+let g:airline_left_sep=''
+let g:airline_left_alt_sep = ''
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.crypt = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.paste = ''
 
 "Python Mode
 let g:pymode_options_max_line_length = 89
@@ -194,6 +216,19 @@ let g:syntastic_html_tidy_blocklevel_tags = [
 
 "ALE
 let g:ale_linter_aliases = {'htmldjango': 'html'}
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_sign_info = ''
+highlight ALEErrorSign ctermfg=1 guifg=#ff0000
+highlight ALEInfoSign ctermfg=21 guifg=#0000ff
+highlight ALEWarningSign ctermfg=226 guifg=#ffff00
+
+"Gitgutter
+let g:gitgutter_sign_added              = ''
+let g:gitgutter_sign_modified           = ''
+let g:gitgutter_sign_removed            = ''
+let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_modified_removed   = ''
 
 "Multiple Cursors
 let g:multi_cursor_exit_from_visual_mode = 0
