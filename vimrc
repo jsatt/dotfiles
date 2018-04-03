@@ -7,15 +7,15 @@ call vundle#begin() "start vundle
 Plugin 'gmarik/vundle'
 
 " syntax highlighters
-"Plugin 'vim-scripts/JSON.vim'
 Plugin 'othree/html5.vim'
 Plugin 'elzr/vim-json'
 Plugin 'lepture/vim-jinja.git'
-Plugin 'vim-scripts/django.vim'
+"Plugin 'vim-scripts/django.vim'
+Plugin 'tweekmonster/django-plus.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'wavded/vim-stylus'
 Plugin 'groenewege/vim-less'
-Plugin 'vim-scripts/nginx.vim'
+Plugin 'chr4/nginx.vim'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
@@ -29,19 +29,20 @@ Plugin 'airblade/vim-gitgutter'
 " Sidebars
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/Gundo'
+Plugin 'sjl/gundo.vim'
 
 " Code Completion
 Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/AutoTag'
+Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'szw/vim-tags'
+"Plugin 'szw/vim-tags'
 
 " Commands
-Plugin 'vim-scripts/Toggle'
+"Plugin 'vim-scripts/Toggle'
+Plugin 'AndrewRadev/switch.vim'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tmhedberg/matchit'
