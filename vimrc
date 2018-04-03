@@ -52,6 +52,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'lambdalisue/vim-gista'
 
 " Vim Config
+Plugin 'LucHermitte/lh-vim-lib'
+Plugin 'LucHermitte/local_vimrc'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -239,9 +241,31 @@ let g:multi_cursor_exit_from_insert_mode = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
+"Switch
+let g:switch_mapping = '='
+let g:switch_reverse_mapping = '+'
+let g:switch_no_builtins = 1
+let g:switch_custom_definitions = [
+    \   ['&&', '||'],
+    \   {'\<on\>': 'off', '\<off\>': 'on'},
+    \   {'\<On\>': 'Off', '\<Off\>': 'On'},
+    \   {'\<yes\>': 'no', '\<no\>': 'yes'},
+    \   {'\<Yes\>': 'No', '\<No\>': 'Yes'},
+    \   {'\<true\>': 'false', '\<false\>': 'true'},
+    \   {'\<True\>': 'False', '\<False\>': 'True'},
+    \   {
+    \    '\(\k\+\) is \(not\)\@!\(\k\+\)': '\1 is not \3',
+    \    '\(\k\+\) is not \(\k\+\)': '\1 is \2',
+    \   },
+    \ ]
+
 "let g:vim_tags_use_vim_dispatch = 1
 let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']
 let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} -h .py --exclude='*.js' {DIRECTORY} 2>/dev/null"
+
+" local vimrc
+let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
+call lh#local_vimrc#munge('whitelist', $HOME.'/dev')
 
 function ToolGrep(tool)
   set lazyredraw
