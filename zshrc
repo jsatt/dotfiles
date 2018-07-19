@@ -9,7 +9,7 @@ CASE_SENSITIVE="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
-    autoenv
+    #autoenv
     aws
     celery
     command-not-found
