@@ -58,6 +58,7 @@
 [help]
     autocorrect = 15
 [diff]
-	compactionHeuristic = true
+    compactionHeuristic = true
 [interactive]
-	diffFilter = diff-so-fancy
+    ; https://github.com/so-fancy/diff-so-fancy/issues/296
+    ;diffFilter = diff-so-fancy
