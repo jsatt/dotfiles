@@ -2,7 +2,10 @@
 "Highlight python code if lines over 79 columns
 "au BufWinEnter,WinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+augroup PythonComplete
+    autocmd!
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+augroup END
 
 map <buffer> <leader>pl ologger = logging.getLogger(__name__)<esc>ggOimport logging<CR><esc>''
 map <buffer> <leader>pu ggO# -*- coding: utf-8 -*-<CR>from __future__ import unicode_literals<esc>''

@@ -7,17 +7,16 @@ call vundle#begin() "start vundle
 Plugin 'gmarik/vundle'
 
 " syntax highlighters
+Plugin 'jbgutierrez/vim-better-comments'
 Plugin 'othree/html5.vim'
 Plugin 'elzr/vim-json'
 Plugin 'lepture/vim-jinja.git'
-"Plugin 'vim-scripts/django.vim'
 Plugin 'tweekmonster/django-plus.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'wavded/vim-stylus'
 Plugin 'groenewege/vim-less'
 Plugin 'chr4/nginx.vim'
 Plugin 'plasticboy/vim-markdown'
-"Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
 Plugin 'mxw/vim-jsx'
 Plugin 'mtscout6/vim-cjsx'
@@ -41,7 +40,6 @@ Plugin 'Valloric/YouCompleteMe'
 "Plugin 'szw/vim-tags'
 
 " Commands
-"Plugin 'vim-scripts/Toggle'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-speeddating'
@@ -62,6 +60,7 @@ Plugin 'flazz/vim-colorschemes'
 
 "Python
 Plugin 'klen/python-mode'
+Plugin 'jeetsukumaran/vim-pythonsense'
 call vundle#end()
 
 syntax enable "enable colors
@@ -76,6 +75,12 @@ hi DiffText ctermbg=226 ctermfg=8
 hi htmlTag guibg=NONE ctermbg=NONE
 hi htmlEndTag guibg=NONE ctermbg=NONE
 hi SyntasticWarningSign ctermfg=1 ctermbg=233
+syn match StrikeoutBetterComments "[\*\/#]\+\s*\~.*"
+hi ErrorBetterComments ctermfg=196 term=bold gui=bold guifg=#ff2c4b
+hi HighlightInlineComments ctermfg=93 term=bold gui=bold guifg=#8700ff
+hi QuestionBetterComments ctermfg=39 term=bold gui=bold guifg=#242321
+hi StrikeoutBetterComments ctermfg=22 term=bold gui=bold guifg=#35322d
+hi link TodoBetterComments Todo
 
 set exrc "include .vimrc in CWD
 set secure "limit .vimrc commands allowed
@@ -86,6 +91,7 @@ set autoindent "copy indent from current line when starting new line
 set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
 set cursorline  "highlight line that cursor is currently on
+set directory^=$HOME/.vim/swapfiles//  "keep swapfiles centralized
 set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
 set foldenable  "enable folding
@@ -105,6 +111,8 @@ set tabstop=4 "4 space for tabs
 set textwidth=99 " format lines to <100 characters
 let textwidthbegin=&textwidth-9 " start considering line length before 100
 let &colorcolumn=join(range(textwidthbegin, &textwidth),",") "highlight columns for visual indication of long line
+set undodir=~/.vim/undodir  "keep undo file
+set undofile "save undo's to a file
 set undolevels=1000 "number of changes that can be undone
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wildchar=<Tab> "<Tab> to start wildcard completion
@@ -117,6 +125,13 @@ map <C-c> <C-a>
 map :qt :tabc
 
 command Isort !isort %
+command CloseOthers :%bd|e#
+
+" change tabs with ctrl-→/ctrl-←
+nnoremap <C-right> :tabnext<CR>
+nnoremap <C-left> :tabprevious<CR>
+inoremap <C-right> <Esc>:tabnext<CR>
+inoremap <C-left> <Esc>:tabprevious<CR>
 
 map location map cycling
 map <leader>ln :lnext<CR>
@@ -258,6 +273,9 @@ let g:switch_custom_definitions = [
     \    '\(\k\+\) is not \(\k\+\)': '\1 is \2',
     \   },
     \ ]
+
+" Pythonsense
+map <buffer> [M <Plug>(PythonsenseEndOfPythonFunction)
 
 "let g:vim_tags_use_vim_dispatch = 1
 let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']
