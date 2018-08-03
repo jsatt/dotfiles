@@ -120,6 +120,9 @@ set wildmenu "enhaced completion mode
 set wrap " visually wrap
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
 
+
+nnoremap ; :
+
 "remap increment to not clash w/ screen
 map <C-c> <C-a>
 map :qt :tabc
@@ -132,6 +135,16 @@ nnoremap <C-right> :tabnext<CR>
 nnoremap <C-left> :tabprevious<CR>
 inoremap <C-right> <Esc>:tabnext<CR>
 inoremap <C-left> <Esc>:tabprevious<CR>
+
+" change split with shift-→ , shift-←, shift-↓, shift-↑
+nnoremap <S-left> <C-w>h
+nnoremap <S-right> <C-w>l
+nnoremap <S-up> <C-w>k
+nnoremap <S-down> <C-w>j
+inoremap <S-left> <C-w>h
+inoremap <S-right> <C-w>l
+inoremap <S-up> <C-w>k
+inoremap <S-down> <C-w>j
 
 map location map cycling
 map <leader>ln :lnext<CR>
