@@ -36,5 +36,5 @@ done
 echo "cloning submodules"
 (cd $SCRIPT_PATH && git submodule update --init --recursive)
 
-echo "installing vim bundles"
-vim +BundleInstall +qa &> /dev/null
+#echo "installing vim bundles"
+#vim +BundleInstall +qa &> /dev/null

@@ -298,48 +298,6 @@ let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} -h .py --exclude='*.
 let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
 call lh#local_vimrc#munge('whitelist', $HOME.'/dev')
 
-function ToolGrep(tool)
-  set lazyredraw
-  " Close any existing cwindows.
-  cclose
-  let l:grepformat_save = &grepformat
-  let l:grepprogram_save = &grepprg
-  set grepformat&vim
-  set grepformat&vim
-  let &grepformat = '%f:%l:%m'
-  if a:tool == "pylint"
-    let &grepprg = 'pylint --output-format=parseable --reports=n'
-  elseif a:tool == "pyflakes"
-    let &grepprg = 'pyflakes'
-  elseif a:tool == "pychecker"
-    let &grepprg = 'pychecker --quiet -q'
-  elseif a:tool == "pep8"
-    let &grepprg = 'pep8 -r'
-  elseif a:tool == "flake8"
-    let &grepprg = 'flake8'
-  else
-    echohl WarningMsg
-    echo "ToolGrep Error: Unknown Tool"
-    echohl none
-  endif
-  if &readonly == 0 | update | endif
-  silent! grep! %
-  let &grepformat = l:grepformat_save
-  let &grepprg = l:grepprogram_save
-  let l:mod_total = 0
-  let l:win_count = 1
-  " Determine correct window height
-  windo let l:win_count = l:win_count + 1
-  if l:win_count <= 2 | let l:win_count = 4 | endif
-  windo let l:mod_total = l:mod_total + winheight(0)/l:win_count |
-        \ execute 'resize +'.l:mod_total
-  " Open cwindow
-  execute 'belowright copen '.l:mod_total
-  nnoremap <buffer> <silent> c :cclose<CR>
-  set nolazyredraw
-  redraw!
-endfunction
-
 "Filetype detection
 au! BufRead,BufNewFile *.json set filetype=json
 au! BufRead,BufNewFile *.html set filetype=htmldjango
