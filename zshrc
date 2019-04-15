@@ -15,6 +15,7 @@ plugins=(
     command-not-found
     docker
     docker-compose
+    golang
     history-substring-search
     kubectl
     npm
