@@ -49,6 +49,7 @@ Plugin 'AndrewRadev/linediff.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'lambdalisue/vim-gista'
+Plugin 'RRethy/vim-illuminate'
 
 " Vim Config
 Plugin 'LucHermitte/lh-vim-lib'
@@ -82,6 +83,7 @@ hi HighlightInlineComments ctermfg=93 term=bold gui=bold guifg=#8700ff
 hi QuestionBetterComments ctermfg=39 term=bold gui=bold guifg=#242321
 hi StrikeoutBetterComments ctermfg=22 term=bold gui=bold guifg=#35322d
 hi link TodoBetterComments Todo
+hi illuminatedWord ctermbg=238 cterm=underline gui=underline
 
 set exrc "include .vimrc in CWD
 set secure "limit .vimrc commands allowed
