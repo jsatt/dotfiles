@@ -132,13 +132,19 @@ map :qt :tabc
 
 command CloseOthers :%bd|e#
 
-" change tabs with ctrl-→/ctrl-←
+" easier home and end mapping
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L g_
+
+" navigate tabs with ctrl-→/ctrl-←
 nnoremap <C-right> :tabnext<CR>
 nnoremap <C-left> :tabprevious<CR>
 inoremap <C-right> <Esc>:tabnext<CR>
 inoremap <C-left> <Esc>:tabprevious<CR>
 
-" change split with shift-→ , shift-←, shift-↓, shift-↑
+" navigate splits with shift-→ , shift-←, shift-↓, shift-↑
 nnoremap <S-left> <C-w>h
 nnoremap <S-right> <C-w>l
 nnoremap <S-up> <C-w>k
