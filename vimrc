@@ -7,7 +7,6 @@ call vundle#begin() "start vundle
 Plugin 'gmarik/vundle'
 
 " syntax highlighters
-Plugin 'jbgutierrez/vim-better-comments'
 Plugin 'othree/html5.vim'
 Plugin 'elzr/vim-json'
 Plugin 'lepture/vim-jinja.git'
