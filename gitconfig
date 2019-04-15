@@ -50,7 +50,7 @@
 
     pr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; git checkout pr/$2; } ; f"
     prc = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
-    delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+    delete-merged-branches = "!f() { git checkout --quiet ${1:-master} && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 
 [push]
     default = simple
