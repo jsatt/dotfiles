@@ -22,5 +22,10 @@ alias rscp='rsync --progress -r --rsh=ssh'
 alias fixscreen='rm -r ~/.local/share/kscreen'
 
 alias serve='python3 -m http.server'
+alias clear_dns='sudo systemd-resolve --flush-cache'
+
+pip_exact_search() {
+    pip search $1 | ag $2 "^$1 \("
+}
 
 # vim: set filetype=sh:
