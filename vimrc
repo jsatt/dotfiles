@@ -127,7 +127,6 @@ nnoremap ; :
 map <C-c> <C-a>
 map :qt :tabc
 
-command Isort !isort %
 command CloseOthers :%bd|e#
 
 " change tabs with ctrl-→/ctrl-←
