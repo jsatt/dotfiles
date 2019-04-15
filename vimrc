@@ -20,6 +20,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'w0rp/ale'
 Plugin 'mxw/vim-jsx'
 Plugin 'mtscout6/vim-cjsx'
+Plugin 'luochen1990/rainbow'
 
 " VCS
 Plugin 'tpope/vim-fugitive'
@@ -288,6 +289,14 @@ let g:switch_custom_definitions = [
 
 " Pythonsense
 map <buffer> [M <Plug>(PythonsenseEndOfPythonFunction)
+
+" Rainbow
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\	'ctermfgs': ['green', 'red', 'yellow', 'blue', 'brown', 'darkmagenta', 'darkcyan',
+\                'darkgray', 'darkgreen', 'lightyellow', 'darkblue', 'magenta', 'cyan'],
+\}
 
 "let g:vim_tags_use_vim_dispatch = 1
 let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']
