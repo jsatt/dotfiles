@@ -25,7 +25,11 @@
 
 [user]
     name = Jeremy Satterfield
-    email = jsatt22@gmail.com
+    email = jsatt@jsatt.com
+    signingkey = 040D99501ADBAD9E
+
+[commit]
+    gpgsign = true
 
 [merge]
     tool = kdiff3
