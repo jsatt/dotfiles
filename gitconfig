@@ -1,6 +1,7 @@
 [core]
     editor = vi
     pager = diff-so-fancy | less
+    excludesFile = ~/.gitignore
 
 [color]
     ui = true
