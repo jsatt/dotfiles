@@ -16,6 +16,7 @@ plugins=(
     docker
     docker-compose
     golang
+    helm
     history-substring-search
     kubectl
     npm
