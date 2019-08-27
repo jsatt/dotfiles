@@ -1,5 +1,6 @@
 export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
+export EDITOR=vim
 
 #ZSH_THEME=agnoster
 #ZSH_THEME=kafeitu
