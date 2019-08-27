@@ -16,6 +16,8 @@ plugins=(
     command-not-found
     docker
     docker-compose
+    encode64
+    extract
     golang
     helm
     history-substring-search
@@ -24,7 +26,6 @@ plugins=(
     pip
     python
     sudo
-    supervisor
     virtualenvwrapper
 
     zshmarks
