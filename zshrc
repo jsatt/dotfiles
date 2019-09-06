@@ -1,3 +1,7 @@
+if [ ! "$ZPROFILE_SOURCED" ]; then
+    source $HOME/.zprofile
+fi
+export SHELL=zsh
 export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR=vim

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-excluded_files='setupdotfiles README bootstrap_venv install_linters bin zsh_plugins config'
+excluded_files='setupdotfiles setupmac README bootstrap_venv install_linters bin zsh_plugins config'
 
 pushd `dirname $0` > /dev/null
 SCRIPT_PATH=`pwd -P`

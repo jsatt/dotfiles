@@ -1,2 +1,3 @@
+export ZPROFILE_SOURCED=1
 typeset -U path
-path=(~/.local/bin $path)
+path=(~/bin ~/.local/bin /usr/local/bin $path)
