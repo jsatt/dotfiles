@@ -2,6 +2,13 @@ export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR=vim
 
+if [ "`which pip3`" ]; then
+    powerline_root=`pip3 show powerline-status | \grep Location: | awk '{ print $2}'`
+    if [ "$powerline_root" ]; then
+        export POWERLINE_REPO="$powerline_root/powerline"
+    fi
+fi
+
 #ZSH_THEME=agnoster
 #ZSH_THEME=kafeitu
 #ZSH_THEME=dpoggi
@@ -32,7 +39,11 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh_theme
+if [ "$POWERLINE_REPO" ]; then
+    source $POWERLINE_REPO/bindings/zsh/powerline.zsh 
+else
+    source ~/.zsh_theme
+fi
 
 if [ -f $HOME/.zsh_aliases ]; then
     source $HOME/.zsh_aliases

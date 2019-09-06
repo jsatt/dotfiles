@@ -1,0 +1,20 @@
+{
+    "groups": {
+        "hostname":           { "fg": "seafoam", "bg": "medium_gray", "attrs": [] },
+        "background":                 { "fg": "yellow_orange", "bg": "light_gray", "attrs": [] },
+        "background:divider":         { "fg": "yellow_orange", "bg": "light_gray", "attrs": [] },
+        "active_window_status": {"fg": "yellow_orange",   "bg": "light_gray",    "attrs": []},
+        "window_status":        {"fg": "seafoam",     "bg": "light_gray",    "attrs": []},
+        "activity_status":      {"fg": "bright_green",     "bg": "light_gray",    "attrs": []},
+        "bell_status":          {"fg": "red",        "bg": "dark_gray",    "attrs": []},
+        "window":               {"fg": "yellow_orange",      "bg": "light_gray",    "attrs": []},
+        "window:divider":       {"fg": "medium_gray",      "bg": "light_gray",    "attrs": []},
+        "window:current":       { "fg": "dark_gray", "bg": "bright_green", "attrs": ["bold"] },
+        "window_name":          { "fg": "dark_gray", "bg": "bright_green", "attrs": ["bold"] },
+        "session":              { "fg": "bright_orange", "bg": "dark_gray", "attrs": [] },
+        "session:prefix":       {"fg": "dark_gray",     "bg": "bright_orange", "attrs": ["bold"]},
+        "date":                { "fg": "dark_gray", "bg": "bright_green", "attrs": ["bold"] },
+        "time":              { "fg": "dark_gray", "bg": "bright_green", "attrs": ["bold"] },
+        "time:divider":      { "fg": "dark_gray", "bg": "bright_green", "attrs": [] }
+    }
+}

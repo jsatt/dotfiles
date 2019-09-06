@@ -1,6 +1,6 @@
 #!/bin/bash
 
-excluded_files='setupdotfiles README bootstrap_venv install_linters bin'
+excluded_files='setupdotfiles README bootstrap_venv install_linters bin zsh_plugins config'
 
 pushd `dirname $0` > /dev/null
 SCRIPT_PATH=`pwd -P`
@@ -15,12 +15,28 @@ do
     fi
 done
 
+if [ ! -d "$HOME/bin" ]; then
+    mkdir $HOME/bin
+fi
 for file in $SCRIPT_PATH/bin/*
 do
     filename=`basename $file`
     if [[ ! $excluded_files =~ $filename ]]; then
         echo "linking bin/$filename"
         ln -snf $file $HOME/bin/$filename
+    fi
+done
+
+
+if [ ! -d "$HOME/.config" ]; then
+    mkdir $HOME/.config
+fi
+for file in $SCRIPT_PATH/config/*
+do
+    filename=`basename $file`
+    if [[ ! $excluded_files =~ $filename ]]; then
+        echo "linking config/$filename"
+        ln -snf $file $HOME/.config/$filename
     fi
 done
 
@@ -36,5 +52,7 @@ done
 echo "cloning submodules"
 (cd $SCRIPT_PATH && git submodule update --init --recursive)
 
-#echo "installing vim bundles"
-#vim +BundleInstall +qa &> /dev/null
+echo "installing powerline"
+if [ "`which pip3`" ]; then
+    pip3 install powerline-status
+fi

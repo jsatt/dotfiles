@@ -1,0 +1,15 @@
+{
+    "common": {
+        "default_top_theme": "jsatt"
+    },
+    "ext": {
+        "shell": {
+            "colorscheme": "jsatt",
+            "theme": "jsatt"
+        },
+        "tmux": {
+            "colorscheme": "jsatt",
+            "theme": "jsatt"
+        }
+    }
+}
