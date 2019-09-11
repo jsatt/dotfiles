@@ -1,68 +1,75 @@
 "http://vimdoc.sourceforge.net/htmldoc/
 set nocompatible "don't be Vi compatible
 
-filetype off "turn off filetype detection for vundle
-set rtp+=~/.vim/bundle/vundle "add vundle
-call vundle#begin() "start vundle
-Plugin 'gmarik/vundle'
+" put file in $HOME/.config/nvim/init.vim
+ let VIMSHARE = $HOME.'/.vim/'
+
+" If vim-plug is not installed install it
+if empty(glob(VIMSHARE.'autoload/plug.vim'))
+   execute 'silent !curl -fLo '.VIMSHARE.'autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin(VIMSHARE.'plugged')
 
 " syntax highlighters
-Plugin 'othree/html5.vim'
-Plugin 'elzr/vim-json'
-Plugin 'lepture/vim-jinja.git'
-Plugin 'tweekmonster/django-plus.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'wavded/vim-stylus'
-Plugin 'groenewege/vim-less'
-Plugin 'chr4/nginx.vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'dense-analysis/ale'
-Plugin 'mxw/vim-jsx'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'luochen1990/rainbow'
+Plug 'othree/html5.vim'
+Plug 'elzr/vim-json'
+Plug 'lepture/vim-jinja'
+Plug 'tweekmonster/django-plus.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'wavded/vim-stylus'
+Plug 'groenewege/vim-less'
+Plug 'chr4/nginx.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'dense-analysis/ale'
+Plug 'mxw/vim-jsx'
+Plug 'mtscout6/vim-cjsx'
+Plug 'luochen1990/rainbow'
 
 " VCS
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Sidebars
-Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'sjl/gundo.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'sjl/gundo.vim'
 
 " Code Completion
-Plugin 'tpope/vim-surround'
-Plugin 'craigemery/vim-autotag'
-Plugin 'ervandew/supertab'
-Plugin 'mattn/emmet-vim.git'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'szw/vim-tags'
+Plug 'tpope/vim-surround'
+Plug 'craigemery/vim-autotag'
+"Plug 'ervandew/supertab'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdcommenter'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'szw/vim-tags'
 
 " Commands
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tmhedberg/matchit'
-Plugin 'AndrewRadev/linediff.vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'lambdalisue/vim-gista'
-Plugin 'RRethy/vim-illuminate'
+Plug 'AndrewRadev/switch.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-speeddating'
+Plug 'tmhedberg/matchit'
+Plug 'AndrewRadev/linediff.vim'
+Plug 'tpope/vim-dispatch'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'lambdalisue/vim-gista'
+Plug 'RRethy/vim-illuminate'
 
 " Vim Config
-Plugin 'LucHermitte/lh-vim-lib'
-Plugin 'LucHermitte/local_vimrc'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'flazz/vim-colorschemes'
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/local_vimrc'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'wesQ3/vim-windowswap'
+Plug 'flazz/vim-colorschemes'
 
 "Python
-Plugin 'klen/python-mode'
-Plugin 'jeetsukumaran/vim-pythonsense'
-call vundle#end()
+Plug 'klen/python-mode'
+Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'mgedmin/coverage-highlight.vim'
+call plug#end()
 
 syntax enable "enable colors
 colorscheme badwolf
@@ -75,13 +82,6 @@ hi DiffChange ctermbg=58
 hi DiffText ctermbg=226 ctermfg=8
 hi htmlTag guibg=NONE ctermbg=NONE
 hi htmlEndTag guibg=NONE ctermbg=NONE
-hi SyntasticWarningSign ctermfg=1 ctermbg=233
-syn match StrikeoutBetterComments "[\*\/#]\+\s*\~.*"
-hi ErrorBetterComments ctermfg=196 term=bold gui=bold guifg=#ff2c4b
-hi HighlightInlineComments ctermfg=93 term=bold gui=bold guifg=#8700ff
-hi QuestionBetterComments ctermfg=39 term=bold gui=bold guifg=#242321
-hi StrikeoutBetterComments ctermfg=22 term=bold gui=bold guifg=#35322d
-hi link TodoBetterComments Todo
 hi illuminatedWord ctermbg=238 cterm=underline gui=underline
 
 set exrc "include .vimrc in CWD
@@ -117,11 +117,8 @@ set undodir=~/.vim/undodir  "keep undo file
 set undofile "save undo's to a file
 set undolevels=1000 "number of changes that can be undone
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
-set wildchar=<Tab> "<Tab> to start wildcard completion
-set wildmenu "enhaced completion mode
 set wrap " visually wrap
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
-
 
 nnoremap ; :
 
@@ -153,9 +150,11 @@ inoremap <S-right> <C-w>l
 inoremap <S-up> <C-w>k
 inoremap <S-down> <C-w>j
 
-map location map cycling
-map <leader>ln :lnext<CR>
-map <leader>lp :lprev<CR>
+nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+"map location map cycling
+"map <leader>ln :lnext<CR>
+"map <leader>lp :lprev<CR>
 
 map <leader>ld :Linediff<CR>
 map <leader>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -278,9 +277,25 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
-"YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+" CoC
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 "Switch
 let g:switch_mapping = '='
