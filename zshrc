@@ -32,7 +32,9 @@ plugins=(
     golang
     helm
     history-substring-search
+    kops
     kubectl
+    minikube
     npm
     pip
     python
