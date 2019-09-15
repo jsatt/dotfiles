@@ -8,3 +8,7 @@ syntax: glob
 *.pyc
 *.swp
 vim/bundle/*
+vim/plugged/*
+vim/autoload/plug.vim
+vim/sessions
+.uuid

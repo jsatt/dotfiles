@@ -54,5 +54,5 @@ echo "cloning submodules"
 
 echo "installing powerline"
 if [ "`which pip3`" ]; then
-    pip3 install powerline-status
+    pip3 install --user powerline-status
 fi

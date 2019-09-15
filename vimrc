@@ -28,7 +28,7 @@ Plug 'luochen1990/rainbow'
 
 " VCS
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 
 " Sidebars
 Plug 'scrooloose/nerdtree'
@@ -75,6 +75,7 @@ syntax enable "enable colors
 colorscheme badwolf
 hi Normal guibg=NONE ctermbg=NONE
 hi NonText guibg=NONE ctermbg=NONE
+hi Pmenu ctermfg=166 ctermbg=235
 hi TODO ctermbg=220 ctermfg=16
 hi DiffDelete ctermbg=52
 hi DiffAdd ctermbg=22
@@ -83,6 +84,15 @@ hi DiffText ctermbg=226 ctermfg=8
 hi htmlTag guibg=NONE ctermbg=NONE
 hi htmlEndTag guibg=NONE ctermbg=NONE
 hi illuminatedWord ctermbg=238 cterm=underline gui=underline
+hi GitAdd    guifg=#009900 ctermfg=2
+hi GitChange guifg=#bbbb00 ctermfg=3
+hi GitDelete guifg=#ff2222 ctermfg=1
+hi GitChangeDelete guifg=#ff2222 ctermfg=1
+"Highlight end of line whitespace in red
+highlight BadWhitespace ctermbg=red guibg=red
+let m = matchadd('BadWhitespace', '\s\+$')
+"Highlight tabs used instead of spaces in red
+let m = matchadd('BadWhitespace', '^\t\+')
 
 set exrc "include .vimrc in CWD
 set secure "limit .vimrc commands allowed
@@ -92,6 +102,7 @@ filetype indent on "filetype specific indents
 set autoindent "copy indent from current line when starting new line
 set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
+set cmdheight=2 "use 2 lines for command line
 set cursorline  "highlight line that cursor is currently on
 set directory^=$HOME/.vim/swapfiles//  "keep swapfiles centralized
 set encoding=utf8 "use UTF-8 file encoding
@@ -99,6 +110,7 @@ set expandtab "use spaces instead of tabs
 set foldenable  "enable folding
 set foldmethod=indent "enable manual code folding
 set foldlevelstart=6 "don't automatically close folds on open unless 6 folds deep
+set hidden "hide buffers rather than unload
 set history=1000 "remember the last 1000 commands used
 set hlsearch "highlight matchs when searching
 set incsearch "jump to next match when searching
@@ -107,8 +119,11 @@ set linebreak "visually wrap long lines on breakat characters
 set number "show line numbers
 set numberwidth=4 "width of line number column
 set shiftwidth=4 "4 spaces for indents when using << or >>
+set shortmess+=c "don't give |ins-completion-menu| messages.
+set signcolumn=yes "always show signcolumns
 set smarttab "use <BS> too delete shiftwidth worth of space at start of line
 set softtabstop=4 "4 spaces for tabs in INSERT mode
+set switchbuf=useopen,usetab,newtab "use open buffer when switching
 set tabstop=4 "4 space for tabs
 set textwidth=99 " format lines to <100 characters
 let textwidthbegin=&textwidth-9 " start considering line length before 100
@@ -116,6 +131,7 @@ let &colorcolumn=join(range(textwidthbegin, &textwidth),",") "highlight columns 
 set undodir=~/.vim/undodir  "keep undo file
 set undofile "save undo's to a file
 set undolevels=1000 "number of changes that can be undone
+set updatetime=300  "number of milliseconds befoe finalizing an edit
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wrap " visually wrap
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
@@ -134,6 +150,10 @@ nnoremap L $
 vnoremap H ^
 vnoremap L g_
 
+" navigate between buffers
+nnoremap <silent> gb :bn<CR>
+nnoremap <silent> gB :bp<CR>
+
 " navigate tabs with ctrl-→/ctrl-←
 nnoremap <C-right> :tabnext<CR>
 nnoremap <C-left> :tabprevious<CR>
@@ -150,14 +170,17 @@ inoremap <S-right> <C-w>l
 inoremap <S-up> <C-w>k
 inoremap <S-down> <C-w>j
 
-nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
-"map location map cycling
-"map <leader>ln :lnext<CR>
-"map <leader>lp :lprev<CR>
-
 map <leader>ld :Linediff<CR>
 map <leader>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
+nnoremap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>lf  :<C-u>CocList -A -N files<CR>
+nnoremap <silent> <leader>ls  :<C-u>CocList -I -N symbols<CR>
+nnoremap <silent> <leader>ly  :<C-u>CocList -A --normal yank<CR>
+nnoremap <silent> <leader>lr  :<C-u>CocList -A -N mru<CR>
+nnoremap <silent> <leader>lb  :<C-u>CocList -A -N --normal buffers<CR>
 
 map <leader>sa :s/\%V\([^(),]*\), \([^(),]*\)/\2, \1/<CR>
 
@@ -191,12 +214,6 @@ map <silent> <C-z> :GundoToggle<CR>
 "ZenCoding
 "expand w/ Ctrl-e
 let g:user_emmet_expandabbr_key='<c-e>'
-
-"Highlight end of line whitespace in red
-highlight BadWhitespace ctermbg=red guibg=red
-let m = matchadd('BadWhitespace', '\s\+$')
-"Highlight tabs used instead of spaces in red
-let m = matchadd('BadWhitespace', '^\t\+')
 
 "Airline
 let g:airline_theme = 'badwolf'
@@ -238,6 +255,7 @@ let g:pymode_rope = 0
 let g:pymode_virtualenv = 1
 let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()  # XXX BREAKPOINT'
 let g:pymode_python = 'python3'
+let g:pymode_doc = 0
 
 "Syntastic
 let g:syntastic_check_on_open = 1
@@ -254,30 +272,26 @@ let g:syntastic_html_tidy_blocklevel_tags = [
 
 "ALE
 let g:ale_linter_aliases = {'htmldjango': 'html'}
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_sign_info = ''
+let g:ale_sign_error = '⛔️ '
+let g:ale_sign_warning = '⚠️ '
+let g:ale_sign_info = 'ℹ️ '
 highlight ALEErrorSign ctermfg=1 guifg=#ff0000
 highlight ALEInfoSign ctermfg=21 guifg=#0000ff
 highlight ALEWarningSign ctermfg=226 guifg=#ffff00
-
-"Gitgutter
-let g:gitgutter_sign_added              = ''
-let g:gitgutter_sign_modified           = ''
-let g:gitgutter_sign_removed            = ''
-let g:gitgutter_sign_removed_first_line = ''
-let g:gitgutter_sign_modified_removed   = ''
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_diff_args = '-w'
-highlight GitGutterAdd    guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#bbbb00 ctermfg=3
-highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 "Multiple Cursors
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
 " CoC
+let g:coc_global_extensions = [
+    \ 'coc-json',
+    \ 'coc-python',
+    \ 'coc-git',
+    \ 'coc-yank',
+    \ 'coc-css',
+    \ 'coc-marketplace',
+    \]
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -289,6 +303,14 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
 endfunction
 
 "Remap keys for gotos
