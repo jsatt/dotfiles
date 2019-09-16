@@ -1,5 +1,4 @@
 {
-    "list.source.grep.command": "ag",
     "coc.preferences.jumpCommand": "tab drop",
     "git.changedSign.text": " ",
     "git.addedSign.text": " ",
@@ -16,4 +15,7 @@
     "diagnostic.warningSign": "⚠️ ",
     "diagnostic.infoSign": "ℹ️ ",
     "diagnostic.hintSign": "❓ ",
+    "list.source.grep.command": "ag",
+    "python.venvFolders": [".virtualenvs"],
+    "suggest.enablePreview": true
 }

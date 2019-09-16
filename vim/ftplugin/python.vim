@@ -6,3 +6,6 @@ augroup END
 map <buffer> <leader>is :!isort %<CR>
 map <buffer> <leader>pl ologger = logging.getLogger(__name__)<esc>ggOimport logging<CR><esc>''
 map <buffer> <leader>pu ggO# -*- coding: utf-8 -*-<CR>from __future__ import unicode_literals<esc>''
+map <buffer> <leader>hc :HighlightCoverage<CR><CR>
+map <buffer> <leader>cn :NextUncovered<CR>
+map <buffer> <leader>cp :PrevtUncovered<CR>

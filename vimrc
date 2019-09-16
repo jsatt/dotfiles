@@ -102,7 +102,7 @@ filetype indent on "filetype specific indents
 set autoindent "copy indent from current line when starting new line
 set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
-set cmdheight=2 "use 2 lines for command line
+set cmdheight=2 "use 2 screen lines for command line
 set cursorline  "highlight line that cursor is currently on
 set directory^=$HOME/.vim/swapfiles//  "keep swapfiles centralized
 set encoding=utf8 "use UTF-8 file encoding
@@ -119,8 +119,8 @@ set linebreak "visually wrap long lines on breakat characters
 set number "show line numbers
 set numberwidth=4 "width of line number column
 set shiftwidth=4 "4 spaces for indents when using << or >>
-set shortmess+=c "don't give |ins-completion-menu| messages.
-set signcolumn=yes "always show signcolumns
+set shortmess+=c "don't give |ins-completion-menu| messages
+set signcolumn=yes "always show the sign column
 set smarttab "use <BS> too delete shiftwidth worth of space at start of line
 set softtabstop=4 "4 spaces for tabs in INSERT mode
 set switchbuf=useopen,usetab,newtab "use open buffer when switching
@@ -131,7 +131,7 @@ let &colorcolumn=join(range(textwidthbegin, &textwidth),",") "highlight columns 
 set undodir=~/.vim/undodir  "keep undo file
 set undofile "save undo's to a file
 set undolevels=1000 "number of changes that can be undone
-set updatetime=300  "number of milliseconds befoe finalizing an edit
+set updatetime=300 " milliseconds to wait before completing typed changes
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wrap " visually wrap
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
@@ -256,19 +256,7 @@ let g:pymode_virtualenv = 1
 let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()  # XXX BREAKPOINT'
 let g:pymode_python = 'python3'
 let g:pymode_doc = 0
-
-"Syntastic
-let g:syntastic_check_on_open = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_css_checkers = ['prettycss']
-let g:syntastic_html_checkers = ['jshint', 'tidy']
-let g:syntastic_filetype_map = {
-    \ "htmldjango": "html" }
-let g:syntastic_html_tidy_ignore_errors = [
-    \ ' proprietary attribute ' ]
-let g:syntastic_html_tidy_blocklevel_tags = [
-    \ 'ng-switch'
-    \ ]
+let g:pymode_doc_bind = ''
 
 "ALE
 let g:ale_linter_aliases = {'htmldjango': 'html'}
@@ -289,6 +277,7 @@ let g:coc_global_extensions = [
     \ 'coc-python',
     \ 'coc-git',
     \ 'coc-yank',
+    \ 'coc-lists',
     \ 'coc-css',
     \ 'coc-marketplace',
     \]

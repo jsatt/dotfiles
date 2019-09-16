@@ -1,3 +1,5 @@
 *.sw[lmnop]
 *.orig
 .vimlocal
+.vim
+.DS_Store
