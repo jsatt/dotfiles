@@ -184,6 +184,16 @@ nnoremap <silent> <leader>lb  :<C-u>CocList -A -N --normal buffers<CR>
 
 map <leader>sa :s/\%V\([^(),]*\), \([^(),]*\)/\2, \1/<CR>
 
+if &diff
+    nnoremap <expr> <leader>n ]c
+    nnoremap <expr> <leader>p [c
+    nnoremap <silent> <leader>gl :diffg LOCAL<CR>
+    nnoremap <silent> <leader>gb :diffg BASE<CR>
+    nnoremap <silent> <leader>gr :diffg REMOTE<CR>
+    nnoremap <silent> <leader>du :diffupdate<CR>
+endif
+
+
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
     set mouse=a "enable mouse in all modes
     set ttymouse=xterm2 "enable xterm mouse handling
@@ -280,6 +290,8 @@ let g:coc_global_extensions = [
     \ 'coc-lists',
     \ 'coc-css',
     \ 'coc-marketplace',
+    \ 'coc-jira-complete',
+    \ 'coc-github',
     \]
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.

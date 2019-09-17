@@ -33,7 +33,7 @@
     gpgsign = true
 
 [merge]
-    tool = kdiff3
+    tool = vimdiff
 
 [alias]
     br = branch
