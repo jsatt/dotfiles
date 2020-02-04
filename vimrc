@@ -104,7 +104,6 @@ set autoread "auto read if file has changed outside vim but not inside
 set clipboard=unnamedplus "copy/paste to/from system slipboard
 set cmdheight=2 "use 2 screen lines for command line
 set cursorline  "highlight line that cursor is currently on
-set directory^=$HOME/.vim/swapfiles//  "keep swapfiles centralized
 set encoding=utf8 "use UTF-8 file encoding
 set expandtab "use spaces instead of tabs
 set foldenable  "enable folding
@@ -116,6 +115,7 @@ set hlsearch "highlight matchs when searching
 set incsearch "jump to next match when searching
 set laststatus=2 "show status line
 set linebreak "visually wrap long lines on breakat characters
+set noswapfile "disable swapfiles
 set number "show line numbers
 set numberwidth=4 "width of line number column
 set shiftwidth=4 "4 spaces for indents when using << or >>
@@ -123,6 +123,8 @@ set shortmess+=c "don't give |ins-completion-menu| messages
 set signcolumn=yes "always show the sign column
 set smarttab "use <BS> too delete shiftwidth worth of space at start of line
 set softtabstop=4 "4 spaces for tabs in INSERT mode
+set splitbelow "open new splits below instead of above
+set splitright "open new split to the right instead of left
 set switchbuf=useopen,usetab,newtab "use open buffer when switching
 set tabstop=4 "4 space for tabs
 set textwidth=99 " format lines to <100 characters
@@ -155,10 +157,10 @@ nnoremap <silent> gb :bn<CR>
 nnoremap <silent> gB :bp<CR>
 
 " navigate tabs with ctrl-→/ctrl-←
-nnoremap <C-right> :tabnext<CR>
-nnoremap <C-left> :tabprevious<CR>
-inoremap <C-right> <Esc>:tabnext<CR>
-inoremap <C-left> <Esc>:tabprevious<CR>
+nnoremap <silent> <C-right> :tabnext<CR>
+nnoremap <silent> <C-left> :tabprevious<CR>
+inoremap <silent> <C-right> <Esc>:tabnext<CR>
+inoremap <silent> <C-left> <Esc>:tabprevious<CR>
 
 " navigate splits with shift-→ , shift-←, shift-↓, shift-↑
 nnoremap <S-left> <C-w>h
@@ -283,15 +285,15 @@ let g:multi_cursor_exit_from_insert_mode = 0
 
 " CoC
 let g:coc_global_extensions = [
-    \ 'coc-json',
-    \ 'coc-python',
-    \ 'coc-git',
-    \ 'coc-yank',
-    \ 'coc-lists',
     \ 'coc-css',
-    \ 'coc-marketplace',
-    \ 'coc-jira-complete',
+    \ 'coc-git',
     \ 'coc-github',
+    \ 'coc-jira-complete',
+    \ 'coc-json',
+    \ 'coc-lists',
+    \ 'coc-marketplace',
+    \ 'coc-python',
+    \ 'coc-yank',
     \]
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -359,6 +361,6 @@ call lh#local_vimrc#munge('whitelist', $HOME.'/dev')
 
 "Filetype detection
 au! BufRead,BufNewFile *.json set filetype=json
-au! BufRead,BufNewFile *.html set filetype=htmldjango
+au! BufRead,BufNewFile *.html set filetype=jinja
 au! BufRead,BufNewFile *.sls set filetype=yaml
 au! BufRead,BufNewFile Jenkinsfile* set filetype=groovy
