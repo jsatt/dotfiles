@@ -29,6 +29,7 @@ plugins=(
     docker-compose
     encode64
     extract
+    gcloud
     golang
     helm
     history-substring-search
