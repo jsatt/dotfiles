@@ -55,6 +55,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'lambdalisue/vim-gista'
 Plug 'RRethy/vim-illuminate'
+Plug 'stevearc/vim-arduino'
 
 " Vim Config
 Plug 'LucHermitte/lh-vim-lib'
@@ -321,6 +322,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 "Switch
 let g:switch_mapping = '='
