@@ -200,7 +200,11 @@ endif
 
 if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
     set mouse=a "enable mouse in all modes
-    set ttymouse=xterm2 "enable xterm mouse handling
+    if has("mouse_sgr")
+        set ttymouse=sgr "enable SGR mouse reporting, works beyond column 223
+    else
+        set ttymouse=xterm2 "enable xterm mouse handling
+    end
 endif
 
 au BufEnter * checkt "check for changes more often for autoread
