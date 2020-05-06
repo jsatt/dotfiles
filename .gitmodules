@@ -10,3 +10,6 @@
 [submodule "zsh_plugins/zshmarks"]
 	path = zsh_plugins/zshmarks
 	url = https://github.com/jocelynmallon/zshmarks.git
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
