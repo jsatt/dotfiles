@@ -25,9 +25,11 @@ Plug 'dense-analysis/ale'
 Plug 'mxw/vim-jsx'
 Plug 'mtscout6/vim-cjsx'
 Plug 'luochen1990/rainbow'
+Plug 'chrisbra/csv.vim'
 
 " VCS
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
 "Plug 'airblade/vim-gitgutter'
 
 " Sidebars
