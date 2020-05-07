@@ -121,6 +121,7 @@ set linebreak "visually wrap long lines on breakat characters
 set noswapfile "disable swapfiles
 set number "show line numbers
 set numberwidth=4 "width of line number column
+set scrolloff=20 " keep lines above and below cursor when scorlling
 set shiftwidth=4 "4 spaces for indents when using << or >>
 set shortmess+=c "don't give |ins-completion-menu| messages
 set signcolumn=yes "always show the sign column
@@ -372,7 +373,15 @@ let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
 call lh#local_vimrc#munge('whitelist', $HOME.'/dev')
 
 " CSV
-let g:no_csv_maps = 1
+let g:csv_nomap_c_left = 1
+let g:csv_nomap_c_right = 1
+
+" Markdown
+let g:vim_markdown_conceal = 2
+"let g:vim_markdown_conceal_code_blocks = 0 
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_edit_url_in = 'tab'
+
 
 "Filetype detection
 au! BufRead,BufNewFile *.json set filetype=json
