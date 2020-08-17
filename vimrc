@@ -279,6 +279,9 @@ let g:pymode_python = 'python3'
 let g:pymode_doc = 0
 let g:pymode_doc_bind = ''
 
+"JSON
+let g:vim_json_syntax_conceal = 0
+
 "ALE
 let g:ale_linter_aliases = {'htmldjango': 'html'}
 let g:ale_sign_error = '⛔️ '
