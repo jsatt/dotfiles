@@ -385,6 +385,70 @@ let g:vim_markdown_conceal = 2
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_edit_url_in = 'tab'
 
+" OSC52 - copy to terminal hosts clipboard
+vmap <silent> <leader>y y:call SendViaOSC52(getreg('"'))<cr>
+
+let g:max_osc52_sequence=100000
+function! SendViaOSC52 (str)
+  if !empty($TMUX)
+    let osc52 = "\ePtmux;\e\e]52;c;" . s:b64encode(a:str, 0) . "\x07\e\\"
+  elseif match($TERM, 'screen') > -1
+    let osc52 = s:get_OSC52_DCS(a:str)
+    let b64 = s:b64encode(a:str, 76)
+    let b64 = substitute(b64, '\n*$', '', '')
+    let b64 = substitute(b64, '\n', "\e/\eP", "g")
+    let b64 = substitute(b64, '/', '\', 'g')
+    let osc52 = "\eP\e]52;c;" . b64 . "\x07\e\x5c"
+  else
+    let osc52 = "\e]52;c;" . s:b64encode(a:str, 0) . "\x07"
+  endif
+  let len = strlen(osc52)
+  if len < g:max_osc52_sequence
+    exec("silent! !echo " . shellescape(osc52))
+    redraw!
+  else
+    echo "Selection too long to send to terminal: " . len
+  endif
+endfunction
+function! s:b64encode(str, size)
+    let b64_table = [
+                \ "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
+                \ "Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f",
+                \ "g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v",
+                \ "w","x","y","z","0","1","2","3","4","5","6","7","8","9","+","/"]
+    let bytes = s:str2bytes(a:str)
+    let b64 = []
+    for i in range(0, len(bytes) - 1, 3)
+        let n = bytes[i] * 0x10000
+                    \ + get(bytes, i + 1, 0) * 0x100
+                    \ + get(bytes, i + 2, 0)
+        call add(b64, b64_table[n / 0x40000])
+        call add(b64, b64_table[n / 0x1000 % 0x40])
+        call add(b64, b64_table[n / 0x40 % 0x40])
+        call add(b64, b64_table[n % 0x40])
+    endfor
+    if len(bytes) % 3 == 1
+        let b64[-1] = '='
+        let b64[-2] = '='
+    endif
+    if len(bytes) % 3 == 2
+        let b64[-1] = '='
+    endif
+    let b64 = join(b64, '')
+    if a:size <= 0
+        return b64
+    endif
+    let chunked = ''
+    while strlen(b64) > 0
+        let chunked .= strpart(b64, 0, a:size) . "\n"
+        let b64 = strpart(b64, a:size)
+    endwhile
+    return chunked
+endfunction
+function! s:str2bytes(str)
+    return map(range(len(a:str)), 'char2nr(a:str[v:val])')
+endfunction
+
 
 "Filetype detection
 au! BufRead,BufNewFile *.json set filetype=json
