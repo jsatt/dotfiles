@@ -26,6 +26,7 @@ Plug 'mxw/vim-jsx'
 Plug 'mtscout6/vim-cjsx'
 Plug 'luochen1990/rainbow'
 Plug 'chrisbra/csv.vim'
+Plug 'Galicarnax/vim-regex-syntax'
 
 " VCS
 Plug 'tpope/vim-fugitive'
