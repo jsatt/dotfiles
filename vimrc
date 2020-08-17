@@ -21,7 +21,7 @@ Plug 'wavded/vim-stylus'
 Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim'
 Plug 'plasticboy/vim-markdown'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'mxw/vim-jsx'
 Plug 'mtscout6/vim-cjsx'
 Plug 'luochen1990/rainbow'
@@ -243,7 +243,7 @@ let g:airline_detect_paste = 1
 let g:airline_detect_crypt = 1
 let g:airline_detect_modified = 1
 let g:airline_detect_spell = 1
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 let g:airline#extensions#ale#error_symbol = ' '
 let g:airline#extensions#ale#warning_symbol = ' '
 let g:airline#extensions#ale#open_lnum_symbol = ''

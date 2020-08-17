@@ -1,5 +1,6 @@
 {
     "coc.preferences.jumpCommand": "tab drop",
+    "coc.preferences.colorSupport": false,
     "git.changedSign.text": " ",
     "git.addedSign.text": " ",
     "git.removedSign.text": " ",
@@ -10,12 +11,13 @@
     "git.removedSign.hlGroup": "GitDelete",
     "git.topRemovedSign.hlGroup": "GitDelete",
     "git.changeRemovedSign.hlGroup": "GitChangeDelete",
-    "diagnostic.displayByAle": true,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.displayByAle": false,
     "diagnostic.errorSign": "⛔️ ",
     "diagnostic.warningSign": "⚠️ ",
     "diagnostic.infoSign": "ℹ️ ",
     "diagnostic.hintSign": "❓ ",
     "list.source.grep.command": "ag",
-    "python.venvFolders": [".virtualenvs"],
+    "python.venvPath": "~/.virtualenvs",
     "suggest.enablePreview": true
 }
