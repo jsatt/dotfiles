@@ -59,6 +59,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'lambdalisue/vim-gista'
 Plug 'RRethy/vim-illuminate'
 Plug 'stevearc/vim-arduino'
+Plug 'wfxr/minimap.vim'
 
 " Vim Config
 Plug 'LucHermitte/lh-vim-lib'
@@ -223,6 +224,10 @@ let g:tagbar_autofocus = 1
 "toggle NERDTree w/ <F3>
 map <silent> <F3> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '__pycache__', '*.pyc']
+
+""Minmap
+map <silent> <leader>m :MinimapToggle<CR>
+map <silent> <leader>mr :MinimapRefresh<CR>
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
