@@ -40,7 +40,7 @@ Plug 'sjl/gundo.vim'
 
 " Code Completion
 Plug 'tpope/vim-surround'
-Plug 'craigemery/vim-autotag'
+"Plug 'craigemery/vim-autotag'
 "Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
@@ -320,6 +320,7 @@ inoremap <silent><expr> <TAB>
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -339,10 +340,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
 
 "Switch
 let g:switch_mapping = '='
