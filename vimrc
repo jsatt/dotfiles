@@ -149,20 +149,22 @@ au! BufRead,BufNewFile *.sls set filetype=yaml
 au! BufRead,BufNewFile Jenkinsfile* set filetype=groovy
 au BufEnter * checkt "check for changes more often for autoread
 
+" Key mappings
 nnoremap ; :
 
 "remap increment to not clash w/ screen
 map <C-c> <C-a>
 map :qt :tabc
 
-command CloseOthers :%bd|e#
-command CloseBuffers :call DeleteInactiveBufs()
-
 " easier home and end mapping
 nnoremap H ^
 nnoremap L $
 vnoremap H ^
 vnoremap L g_
+nnoremap <expr> k      v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> j      v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> <Up>   v:count == 0 ? "g\<Up>" : "\<Up>"
+nnoremap <expr> <Down> v:count == 0 ? "g\<Down>" : "\<Down>"
 
 " navigate between buffers
 nnoremap <silent> gb :bn<CR>
@@ -184,17 +186,46 @@ inoremap <S-right> <C-w>l
 inoremap <S-up> <C-w>k
 inoremap <S-down> <C-w>j
 
-map <leader>ld :Linediff<CR>
-map <leader>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" copy to terminal hosts clipboard
+vnoremap <silent> <leader>y y:call SendViaOSC52(getreg('"'))<cr>
+
+noremap <leader>ld :Linediff<CR>
+"noremap <silent> <leader>tt :TagbarToggle<CR>
+"noremap <silent> <leader>tn :NERDTreeToggle<CR>
+noremap <silent> <leader>e :CocCommand explorer<CR>
+noremap <silent> <leader>ef :CocCommand explorer --position floating<CR>
+noremap <silent> <leader>m :MinimapToggle<CR>
+noremap <silent> <leader>mr :MinimapRefresh<CR>
+noremap <silent> <C-z> :GundoToggle<CR>
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
-nnoremap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
 nnoremap <silent> <leader>lf  :<C-u>CocList -A -N files<CR>
 nnoremap <silent> <leader>ls  :<C-u>CocList -I -N symbols<CR>
 nnoremap <silent> <leader>ly  :<C-u>CocList -A --normal yank<CR>
 nnoremap <silent> <leader>lr  :<C-u>CocList -A -N mru<CR>
 nnoremap <silent> <leader>lb  :<C-u>CocList -A -N --normal buffers<CR>
+nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>rf <Plug>(coc-refactor)
+xmap <leader>ra <Plug>(coc-codeaction-selected)
+
+" COC
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+"Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+map <buffer> [M <Plug>(PythonsenseEndOfPythonFunction)
 
 map <leader>sa :s/\%V\([^(),]*\), \([^(),]*\)/\2, \1/<CR>
 
@@ -220,28 +251,16 @@ endif
 au BufEnter * checkt "check for changes more often for autoread
 
 "Tagbar
-"toggle Tagbar w/ <F2>
-map <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
 
 "NERDTree
-"toggle NERDTree w/ <F3>
-map <silent> <F3> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '__pycache__', '*.pyc']
-
-""Minmap
-map <silent> <leader>m :MinimapToggle<CR>
-map <silent> <leader>mr :MinimapRefresh<CR>
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
     \ 'python': {'left': '# ', 'leftAlt': '#'},
     \ }
-
-"Gundo
-"toggle Gundo w/ Ctrl-Z
-map <silent> <C-z> :GundoToggle<CR>
 
 "ZenCoding
 "expand w/ Ctrl-e
@@ -318,14 +337,6 @@ let g:coc_global_extensions = [
     \ 'coc-python',
     \ 'coc-yank',
     \]
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -339,12 +350,6 @@ function! s:show_documentation()
     call CocActionAsync('doHover')
   endif
 endfunction
-
-"Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 "Switch
 let g:switch_mapping = '='
@@ -363,9 +368,6 @@ let g:switch_custom_definitions = [
     \    '\(\k\+\) is not \(\k\+\)': '\1 is \2',
     \   },
     \ ]
-
-" Pythonsense
-map <buffer> [M <Plug>(PythonsenseEndOfPythonFunction)
 
 " Rainbow
 let g:rainbow_active = 1
@@ -393,9 +395,8 @@ let g:vim_markdown_conceal = 2
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_edit_url_in = 'tab'
 
-" OSC52 - copy to terminal hosts clipboard
-vmap <silent> <leader>y y:call SendViaOSC52(getreg('"'))<cr>
 
+" OSC52 - copy to terminal hosts clipboard
 let g:max_osc52_sequence=100000
 function! SendViaOSC52 (str)
   if !empty($TMUX)
@@ -477,3 +478,5 @@ function! DeleteInactiveBufs()
     echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
 command! Bdi :call DeleteInactiveBufs()
+command CloseOthers :%bd|e#
+command CloseBuffers :call DeleteInactiveBufs()
