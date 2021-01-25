@@ -1,6 +1,8 @@
 {
     "coc.preferences.jumpCommand": "tab drop",
     "coc.preferences.colorSupport": false,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.previewAction.onHover": false,
     "git.changedSign.text": " ",
     "git.addedSign.text": " ",
     "git.removedSign.text": " ",
@@ -16,7 +18,7 @@
     "diagnostic.errorSign": "⛔️ ",
     "diagnostic.warningSign": "⚠️ ",
     "diagnostic.infoSign": "ℹ️ ",
-    "diagnostic.hintSign": "❓ ",
+    "diagnostic.hintSign": "?",
     "list.source.grep.command": "ag",
     "python.venvPath": "~/.virtualenvs",
     "suggest.enablePreview": true

@@ -21,7 +21,6 @@ Plug 'wavded/vim-stylus'
 Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim'
 Plug 'plasticboy/vim-markdown'
-"Plug 'dense-analysis/ale'
 Plug 'mxw/vim-jsx'
 Plug 'mtscout6/vim-cjsx'
 Plug 'luochen1990/rainbow'
@@ -34,8 +33,8 @@ Plug 'rbong/vim-flog'
 "Plug 'airblade/vim-gitgutter'
 
 " Sidebars
-Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
+"Plug 'scrooloose/nerdtree'
+"Plug 'majutsushi/tagbar'
 Plug 'sjl/gundo.vim'
 
 " Code Completion
@@ -274,11 +273,6 @@ let g:airline_detect_paste = 1
 let g:airline_detect_crypt = 1
 let g:airline_detect_modified = 1
 let g:airline_detect_spell = 1
-let g:airline#extensions#ale#enabled = 0
-let g:airline#extensions#ale#error_symbol = ' '
-let g:airline#extensions#ale#warning_symbol = ' '
-let g:airline#extensions#ale#open_lnum_symbol = ''
-let g:airline#extensions#ale#close_lnum_symbol = ''
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#hunks#hunk_symbols = [' ', ' ', ' ']
 let g:airline#extensions#tabline#enabled = 1
@@ -310,17 +304,11 @@ let g:pymode_python = 'python3'
 let g:pymode_doc = 0
 let g:pymode_doc_bind = ''
 
+"Isort
+let g:vim_isort_map = ''
+
 "JSON
 let g:vim_json_syntax_conceal = 0
-
-"ALE
-let g:ale_linter_aliases = {'htmldjango': 'html'}
-let g:ale_sign_error = '⛔️ '
-let g:ale_sign_warning = '⚠️ '
-let g:ale_sign_info = 'ℹ️ '
-highlight ALEErrorSign ctermfg=1 guifg=#ff0000
-highlight ALEInfoSign ctermfg=21 guifg=#0000ff
-highlight ALEWarningSign ctermfg=226 guifg=#ffff00
 
 "Multiple Cursors
 let g:multi_cursor_exit_from_visual_mode = 0
@@ -329,13 +317,15 @@ let g:multi_cursor_exit_from_insert_mode = 0
 " CoC
 let g:coc_global_extensions = [
     \ 'coc-css',
+    \ 'coc-explorer',
     \ 'coc-git',
     \ 'coc-github',
     \ 'coc-jira-complete',
     \ 'coc-json',
     \ 'coc-lists',
     \ 'coc-marketplace',
-    \ 'coc-python',
+    \ 'coc-pyright',
+    "\ 'coc-python',
     \ 'coc-yank',
     \]
 
