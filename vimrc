@@ -142,6 +142,19 @@ set undolevels=1000 "number of changes that can be undone
 set updatetime=300 " milliseconds to wait before completing typed changes
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wrap " visually wrap
+
+if &term == "nvim" || &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
+    set mouse=a "enable mouse in all modes
+    if !has('nvim')
+        if has("mouse_sgr")
+            set ttymouse=sgr "enable SGR mouse reporting, works beyond column 223
+        else
+            set ttymouse=xterm2 "enable xterm mouse handling
+        endif
+    endif
+endif
+
+
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
 au! BufRead,BufNewFile *.json set filetype=json
 au! BufRead,BufNewFile *.html set filetype=jinja
@@ -237,18 +250,6 @@ if &diff
     nnoremap <silent> <leader>gr :diffg REMOTE<CR>
     nnoremap <silent> <leader>du :diffupdate<CR>
 endif
-
-
-if &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
-    set mouse=a "enable mouse in all modes
-    if has("mouse_sgr")
-        set ttymouse=sgr "enable SGR mouse reporting, works beyond column 223
-    else
-        set ttymouse=xterm2 "enable xterm mouse handling
-    end
-endif
-
-au BufEnter * checkt "check for changes more often for autoread
 
 "Tagbar
 let g:tagbar_left = 1
