@@ -3,7 +3,7 @@ augroup PythonComplete
     autocmd FileType python set omnifunc=pythoncomplete#Complete
 augroup END
 
-map <buffer> <leader>is :CocCommand python.sortImports<CR>
-map <buffer> <leader>hc :HighlightCoverage<CR><CR>
-map <buffer> <leader>cn :NextUncovered<CR>
-map <buffer> <leader>cp :PrevtUncovered<CR>
+noremap <buffer> <leader>is :!isort %<CR><CR><CR>
+noremap <buffer> <leader>hc :HighlightCoverage<CR><CR>
+noremap <buffer> <leader>cn :NextUncovered<CR>
+noremap <buffer> <leader>cp :PrevtUncovered<CR>

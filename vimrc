@@ -143,6 +143,11 @@ set updatetime=300 " milliseconds to wait before completing typed changes
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wrap " visually wrap
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
+au! BufRead,BufNewFile *.json set filetype=json
+au! BufRead,BufNewFile *.html set filetype=jinja
+au! BufRead,BufNewFile *.sls set filetype=yaml
+au! BufRead,BufNewFile Jenkinsfile* set filetype=groovy
+au BufEnter * checkt "check for changes more often for autoread
 
 nnoremap ; :
 
@@ -451,13 +456,6 @@ endfunction
 function! s:str2bytes(str)
     return map(range(len(a:str)), 'char2nr(a:str[v:val])')
 endfunction
-
-
-"Filetype detection
-au! BufRead,BufNewFile *.json set filetype=json
-au! BufRead,BufNewFile *.html set filetype=jinja
-au! BufRead,BufNewFile *.sls set filetype=yaml
-au! BufRead,BufNewFile Jenkinsfile* set filetype=groovy
 
 function! DeleteInactiveBufs()
     "From tabpagebuflist() help, get a list of all buffers in all tabs
