@@ -12,4 +12,5 @@ vim/bundle/*
 vim/plugged/*
 vim/autoload/plug.vim
 vim/sessions
+vim/undodir
 .uuid
