@@ -81,5 +81,4 @@ zstyle :compinstall filename '/home/jsatt/.zshrc'
 autoload -Uz compinit
 compinit
 
-# pipenv 
-export PIPENV_SHELL_FANCY=true
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
