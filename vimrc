@@ -80,6 +80,7 @@ syntax enable "enable colors
 colorscheme badwolf
 hi Normal guibg=NONE ctermbg=NONE
 hi NonText guibg=NONE ctermbg=NONE
+hi Comment cterm=italic
 hi Pmenu ctermfg=166 ctermbg=235
 hi TODO ctermbg=220 ctermfg=16
 hi DiffDelete ctermbg=52
@@ -142,6 +143,8 @@ set undolevels=1000 "number of changes that can be undone
 set updatetime=300 " milliseconds to wait before completing typed changes
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wrap " visually wrap
+set t_ZH=[3m  " set proper italics start
+set t_ZR=[23m  " set proper italics end
 
 if &term == "nvim" || &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
     set mouse=a "enable mouse in all modes
