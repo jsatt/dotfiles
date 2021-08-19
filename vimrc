@@ -16,42 +16,30 @@ Plug 'othree/html5.vim'
 Plug 'elzr/vim-json'
 Plug 'lepture/vim-jinja'
 Plug 'tweekmonster/django-plus.vim'
-Plug 'kchmck/vim-coffee-script'
-Plug 'wavded/vim-stylus'
 Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'mxw/vim-jsx'
-Plug 'mtscout6/vim-cjsx'
 Plug 'luochen1990/rainbow'
-Plug 'chrisbra/csv.vim'
 Plug 'Galicarnax/vim-regex-syntax'
 
 " VCS
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
-"Plug 'airblade/vim-gitgutter'
 
 " Sidebars
-"Plug 'scrooloose/nerdtree'
-"Plug 'majutsushi/tagbar'
-Plug 'sjl/gundo.vim'
+Plug 'mbbill/undotree'
 
 " Code Completion
 Plug 'tpope/vim-surround'
-"Plug 'craigemery/vim-autotag'
-"Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdcommenter'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'preservim/nerdcommenter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'szw/vim-tags'
 
 " Commands
 Plug 'AndrewRadev/switch.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
-Plug 'tmhedberg/matchit'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'terryma/vim-multiple-cursors'
@@ -196,7 +184,7 @@ inoremap <silent> <C-left> <Esc>:tabprevious<CR>
 nnoremap <S-left> <C-w>h
 nnoremap <S-right> <C-w>l
 nnoremap <S-up> <C-w>k
-nnoremap <S-down> <C-w>j
+nnore:ap <S-down> <C-w>j
 inoremap <S-left> <C-w>h
 inoremap <S-right> <C-w>l
 inoremap <S-up> <C-w>k
@@ -212,7 +200,7 @@ noremap <silent> <leader>e :CocCommand explorer<CR>
 noremap <silent> <leader>ef :CocCommand explorer --position floating<CR>
 noremap <silent> <leader>m :MinimapToggle<CR>
 noremap <silent> <leader>mr :MinimapRefresh<CR>
-noremap <silent> <C-z> :GundoToggle<CR>
+noremap <silent> <C-z> :UndotreeToggle<CR>
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
@@ -256,13 +244,6 @@ endif
 
 "OSC52
 let g:oscyank_max_length = 1000000
-
-"Tagbar
-let g:tagbar_left = 1
-let g:tagbar_autofocus = 1
-
-"NERDTree
-let NERDTreeIgnore=['\~$', '__pycache__', '*.pyc']
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
@@ -311,9 +292,6 @@ let g:pymode_python = 'python3'
 let g:pymode_doc = 0
 let g:pymode_doc_bind = ''
 
-"Isort
-let g:vim_isort_map = ''
-
 "JSON
 let g:vim_json_syntax_conceal = 0
 
@@ -355,6 +333,7 @@ let g:switch_reverse_mapping = '+'
 let g:switch_no_builtins = 1
 let g:switch_custom_definitions = [
     \   ['&&', '||'],
+    \   ['and', 'or'],
     \   {'\<on\>': 'off', '\<off\>': 'on'},
     \   {'\<On\>': 'Off', '\<Off\>': 'On'},
     \   {'\<yes\>': 'no', '\<no\>': 'yes'},
@@ -375,21 +354,12 @@ let g:rainbow_conf = {
 \                'darkgray', 'darkgreen', 'lightyellow', 'darkblue', 'magenta', 'cyan'],
 \}
 
-"let g:vim_tags_use_vim_dispatch = 1
-let g:vim_tags_ignore_files = ['.gitignore', 'client', '*.pyc']
-let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} -h .py --exclude='*.js' {DIRECTORY} 2>/dev/null"
-
 " local vimrc
 let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
 call lh#local_vimrc#munge('whitelist', $HOME.'/dev')
 
-" CSV
-let g:csv_nomap_c_left = 1
-let g:csv_nomap_c_right = 1
-
 " Markdown
 let g:vim_markdown_conceal = 2
-"let g:vim_markdown_conceal_code_blocks = 0 
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_edit_url_in = 'tab'
 
