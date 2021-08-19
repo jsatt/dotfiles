@@ -55,6 +55,9 @@ fi
 if [ -f $HOME/.zsh_aliases ]; then
     source $HOME/.zsh_aliases
 fi
+if [ -f $HOME/.local_aliases ]; then
+    source $HOME/.local_aliases
+fi
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
