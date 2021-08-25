@@ -1,7 +1,12 @@
 [core]
     editor = vi
-    pager = diff-so-fancy | less --tabs=4 -RFX
     excludesFile = ~/.gitignore
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
 
 [color]
     ui = true
@@ -64,9 +69,19 @@
     autocorrect = 15
 [diff]
     compactionHeuristic = true
+    colorMoved = default
+
 [interactive]
-    ; https://github.com/so-fancy/diff-so-fancy/issues/296
-    ;diffFilter = diff-so-fancy
+    diffFilter = delta --color-only
+
+[delta]
+    plus-style = "syntax #003300"
+    minus-style = "syntax #340000"
+    syntax-theme = Monokai Extended
+    navigate = true
+    line-numbers = True
+    side-by-side = True
+    inspect-raw-lines = false
 
 [includeIf "gitdir:~/dev/pton/"]
     path = ~/.pton.gitconfig
