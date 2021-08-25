@@ -67,3 +67,6 @@
 [interactive]
     ; https://github.com/so-fancy/diff-so-fancy/issues/296
     ;diffFilter = diff-so-fancy
+
+[includeIf "gitdir:~/dev/pton/"]
+    path = ~/.pton.gitconfig

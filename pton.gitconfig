@@ -1,0 +1,7 @@
+[user]
+    name = Jeremy Satterfield
+    email = jeremy.satterfield@onepeloton.com
+    signingkey = 8EE427424D233473AA8082CFE8E6F260ED134B0C
+
+
+; vim: set ft=gitconfig:
