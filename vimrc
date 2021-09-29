@@ -22,6 +22,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'mxw/vim-jsx'
 Plug 'luochen1990/rainbow'
 Plug 'Galicarnax/vim-regex-syntax'
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 
 " VCS
 Plug 'tpope/vim-fugitive'
@@ -191,7 +192,7 @@ inoremap <silent> <C-left> <Esc>:tabprevious<CR>
 nnoremap <S-left> <C-w>h
 nnoremap <S-right> <C-w>l
 nnoremap <S-up> <C-w>k
-nnore:ap <S-down> <C-w>j
+nnoremap <S-down> <C-w>j
 inoremap <S-left> <C-w>h
 inoremap <S-right> <C-w>l
 inoremap <S-up> <C-w>k
@@ -298,6 +299,11 @@ let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()  # XXX BREAKPOINT'
 let g:pymode_python = 'python3'
 let g:pymode_doc = 0
 let g:pymode_doc_bind = ''
+
+" Semshi (Python syntax)
+let g:semshi#error_sign=v:false
+let semshi#no_default_builtin_highlight=v:false
+let g:semshi#excluded_hl_groups = ['local', 'unresolved', 'attribute', 'builtin', 'free',]  "global, parameter, parameterUnused, self, imported
 
 "JSON
 let g:vim_json_syntax_conceal = 0
