@@ -1,3 +1,13 @@
+function! GetHighlightProperty(name, attr, mode, default)
+    let l:value = synIDattr(synIDtrans(hlID(a:name)), a:attr, a:mode)
+    let l:value = synIDattr(synIDtrans(hlID(a:name)), a:attr, a:mode)
+    if (l:value != '')
+        return l:value
+    else
+        return a:default
+    endif
+endfunction
+
 syntax enable "enable colors
 colorscheme badwolf
 hi Normal guibg=NONE ctermbg=NONE
@@ -32,3 +42,24 @@ if has("termguicolors")
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 endif
+
+exec 'hi CocExplorerFileDirectoryCollapsed gui=none ctermfg=none' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
+exec 'hi CocExplorerFileDirectoryExpanded gui=none ctermfg=none' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
+exec 'hi CocExplorerFileExpandIcon gui=none ctermfg=none' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
+exec 'hi CocExplorerBufferExpandIcon gui=none ctermfg=none' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
