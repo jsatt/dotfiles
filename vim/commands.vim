@@ -36,15 +36,11 @@ command! CloseBuffers :call DeleteInactiveBufs()
 let g:loaded_netrwPlugin = "1"
 augroup FileExplorer
  au!
- au BufLeave *  if &ft != "netrw"|let w:netrw_prvfile= expand("%:p")|endif
  au BufEnter *	sil call s:LocalBrowse(expand("<amatch>"))
  au VimEnter *	sil call s:VimEnter(expand("<amatch>"))
- if has("win32") || has("win95") || has("win64") || has("win16")
-  au BufEnter .* sil call s:LocalBrowse(expand("<amatch>"))
- endif
 augroup END
 
-fun! s:LocalBrowse(dirname)
+function! s:LocalBrowse(dirname)
   if !exists("s:vimentered")
    return
   endif
@@ -56,9 +52,7 @@ fun! s:LocalBrowse(dirname)
   endif
 endfun
 
-fun! s:VimEnter(dirname)
-  let curwin       = winnr()
+function! s:VimEnter(dirname)
   let s:vimentered = 1
-  windo call s:LocalBrowse(expand("%:p"))
-  exe curwin."wincmd w"
+  call s:LocalBrowse(expand("%:p"))
 endfun
