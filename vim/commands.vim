@@ -28,3 +28,37 @@ endfunction
 command! Bdi :call DeleteInactiveBufs()
 command! CloseOthers :%bd|e#
 command! CloseBuffers :call DeleteInactiveBufs()
+
+" have vim start coc-explorer if vim started with folder
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'CocCommand explorer' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+"com! -nargs=+ -complete=dir	Ex		:CocCommand explorer --position tab:. --no-toggle <args>
+let g:loaded_netrwPlugin = "1"
+augroup FileExplorer
+ au!
+ au BufLeave *  if &ft != "netrw"|let w:netrw_prvfile= expand("%:p")|endif
+ au BufEnter *	sil call s:LocalBrowse(expand("<amatch>"))
+ au VimEnter *	sil call s:VimEnter(expand("<amatch>"))
+ if has("win32") || has("win95") || has("win64") || has("win16")
+  au BufEnter .* sil call s:LocalBrowse(expand("<amatch>"))
+ endif
+augroup END
+
+fun! s:LocalBrowse(dirname)
+  if !exists("s:vimentered")
+   return
+  endif
+
+  if isdirectory(a:dirname)
+   let l:bufid = bufnr()
+   exec 'CocCommand explorer ' . a:dirname
+   exec 'sleep 100m | bd ' . l:bufid
+  endif
+endfun
+
+fun! s:VimEnter(dirname)
+  let curwin       = winnr()
+  let s:vimentered = 1
+  windo call s:LocalBrowse(expand("%:p"))
+  exe curwin."wincmd w"
+endfun
