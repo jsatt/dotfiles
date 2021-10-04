@@ -4,6 +4,9 @@ fi
 export SHELL=zsh
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR=vim
+if [ "$TERM" = "xterm" ]; then
+    export TERM=xterm-256color
+fi
 
 CASE_SENSITIVE="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
