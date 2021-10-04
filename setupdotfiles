@@ -51,8 +51,3 @@ done
 
 echo "cloning submodules"
 (cd $SCRIPT_PATH && git submodule update --init --recursive)
-
-echo "installing powerline"
-if [ "`which pip3`" ]; then
-    pip3 install --user powerline-status
-fi
