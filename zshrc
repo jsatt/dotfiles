@@ -5,9 +5,6 @@ export SHELL=zsh
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR=vim
 
-[[ $COLORTERM = *(24bit|truecolor)* ]] || zmodload zsh/nearcolor
-ZSH_THEME=badwolf
-
 CASE_SENSITIVE="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -37,6 +34,9 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+if [ -f $HOME/.zsh_theme ]; then
+    source $HOME/.zsh_theme
+fi
 
 if [ -f $HOME/.zsh_aliases ]; then
     source $HOME/.zsh_aliases
