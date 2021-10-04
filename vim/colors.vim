@@ -37,29 +37,29 @@ set t_ZH=[3m  " set proper italics start
 set t_ZR=[23m  " set proper italics end
 
 if has("termguicolors")
-    "set t_Co=256
+    set t_Co=256
     set termguicolors
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-exec 'hi CocExplorerFileDirectoryCollapsed gui=none ctermfg=none' .
-            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
-            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
-            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
-            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
-exec 'hi CocExplorerFileDirectoryExpanded gui=none ctermfg=none' .
-            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
-            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
-            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
-            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
-exec 'hi CocExplorerFileExpandIcon gui=none ctermfg=none' .
-            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
-            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
-            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
-            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
-exec 'hi CocExplorerBufferExpandIcon gui=none ctermfg=none' .
-            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'none') .
-            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'none') .
-            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'none') .
-            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'none')
+exec 'hi CocExplorerFileDirectoryCollapsed gui=NONE ctermfg=NONE' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'NONE') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'NONE') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'NONE') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'NONE')
+exec 'hi CocExplorerFileDirectoryExpanded gui=NONE ctermfg=NONE' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'NONE') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'NONE') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'NONE') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'NONE')
+exec 'hi CocExplorerFileExpandIcon gui=NONE ctermfg=NONE' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'NONE') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'NONE') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'NONE') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'NONE')
+exec 'hi CocExplorerBufferExpandIcon gui=NONE ctermfg=NONE' .
+            \' guifg=' . GetHighlightProperty('Directory', 'fg#', 'gui', 'NONE') .
+            \' guibg=' . GetHighlightProperty('Directory', 'bg#', 'gui', 'NONE') .
+            \' ctermfg=' . GetHighlightProperty('Directory', 'fg', 'cterm', 'NONE') .
+            \' ctermbg=' . GetHighlightProperty('Directory', 'bg', 'cterm', 'NONE')

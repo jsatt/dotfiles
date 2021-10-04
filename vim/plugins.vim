@@ -42,7 +42,7 @@ Plug 'lambdalisue/vim-gista'
 Plug 'RRethy/vim-illuminate'
 Plug 'stevearc/vim-arduino'
 Plug 'wfxr/minimap.vim'
-Plug 'ojroques/vim-oscyank'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 " Vim Config
 Plug 'LucHermitte/lh-vim-lib'
