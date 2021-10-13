@@ -24,12 +24,6 @@ alias fixscreen='rm -r ~/.local/share/kscreen'
 alias serve='python3 -m http.server'
 alias clear_dns='sudo systemd-resolve --flush-cache'
 
-if which nvim &> /dev/null; then
-    alias vi=nvim
-    alias vim=nvim
-    alias vimdiff=nvim -d
-fi
-
 pip_exact_search() {
     pip search $1 | ag $2 "^$1 \("
 }
