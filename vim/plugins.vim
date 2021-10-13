@@ -97,6 +97,15 @@ let g:airline_symbols.crypt = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.paste = ''
+call airline#parts#define('linenr', {
+    \ 'raw': '%{g:airline_symbols.linenr}%#__accent_bold#%l%#__restore__#',
+    \ 'accent': 'none'})
+call airline#parts#define('maxlinenr', {
+    \ 'raw': '%#__accent_bold#/%L%#__restore__#%{g:airline_symbols.maxlinenr}',
+    \ 'accent': 'none'})
+call airline#parts#define('colnr', {
+    \ 'raw': '%{g:airline_symbols.colnr}%#__accent_bold#%v%#__restore__#',
+    \ 'accent': 'none'})
 
 "Python Mode
 let g:pymode_options_max_line_length = 89
@@ -136,12 +145,12 @@ let g:coc_global_extensions = [
     \ 'coc-yank',
     \]
 
-function! s:check_back_space() abort
+function! _COC_check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-function! s:show_documentation()
+function! _COC_show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else

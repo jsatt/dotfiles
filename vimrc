@@ -52,3 +52,14 @@ set undolevels=1000 "number of changes that can be undone
 set updatetime=300 " milliseconds to wait before completing typed changes
 set whichwrap=h,l "use h or l to change lines at beginning or end of line/format
 set wrap " visually wrap
+
+if &term == "nvim" || &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
+    set mouse=a "enable mouse in all modes
+    if !has('nvim')
+        if has("mouse_sgr")
+            set ttymouse=sgr "enable SGR mouse reporting, works beyond column 223
+        else
+            set ttymouse=xterm2 "enable xterm mouse handling
+        endif
+    endif
+endif

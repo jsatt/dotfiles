@@ -47,7 +47,7 @@ noremap <silent> <leader>m :MinimapToggle<CR>
 noremap <silent> <leader>mr :MinimapRefresh<CR>
 noremap <silent> <C-z> :UndotreeToggle<CR>
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call _COC_show_documentation()<CR>
 nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
 nnoremap <silent> <leader>lf  :<C-u>CocList -A -N files<CR>
@@ -64,7 +64,7 @@ xmap <leader>ra <Plug>(coc-codeaction-selected)
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
+    \ _COC_check_back_space() ? "\<TAB>" :
     \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -85,15 +85,4 @@ if &diff
     nnoremap <silent> <leader>gb :diffg BASE<CR>
     nnoremap <silent> <leader>gr :diffg REMOTE<CR>
     nnoremap <silent> <leader>du :diffupdate<CR>
-endif
-
-if &term == "nvim" || &term =~ "xterm" || &term =~ "screen" "if in xterm or screen
-    set mouse=a "enable mouse in all modes
-    if !has('nvim')
-        if has("mouse_sgr")
-            set ttymouse=sgr "enable SGR mouse reporting, works beyond column 223
-        else
-            set ttymouse=xterm2 "enable xterm mouse handling
-        endif
-    endif
 endif
