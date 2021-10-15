@@ -125,43 +125,72 @@ prompt_context() {
 }
 
 # Git: branch/detached head, dirty status
-prompt_git() {
-  local ref dirty mode repo_path
-  repo_path=$(git rev-parse --git-dir 2>/dev/null)
+#prompt_git() {
+  #local ref dirty mode repo_path
+  #repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
+  #if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    #dirty=$(parse_git_dirty)
+    #ref=$(git symbolic-ref HEAD 2> /dev/null) || ref=" $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
+
+    #if [[ -e "${repo_path}/BISECT_LOG" ]]; then
+      #mode=" <B>"
+    #elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
+      #mode=" >M<"
+    #elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+      #mode=" >R>"
+    #fi
+
+    #setopt promptsubst
+    #autoload -Uz vcs_info
+
+    #zstyle ':vcs_info:*' enable git
+    #zstyle ':vcs_info:*' get-revision true
+    #zstyle ':vcs_info:*' check-for-changes true
+    #zstyle ':vcs_info:*' stagedstr '%{%F{yellow}%}•'
+    #zstyle ':vcs_info:git:*' unstagedstr '%{%F{green}%}•'
+    #if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
+        #zstyle ':vcs_info:*' formats ' %u%c'
+    #} else {
+        #zstyle ':vcs_info:*' formats ' %{%F{cyan}%}•%u%c'  # unstaged
+    #}
+    #zstyle ':vcs_info:*' actionformats ' %u%c'
+    #vcs_info
+    #stashes=$(git stash list | wc -l)
+    #if [[ stashes -gt 0 ]]; then
+      #echo -n "  $stashes "
+      #prompt_segment $CURRENT_BG $CURRENT_FG
+    #fi
+    #echo -n " ${ref/refs\/heads\// }${vcs_info_msg_0_%% }${mode} "
+  #fi
+#}
+
+prompt_git(){
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    dirty=$(parse_git_dirty)
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref=" $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
-
-    if [[ -e "${repo_path}/BISECT_LOG" ]]; then
-      mode=" <B>"
-    elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
-      mode=" >M<"
-    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
-      mode=" >R>"
-    fi
-
-    setopt promptsubst
-    autoload -Uz vcs_info
-
-    zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:*' get-revision true
-    zstyle ':vcs_info:*' check-for-changes true
-    zstyle ':vcs_info:*' stagedstr '%{%F{yellow}%}•'
-    zstyle ':vcs_info:git:*' unstagedstr '%{%F{green}%}•'
-    if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-        zstyle ':vcs_info:*' formats ' %u%c'
-    } else {
-        zstyle ':vcs_info:*' formats ' %{%F{cyan}%}•%u%c'  # unstaged
-    }
-    zstyle ':vcs_info:*' actionformats ' %u%c'
-    vcs_info
-    stashes=$(git stash list | wc -l)
+    local repo_path=$(git rev-parse --git-dir 2>/dev/null)
+    local stashes=$(git stash list | wc -l)
     if [[ stashes -gt 0 ]]; then
       echo -n "  $stashes "
       prompt_segment $CURRENT_BG $CURRENT_FG
     fi
-    echo -n " ${ref/refs\/heads\// }${vcs_info_msg_0_%% }${mode} "
+
+    local ref=" $(git symbolic-ref --short HEAD 2> /dev/null)" || ref=" $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
+    echo -n " $ref "
+
+    local git_status=$(git status --porcelain 2>/dev/null)
+    [[ $(echo $git_status | grep -e "^??" | wc -l 2> /dev/null) -gt 0 ]] && echo -n "%F{cyan}%}•"
+    [[ $(echo $git_status | grep -e "^ M" | wc -l 2> /dev/null) -gt 0 ]] && echo -n "%F{green}%}•"
+    [[ $(echo $git_status | grep -e "^M " -e "^A " | wc -l 2> /dev/null) -gt 0 ]] && echo -n "%F{yellow}%}•"
+
+    if [[ -e "${repo_path}/BISECT_LOG" ]]; then
+      echo -n " 𝗕"
+    elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
+      echo -n " 𝗠"
+    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+      echo -n " 𝗥"
+    fi
+
+    echo -n " "
   fi
 }
 
