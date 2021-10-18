@@ -15,7 +15,7 @@
     "git.changeRemovedSign.hlGroup": "GitChangeDelete",
     "diagnostic.checkCurrentLine": true,
     "diagnostic.displayByAle": false,
-    "diagnostic.errorSign": "",
+    "diagnostic.errorSign": "✗",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "",
     "diagnostic.hintSign": "",
