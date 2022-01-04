@@ -1,0 +1,5 @@
+require('options')
+require('keybindings')
+require('theme')
+require('plugins')
+require('commands')

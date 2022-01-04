@@ -1,8 +1,5 @@
+vim.cmd [[
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
-au! BufRead,BufNewFile *.json set filetype=json
-au! BufRead,BufNewFile *.html set filetype=jinja
-au! BufRead,BufNewFile *.sls set filetype=yaml
-au! BufRead,BufNewFile Jenkinsfile* set filetype=groovy
 au BufEnter * checkt "check for changes more often for autoread
 
 function! DeleteInactiveBufs()
@@ -28,3 +25,4 @@ endfunction
 command! Bdi :call DeleteInactiveBufs()
 command! CloseOthers :%bd|e#
 command! CloseBuffers :call DeleteInactiveBufs()
+]]
