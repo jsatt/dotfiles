@@ -4,6 +4,7 @@ vim.api.nvim_set_keymap('n', '<leader>ld', ':Linediff<CR>', {noremap = true, sil
 vim.api.nvim_set_keymap('n', '<C-z>', ':UndotreeToggle<CR>', {noremap = true, silent = true})
 --vim.api.nvim_buf_set_keymap(0, 'n', '[M', '<Plug>(PythonsenseEndOfPythonFunction)')
 --vim.api.nvim_set_keymap('', '<leader>sa', ':s/\%V\([^(),]*\), \([^(),]*\)/\2, \1/<CR>')
+vim.api.nvim_set_keymap('n', '<leader>hg', ':TSHighlightCapturesUnderCursor<CR>', {noremap = true})
 
 vim.api.nvim_set_keymap('n', '<C-c>', '<C-a>', {}) -- remap increment to avoid clash with screen/tmux
 

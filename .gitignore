@@ -13,4 +13,5 @@ vim/plugged/*
 vim/autoload/plug.vim
 vim/sessions
 vim/undodir
+config/nvim/plugin/*
 .uuid

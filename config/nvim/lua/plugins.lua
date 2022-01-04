@@ -54,7 +54,7 @@ packer.startup(function(use)
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+      'kyazdani42/nvim-web-devicons',
     },
   }
 
@@ -79,8 +79,6 @@ packer.startup(function(use)
   use 'LucHermitte/lh-vim-lib'
   use 'LucHermitte/local_vimrc'
   use 'editorconfig/editorconfig-vim'
-  -- use 'vim-airline/vim-airline'
-  -- use 'vim-airline/vim-airline-themes'
   use 'nvim-lualine/lualine.nvim'
   use 'sainnhe/sonokai'
 
@@ -181,9 +179,10 @@ vim.g.oscyank_max_length = 1000000
 vim.g.user_emmet_expandabbr_key='<c-e>' -- expand w/ Ctrl-e
 
 -- Lualine
+local lualine_theme = require('lualine_theme')
 require('lualine').setup {
   options = {
-    theme = 'molokai',
+    theme = lualine_theme,
     section_separators = {
       right = '',
       left = '',
