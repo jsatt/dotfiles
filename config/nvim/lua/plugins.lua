@@ -61,10 +61,23 @@ packer.startup(function(use)
   -- Code Completion
   use 'tpope/vim-surround'
   use 'mattn/emmet-vim'
-  use {
-    'numToStr/Comment.nvim',
-  }
-  use {'neoclide/coc.nvim', branch = 'release'}
+  use 'numToStr/Comment.nvim'
+  -- use {'neoclide/coc.nvim', branch = 'release'}
+
+  -- cmp plugins
+  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+
+  -- LSP
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+  -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- Commands
   use 'AndrewRadev/switch.vim'
@@ -94,12 +107,7 @@ packer.startup(function(use)
   end
 end)
 
---require'lspconfig'.gopls.setup {
-  --on_attach = function(client)
-    ---- [[ other on_attach code ]]
-    --require 'illuminate'.on_attach(client)
-  --end,
---}
+
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 require'nvim-tree'.setup {
   view = {
@@ -178,6 +186,10 @@ vim.g.oscyank_max_length = 1000000
 -- ZenCoding
 vim.g.user_emmet_expandabbr_key='<c-e>' -- expand w/ Ctrl-e
 
+
+require('cmp_')
+-- require('lsp')
+
 -- Lualine
 local lualine_theme = require('lualine_theme')
 require('lualine').setup {
@@ -199,18 +211,23 @@ require('lualine').setup {
       {'diff', symbols={added=' ', modified=' ', removed=' '}}
     },
     lualine_c = {
-      {'filename', symbols={readonly=''}},
+      {'filename', path=1, symbols={readonly=''}},
+      'g:coc_status',
     },
     lualine_x = {
       'filetype',
-      {
-        'diagnostics',
-        always_visible=true,
-        sources={'coc'},
-        symbols = {error = "✗ ", warn = " ", info = " ", hint = " "},
-      },
     },
-    lualine_y = {'encoding', 'fileformat'},
+    lualine_y = {
+      -- {
+      --   'diagnostics',
+      --   always_visible=true,
+      --   -- sources={'coc'},
+      --   sources={'nvim_diagnostics'},
+      --   symbols = {error = "✗ ", warn = " ", info = " ", hint = " "},
+      -- },
+      'encoding',
+      'fileformat'
+    },
     lualine_z = {
     'progress',
      {function() return ':%3l/%3L☰ :%-2v' end},  -- full file location
@@ -222,6 +239,11 @@ require('lualine').setup {
   extensions = {'fugitive', 'nvim-tree'},
 }
 
+vim.g.VM_default_mappings = 0
+--  local vimrc
+vim.g.local_vimrc = { '.vimlocal', '_vimrc_local.vim' }
+vim.fn['lh#local_vimrc#munge']('whitelist', vim.env.HOME .. '/dev')
+
 -- Python Mode
 vim.g.pymode_options_max_line_length = 89
 vim.g.pymode_options_colorcolumn = 0
@@ -232,19 +254,16 @@ vim.g.pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()  # XXX BREAKPOINT'
 vim.g.pymode_python = 'python3'
 vim.g.pymode_doc = 0
 vim.g.pymode_doc_bind = ''
-
 -- CoC
-vim.g.coc_global_extensions = {
-  'coc-css',
-  'coc-git',
-  'coc-github',
-  'coc-jira-complete',
-  'coc-json',
-  'coc-lists',
-  'coc-marketplace',
-  'coc-pyright',
-  'coc-yank',
-}
+-- vim.g.coc_global_extensions = {
+--   'coc-css',
+--   'coc-git',
+--   'coc-json',
+--   'coc-lists',
+--   'coc-marketplace',
+--   'coc-pyright',
+--   'coc-yank',
+-- }
 
 vim.cmd [[
 function! _COC_check_back_space() abort

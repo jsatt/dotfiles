@@ -14,7 +14,6 @@ local colors = {
     pale_orange = '#b88853' ,
 }
 
-print('theme')
 return {
   normal = {
     a = { fg = colors.near_black , bg = colors.green, gui = 'bold' },
