@@ -188,7 +188,7 @@ vim.g.user_emmet_expandabbr_key='<c-e>' -- expand w/ Ctrl-e
 
 
 require('cmp_')
--- require('lsp')
+require('lsp_')
 
 -- Lualine
 local lualine_theme = require('lualine_theme')
@@ -218,13 +218,11 @@ require('lualine').setup {
       'filetype',
     },
     lualine_y = {
-      -- {
-      --   'diagnostics',
-      --   always_visible=true,
-      --   -- sources={'coc'},
-      --   sources={'nvim_diagnostics'},
-      --   symbols = {error = "✗ ", warn = " ", info = " ", hint = " "},
-      -- },
+      {
+        'diagnostics',
+        always_visible=true,
+        symbols = {error = "✗ ", warn = " ", info = " ", hint = " "},
+      },
       'encoding',
       'fileformat'
     },

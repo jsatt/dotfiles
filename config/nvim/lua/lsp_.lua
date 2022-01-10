@@ -3,6 +3,15 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local lspconfig = require('lspconfig')
+require('nvim-lsp-installer').settings {
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+}
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = {
@@ -17,6 +26,11 @@ for _, lsp in ipairs(servers) do
     requested_server:on_ready(function()
       requested_server:setup {
         capabilities = capabilities,
+        on_attach = function(client)
+          vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+          vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+          require 'illuminate'.on_attach(client)
+        end,
       }
     end)
     if not requested_server:is_installed() then
@@ -25,11 +39,7 @@ for _, lsp in ipairs(servers) do
   end
 end
 
-lspconfig.gopls.setup {
-  on_attach = function(client)
-    require 'illuminate'.on_attach(client)
-  end,
-}
+
 --
 -- local M = {}
 
