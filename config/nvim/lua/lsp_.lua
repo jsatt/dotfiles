@@ -1,148 +1,132 @@
+local utils = require('common_')
+
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local lspconfig = require('lspconfig')
-require('nvim-lsp-installer').settings {
-    ui = {
-        icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
-        }
+utils.prepare_module('lspconfig', function(lspconfig)
+  lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+    capabilities = capabilities,
+  })
+  local lsp_win = require('lspconfig.ui.windows')
+  local _default_opts = lsp_win.default_opts
+  lsp_win.default_opts = function(options)
+      local opts = _default_opts(options)
+      opts.border = "rounded"
+      return opts
+  end
+end)
+
+utils.prepare_module('null-ls', function(null_ls)
+  null_ls.setup {
+    sources = {
+      null_ls.builtins.code_actions.gitsigns,
+      null_ls.builtins.code_actions.refactoring,
     }
-}
+  }
+end)
+
+utils.prepare_module('nlspsettings', function(nlspsettings)
+  nlspsettings.setup {
+    config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
+    local_settings_root_markers = { '.git' },
+    jsonls_append_default_schemas = true
+  }
+end)
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = {
-  'pyright',
-  'html',
-  'dockerls',
-  'vimls',
-}
-for _, lsp in ipairs(servers) do
-  local server_available, requested_server = require('nvim-lsp-installer.servers').get_server(lsp)
-  if server_available then
-    requested_server:on_ready(function()
-      requested_server:setup {
-        capabilities = capabilities,
-        on_attach = function(client)
-          vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-          vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-          require 'illuminate'.on_attach(client)
-        end,
+utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
+  lsp_installer.settings {
+    ui = {
+      icons = {
+        server_installed = "✓",
+        server_pending = "➜",
+        server_uninstalled = "✗"
       }
-    end)
-    if not requested_server:is_installed() then
-      requested_server:install()
+    }
+  }
+
+  local servers = {
+    cssls = {},
+    dockerls = {},
+    emmet_ls = {},
+    html = {},
+    jsonls = {},
+    pyright = {},
+    sumneko_lua = {
+      init_options = {
+        embeddedLanguages = {
+          vim = true,
+        }
+      },
+      settings = {
+        Lua = {
+          workspace = {
+            library = {
+              [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+              [vim.fn.stdpath('config') .. '/lua'] = true,
+            }
+          }
+        }
+      } 
+    },
+    vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
+    yamlls = {},
+  }
+
+  for lsp, lsp_opts in pairs(servers) do
+    local server_available, requested_server = require('nvim-lsp-installer.servers').get_server(lsp)
+    if server_available then
+      if not requested_server:is_installed() then
+        requested_server:install()
+      end
     end
   end
-end
+
+  lsp_installer.on_server_ready(function(server)
+    local opts = {
+      -- capabilities = capabilities,
+      -- settings = {},
+      flags = {
+        debounce_text_changes = 150,
+      },
+      on_attach = function(client, bufnr)
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+        require('illuminate').on_attach(client)
+      end,
+    }
+    opts = vim.tbl_deep_extend('force', opts, servers[server.name])
+    -- if lsp == 'sumneko_lua' then
+    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/sumneko_lua/sumneko_lua.tmp/extension/server/bin/lua-language-server'}
+    -- elseif lsp == 'pyright' then
+    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/python/pyright.tmp/node_modules/.bin/pyright-langserver', '--stdio'}
+    -- elseif lsp == 'html' then
+    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/html/html.tmp/node_modules/.bin/vscode-html-language-server',  '--stdio'}
+    -- elseif lsp == 'vimls' then
+    -- opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/vim/vimls.tmp/node_modules/.bin/vim-language-server',  '--stdio'}
+    -- elseif lsp == 'dockerls' then
+    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/dockerfile/dockerls.tmp/node_modules/.bin/docker-langserver',  '--stdio'}
+    -- end
+    server:setup(opts)
+  end)
+end)
 
 
---
--- local M = {}
-
--- -- TODO: backfill this to template
--- M.setup = function()
---   local signs = {
---     { name = "DiagnosticSignError", text = "" },
---     { name = "DiagnosticSignWarn", text = "" },
---     { name = "DiagnosticSignHint", text = "" },
---     { name = "DiagnosticSignInfo", text = "" },
---   }
-
---   for _, sign in ipairs(signs) do
---     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
---   end
-
---   local config = {
---     -- disable virtual text
---     virtual_text = false,
---     -- show signs
---     signs = {
---       active = signs,
---     },
---     update_in_insert = true,
---     underline = true,
---     severity_sort = true,
---     float = {
---       focusable = false,
---       style = "minimal",
---       border = "rounded",
---       source = "always",
---       header = "",
---       prefix = "",
---     },
---   }
-
---   vim.diagnostic.config(config)
-
---   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
---     border = "rounded",
---   })
-
---   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
---     border = "rounded",
---   })
--- end
-
--- local function lsp_highlight_document(client)
---   -- Set autocommands conditional on server_capabilities
---   if client.resolved_capabilities.document_highlight then
---     vim.api.nvim_exec(
---       [[
---       augroup lsp_document_highlight
---         autocmd! * <buffer>
---         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
---         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
---       augroup END
---     ]],
---       false
---     )
---   end
--- end
-
--- local function lsp_keymaps(bufnr)
---   local opts = { noremap = true, silent = true }
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
---   vim.api.nvim_buf_set_keymap(
---     bufnr,
---     "n",
---     "gl",
---     '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>',
---     opts
---   )
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
---   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
--- end
-
--- M.on_attach = function(client, bufnr)
---   if client.name == "tsserver" then
---     client.resolved_capabilities.document_formatting = false
---   end
---   lsp_keymaps(bufnr)
---   lsp_highlight_document(client)
--- end
-
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
-
--- local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
--- if not status_ok then
---   return
--- end
-
--- M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
--- M.setup()
-
+vim.diagnostic.config {
+  signs = {
+    active = require('common_').signs,
+  },
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+}
