@@ -3,8 +3,8 @@ local M = {}
 M.signs = {
   error = { name = "DiagnosticSignError", text = "✗" },
   warn = { name = "DiagnosticSignWarn", text = "" },
-  info = { name = "DiagnosticSignHint", text = "" },
-  hint = { name = "DiagnosticSignInfo", text = "" },
+  info = { name = "DiagnosticSignInfo", text = "" },
+  hint = { name = "DiagnosticSignHint", text = "" },
 }
 
 M.gitsigns = {

@@ -128,6 +128,15 @@ end)
 utils.prepare_module('nvim-tree', function(nvim_tree)
   local tree_cb = require'nvim-tree.config'.nvim_tree_callback
   nvim_tree.setup {
+    diagnostics = {
+    enable = true,
+    icons = {
+      hint = utils.signs.hint.text,
+      info = utils.signs.info.text,
+      warning = utils.signs.warn.text,
+      error = utils.signs.error.text,
+    }
+  },
     view = {
       mappings = {
         list = {
