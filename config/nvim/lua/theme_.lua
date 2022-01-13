@@ -17,5 +17,10 @@ highlight BadWhitespace ctermbg=red guibg=red
 let m = matchadd('BadWhitespace', '\s\+$')
 "Highlight tabs used instead of spaces in red
 let m = matchadd('BadWhitespace', '^\t\+')
+
+
+hi TelescopePreviewBorder guifg=#ffa724
+hi TelescopePromptBorder guifg=#aeee00
+hi TelescopeResultsBorder guifg=#050fff
 ]]
 -- vim: set ft=vim:

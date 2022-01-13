@@ -95,6 +95,7 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
         require('illuminate').on_attach(client)
+        require('aerial').on_attach(client, bufnr)
       end,
     }
     opts = vim.tbl_deep_extend('force', opts, servers[server.name])

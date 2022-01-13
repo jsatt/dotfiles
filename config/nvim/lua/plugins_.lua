@@ -55,6 +55,7 @@ utils.prepare_module('packer', function(packer)
         'kyazdani42/nvim-web-devicons',
       },
     }
+    use {'stevearc/aerial.nvim'}
 
     -- Code Completion
     use 'tpope/vim-surround'
@@ -86,6 +87,7 @@ utils.prepare_module('packer', function(packer)
     use 'RRethy/vim-illuminate'
     use {'ojroques/vim-oscyank', branch = 'main'}
     use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}}}
+    use {'xiyaowong/telescope-emoji.nvim', requires = {'nvim-telescope/telescope.nvim'}}
 
     -- Vim Config
     use 'LucHermitte/lh-vim-lib'
@@ -122,6 +124,8 @@ utils.prepare_module('telescope', function(telescope)
       }
     }
   }
+  telescope.load_extension('aerial')
+  telescope.load_extension('emoji')
 end)
 
 
@@ -260,7 +264,7 @@ utils.prepare_module('lualine', function(lualine)
       },
       lualine_c = {
         {'filename', path=1, symbols={readonly=''}},
-        'g:coc_status',
+        'aerial',
       },
       lualine_x = {
         'filetype',
@@ -342,5 +346,18 @@ utils.prepare_module('gitsigns', function(gitsigns)
     preview_config = {
       border = 'rounded',
     },
+  }
+end)
+
+
+-- Aerial
+utils.prepare_module('aerial', function(aerial)
+  aerial.setup {
+    default_direction = 'prefer_left',
+    icons = utils.kind_icons,
+    link_folds_to_tree = true,
+    link_tree_to_folds = true,
+    manage_folds = true,
+    nerd_font=true,
   }
 end)
