@@ -69,13 +69,13 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
             }
           }
         }
-      } 
+      }
     },
     vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
     yamlls = {},
   }
 
-  for lsp, lsp_opts in pairs(servers) do
+  for lsp, _ in pairs(servers) do
     local server_available, requested_server = require('nvim-lsp-installer.servers').get_server(lsp)
     if server_available then
       if not requested_server:is_installed() then
