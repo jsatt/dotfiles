@@ -22,5 +22,7 @@ let m = matchadd('BadWhitespace', '^\t\+')
 hi TelescopePreviewBorder guifg=#ffa724
 hi TelescopePromptBorder guifg=#aeee00
 hi TelescopeResultsBorder guifg=#050fff
+
+hi link FidgetTask MoreMsg
 ]]
 -- vim: set ft=vim:

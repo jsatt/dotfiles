@@ -73,10 +73,10 @@ utils.prepare_module('packer', function(packer)
     -- LSP
     use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    -- use 'williamboman/nvim-lsp-installer' -- simple to use language server installer
-    use {'williamboman/nvim-lsp-installer', branch='dont-prepare-root-dir'}
+    use 'williamboman/nvim-lsp-installer' -- simple to use language server installer
     use 'tamago324/nlsp-settings.nvim' -- language server settings defined in json for
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
+    use 'j-hui/fidget.nvim'
 
     -- Commands
     use 'AndrewRadev/switch.vim'
@@ -133,14 +133,15 @@ utils.prepare_module('nvim-tree', function(nvim_tree)
   local tree_cb = require'nvim-tree.config'.nvim_tree_callback
   nvim_tree.setup {
     diagnostics = {
-    enable = true,
-    icons = {
-      hint = utils.signs.hint.text,
-      info = utils.signs.info.text,
-      warning = utils.signs.warn.text,
-      error = utils.signs.error.text,
-    }
-  },
+      enable = true,
+      icons = {
+        hint = utils.signs.hint.text,
+        info = utils.signs.info.text,
+        warning = utils.signs.warn.text,
+        error = utils.signs.error.text,
+      },
+      update_to_buf_dir = {enable = false},
+    },
     view = {
       mappings = {
         list = {
@@ -148,9 +149,9 @@ utils.prepare_module('nvim-tree', function(nvim_tree)
           {key = 's', cb = tree_cb('split')},
           {key = 'v', cb = tree_cb('vsplit')},
           {key = 't', cb = tree_cb('tabnew')},
-        }
-      }
-    }
+        },
+      },
+    },
   }
 end)
 
@@ -229,6 +230,11 @@ vim.g.oscyank_max_length = 1000000
 
 -- ZenCoding
 vim.g.user_emmet_expandabbr_key='<c-e>' -- expand w/ Ctrl-e
+
+utils.prepare_module('fidget', function(fidget)
+  fidget.setup({})
+end)
+
 
 -- Lualine
 utils.prepare_module('lualine', function(lualine)

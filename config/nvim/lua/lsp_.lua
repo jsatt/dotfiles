@@ -99,17 +99,6 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
       end,
     }
     opts = vim.tbl_deep_extend('force', opts, servers[server.name])
-    -- if lsp == 'sumneko_lua' then
-    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/sumneko_lua/sumneko_lua.tmp/extension/server/bin/lua-language-server'}
-    -- elseif lsp == 'pyright' then
-    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/python/pyright.tmp/node_modules/.bin/pyright-langserver', '--stdio'}
-    -- elseif lsp == 'html' then
-    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/html/html.tmp/node_modules/.bin/vscode-html-language-server',  '--stdio'}
-    -- elseif lsp == 'vimls' then
-    -- opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/vim/vimls.tmp/node_modules/.bin/vim-language-server',  '--stdio'}
-    -- elseif lsp == 'dockerls' then
-    --   opts.cmd = {'/Users/jeremy.satterfield/.local/share/nvim/lsp_servers/dockerfile/dockerls.tmp/node_modules/.bin/docker-langserver',  '--stdio'}
-    -- end
     server:setup(opts)
   end)
 end)

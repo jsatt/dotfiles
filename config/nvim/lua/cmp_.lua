@@ -1,6 +1,10 @@
 local utils = require('common_')
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+local cmp_buffer = require('cmp_buffer')
+
+local cmp_path_opts = {trailing_slash = true }
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -41,7 +45,12 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
-    { name = 'path' },
+    { name = 'path', option = cmp_path_opts},
+  },
+  sorting = {
+    comparators = {
+      function(...) return cmp_buffer:compare_locality(...) end,
+    }
   },
   documentation = {
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
@@ -77,7 +86,7 @@ cmp.setup.cmdline('/', {
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
-    { name = 'path' }
+    { name = 'path', option = cmp_path_opts}
   }, {
     { name = 'cmdline' }
   })
