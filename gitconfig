@@ -1,5 +1,4 @@
 [core]
-    editor = vi
     excludesFile = ~/.gitignore
 
 [init]

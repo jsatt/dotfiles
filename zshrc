@@ -3,7 +3,7 @@ if [ ! "$ZPROFILE_SOURCED" ]; then
 fi
 export SHELL=zsh
 export ZSH=$HOME/.oh-my-zsh
-export EDITOR=vim
+export EDITOR="$(command -v nvim 2>/dev/null || command -v vim)"
 if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color
 fi
