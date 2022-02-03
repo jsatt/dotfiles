@@ -35,6 +35,30 @@ utils.prepare_module('nlspsettings', function(nlspsettings)
   }
 end)
 
+utils.prepare_module('lspsaga', function(lspsaga)
+  lspsaga.setup {
+    use_saga_diagnostic_sign = false,
+    code_action_prompt = {enable = false},
+    border_style = 'round',
+    finder_action_keys = {
+      open = "o",
+      vsplit = "v",
+      split = "s",
+      quit = {"<Esc>", "q"},
+      scroll_down = "<C-f>",
+      scroll_up = "<C-b>",
+      },
+    code_action_keys = {
+      quit = {"<Esc>", "q"},
+    exec = "<CR>",
+    },
+    rename_action_keys = {
+      quit = "<Esc>",
+    exec = "<CR>",
+    },
+  }
+end)
+
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
   lsp_installer.settings {

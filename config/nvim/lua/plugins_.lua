@@ -77,6 +77,7 @@ utils.prepare_module('packer', function(packer)
     use 'tamago324/nlsp-settings.nvim' -- language server settings defined in json for
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
+    use 'tami5/lspsaga.nvim'
 
     -- Commands
     use 'AndrewRadev/switch.vim'
