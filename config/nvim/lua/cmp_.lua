@@ -1,7 +1,6 @@
 local utils = require('common_')
 local cmp = require('cmp')
 local luasnip = require('luasnip')
-local cmp_buffer = require('cmp_buffer')
 
 local cmp_path_opts = {trailing_slash = true }
 
@@ -46,11 +45,6 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path', option = cmp_path_opts},
-  },
-  sorting = {
-    comparators = {
-      function(...) return cmp_buffer:compare_locality(...) end,
-    }
   },
   documentation = {
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },

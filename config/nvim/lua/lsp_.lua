@@ -122,7 +122,10 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
         require('aerial').on_attach(client, bufnr)
       end,
     }
-    opts = vim.tbl_deep_extend('force', opts, servers[server.name])
+
+    if servers[server.name] ~= nil then
+      opts = vim.tbl_deep_extend('force', opts, servers[server.name])
+    end
     server:setup(opts)
   end)
 end)
