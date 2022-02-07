@@ -1,4 +1,4 @@
-local utils = require('common_')
+local utils = require('utils_')
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -130,21 +130,3 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
     server:setup(opts)
   end)
 end)
-
-
-vim.diagnostic.config {
-  signs = {
-    active = require('common_').signs,
-  },
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = "minimal",
-    border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
-  },
-}

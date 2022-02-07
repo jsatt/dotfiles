@@ -1,4 +1,4 @@
-local utils = require('common_')
+local theme = require('theme_')
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
@@ -53,8 +53,8 @@ cmp.setup {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       -- Kind icons
-      vim_item.kind = string.format("%s", utils.kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', utils.kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      vim_item.kind = string.format("%s", theme.kind_icons[vim_item.kind])
+      -- vim_item.kind = string.format('%s %s', theme.kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",

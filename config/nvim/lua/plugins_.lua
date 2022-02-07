@@ -1,4 +1,5 @@
-local utils = require('common_')
+local utils = require('utils_')
+local theme = require('theme_')
 
 -- Automatically install packer
 local packer_install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
@@ -158,10 +159,10 @@ utils.prepare_module('nvim-tree', function(nvim_tree)
     diagnostics = {
       enable = true,
       icons = {
-        hint = utils.signs.hint.text,
-        info = utils.signs.info.text,
-        warning = utils.signs.warn.text,
-        error = utils.signs.error.text,
+        hint = theme.signs.hint.text,
+        info = theme.signs.info.text,
+        warning = theme.signs.warn.text,
+        error = theme.signs.error.text,
       },
       update_to_buf_dir = {enable = false},
     },
@@ -261,10 +262,9 @@ end)
 
 -- Lualine
 utils.prepare_module('lualine', function(lualine)
-  local lualine_theme = require('lualine_theme')
   lualine.setup {
     options = {
-      theme = lualine_theme,
+      theme = theme.lualine_theme,
       section_separators = {
         right = '',
         left = '',
@@ -280,14 +280,14 @@ utils.prepare_module('lualine', function(lualine)
         {'branch', icon=''},
         {'diff',
           symbols = {
-            added = utils.gitsigns.add.text .. ' ',
-            modified = utils.gitsigns.change.text .. ' ',
-            removed = utils.gitsigns.delete.text..' ',
+            added = theme.gitsigns.add.text .. ' ',
+            modified = theme.gitsigns.change.text .. ' ',
+            removed = theme.gitsigns.delete.text..' ',
           },
           diff_color = {
-            added = utils.gitsigns.add.hl,
-            modified = utils.gitsigns.change.hl,
-            removed = utils.gitsigns.delete.hl,
+            added = theme.gitsigns.add.hl,
+            modified = theme.gitsigns.change.hl,
+            removed = theme.gitsigns.delete.hl,
           }
         }
       },
@@ -300,16 +300,16 @@ utils.prepare_module('lualine', function(lualine)
           'diagnostics',
           always_visible=true,
           diagnostics_color = {
-            error = utils.signs.error.ll_name,
-            warn  = utils.signs.warn.ll_name,
-            info  = utils.signs.info.ll_name,
-            hint  = utils.signs.hint.ll_name,
+            error = theme.signs.error.ll_name,
+            warn  = theme.signs.warn.ll_name,
+            info  = theme.signs.info.ll_name,
+            hint  = theme.signs.hint.ll_name,
           },
           symbols = {
-            error = utils.signs.error.text .. ' ',
-            warn = utils.signs.warn.text .. ' ',
-            info = utils.signs.info.text .. ' ',
-            hint = utils.signs.hint.text .. ' ',
+            error = theme.signs.error.text .. ' ',
+            warn = theme.signs.warn.text .. ' ',
+            info = theme.signs.info.text .. ' ',
+            hint = theme.signs.hint.text .. ' ',
           },
         },
       },
@@ -370,7 +370,7 @@ vim.g.pymode_doc_bind = ''
 -- Gitsigns
 utils.prepare_module('gitsigns', function(gitsigns)
   gitsigns.setup {
-    signs = utils.gitsigns,
+    signs = theme.gitsigns,
     numhl = true,
     preview_config = {
       border = 'rounded',
@@ -383,7 +383,7 @@ end)
 utils.prepare_module('aerial', function(aerial)
   aerial.setup {
     default_direction = 'prefer_left',
-    icons = utils.kind_icons,
+    icons = theme.kind_icons,
     link_folds_to_tree = true,
     link_tree_to_folds = true,
     manage_folds = true,
