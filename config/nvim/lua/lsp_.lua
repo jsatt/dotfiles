@@ -78,6 +78,7 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
     html = {},
     jsonls = {},
     pyright = {},
+    salt_ls = {},
     sumneko_lua = {
       init_options = {
         embeddedLanguages = {

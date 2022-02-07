@@ -27,6 +27,10 @@ utils.prepare_module('packer', function(packer)
   -- Have packer use a popup window
   packer.init {
     display = {
+      keybindings = {
+        quit = '<Esc>',
+      },
+      prompt_border = 'rounded',
       open_fn = function()
         return require('packer.util').float { border = 'rounded' }
       end,
@@ -61,11 +65,11 @@ utils.prepare_module('packer', function(packer)
     use 'tpope/vim-surround'
     use 'mattn/emmet-vim'
     use 'numToStr/Comment.nvim'
+    use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
     -- cmp plugins
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    use 'L3MON4D3/LuaSnip' -- Snippets plugin
     use 'hrsh7th/cmp-buffer' -- buffer completions
     use 'hrsh7th/cmp-path' -- path completions
     use 'hrsh7th/cmp-cmdline' -- cmdline completions
@@ -90,6 +94,9 @@ utils.prepare_module('packer', function(packer)
     use {'ojroques/vim-oscyank', branch = 'main'}
     use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}}}
     use {'xiyaowong/telescope-emoji.nvim', requires = {'nvim-telescope/telescope.nvim'}}
+    use {'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use {'norcalli/nvim-colorizer.lua'}
+    use {"folke/which-key.nvim"}
 
     -- Vim Config
     use 'LucHermitte/lh-vim-lib'
@@ -111,6 +118,20 @@ utils.prepare_module('packer', function(packer)
   end)
 end)
 
+
+utils.prepare_module('diffview', function(diffview)
+  diffview.setup {
+    enhanced_diff_hl = true,
+  }
+end)
+
+utils.prepare_module('colorizer', function(colorizer)
+  colorizer.setup()
+end)
+
+utils.prepare_module('which-key', function(which_key)
+  which_key.setup()
+end)
 
 utils.prepare_module('telescope', function(telescope)
   telescope.setup {

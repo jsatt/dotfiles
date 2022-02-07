@@ -3,9 +3,6 @@ for _, sign in pairs(require('common_').signs) do
 end
 vim.cmd [[
 syntax enable
-if has("termguicolors")
-    set termguicolors
-endif
 let g:sonokai_transparent_background = 1
 colorscheme sonokai
 

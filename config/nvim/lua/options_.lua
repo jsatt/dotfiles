@@ -31,9 +31,11 @@ vim.opt.splitright = true -- open new vsplits to the right instead of left
 vim.opt.swapfile = false -- diable swapfiles
 vim.opt.switchbuf = 'useopen,usetab,newtab' -- use open buffers when switching
 vim.opt.tabstop = 4 -- 4 spaces for tabs
+vim.opt.termguicolors = vim.fn.has("termguicolors") == 1 and true or false -- enable RGB colors if available
 vim.opt.textwidth = 99 -- format lines to <100 characters
 -- local softtextwidth = 90 -- start considering line length at 90
 vim.o.colorcolumn = '90,91,92,93,94,95,96,97,98,99' -- highlight columns to indicate long lines
+vim.opt.timeoutlen = 500 -- drop keymap timeout to 500ms
 vim.opt.undodir = vim.fn.stdpath('data') .. '/undodir' -- keep undo files
 vim.opt.undofile = true -- save undos to files
 vim.opt.undolevels = 1000 -- number of undos to keep
