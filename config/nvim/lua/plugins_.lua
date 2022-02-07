@@ -80,6 +80,7 @@ utils.prepare_module('packer', function(packer)
     use 'tami5/lspsaga.nvim'
 
     -- Commands
+    use 'lewis6991/impatient.nvim'
     use 'AndrewRadev/switch.vim'
     use 'tpope/vim-eunuch'
     use 'tpope/vim-speeddating'

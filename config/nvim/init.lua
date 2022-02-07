@@ -1,5 +1,7 @@
-require('plugins_')
+require('impatient') -- optimize lua plugins
+
 require('options_')
+require('plugins_')
 require('keybindings_')
 require('theme_')
 require('commands_')
