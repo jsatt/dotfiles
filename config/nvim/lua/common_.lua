@@ -1,10 +1,10 @@
 local M = {}
 
 M.signs = {
-  error = { name = "DiagnosticSignError", text = "✗" },
-  warn = { name = "DiagnosticSignWarn", text = "" },
-  info = { name = "DiagnosticSignInfo", text = "" },
-  hint = { name = "DiagnosticSignHint", text = "" },
+  error = { name = "DiagnosticSignError", text = "✗", ll_name = 'LuaLineDiagnosticsError'},
+  warn = { name = "DiagnosticSignWarn", text = "", ll_name = 'LuaLineDiagnosticsWarn' },
+  info = { name = "DiagnosticSignInfo", text = "", ll_name = 'LuaLineDiagnosticsInfo' },
+  hint = { name = "DiagnosticSignHint", text = "", ll_name = 'LuaLineDiagnosticsHint' },
 }
 
 M.gitsigns = {

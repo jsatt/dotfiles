@@ -275,17 +275,14 @@ utils.prepare_module('lualine', function(lualine)
         'aerial',
       },
       lualine_x = {
-        'filetype',
-      },
-      lualine_y = {
         {
           'diagnostics',
           always_visible=true,
           diagnostics_color = {
-            error = utils.signs.error.name,
-            warn  = utils.signs.warn.name,
-            info  = utils.signs.info.name,
-            hint  = utils.signs.hint.name,
+            error = utils.signs.error.ll_name,
+            warn  = utils.signs.warn.ll_name,
+            info  = utils.signs.info.ll_name,
+            hint  = utils.signs.hint.ll_name,
           },
           symbols = {
             error = utils.signs.error.text .. ' ',
@@ -294,6 +291,9 @@ utils.prepare_module('lualine', function(lualine)
             hint = utils.signs.hint.text .. ' ',
           },
         },
+      },
+      lualine_y = {
+        'filetype',
         'encoding',
         'fileformat'
       },
@@ -305,7 +305,7 @@ utils.prepare_module('lualine', function(lualine)
     tabline = {
       lualine_a = {{'tabs', mode=2, max_length = vim.o.columns}},
     },
-    extensions = {'fugitive', 'nvim-tree'},
+    extensions = {'fugitive', 'nvim-tree', 'aerial'},
   }
 end)
 

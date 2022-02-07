@@ -18,6 +18,10 @@ let m = matchadd('BadWhitespace', '\s\+$')
 "Highlight tabs used instead of spaces in red
 let m = matchadd('BadWhitespace', '^\t\+')
 
+hi LuaLineDiagnosticsError guibg=#242321 ctermfg=203 guifg=#fc5d7c
+hi LuaLineDiagnosticsWarn guibg=#242321 ctermfg=179 guifg=#e7c664
+hi LuaLineDiagnosticsInfo guibg=#242321 ctermfg=110 guifg=#76cce0
+hi LuaLineDiagnosticsHint guibg=#242321 ctermfg=107 guifg=#9ed072
 
 hi TelescopePreviewBorder guifg=#ffa724
 hi TelescopePromptBorder guifg=#aeee00
