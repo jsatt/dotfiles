@@ -8,4 +8,15 @@ function M.prepare_module(module_name, prepare_func)
   return prepare_func(module)
 end
 
+function M.join_tables(table1, table2)
+  local new_table = {}
+  for _, value in ipairs(table1) do
+    table.insert(new_table, value)
+  end
+  for _, value in ipairs(table2) do
+    table.insert(new_table, value)
+  end
+  return new_table
+end
+
 return M
