@@ -4,6 +4,8 @@ local theme = require('theme_')
 utils.prepare_module('cmp', function(cmp)
   local cmp_buffer = require('cmp_buffer')
   local luasnip = require('luasnip')
+  require('luasnip.loaders.from_vscode').load()
+  luasnip.filetype_extend('python', {'django'})
 
   local cmp_default_config = require('cmp.config.default')()
   local cmp_path_opts = {trailing_slash = true }

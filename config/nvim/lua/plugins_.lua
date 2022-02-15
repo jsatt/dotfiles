@@ -66,7 +66,8 @@ utils.prepare_module('packer', function(packer)
     use 'tpope/vim-surround'
     use 'mattn/emmet-vim'
     use 'numToStr/Comment.nvim'
-    use 'L3MON4D3/LuaSnip' -- Snippets plugin
+    use 'L3MON4D3/LuaSnip'
+    use "rafamadriz/friendly-snippets"
 
     -- cmp plugins
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
