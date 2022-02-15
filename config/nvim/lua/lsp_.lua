@@ -21,6 +21,10 @@ end)
 utils.prepare_module('null-ls', function(null_ls)
   null_ls.setup {
     sources = {
+      null_ls.builtins.formatting.isort,
+      null_ls.builtins.formatting.json_tool,
+      null_ls.builtins.formatting.lua_format,
+      null_ls.builtins.code_actions.gitrebase,
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
     }

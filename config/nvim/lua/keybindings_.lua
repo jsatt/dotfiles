@@ -63,6 +63,8 @@ vim.api.nvim_set_keymap('n', 'gh', '<cmd>Lspsaga lsp_finder<CR>', {noremap = tru
 vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<leader>ca', ':<c-u>Lspsaga range_code_action<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', {noremap = true, silent = true})
 
 -- Diagnostics
 vim.api.nvim_set_keymap('n', '<leader>lp', '<cmd>Lspsaga diagnostic_jump_prev<CR>', {noremap = true, silent = true})
