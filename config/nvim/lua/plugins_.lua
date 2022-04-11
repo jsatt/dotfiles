@@ -387,3 +387,13 @@ utils.prepare_module('aerial', function(aerial)
     nerd_font=true,
   }
 end)
+
+
+utils.prepare_module('coverage', function(coverage)
+  coverage.setup {
+    highlights = {
+      covered = { link = 'GreenSign' },   -- supports style, fg, bg, sp (see :h highlight-gui)
+      uncovered = { link = 'RedSign' },
+    },
+  }
+end)

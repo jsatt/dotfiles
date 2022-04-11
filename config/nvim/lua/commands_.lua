@@ -1,6 +1,11 @@
 vim.cmd [[
 au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
 au BufEnter * checkt "check for changes more often for autoread
+" autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='HighlightedyankRegion', timeout=500 }
+augroup END
 
 function! DeleteInactiveBufs()
     "From tabpagebuflist() help, get a list of all buffers in all tabs

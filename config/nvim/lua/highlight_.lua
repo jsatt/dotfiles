@@ -20,6 +20,8 @@ let m = matchadd('BadWhitespace', '\s\+$')
 let m = matchadd('BadWhitespace', '^\t\+')
 ]]
 
+vim.highlight.create('FloatBorder', {guifg = colors.grey.gui, ctermfg = colors.grey.term})
+
 local colorscheme = vim.fn['sonokai#get_palette']('default')
 vim.highlight.create('LuaLineDiagnosticsError', {guibg = lualine_theme.normal.c.bg, guifg = colorscheme.red[1], ctermfg = colorscheme.red[2]})
 vim.highlight.create('LuaLineDiagnosticsWarn', {guibg = lualine_theme.normal.c.bg, guifg = colorscheme.yellow[1], ctermfg = colorscheme.yellow[2]})
@@ -31,3 +33,12 @@ vim.highlight.create('TelescopePromptBorder', {guifg = colors.green.gui})
 vim.highlight.create('TelescopeResultsBorder', {guifg = colors.blue.gui})
 
 vim.highlight.link('FidgetTask', 'MoreMsg')
+vim.highlight.link('HighlightedyankRegion', 'IncSearch', true)
+
+vim.highlight.create('VirtualTextError',  {guifg = colors.dim_red.gui, ctermfg = colors.dim_red.term})
+vim.highlight.create('VirtualTextWarning', {guifg = colors.dim_yellow.gui, ctermfg = colors.dim_yellow.term})
+vim.highlight.create('VirtualTextInfo',  {guifg = colors.dim_blue.gui, ctermfg = colors.dim_blue.term})
+vim.highlight.create('VirtualTextHint', {guifg = colors.dim_green.gui, ctermfg = colors.dim_green.term})
+
+vim.highlight.link('CoverageCovered', 'GreenSign')
+vim.highlight.link('CoverageUncovered', 'RedSign')
