@@ -95,11 +95,12 @@ utils.prepare_module('packer', function(packer)
     use {'mg979/vim-visual-multi', branch = 'master'}
     use 'RRethy/vim-illuminate'
     use {'ojroques/vim-oscyank', branch = 'main'}
-    use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}}}
+    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'xiyaowong/telescope-emoji.nvim', requires = {'nvim-telescope/telescope.nvim'}}
     use {'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     use {'norcalli/nvim-colorizer.lua'}
     use {"folke/which-key.nvim"}
+    use {'andythigpen/nvim-coverage', requires = {'nvim-lua/plenary.nvim'}}
 
     -- Vim Config
     use 'LucHermitte/lh-vim-lib'
@@ -111,7 +112,7 @@ utils.prepare_module('packer', function(packer)
     -- Python
     use 'klen/python-mode'
     -- use 'jeetsukumaran/vim-pythonsense'
-    use 'mgedmin/coverage-highlight.vim'
+    -- use 'mgedmin/coverage-highlight.vim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
