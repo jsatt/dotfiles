@@ -1,6 +1,7 @@
 vim.api.nvim_set_keymap('n', ';', ':', {noremap = true})
 vim.api.nvim_set_keymap('n', ':qt', ':tabc', {silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ld', ':Linediff<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<leader>ld', ":'<,'>Linediff<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-z>', ':UndotreeToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>t', '<cmd>NvimTreeToggle<CR>', {})
@@ -49,7 +50,7 @@ vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua require("telescope.builtin"
 vim.api.nvim_set_keymap('n', '<leader>lg', '<cmd>lua require("telescope.builtin").live_grep()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>lc', '<cmd>lua require("telescope.builtin").git_commits()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>le', '<cmd>lua require("telescope").extensions.emoji.emoji()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>lt', '<cmd>lua require("telescope.builtin").builtin()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>lt', '<cmd>lua require("telescope.builtin").builtin({include_extensions = true})<CR>', {noremap = true, silent = true})
 
 -- LSP
 vim.api.nvim_set_keymap('n', 'K', '<cmd>Lspsaga hover_doc<CR>', {noremap = true, silent = true})

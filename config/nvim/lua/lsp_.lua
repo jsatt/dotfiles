@@ -42,15 +42,15 @@ utils.prepare_module('lspsaga', function(lspsaga)
       split = "s",
       quit = {"<Esc>", "q"},
       scroll_down = "<C-f>",
-      scroll_up = "<C-b>",
-      },
+      scroll_up = "<C-d>",
+    },
     code_action_keys = {
       quit = {"<Esc>", "q"},
-    exec = "<CR>",
+      exec = "<CR>",
     },
     rename_action_keys = {
       quit = "<Esc>",
-    exec = "<CR>",
+      exec = "<CR>",
     },
   }
 end)

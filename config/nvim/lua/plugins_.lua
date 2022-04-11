@@ -45,6 +45,7 @@ utils.prepare_module('packer', function(packer)
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/playground'
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'p00f/nvim-ts-rainbow'
 
     -- VCS
@@ -109,7 +110,7 @@ utils.prepare_module('packer', function(packer)
 
     -- Python
     use 'klen/python-mode'
-    use 'jeetsukumaran/vim-pythonsense'
+    -- use 'jeetsukumaran/vim-pythonsense'
     use 'mgedmin/coverage-highlight.vim'
 
     -- Automatically set up your configuration after cloning packer.nvim
@@ -243,6 +244,58 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
         update = 'R',
         goto_node = '<cr>',
         show_help = '?',
+      },
+    },
+    textobjects = {
+      select = {
+        enable = true,
+        keymaps = {
+          ["af"] = "@function.outer",  -- function or method
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",  -- class
+          ["ic"] = "@class.inner",
+          ['ax'] = '@block.outer',  -- function or class
+          ['ix'] = '@block.inner',
+          ['ai'] = '@conditional.outer', -- if statment
+          ['ii'] = '@conditional.inner',
+          ['al'] = '@loop.outer', -- loop, but not comprehensions
+          ['il'] = '@loop.inner',
+          -- call = function call args
+          -- statement - single "line", even if split across lines
+        },
+      },
+      swap = {
+        enable = true,
+        swap_next = {
+          ['ma'] = '@parameter.inner', -- single call arg
+          ['mf'] = '@function.outer',
+          ['mc'] = '@class.outer',
+        },
+        swap_previous = {
+          ['Ma'] = '@parameter.inner',
+          ['Mf'] = '@function.outer',
+          ['Mc'] = '@class.outer',
+        }
+      },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]m"] = "@function.outer",
+          ["]]"] = "@class.outer",
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
+        },
       },
     }
   }
