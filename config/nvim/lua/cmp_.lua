@@ -46,14 +46,21 @@ utils.prepare_module('cmp', function(cmp)
         end
       end),
     },
-    sources = {
+    sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path', option = cmp_path_opts},
-    },
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    }),
+    window = {
+      completion = {
+        border = 'rounded',
+        scrollbar = '┃',
+      },
+      documentation = {
+        border = 'rounded',
+        scrollbar = '┃',
+      },
     },
     formatting = {
       fields = { "kind", "abbr", "menu" },
@@ -74,7 +81,7 @@ utils.prepare_module('cmp', function(cmp)
       ghost_text = true,
     },
     sorting = {
-      comparators = utils.join_tables(
+      comparators = vim.list_extend(
         {
           function(...) return cmp_buffer:compare_locality(...) end,
         },

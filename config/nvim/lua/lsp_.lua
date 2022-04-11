@@ -31,14 +31,6 @@ utils.prepare_module('null-ls', function(null_ls)
   }
 end)
 
-utils.prepare_module('nlspsettings', function(nlspsettings)
-  nlspsettings.setup {
-    config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
-    local_settings_root_markers = { '.git' },
-    jsonls_append_default_schemas = true
-  }
-end)
-
 utils.prepare_module('lspsaga', function(lspsaga)
   lspsaga.setup {
     use_saga_diagnostic_sign = false,
@@ -81,7 +73,37 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
     emmet_ls = {},
     html = {},
     jsonls = {},
-    pyright = {},
+    pylsp = {
+      settings = {
+        pyls = {
+          configurationSources = {"flake8"},
+          plugins = {
+            jedi_completion = {enabled = false},
+            jedi_hover = {enabled = false},
+            jedi_references = {enabled = false},
+            jedi_signature_help = {enabled = false},
+            jedi_symbols = {enabled = false},
+            flake8 = {enabled = true},
+            pylsp_mypy = {enabled = true},
+            pylint = {enabled = true},
+            pydocstyle = {enabled = true},
+            rope_completion = {enabled = false}
+          }
+        }
+      },
+    },
+    pyright = {
+      settings = {
+        python = {
+          analysis = {
+            -- logLevel = 'Trace',
+            --useLibraryCodeForTypes = true,
+            diagnosticMode = 'openFilesOnly',
+            -- diagnosticSeverityOverrides = 'none',
+          },
+        }
+      }
+    },
     salt_ls = {},
     sumneko_lua = {
       init_options = {
@@ -91,6 +113,15 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
       },
       settings = {
         Lua = {
+          diagnostics = {
+            globals = {"vim", "require"},
+          },
+          color = {
+            mode = "SemanticEnhanced"
+          },
+          telemetry = {
+            enable = false
+          },
           workspace = {
             library = {
               [vim.fn.expand('$VIMRUNTIME/lua')] = true,
@@ -113,6 +144,15 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
     end
   end
 
+  local function load_lsp_settings(name)
+    local status, settings = pcall(require, 'nvim_lsp')
+    if status and settings[name] ~= nil then
+      return settings[name]
+    else
+      return {}
+    end
+  end
+
   lsp_installer.on_server_ready(function(server)
     local opts = {
       -- capabilities = capabilities,
@@ -131,6 +171,11 @@ utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
     if servers[server.name] ~= nil then
       opts = vim.tbl_deep_extend('force', opts, servers[server.name])
     end
+    opts = vim.tbl_deep_extend('force', opts, load_lsp_settings(server.name))
     server:setup(opts)
   end)
+end)
+
+utils.prepare_module('fidget', function(fidget)
+  fidget.setup({})
 end)

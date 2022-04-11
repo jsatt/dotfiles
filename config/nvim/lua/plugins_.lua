@@ -256,10 +256,6 @@ vim.g.oscyank_max_length = 1000000
 -- ZenCoding
 vim.g.user_emmet_expandabbr_key='<c-e>' -- expand w/ Ctrl-e
 
-utils.prepare_module('fidget', function(fidget)
-  fidget.setup({})
-end)
-
 
 -- Lualine
 utils.prepare_module('lualine', function(lualine)
