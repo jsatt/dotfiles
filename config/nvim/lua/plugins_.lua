@@ -102,8 +102,7 @@ utils.prepare_module('packer', function(packer)
     use {'andythigpen/nvim-coverage', requires = {'nvim-lua/plenary.nvim'}}
 
     -- Vim Config
-    use 'LucHermitte/lh-vim-lib'
-    use 'LucHermitte/local_vimrc'
+    use 'klen/nvim-config-local'
     use 'editorconfig/editorconfig-vim'
     use 'nvim-lualine/lualine.nvim'
     use 'sainnhe/sonokai'
@@ -383,8 +382,12 @@ end)
 vim.g.VM_default_mappings = 0
 
 --  local vimrc
-vim.g.local_vimrc = { '.nvimlocal', '_vimrc_local.vim' }
-vim.fn['lh#local_vimrc#munge']('whitelist', vim.env.HOME .. '/dev')
+utils.prepare_module('config-local', function(config_local)
+  config_local.setup {
+    config_files = {'.nvimrc.lua', '.nvimrc'},
+    lookup_parents = true,
+  }
+end)
 
 -- Switch
 vim.g.switch_mapping = '='
