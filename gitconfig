@@ -1,14 +1,9 @@
 [core]
     excludesFile = ~/.gitignore
+    pager = delta
 
 [init]
-	defaultBranch = main
-
-[pager]
-    diff = delta
-    log = delta
-    reflog = delta
-    show = delta
+    defaultBranch = main
 
 [color]
     ui = true
