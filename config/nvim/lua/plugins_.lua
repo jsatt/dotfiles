@@ -81,7 +81,6 @@ utils.prepare_module('packer', function(packer)
     use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'williamboman/nvim-lsp-installer' -- simple to use language server installer
-    use 'tamago324/nlsp-settings.nvim' -- language server settings defined in json for
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
     use 'tami5/lspsaga.nvim'
@@ -167,7 +166,6 @@ utils.prepare_module('nvim-tree', function(nvim_tree)
         warning = theme.signs.warn.text,
         error = theme.signs.error.text,
       },
-      update_to_buf_dir = {enable = false},
     },
     view = {
       mappings = {
@@ -201,8 +199,9 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
       'lua',
       'make',
       'markdown',
-      'query',
       'python',
+      'query',
+      'regex',
       'vim',
       'yaml',
     },
@@ -384,7 +383,7 @@ end)
 vim.g.VM_default_mappings = 0
 
 --  local vimrc
-vim.g.local_vimrc = { '.vimlocal', '_vimrc_local.vim' }
+vim.g.local_vimrc = { '.nvimlocal', '_vimrc_local.vim' }
 vim.fn['lh#local_vimrc#munge']('whitelist', vim.env.HOME .. '/dev')
 
 -- Switch

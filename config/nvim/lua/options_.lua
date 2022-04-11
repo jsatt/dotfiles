@@ -54,14 +54,17 @@ vim.diagnostic.config {
   signs = {
     active = signs,
   },
-  update_in_insert = true,
+  update_in_insert = false,
   underline = true,
   severity_sort = true,
+  virtual_text = {
+    source = true,  -- currently overridden by lspsaga
+  },
   float = {
     focusable = false,
     style = "minimal",
     border = "rounded",
-    source = "always",
+    source = true,  -- currently ignored by lspsaga
     header = "",
     prefix = "",
   },

@@ -1,5 +1,0 @@
-{
-    "Lua.diagnostics.globals": ["vim", "require"],
-    "Lua.telemetry.enable": "false",
-    "Lua.color.mode": "SemanticEnhanced"
-}
