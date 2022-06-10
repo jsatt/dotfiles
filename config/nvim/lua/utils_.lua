@@ -8,6 +8,14 @@ function M.prepare_module(module_name, prepare_func)
   return prepare_func(module)
 end
 
+function M.get_keys(tbl)
+  keys = {}
+  for key, _ in pairs(tbl) do
+    table.insert(keys, key)
+  end
+  return keys
+end
+
 function M.noop(...)
   return nil
 end

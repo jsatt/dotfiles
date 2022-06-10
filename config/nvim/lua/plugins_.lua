@@ -87,6 +87,7 @@ utils.prepare_module('packer', function(packer)
 
     -- Commands
     use 'lewis6991/impatient.nvim'
+    use {'jedrzejboczar/possession.nvim', requires = { 'nvim-lua/plenary.nvim' }}
     use 'AndrewRadev/switch.vim'
     use 'tpope/vim-eunuch'
     use 'tpope/vim-speeddating'
@@ -100,17 +101,13 @@ utils.prepare_module('packer', function(packer)
     use {'norcalli/nvim-colorizer.lua'}
     use {"folke/which-key.nvim"}
     use {'andythigpen/nvim-coverage', requires = {'nvim-lua/plenary.nvim'}}
+    use 'rcarriga/nvim-notify'
 
     -- Vim Config
     use 'klen/nvim-config-local'
     use 'editorconfig/editorconfig-vim'
     use 'nvim-lualine/lualine.nvim'
     use 'sainnhe/sonokai'
-
-    -- Python
-    use 'klen/python-mode'
-    -- use 'jeetsukumaran/vim-pythonsense'
-    -- use 'mgedmin/coverage-highlight.vim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
@@ -135,6 +132,21 @@ utils.prepare_module('which-key', function(which_key)
   which_key.setup()
 end)
 
+utils.prepare_module('notify', function(notify)
+  notify.setup {
+    stages = 'slide',
+    icons = {
+      TRACE = theme.signs.error.text,
+      DEBUG = theme.signs.hint.text,
+      INFO = theme.signs.info.text,
+      WARN =  theme.signs.warn.text,
+      ERROR = theme.signs.error.text,
+    }
+
+  }
+  vim.notify = notify
+end)
+
 utils.prepare_module('telescope', function(telescope)
   telescope.setup {
     defaults = {
@@ -151,6 +163,8 @@ utils.prepare_module('telescope', function(telescope)
   }
   telescope.load_extension('aerial')
   telescope.load_extension('emoji')
+  telescope.load_extension('notify')
+  telescope.load_extension('possession')
 end)
 
 
@@ -376,7 +390,11 @@ utils.prepare_module('lualine', function(lualine)
     tabline = {
       lualine_a = {{'tabs', mode=2, max_length = vim.o.columns}},
     },
-    extensions = {'fugitive', 'nvim-tree', 'aerial'},
+    extensions = {
+      'fugitive',
+      'nvim-tree',
+      'aerial',
+    },
   }
 end)
 
@@ -387,6 +405,20 @@ utils.prepare_module('config-local', function(config_local)
   config_local.setup {
     config_files = {'.nvimrc.lua', '.nvimrc'},
     lookup_parents = true,
+  }
+end)
+
+-- Possession
+utils.prepare_module('possession', function(possession)
+  possession.setup {
+      commands = {
+          save = 'SSave',
+          load = 'SLoad',
+          delete = 'SDelete',
+          show = 'SShow',
+          list = 'SList',
+          migrate = 'SMigrate',
+      },
   }
 end)
 
@@ -408,17 +440,6 @@ vim.g.switch_custom_definitions = {
     ['\\(\\k\\+\\) is not \\(\\k\\+\\)'] = '\\1 is \\2',
   },
 }
-
--- Python Mode
-vim.g.pymode_options_max_line_length = 89
-vim.g.pymode_options_colorcolumn = 0
-vim.g.pymode_lint = 0
-vim.g.pymode_rope = 0
-vim.g.pymode_virtualenv = 1
-vim.g.pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()  # XXX BREAKPOINT'
-vim.g.pymode_python = 'python3'
-vim.g.pymode_doc = 0
-vim.g.pymode_doc_bind = ''
 
 
 -- Gitsigns
@@ -445,7 +466,7 @@ utils.prepare_module('aerial', function(aerial)
   }
 end)
 
-
+-- Coverage
 utils.prepare_module('coverage', function(coverage)
   coverage.setup {
     highlights = {
