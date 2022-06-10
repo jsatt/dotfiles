@@ -4,22 +4,23 @@ vim.opt.autoindent = true -- copy indent from current line when starting new lin
 vim.opt.autoread = true -- auto-read if file has changed outside vim but not inside
 vim.opt.clipboard = 'unnamedplus' -- copy/paste to/from system clipboard
 vim.opt.cmdheight = 2 -- use 2 screen lines for command line
+vim.opt.completeopt='menu,menuone,noselect'
 vim.opt.cursorline = true -- highlight line that cursor is currently on
 vim.opt.encoding = 'utf8' -- use UTF-8 file encoding
 vim.opt.expandtab = true -- use spaces instead of tabs
 vim.opt.foldenable = true -- enable folding
 vim.opt.foldmethod = 'indent' -- enable indent based code folding
 vim.opt.foldlevelstart = 6 -- don't automatically close folds on openunless 6 folds deep
-vim.opt.hidden = false -- unload buffers when tab/window closed
+vim.opt.hidden = true -- hide buffers when tab/window closed, needed on to gotodef in unsaved files
 vim.opt.history = 1000 -- remember the last 1000 commands used
 vim.opt.hlsearch = true -- highlight matches when searching
 vim.opt.incsearch = true -- jump to next match when searching
-vim.opt.laststatus = 2 -- show status line
+vim.opt.laststatus = 3 -- show status line
 vim.opt.linebreak = true -- visually wrap long lines on breakat characters
 vim.opt.mouse = 'a' -- enable mouse in all modes
 vim.opt.number = true -- show line numbers
 vim.opt.numberwidth = 2 -- width of line number column
-vim.opt.scrolloff = 20 -- keep lines above and below cursor when scrolliing
+vim.opt.scrolloff = 10 -- keep lines above and below cursor when scrolliing
 vim.opt.shiftwidth = 4 -- 4 spaces for indents when using << or >>
 vim.opt.shortmess:append('I') -- don't give intro message when starting
 vim.opt.shortmess:append('c') -- don't give |ins-completion-menu| messages

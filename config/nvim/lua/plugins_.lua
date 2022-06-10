@@ -18,12 +18,8 @@ end
 
 utils.prepare_module('packer', function(packer)
   -- Autocommand that reloads neovim whenever you save the plugins.lua file
-  vim.cmd [[
-    augroup packer_user_config
-      autocmd!
-      autocmd BufWritePost plugins_.lua source <afile> | PackerSync
-    augroup end
-  ]]
+  local packer_user_config = vim.api.nvim_create_augroup('packer_user_config', {clear = true})
+  vim.api.nvim_create_autocmd('BufWritePost', {pattern = {'plugins_.lua'}, command = 'source <afile> | PackerSync', group=packer_user_config})
 
   -- Have packer use a popup window
   packer.init {
@@ -318,6 +314,7 @@ utils.prepare_module('lualine', function(lualine)
   lualine.setup {
     options = {
       theme = theme.lualine_theme,
+      globalstatus = true,
       section_separators = {
         right = '',
         left = '',

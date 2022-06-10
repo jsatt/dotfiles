@@ -22,7 +22,8 @@ let m = matchadd('BadWhitespace', '^\t\+')
 
 vim.highlight.create('FloatBorder', {guifg = colors.grey.gui, ctermfg = colors.grey.term})
 
-local colorscheme = vim.fn['sonokai#get_palette']('default')
+local sonokai_config = vim.fn['sonokai#get_configuration']()
+local colorscheme = vim.fn['sonokai#get_palette'](sonokai_config.style, sonokai_config.colors_override)
 vim.highlight.create('LuaLineDiagnosticsError', {guibg = lualine_theme.normal.c.bg, guifg = colorscheme.red[1], ctermfg = colorscheme.red[2]})
 vim.highlight.create('LuaLineDiagnosticsWarn', {guibg = lualine_theme.normal.c.bg, guifg = colorscheme.yellow[1], ctermfg = colorscheme.yellow[2]})
 vim.highlight.create('LuaLineDiagnosticsInfo', {guibg = lualine_theme.normal.c.bg, guifg = colorscheme.blue[1], ctermfg = colorscheme.blue[2]})

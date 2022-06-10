@@ -1,12 +1,25 @@
-vim.cmd [[
-au FileType * setlocal formatoptions-=t formatoptions+=l " don't automatically wrap long lines in INSERT
-au BufEnter * checkt "check for changes more often for autoread
-" autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
-augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='HighlightedyankRegion', timeout=500 }
-augroup END
+vim.api.nvim_create_autocmd('TextYankPost', {
+    group = vim.api.nvim_create_augroup('highlight_yank', {clear = true}),
+    callback = function()
+       vim.highlight.on_yank { higroup='HighlightedyankRegion', timeout=500 }
+    end
+})
+vim.api.nvim_create_autocmd('BufWritePre', {
+    group = vim.api.nvim_create_augroup('clear_trailing_whitespace', {clear = true}),
+    command = [[%s/\s\+$//e]]
+})
+vim.api.nvim_create_autocmd('BufEnter', {  -- check for changes more often for autoread
+    group = vim.api.nvim_create_augroup('check_for_changes', {clear = true}),
+    command = 'checkt'
+})
+vim.api.nvim_create_autocmd('FileType', { -- don't automatically wrap long lines in INSERT
+    group = vim.api.nvim_create_augroup('no_wrap_in_insert', {clear = true}),
+    command = 'setlocal formatoptions-=t formatoptions+=l'
+        -- vim.bo.formatoptions:remove('t')
+        -- vim.bo.formatoptions:append('l')
+})
 
+vim.cmd [[
 function! DeleteInactiveBufs()
     "From tabpagebuflist() help, get a list of all buffers in all tabs
     let tablist = []
