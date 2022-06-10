@@ -67,12 +67,16 @@ utils.prepare_module('packer', function(packer)
     use 'tpope/vim-surround'
     use 'mattn/emmet-vim'
     use 'numToStr/Comment.nvim'
-    use 'L3MON4D3/LuaSnip'
-    use "rafamadriz/friendly-snippets"
+    -- use 'L3MON4D3/LuaSnip'
+    -- use "rafamadriz/friendly-snippets"
+    use 'dcampos/nvim-snippy'
+    use 'honza/vim-snippets'
 
     -- cmp plugins
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    -- use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    use 'dcampos/cmp-snippy'
+    use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-buffer' -- buffer completions
     use 'hrsh7th/cmp-path' -- path completions
     use 'hrsh7th/cmp-cmdline' -- cmdline completions
@@ -80,7 +84,7 @@ utils.prepare_module('packer', function(packer)
     -- LSP
     use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use 'williamboman/nvim-lsp-installer' -- simple to use language server installer
+    use {'williamboman/nvim-lsp-installer', requires='neovim/nvim-lspconfig'} -- simple to use language server installer
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
     use 'tami5/lspsaga.nvim'

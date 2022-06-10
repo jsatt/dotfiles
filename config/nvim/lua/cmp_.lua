@@ -2,10 +2,11 @@ local utils = require('utils_')
 local theme = require('theme_')
 
 utils.prepare_module('cmp', function(cmp)
-  local cmp_buffer = require('cmp_buffer')
-  local luasnip = require('luasnip')
-  require('luasnip.loaders.from_vscode').load()
-  luasnip.filetype_extend('python', {'django'})
+  -- local cmp_buffer = require('cmp_buffer')
+  -- local luasnip = require('luasnip')
+  -- require('luasnip.loaders.from_vscode').load()
+  -- luasnip.filetypeclass_name_extend('python', {'django'})
+  local snippy = require('snippy')
 
   local cmp_default_config = require('cmp.config.default')()
   local cmp_path_opts = {trailing_slash = true }
@@ -13,10 +14,11 @@ utils.prepare_module('cmp', function(cmp)
   cmp.setup {
     snippet = {
       expand = function(args)
-        require('luasnip').lsp_expand(args.body)
+        snippy.expand_snippet(args.body)
+        -- luasnip.lsp_expand(args.body)
       end,
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -30,8 +32,10 @@ utils.prepare_module('cmp', function(cmp)
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+        elseif snippy.can_expand_or_advance() then
+          snippy.expand_or_advance()
+        -- elseif luasnip.expand_or_jumpable() then
+        --   luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -39,38 +43,44 @@ utils.prepare_module('cmp', function(cmp)
       ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
+        elseif snippy.can_jump(-1) then
+          snippy.previous()
+        -- elseif luasnip.jumpable(-1) then
+        --   luasnip.jump(-1)
         else
           fallback()
         end
       end),
-    },
+    }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'luasnip' },
+      -- { name = 'luasnip' },
+      { name = 'snippy' },
+      { name = 'nvim_lua' },
+    }, {
       { name = 'buffer' },
       { name = 'path', option = cmp_path_opts},
     }),
     window = {
-      completion = {
+      completion = cmp.config.window.bordered({
         border = 'rounded',
         scrollbar = '┃',
-      },
-      documentation = {
+      }),
+      documentation = cmp.config.window.bordered({
         border = 'rounded',
         scrollbar = '┃',
-      },
+      }),
     },
     formatting = {
-      fields = { "kind", "abbr", "menu" },
+      mttinields = { "kind", "abbr", "menu"},
       format = function(entry, vim_item)
         -- Kind icons
         vim_item.kind = string.format("%s", theme.kind_icons[vim_item.kind])
         -- vim_item.kind = string.format('%s %s', theme.kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
-          luasnip = "[Snippet]",
+          snippy = "[Snippet]",
+          -- luasnip = "[Snippet]",
           buffer = "[Buffer]",
           path = "[Path]",
         })[entry.source.name]
@@ -79,11 +89,12 @@ utils.prepare_module('cmp', function(cmp)
     },
     experimental = {
       ghost_text = true,
+      native_menu = false,
     },
     sorting = {
       comparators = vim.list_extend(
         {
-          function(...) return cmp_buffer:compare_locality(...) end,
+          -- function(...) return cmp_buffer:compare_locality(...) end,
         },
         cmp_default_config.sorting.comparators
       ),
@@ -92,6 +103,7 @@ utils.prepare_module('cmp', function(cmp)
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }
@@ -99,6 +111,7 @@ utils.prepare_module('cmp', function(cmp)
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = 'path', option = cmp_path_opts}
     }, {
