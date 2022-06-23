@@ -42,6 +42,7 @@ vim.opt.undolevels = 1000 -- number of undos to keep
 vim.opt.updatetime = 300 -- milliseconds to wait before completing typed changes
 vim.opt.whichwrap = 'h,l,<,>' -- keys to change lines at start/end of a line
 vim.opt.wrap = true -- visually wrap
+vim.g.no_plugin_maps = true
 
 vim.g.border_style = 'rounded'
 

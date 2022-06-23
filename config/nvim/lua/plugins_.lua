@@ -83,7 +83,16 @@ utils.prepare_module('packer', function(packer)
     use {'williamboman/nvim-lsp-installer', requires='neovim/nvim-lspconfig'} -- simple to use language server installer
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
-    use 'tami5/lspsaga.nvim'
+    use 'glepnir/lspsaga.nvim'
+    -- use 'tami5/lspsaga.nvim'
+
+    -- DAP
+    -- use {'mfussenegger/nvim-dap'}
+    -- use {'nvim-telescope/telescope-dap.nvim'}
+    -- use {'mfussenegger/nvim-dap-python'}
+    -- use {'theHamsta/nvim-dap-virtual-text'}
+    -- use {'rcarriga/nvim-dap-ui'}
+    -- use {'Pocco81/DAPInstall.nvim'}
 
     -- Commands
     use 'lewis6991/impatient.nvim'

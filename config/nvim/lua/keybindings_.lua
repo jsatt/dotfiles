@@ -93,7 +93,8 @@ vim.keymap.set('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', 
 -- Diagnostics
 vim.keymap.set('n', '<leader>lp', '<cmd>Lspsaga diagnostic_jump_prev<CR>', {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>ln', '<cmd>Lspsaga diagnostic_jump_next<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>d', '<cmd>Lspsaga show_line_diagnostics<CR>', {noremap = true, silent = true})
+-- vim.keymap.set('n', '<leader>d', '<cmd>Lspsaga show_line_diagnostics<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = true})
 
 -- Diff navigation
 if vim.opt.diff:get() then

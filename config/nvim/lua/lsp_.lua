@@ -135,9 +135,8 @@ utils.prepare_module('null-ls', function(null_ls)
 end)
 
 utils.prepare_module('lspsaga', function(lspsaga)
-  lspsaga.setup {
-    use_saga_diagnostic_sign = false,
-    code_action_prompt = {enable = false},
+  lspsaga.init_lsp_saga {
+    -- use_saga_diagnostic_sign = false,
     border_style = 'round',
     finder_action_keys = {
       open = "o",
@@ -151,10 +150,7 @@ utils.prepare_module('lspsaga', function(lspsaga)
       quit = {"<Esc>", "q"},
       exec = "<CR>",
     },
-    rename_action_keys = {
-      quit = "<Esc>",
-      exec = "<CR>",
-    },
+    rename_action_quit = "<Esc>",
   }
 end)
 
