@@ -60,14 +60,14 @@ vim.diagnostic.config {
   underline = true,
   severity_sort = true,
   virtual_text = {
-    source = true,  -- currently overridden by lspsaga
+    source = true,
   },
   float = {
     focusable = false,
-    style = "minimal",
+    -- style = "minimal",
     border = "rounded",
     source = true,  -- currently ignored by lspsaga
-    header = "",
-    prefix = "",
+    -- header = "",
+    -- prefix = "",
   },
 }

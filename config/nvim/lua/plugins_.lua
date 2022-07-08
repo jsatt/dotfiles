@@ -76,7 +76,6 @@ utils.prepare_module('packer', function(packer)
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
     use 'glepnir/lspsaga.nvim'
-    -- use 'tami5/lspsaga.nvim'
 
     -- DAP
     -- use {'mfussenegger/nvim-dap'}

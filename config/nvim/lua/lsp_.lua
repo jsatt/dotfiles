@@ -134,15 +134,17 @@ utils.prepare_module('null-ls', function(null_ls)
   }
 end)
 
+
+-- require('lspsaga').init_lsp_saga()
 utils.prepare_module('lspsaga', function(lspsaga)
   lspsaga.init_lsp_saga {
-    -- use_saga_diagnostic_sign = false,
-    border_style = 'round',
+    border_style = 'rounded',
     finder_action_keys = {
       open = "o",
       vsplit = "v",
+      tabe = 't',
       split = "s",
-      quit = {"<Esc>", "q"},
+      quit = "<Esc>", -- "q"},
       scroll_down = "<C-f>",
       scroll_up = "<C-d>",
     },
@@ -150,6 +152,10 @@ utils.prepare_module('lspsaga', function(lspsaga)
       quit = {"<Esc>", "q"},
       exec = "<CR>",
     },
+    -- new config only
+    show_diagnostic_source = true,
+    diagnostic_source_bracket = {' ', ':'},
+    code_action_lightbulb = {enable = false},
     rename_action_quit = "<Esc>",
   }
 end)
