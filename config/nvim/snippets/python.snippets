@@ -1,0 +1,15 @@
+snippet pytunit
+        @pytest.mark.unit
+        def test_${1:name}(${2:`indent('.') ? 'self, ' : ''`}mocker, ${3:fixtures}):
+            ${0}
+snippet pytint
+        @pytest.mark.integration
+        def test_${1:name}(${2:`indent('.') ? 'self, ' : ''`}${3:fixtures}):
+            ${0}
+snippet pytparam
+        @pytest.mark.unit
+        @pytest.mark.parametrize('${3:param_names}', [
+            ${4:params}
+        ])
+        def test_${1:name}(${2:`indent('.') ? 'self, ' : ''`}${3:param_names}):
+            ${0}

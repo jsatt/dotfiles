@@ -51,26 +51,18 @@ utils.prepare_module('packer', function(packer)
 
     -- Sidebars
     use 'mbbill/undotree'
-    use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons',
-      },
-    }
+    use {'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}}
     use {'stevearc/aerial.nvim'}
 
     -- Code Completion
     use 'tpope/vim-surround'
     use 'mattn/emmet-vim'
     use 'numToStr/Comment.nvim'
-    -- use 'L3MON4D3/LuaSnip'
-    -- use "rafamadriz/friendly-snippets"
     use 'dcampos/nvim-snippy'
     use 'honza/vim-snippets'
 
     -- cmp plugins
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-    -- use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'dcampos/cmp-snippy'
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-buffer' -- buffer completions

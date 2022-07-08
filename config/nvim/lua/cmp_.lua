@@ -3,9 +3,6 @@ local theme = require('theme_')
 
 utils.prepare_module('cmp', function(cmp)
   -- local cmp_buffer = require('cmp_buffer')
-  -- local luasnip = require('luasnip')
-  -- require('luasnip.loaders.from_vscode').load()
-  -- luasnip.filetypeclass_name_extend('python', {'django'})
   local snippy = require('snippy')
 
   local cmp_default_config = require('cmp.config.default')()
@@ -32,10 +29,6 @@ utils.prepare_module('cmp', function(cmp)
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif snippy.can_expand_or_advance() then
-          snippy.expand_or_advance()
-        -- elseif luasnip.expand_or_jumpable() then
-        --   luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -43,10 +36,6 @@ utils.prepare_module('cmp', function(cmp)
       ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif snippy.can_jump(-1) then
-          snippy.previous()
-        -- elseif luasnip.jumpable(-1) then
-        --   luasnip.jump(-1)
         else
           fallback()
         end
@@ -80,7 +69,6 @@ utils.prepare_module('cmp', function(cmp)
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
           snippy = "[Snippet]",
-          -- luasnip = "[Snippet]",
           buffer = "[Buffer]",
           path = "[Path]",
         })[entry.source.name]
@@ -119,4 +107,26 @@ utils.prepare_module('cmp', function(cmp)
     })
   })
 
+  -- cmp.setup.filetype('gitcommit', {
+  --   sources = cmp.config.sources({
+  --     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  --   }, {
+  --       { name = 'buffer' },
+  --   })
+  -- })
+
+end)
+
+utils.prepare_module('snippy', function(snippy)
+  snippy.setup({
+        mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            ['<S-Tab>'] = 'previous',
+        },
+        nx = {
+            ['<leader>x'] = 'cut_text',
+        },
+    },
+  })
 end)
