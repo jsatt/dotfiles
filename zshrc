@@ -20,6 +20,7 @@ plugins=(
     docker-compose
     encode64
     extract
+    fd
     gcloud
     golang
     helm
@@ -30,6 +31,7 @@ plugins=(
     npm
     pip
     python
+    ripgrep
     sudo
     virtualenvwrapper
 
