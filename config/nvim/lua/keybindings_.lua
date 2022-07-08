@@ -1,3 +1,5 @@
+local utils = require('utils_')
+
 vim.keymap.set('n', ';', ':', {noremap = true})
 vim.keymap.set('n', ':qt', ':tabc', {silent = true})
 vim.keymap.set('n', '<leader>ld', ':Linediff<CR>', {noremap = true, silent = true})
@@ -38,29 +40,52 @@ vim.keymap.set({'n', 'i'}, '<S-Down>', '<C-w>j', {noremap = true})
 vim.keymap.set('v', '<leader>y', 'y:OSCYank<CR>', {noremap = true, silent = true})
 
 -- Telescope
-vim.keymap.set('n', '<leader>lf', '<cmd>lua require("telescope.builtin").find_files()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>lb', '<cmd>lua require("telescope.builtin").buffers()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>ls', '<cmd>lua require("telescope").extensions.aerial.aerial()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>lr', '<cmd>lua require("telescope.builtin").oldfiles()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>lg', '<cmd>lua require("telescope.builtin").live_grep()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>lc', '<cmd>lua require("telescope.builtin").git_commits()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>le', '<cmd>lua require("telescope").extensions.emoji.emoji()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>lt', '<cmd>lua require("telescope.builtin").builtin({include_extensions = true})<CR>', {noremap = true, silent = true})
+utils.prepare_module('telescope', function(telescope)
+local telescope_builtin = require('telescope.builtin')
+  vim.keymap.set('n', '<leader>lf', telescope_builtin.find_files, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>lb', telescope_builtin.buffers, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>ls', telescope.extensions.aerial.aerial, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>lr', telescope_builtin.oldfiles, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>lg', telescope_builtin.live_grep, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>lc', telescope_builtin.git_commits, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>le', telescope.extensions.emoji.emoji, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>lt', function() telescope_builtin.builtin({include_extensions = true}) end, {noremap = true, silent = true})
+end)
 
 -- LSP
-vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<C-k>', '<cmd>Lspsaga signature_help<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', 'gh', '<cmd>Lspsaga lsp_finder<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', {noremap = true, silent = true})
-vim.keymap.set('v', '<leader>ca', ':<c-u>Lspsaga range_code_action<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
-vim.keymap.set('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {noremap = true, silent = true})
+-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap = true, silent = true})
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {noremap = true, silent = true})
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, {noremap = true, silent = true})
+vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, {noremap = true, silent = true})
+vim.keymap.set('v', '<leader>f', vim.lsp.buf.range_formatting, {noremap = true, silent = true})
+utils.prepare_module('lspsaga', function(lspsaga)
+  vim.keymap.set("n", "K", require("lspsaga.hover").render_hover_doc, {noremap = true, silent = true })
+
+  local action = require("lspsaga.action")
+  vim.keymap.set("n", "<C-f>", function() action.smart_scroll_with_saga(1) end, {noremap=true, silent = true })
+  vim.keymap.set("n", "<C-b>", function() action.smart_scroll_with_saga(-1) end, {noremap = true, silent = true })
+
+  vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, {noremap = true, silent = true })
+  vim.keymap.set("n", "gd", require("lspsaga.definition").preview_definition, {noremap = true, silent = true })
+
+  vim.keymap.set('n', 'gh', require('lspsaga.finder').lsp_finder, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>rn', require('lspsaga.rename').lsp_rename, {noremap = true, silent = true})
+
+  local lspsaga_codeaction = require('lspsaga.codeaction')
+  vim.keymap.set('n', '<leader>ca', lspsaga_codeaction.code_action, {noremap = true, silent = true})
+  vim.keymap.set('v', '<leader>ca', function()
+      vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
+      lspsaga_codeaction.range_code_action()
+  end, {noremap = true, silent = true})
+
+  local lspsaga_diag = require('lspsaga.diagnostic')
+  vim.keymap.set('n', '<leader>lp', lspsaga_diag.goto_prev, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>ln', lspsaga_diag.goto_next, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>d', lspsaga_diag.show_line_diagnostics, {noremap = true, silent = true})
+  -- vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = true})
+end)
 
 -- DAP
 -- vim.keymap.set('n', '<leader>dct', '<cmd>lua require"dap".continue()<CR>', {noremap = true, silent = true})
@@ -89,12 +114,6 @@ vim.keymap.set('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', 
 -- vim.keymap.set('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>', {noremap = true, silent = true})
 -- vim.keymap.set('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>', {noremap = true, silent = true})
 -- vim.keymap.set('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>', {noremap = true, silent = true})
-
--- Diagnostics
-vim.keymap.set('n', '<leader>lp', '<cmd>Lspsaga diagnostic_jump_prev<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>ln', '<cmd>Lspsaga diagnostic_jump_next<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>d', '<cmd>Lspsaga show_line_diagnostics<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = true})
 
 -- Diff navigation
 if vim.opt.diff:get() then
