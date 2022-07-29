@@ -37,7 +37,10 @@ vim.keymap.set({'n', 'i'}, '<S-Up>', '<C-w>k', {noremap = true})
 vim.keymap.set({'n', 'i'}, '<S-Down>', '<C-w>j', {noremap = true})
 
 -- copy to terminal hosts clipboard
-vim.keymap.set('v', '<leader>y', 'y:OSCYank<CR>', {noremap = true, silent = true})
+-- vim.keymap.set('v', '<leader>y', 'y:OSCYank<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, {expr = true})
+vim.keymap.set('n', '<leader>yy', '<leader>y_', {remap = true})
+vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
 
 -- Telescope
 utils.prepare_module('telescope', function(telescope)

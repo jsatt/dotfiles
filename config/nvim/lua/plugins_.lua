@@ -55,7 +55,8 @@ utils.prepare_module('packer', function(packer)
     use {'stevearc/aerial.nvim'}
 
     -- Code Completion
-    use 'tpope/vim-surround'
+    -- use 'tpope/vim-surround'
+    use 'kylechui/nvim-surround'
     use 'mattn/emmet-vim'
     use 'numToStr/Comment.nvim'
     use 'dcampos/nvim-snippy'
@@ -95,7 +96,8 @@ utils.prepare_module('packer', function(packer)
     use 'AndrewRadev/linediff.vim'
     use {'mg979/vim-visual-multi', branch = 'master'}
     use 'RRethy/vim-illuminate'
-    use {'ojroques/vim-oscyank', branch = 'main'}
+    -- use {'ojroques/vim-oscyank', branch = 'main'}
+    use 'ojroques/nvim-osc52'
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'xiyaowong/telescope-emoji.nvim', requires = {'nvim-telescope/telescope.nvim'}}
     use {'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
@@ -318,11 +320,21 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
 end)
 
 -- OSC52
-vim.g.oscyank_max_length = 1000000
+-- vim.g.oscyank_max_length = 1000000
+utils.prepare_module('osc52', function(osc52)
+  osc52.setup {
+    max_length = 1000000,  -- Maximum length of selection
+    silent = false,        -- Disable message on successful copy
+    trim = true,           -- Trim text before copy
+  }
+end)
 
 -- ZenCoding
 vim.g.user_emmet_expandabbr_key='<c-e>' -- expand w/ Ctrl-e
 
+utils.prepare_module('nvim-surround', function(surround)
+  surround.setup()
+end)
 
 -- Lualine
 utils.prepare_module('lualine', function(lualine)
