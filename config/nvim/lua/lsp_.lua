@@ -72,53 +72,69 @@ local server_configs = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.foldingRange = {
+--     dynamicRegistration = false,
+--     lineFoldingOnly = true
+-- }
 
-utils.prepare_module('nvim-lsp-installer', function(lsp_installer)
-  lsp_installer.setup {
-    ensure_installed = utils.get_keys(server_configs),
-    automatic_installation = true,
+utils.prepare_module('mason', function(mason)
+  mason.setup {
     ui = {
       icons = {
-        server_installed = "✓",
-        server_pending = "➜",
-        server_uninstalled = "✗"
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗"
       }
     }
   }
 
-  utils.prepare_module('lspconfig', function(lspconfig)
-    lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-      capabilities = capabilities,
-    })
+  utils.prepare_module('mason-lspconfig', function(mason_lspconfig)
+    mason_lspconfig.setup {
+      ensure_installed = utils.get_keys(server_configs),
+      automatic_installation = true,
+      ui = {
+        icons = {
+          server_installed = "✓",
+          server_pending = "➜",
+          server_uninstalled = "✗"
+        }
+      }
+    }
 
-    local lsp_win = require('lspconfig.ui.windows')
-    local _default_opts = lsp_win.default_opts
-    lsp_win.default_opts = function(options)
+    utils.prepare_module('lspconfig', function(lspconfig)
+      lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+        capabilities = capabilities,
+      })
+
+      local lsp_win = require('lspconfig.ui.windows')
+      local _default_opts = lsp_win.default_opts
+      lsp_win.default_opts = function(options)
         local opts = _default_opts(options)
         opts.border = "rounded"
         return opts
-    end
-
-    local opts = {
-      flags = {
-        debounce_text_changes = 150,
-      },
-      on_attach = function(client, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-        vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-        require('illuminate').on_attach(client)
-        require('aerial').on_attach(client, bufnr)
-      end,
-    }
-
-    for _, server in ipairs(require('nvim-lsp-installer.servers').get_installed_servers()) do
-      if server_configs[server.name] ~= nil then
-        opts = vim.tbl_deep_extend('force', opts, server_configs[server.name])
       end
-      lspconfig[server.name].setup(opts)
-    end
-  end)
 
+      local opts = {
+        flags = {
+          debounce_text_changes = 150,
+        },
+        on_attach = function(client, bufnr)
+          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+          vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+          require('illuminate').on_attach(client)
+          require('aerial').on_attach(client, bufnr)
+        end,
+      }
+
+      for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+        if server_configs[server] ~= nil then
+          opts = vim.tbl_deep_extend('force', opts, server_configs[server])
+        end
+        lspconfig[server].setup(opts)
+      end
+    end)
+
+  end)
 end)
 
 utils.prepare_module('null-ls', function(null_ls)

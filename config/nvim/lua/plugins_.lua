@@ -72,7 +72,8 @@ utils.prepare_module('packer', function(packer)
     -- LSP
     use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use {'williamboman/nvim-lsp-installer', requires='neovim/nvim-lspconfig'} -- simple to use language server installer
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
     use 'glepnir/lspsaga.nvim'
