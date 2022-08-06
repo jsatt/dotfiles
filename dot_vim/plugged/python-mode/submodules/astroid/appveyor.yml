@@ -1,0 +1,5 @@
+version: "{branch}-{build}"
+build: off
+
+test_script:
+  - echo "Skip"

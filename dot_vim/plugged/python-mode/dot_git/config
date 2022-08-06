@@ -1,0 +1,47 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/klen/python-mode.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "develop"]
+	remote = origin
+	merge = refs/heads/develop
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[submodule "submodules/astroid"]
+	active = true
+	url = https://github.com/PyCQA/astroid
+[submodule "submodules/autopep8"]
+	active = true
+	url = https://github.com/hhatto/autopep8
+[submodule "submodules/mccabe"]
+	active = true
+	url = https://github.com/PyCQA/mccabe
+[submodule "submodules/pycodestyle"]
+	active = true
+	url = https://github.com/PyCQA/pycodestyle
+[submodule "submodules/pydocstyle"]
+	active = true
+	url = https://github.com/PyCQA/pydocstyle
+[submodule "submodules/pyflakes"]
+	active = true
+	url = https://github.com/PyCQA/pyflakes
+[submodule "submodules/pylama"]
+	active = true
+	url = https://github.com/klen/pylama
+[submodule "submodules/pylint"]
+	active = true
+	url = https://github.com/PyCQA/pylint
+[submodule "submodules/rope"]
+	active = true
+	url = https://github.com/python-rope/rope
+[submodule "submodules/snowball_py"]
+	active = true
+	url = https://github.com/diraol/snowball_py
+[submodule "submodules/toml"]
+	active = true
+	url = https://github.com/uiri/toml.git

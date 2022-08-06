@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	worktree = ../../../../submodules/pylama
+[remote "origin"]
+	url = https://github.com/klen/pylama
+	fetch = +refs/heads/develop:refs/remotes/origin/develop
+[branch "develop"]
+	remote = origin
+	merge = refs/heads/develop

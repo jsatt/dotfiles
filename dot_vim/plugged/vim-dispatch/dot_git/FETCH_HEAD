@@ -1,0 +1,9 @@
+c88f1b1e4fd428d826fa38c272ed80b6518d37eb		branch 'master' of https://github.com/tpope/vim-dispatch
+82a0434d704b8b28640d99aa4b313fc02ac5f439	not-for-merge	branch 'abort' of https://github.com/tpope/vim-dispatch
+516f47993632ba6d5865219ceff1f5e7cd7e20c1	not-for-merge	branch 'fifo' of https://github.com/tpope/vim-dispatch
+989b8642b19fd117516dc3495af3c4d6d8a0a443	not-for-merge	branch 'job' of https://github.com/tpope/vim-dispatch
+152622ffeca7ff7b73f3ea403044fb032a4c73ce	not-for-merge	branch 'quickfix-cd' of https://github.com/tpope/vim-dispatch
+439509d1849d2c77f33a26221f4a87c2393b86f2	not-for-merge	branch 'repeat-last' of https://github.com/tpope/vim-dispatch
+50b722e66de52f1875fced3d32989496001e34fb	not-for-merge	branch 'reuse-terminal' of https://github.com/tpope/vim-dispatch
+7280725963f2bd21c7c05c4aba727163b07f9dd9	not-for-merge	branch 'win32' of https://github.com/tpope/vim-dispatch
+63be6a508196670964d289e6c5662cb4bc940859	not-for-merge	branch 'x11-make' of https://github.com/tpope/vim-dispatch

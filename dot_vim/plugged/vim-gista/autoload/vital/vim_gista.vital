@@ -1,0 +1,17 @@
+vim_gista
+eadeb6edf4cfbeb62eaf2ed0ef1074fba6e146eb
+
+Web.HTTP
+Web.JSON
+System.Cache
+System.Filepath
+Data.List
+Data.Dict
+Vim.Buffer
+Vim.BufferManager
+ArgumentParser
+Vim.Compat
+Data.Base64
+Vim.Buffer.Anchor
+Vim.Console
+Vim.Guard

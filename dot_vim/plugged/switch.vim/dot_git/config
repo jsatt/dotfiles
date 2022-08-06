@@ -1,0 +1,20 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/AndrewRadev/switch.vim.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[submodule "spec/support/rust.vim"]
+	active = true
+	url = https://github.com/rust-lang/rust.vim
+[submodule "spec/support/vim-clojure-static"]
+	active = true
+	url = https://github.com/guns/vim-clojure-static
+[submodule "spec/support/vim-repeat"]
+	active = true
+	url = https://github.com/tpope/vim-repeat

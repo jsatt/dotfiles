@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/media/jsatt/CIRCUITPY'
+let g:netrw_dirhist_2='/home/jsatt/.local/share/applications'
+let g:netrw_dirhist_1='/home/jsatt/.local/share'
+let g:netrw_dirhist_0='/home/jsatt/.local'
+let g:netrw_dirhist_9='/home/jsatt/install/salt/desktop'
+let g:netrw_dirhist_8='/media/veracrypt1/login-service/login'
+let g:netrw_dirhist_7='/media/veracrypt1/login-service'
+let g:netrw_dirhist_6='/media/veracrypt1/login-service/utils'
+let g:netrw_dirhist_5='/media/veracrypt1/login-service'
+let g:netrw_dirhist_4='/media/veracrypt1/login-service/users'

@@ -1,0 +1,5 @@
+logging-format-interpolation:16:22::Use lazy % formatting in logging functions
+logging-format-interpolation:17:43::Use lazy % formatting in logging functions
+logging-format-interpolation:18:22::Use lazy % formatting in logging functions
+logging-format-interpolation:19:43::Use lazy % formatting in logging functions
+logging-format-interpolation:20:21::Use lazy % formatting in logging functions

@@ -1,0 +1,11 @@
+a67854368ea9810936d57e3fea00a4c05bf47c26		branch 'master' of https://github.com/tpope/vim-fugitive
+70eba584a80b689eec266c69a04d460e7dee3133	not-for-merge	branch 'blame_color' of https://github.com/tpope/vim-fugitive
+62c50ff296e8d0a8a667b751f0475e2ceb9195df	not-for-merge	branch 'blame_message' of https://github.com/tpope/vim-fugitive
+2723a1116f352dc3690b653bdb534f9481e71850	not-for-merge	branch 'buffer_path' of https://github.com/tpope/vim-fugitive
+ea7b1ab602230ff9f167864f78a3785c52ae2bd8	not-for-merge	branch 'copied' of https://github.com/tpope/vim-fugitive
+ef87434b87e0e0d1ff5c9bb6502376634fbb93c0	not-for-merge	branch 'difftool' of https://github.com/tpope/vim-fugitive
+ff32149a59f9ba6d1b8067e39cc823c99178cb29	not-for-merge	branch 'http_github_fi' of https://github.com/tpope/vim-fugitive
+f61beed74734ce6d21bc614593955ce13530aa0f	not-for-merge	branch 'nested/test' of https://github.com/tpope/vim-fugitive
+195edd146f857cd415e432ab4da59fe825e8572d	not-for-merge	branch 'parallel-status' of https://github.com/tpope/vim-fugitive
+acd9c3e74199867555494feb047699bb5568e607	not-for-merge	branch 'symlink' of https://github.com/tpope/vim-fugitive
+16c2b7abb97111a4c241fbe37ac40e21585773a9	not-for-merge	branch 'worktree' of https://github.com/tpope/vim-fugitive

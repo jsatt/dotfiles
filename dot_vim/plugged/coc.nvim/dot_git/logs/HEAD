@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 312c7c4482ef41664516804465ab658580b46fea Jeremy Satterfield <jsatt@jsatt.com> 1587074547 -0500	clone: from https://github.com/neoclide/coc.nvim.git
+312c7c4482ef41664516804465ab658580b46fea 64b63ed1e6c6517ce45b136eb4b0ef0f4ba1b10f Jeremy Satterfield <jsatt@jsatt.com> 1587074550 -0500	checkout: moving from master to release
+64b63ed1e6c6517ce45b136eb4b0ef0f4ba1b10f 64b63ed1e6c6517ce45b136eb4b0ef0f4ba1b10f Jeremy Satterfield <jsatt@jsatt.com> 1633211154 -0500	checkout: moving from release to release
+64b63ed1e6c6517ce45b136eb4b0ef0f4ba1b10f 287c743c9f227fdf0e1db452bbb8ae3c5caffc36 Jeremy Satterfield <jsatt@jsatt.com> 1633211154 -0500	merge origin/release: Fast-forward
+287c743c9f227fdf0e1db452bbb8ae3c5caffc36 287c743c9f227fdf0e1db452bbb8ae3c5caffc36 Jeremy Satterfield <jsatt@jsatt.com> 1633211295 -0500	checkout: moving from release to release
+287c743c9f227fdf0e1db452bbb8ae3c5caffc36 287c743c9f227fdf0e1db452bbb8ae3c5caffc36 Jeremy Satterfield <jsatt@jsatt.com> 1633212469 -0500	checkout: moving from release to release

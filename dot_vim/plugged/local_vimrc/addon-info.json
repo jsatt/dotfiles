@@ -1,0 +1,12 @@
+{
+    "name": "local_vimrc",
+    "version": "dev",
+    "author" : "Luc Hermitte <http://github.com/LucHermitte>",
+    "maintainer" : "Luc Hermitte <http://github.com/LucHermitte>",
+    "repository" : {"type": "git", "url": "git@github.com:LucHermitte/local_vimrc.git"},
+    "dependencies" : {
+        "lh-vim-lib" : {"type" : "git", "url" : "git@github.com:LucHermitte/lh-vim-lib.git"}
+    },
+    "description" : "Per project/tree configuration plugins",
+    "homepage"    : "https://github.com/LucHermitte/local_vimrc"
+}

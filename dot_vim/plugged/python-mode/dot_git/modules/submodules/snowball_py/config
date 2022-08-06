@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	worktree = ../../../../submodules/snowball_py
+[remote "origin"]
+	url = https://github.com/diraol/snowball_py
+	fetch = +refs/heads/develop:refs/remotes/origin/develop
+[branch "develop"]
+	remote = origin
+	merge = refs/heads/develop

@@ -1,0 +1,7 @@
+# pack-refs with: peeled fully-peeled sorted 
+384022c317379d1935e674a8eafe46d25e0ef599 refs/remotes/origin/feat-basecolor
+ecc1a739b11c44736a606c13a7ad9edba29dd10b refs/remotes/origin/feat-mouse
+e2718e7bdb740fd38c13673245ff2bb33db8ab7d refs/remotes/origin/fix-padding
+45a8eabefd500ab4496ee790d3ac178eb4de9fb9 refs/remotes/origin/master
+edfaebbf411e6ef566e12b78974aee152c55012b refs/remotes/origin/refac-history-close
+6634af68f136fb054da1f2a78c2912978b10c3af refs/remotes/origin/refresh-when-resize

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-DOMAIN=$1
-
-openssl req -newkey rsa:4096 -nodes -keyout "$DOMAIN.key" -x509 -days 365 -out "$DOMAIN.crt"
-openssl x509 -text -noout -in "$DOMAIN.crt"

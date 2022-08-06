@@ -1,0 +1,15 @@
+b:is_django	django-plus.txt	/*b:is_django*
+b:is_django_settings	django-plus.txt	/*b:is_django_settings*
+django-plus	django-plus.txt	/*django-plus*
+django-plus-completions	django-plus.txt	/*django-plus-completions*
+django-plus-contents	django-plus.txt	/*django-plus-contents*
+django-plus-html	django-plus.txt	/*django-plus-html*
+django-plus-intro	django-plus.txt	/*django-plus-intro*
+django-plus-license	django-plus.txt	/*django-plus-license*
+django-plus-plugins	django-plus.txt	/*django-plus-plugins*
+django-plus-python	django-plus.txt	/*django-plus-python*
+django-plus-settings	django-plus.txt	/*django-plus-settings*
+django-plus.txt	django-plus.txt	/*django-plus.txt*
+g:django_filetypes	django-plus.txt	/*g:django_filetypes*
+g:django_impsort_top	django-plus.txt	/*g:django_impsort_top*
+g:django_max_scan_depth	django-plus.txt	/*g:django_max_scan_depth*
