@@ -24,6 +24,8 @@ alias fixscreen='rm -r ~/.local/share/kscreen'
 alias serve='python3 -m http.server'
 alias clear_dns='sudo systemd-resolve --flush-cache'
 
+alias cm='chezmoi'
+
 pip_exact_search() {
     pip search $1 | ag $2 "^$1 \("
 }
@@ -43,5 +45,5 @@ kubelssecrets() {
 kubegetsecret() {
     kubectl get secrets $1 --template="$2{{\"\n\"}}{{if .data.$2 }}encoded: {{.data.$2}}{{\"\n\"}}decoded: {{.data.$2 | base64decode}}{{else}}Not Found{{end}}{{\"\n\"}}"
 }
-    
+
 # vim: set filetype=sh:
