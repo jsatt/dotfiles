@@ -1,4 +1,4 @@
-alias getip='wget -qO- icanhazip.com'
+alias getip='wget -qO- icanhazip.com'aa
 alias clearpyc='find . \( -type f -name "*.pyc" -o -type d -name __pycache__ \) -delete'
 alias manage='python manage.py'
 alias ipdbtest='manage test -sx --ipdb --ipdb-failures'
@@ -25,9 +25,11 @@ alias serve='python3 -m http.server'
 alias clear_dns='sudo systemd-resolve --flush-cache'
 
 alias cm='chezmoi'
+alias cmedit='chezmoi edit --apply'
+alias cmgit='chezmoi git'
 
 pip_exact_search() {
-    pip search $1 | ag $2 "^$1 \("
+    pip search $1 | rg $2 "^$1 \("
 }
 
 kubegetpod(){

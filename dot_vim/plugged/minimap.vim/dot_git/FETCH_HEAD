@@ -1,6 +1,0 @@
-45a8eabefd500ab4496ee790d3ac178eb4de9fb9		branch 'master' of https://github.com/wfxr/minimap.vim
-384022c317379d1935e674a8eafe46d25e0ef599	not-for-merge	branch 'feat-basecolor' of https://github.com/wfxr/minimap.vim
-ecc1a739b11c44736a606c13a7ad9edba29dd10b	not-for-merge	branch 'feat-mouse' of https://github.com/wfxr/minimap.vim
-e2718e7bdb740fd38c13673245ff2bb33db8ab7d	not-for-merge	branch 'fix-padding' of https://github.com/wfxr/minimap.vim
-edfaebbf411e6ef566e12b78974aee152c55012b	not-for-merge	branch 'refac-history-close' of https://github.com/wfxr/minimap.vim
-6634af68f136fb054da1f2a78c2912978b10c3af	not-for-merge	branch 'refresh-when-resize' of https://github.com/wfxr/minimap.vim

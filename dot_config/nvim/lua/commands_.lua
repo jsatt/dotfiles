@@ -19,6 +19,12 @@ vim.api.nvim_create_autocmd('FileType', { -- don't automatically wrap long lines
         -- vim.bo.formatoptions:append('l')
 })
 
+vim.api.nvim_create_autocmd('BufWritePost', { -- auto-apply files managed by chezmoi
+  group = vim.api.nvim_create_augroup('chezmoi', {clear = true}),
+  pattern = vim.fn.expand('~') .. '/.local/share/chezmoi/*',
+  command = '!chezmoi apply --source-path "%"',
+})
+
 vim.cmd [[
 function! DeleteInactiveBufs()
     "From tabpagebuflist() help, get a list of all buffers in all tabs

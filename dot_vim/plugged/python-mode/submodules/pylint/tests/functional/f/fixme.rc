@@ -1,3 +1,0 @@
-[testoptions]
-notes=XXX,TODO,./TODO
-notes-rgx=FIXME(?!.*ISSUE-\d+)|TO.*DO

@@ -1,2 +1,0 @@
-assert-on-string-literal:3:0::Assert statement has a string literal as its first argument. The assert will never fail.
-assert-on-string-literal:4:0::Assert statement has a string literal as its first argument. The assert will always fail.

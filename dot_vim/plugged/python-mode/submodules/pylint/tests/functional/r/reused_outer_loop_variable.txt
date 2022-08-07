@@ -1,4 +1,0 @@
-redefined-outer-name:7:4::Redefining name 'i' from outer scope (line 6)
-redefined-outer-name:12:4::Redefining name 'i' from outer scope (line 11)
-redefined-outer-name:17:4::Redefining name 'i' from outer scope (line 16)
-redefined-outer-name:22:4::Redefining name 'a' from outer scope (line 21)

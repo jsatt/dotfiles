@@ -1,6 +1,0 @@
-*.egg
-*.egg-info
-*.py[cod]
-.hypothesis/
-.tox
-dist

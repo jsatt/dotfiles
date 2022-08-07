@@ -36,6 +36,7 @@ plugins=(
     virtualenvwrapper
 
     zshmarks
+    zsh-kitty
 )
 
 source $ZSH/oh-my-zsh.sh

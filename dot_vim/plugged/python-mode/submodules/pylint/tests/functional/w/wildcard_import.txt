@@ -1,2 +1,0 @@
-wildcard-import:2:0::Wildcard import indirect1
-wildcard-import:5:0::Wildcard import unknown.package

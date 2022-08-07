@@ -1,0 +1,16 @@
+[".oh-my-zsh"]
+    type = "git-repo"
+    url = "https://github.com/ohmyzsh/ohmyzsh.git"
+    refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zshmarks"]
+    type = "git-repo"
+    url = "https://github.com/jocelynmallon/zshmarks.git"
+    refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-kitty"]
+    type = "git-repo"
+    url = "https://github.com/redxtech/zsh-kitty.git"
+    refreshPeriod = "168h"
+[".tmux/plugins/tpm"]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tpm"
+    refreshPeriod = "168h"

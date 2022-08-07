@@ -1,7 +1,0 @@
-aa8e8f270c1d3be4fbe6b153827a191a5fcaa0d7		branch 'master' of https://github.com/LucHermitte/lh-vim-lib
-c1d47555c03d870f9cc6103492a2194736f97da1	not-for-merge	branch 'complete-LetTo-subprj' of https://github.com/LucHermitte/lh-vim-lib
-baf0303342ff5e90ed3f4a5f4861581fac158ac0	not-for-merge	branch 'fix_MsWin_path' of https://github.com/LucHermitte/lh-vim-lib
-9932b813e316a51469deeba5d952d1e3e094f068	not-for-merge	branch 'fix_job_queue' of https://github.com/LucHermitte/lh-vim-lib
-79b3678e10a34a2d35ba012ee0d44e99f66306eb	not-for-merge	branch 'prj_split_refactor' of https://github.com/LucHermitte/lh-vim-lib
-f93ef0d5cab070aeccf45f59d67ede549cf00b1b	not-for-merge	branch 'project' of https://github.com/LucHermitte/lh-vim-lib
-f888b8a9220f798051e946ab276aa3a4aee7f65f	not-for-merge	branch 'travis_tests' of https://github.com/LucHermitte/lh-vim-lib

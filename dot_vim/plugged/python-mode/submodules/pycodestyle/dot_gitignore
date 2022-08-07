@@ -1,9 +1,0 @@
-*.egg
-*.egg-info
-*.pyc
-/.coverage
-/.tox
-/build/
-/dist
-/venv*/
-docs/_build

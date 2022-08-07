@@ -1,5 +1,0 @@
-attrs
-nose
-numpy
-python-dateutil
-six

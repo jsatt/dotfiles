@@ -1,1 +1,0 @@
-deprecated-module:4:0::Uses of a deprecated module 'optparse'

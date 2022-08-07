@@ -1,6 +1,0 @@
-0000000000000000000000000000000000000000 4ea05b638d65276cd08ae7b25532b9e516b5a2d5 Jeremy Satterfield <jsatt@jsatt.com> 1587074546 -0500	clone: from https://github.com/klen/python-mode.git
-4ea05b638d65276cd08ae7b25532b9e516b5a2d5 f94b0d7b21714f950f5878b430fbfde21c3b7ad9 Jeremy Satterfield <jsatt@jsatt.com> 1587074550 -0500	checkout: moving from develop to master
-f94b0d7b21714f950f5878b430fbfde21c3b7ad9 f94b0d7b21714f950f5878b430fbfde21c3b7ad9 Jeremy Satterfield <jsatt@jsatt.com> 1633211156 -0500	checkout: moving from master to master
-f94b0d7b21714f950f5878b430fbfde21c3b7ad9 4ea05b638d65276cd08ae7b25532b9e516b5a2d5 Jeremy Satterfield <jsatt@jsatt.com> 1633211296 -0500	checkout: moving from master to develop
-4ea05b638d65276cd08ae7b25532b9e516b5a2d5 4bc45810a787d4e7c922124c016714334a385033 Jeremy Satterfield <jsatt@jsatt.com> 1633211296 -0500	merge origin/develop: Fast-forward
-4bc45810a787d4e7c922124c016714334a385033 4bc45810a787d4e7c922124c016714334a385033 Jeremy Satterfield <jsatt@jsatt.com> 1633212469 -0500	checkout: moving from develop to develop

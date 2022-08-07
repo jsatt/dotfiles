@@ -1,1 +1,0 @@
-disallowed-name:3:0:baz:Disallowed name "baz"

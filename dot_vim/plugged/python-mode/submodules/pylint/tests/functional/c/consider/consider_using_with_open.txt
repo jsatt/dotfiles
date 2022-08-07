@@ -1,1 +1,0 @@
-consider-using-with:11:4:test_open:Consider using 'with' for resource-allocating operations

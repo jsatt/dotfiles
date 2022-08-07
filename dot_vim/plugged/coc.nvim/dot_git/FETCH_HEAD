@@ -1,5 +1,0 @@
-287c743c9f227fdf0e1db452bbb8ae3c5caffc36		branch 'release' of https://github.com/neoclide/coc.nvim
-a9da141dbcb16e72754269a85c20e14832e81639	not-for-merge	branch 'feat/typings-SemanticTokensBuilder' of https://github.com/neoclide/coc.nvim
-5c8569bb4d20903c7767644037b5e9566b844ced	not-for-merge	branch 'feat/use-ts-hi-group' of https://github.com/neoclide/coc.nvim
-d8faa211837900a087e5a37654d225adee7a8cc3	not-for-merge	branch 'fix/create-config-file' of https://github.com/neoclide/coc.nvim
-03c9add7cd867a013102dcb45fb4e75304d227d7	not-for-merge	branch 'master' of https://github.com/neoclide/coc.nvim

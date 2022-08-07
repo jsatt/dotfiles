@@ -1,1 +1,0 @@
-pointless-string-statement:18:4:ClassLevelAttributeTest:String statement has no effect
