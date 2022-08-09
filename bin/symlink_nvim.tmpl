@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.os "linux" -}}
+nvim.appimage
+{{- else if eq .chezmoi.os "darwin" -}}
+nvim-macos/bin/nvim
+{{ end -}}

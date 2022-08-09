@@ -4,6 +4,7 @@ fi
 export SHELL=zsh
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR="$(command -v nvim 2>/dev/null || command -v vim)"
+fpath=(~/.zsh_plugins $fpath)
 # if [ "$TERM" = "xterm" ]; then
 #     export TERM=xterm-256color
 # fi
@@ -59,7 +60,7 @@ LESS+=F
 
 setopt appendhistory
 setopt autocd
-setopt completealiases
+# setopt completealiases
 setopt correct
 setopt extendedglob
 setopt histignoredups
@@ -72,8 +73,10 @@ unsetopt clobber
 
 # completion
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle :compinstall filename '/home/jsatt/.zshrc'
+zstyle :compinstall filename $HOME/.zshrc
 autoload -Uz compinit
 compinit
 
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+
+# vim: ft=zsh :

@@ -14,3 +14,17 @@
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm"
     refreshPeriod = "168h"
+
+{{ if eq .chezmoi.os "linux" -}}
+["bin/nvim.appimage"]
+    type = "file"
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
+    executable = true
+    refreshPeriod = "168h"
+{{ else if eq .chezmoi.os "darwin" -}}
+["bin/nvim-macos"]
+    type = "archive"
+    exact = true
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-macos.tar.gz"
+    refreshPeriod = "168h"
+{{ end -}}
