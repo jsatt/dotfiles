@@ -90,6 +90,20 @@ utils.prepare_module('lspsaga', function(lspsaga)
   vim.keymap.set('n', '<leader>ln', lspsaga_diag.goto_next, {noremap = true, silent = true})
   vim.keymap.set('n', '<leader>d', lspsaga_diag.show_line_diagnostics, {noremap = true, silent = true})
   -- vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = true})
+end, function()  -- fallback
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, {noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>lp', vim.diagnostic.goto_prev, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>ln', vim.diagnostic.goto_next, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = true})
+
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {noremap = true, silent = true})
+  vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {noremap = true, silent = true })
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {noremap = true, silent = true})
+  vim.keymap.set('v', '<leader>ca', function()
+      vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
+      vim.lsp.buf.range_code_action()
+  end, {noremap = true, silent = true})
 end)
 
 -- DAP
