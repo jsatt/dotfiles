@@ -75,7 +75,7 @@ utils.prepare_module('lspsaga', function(lspsaga)
   vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, {noremap = true, silent = true })
   vim.keymap.set("n", "gd", require("lspsaga.definition").preview_definition, {noremap = true, silent = true })
 
-  vim.keymap.set('n', 'gh', require('lspsaga.finder').lsp_finder, {noremap = true, silent = true})
+  vim.keymap.set('n', 'gh', function() require('lspsaga.finder'):lsp_finder() end, {noremap = true, silent = true})
   vim.keymap.set('n', '<leader>rn', require('lspsaga.rename').lsp_rename, {noremap = true, silent = true})
 
   local lspsaga_codeaction = require('lspsaga.codeaction')
@@ -93,32 +93,32 @@ utils.prepare_module('lspsaga', function(lspsaga)
 end)
 
 -- DAP
--- vim.keymap.set('n', '<leader>dct', '<cmd>lua require"dap".continue()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dsv', '<cmd>lua require"dap".step_over()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dsi', '<cmd>lua require"dap".step_into()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dso', '<cmd>lua require"dap".step_out()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dtb', '<cmd>lua require"dap".toggle_breakpoint()<CR>', {noremap = true, silent = true})
+utils.prepare_module('dap', function(dap)
+  vim.keymap.set('n', '<leader>dd', dap.disconnect, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>dc', dap.continue, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>dn', dap.step_over, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>ds', dap.step_into, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>du', dap.step_out, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>dB', function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>dl', function() dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>dr', dap.repl.open, {noremap = true, silent = true})
 
--- vim.keymap.set('n', '<leader>dsc', '<cmd>lua require"dap.ui.variables".scopes()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dhh', '<cmd>lua require"dap.ui.variables".hover()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('v', '<leader>dhv', '<cmd>lua require"dap.ui.variables".visual_hover()<CR>', {noremap = true, silent = true})
+  utils.prepare_module('dapui', function(dapui)
+    vim.keymap.set('n', '<leader>di', dapui.toggle, {noremap = true, silent = true})
+    vim.keymap.set('n', '<leader>de', dapui.eval, {noremap = true, silent = true})
+    vim.keymap.set('n', '<leader>dhs', function() dapui.float_element('scopes') end, {noremap = true, silent = true})
+    vim.keymap.set('n', '<leader>dhf', function() dapui.float_element('stacks') end, {noremap = true, silent = true})
+    vim.keymap.set('n', '<leader>dhw', function() dapui.float_element('watched') end, {noremap = true, silent = true})
+    vim.keymap.set('n', '<leader>dht', function() dapui.float_element('threads') end, {noremap = true, silent = true})
+  end)
 
--- vim.keymap.set('n', '<leader>duh', '<cmd>lua require"dap.ui.widgets".hover()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>duf', '<cmd>lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes)<CR>', {noremap = true, silent = true})
-
--- vim.keymap.set('n', '<leader>dsbr', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dsbm', '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dro', '<cmd>lua require"dap".repl.open()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>drl', '<cmd>lua require"dap".repl.run_last()<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dui', '<cmd>lua require"dapui".toggle()<CR>', {noremap = true, silent = true})
-
-
--- -- telescope-dap
--- vim.keymap.set('n', '<leader>dcc', '<cmd>lua require"telescope".extensions.dap.commands{}<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dco', '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>', {noremap = true, silent = true})
--- vim.keymap.set('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>', {noremap = true, silent = true})
+  -- telescope-dap
+  vim.keymap.set('n', '<leader>dcc', '<cmd>lua require"telescope".extensions.dap.commands{}<CR>', {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>dco', '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>', {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>', {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>', {noremap = true, silent = true})
+end)
 
 -- Diff navigation
 if vim.opt.diff:get() then

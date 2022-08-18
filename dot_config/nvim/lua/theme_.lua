@@ -68,6 +68,14 @@ M.gitsigns = {
   topdelete = {text = '', hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
 }
 
+M.dap_signs = {
+  breakpoint = {name = 'DapBreakpoint', text = '•', hl = 'DiagnosticError', numhl = '', linehl = ''},
+  cond_breakpoint = {name = 'DapBreakpointCondition', text = '•', hl = 'DiagnosticWarn', numhl = '', linehl = ''},
+  log_point = {name = 'DapLogPoint', text = '❏', hl = 'DiagnosticHint', numhl = '', linehl = ''},
+  stopped = {name = 'DapStopped', text = '', hl = 'DiagnosticError', numhl = '', linehl = 'debugPC'},
+  rejected = {name = 'DapBreakpoint', text = '🅧', hl = 'DiagnosticError', numhl = '', linehl = ''},
+}
+
 M.kind_icons = {
   Text = "",
   Method = "m",

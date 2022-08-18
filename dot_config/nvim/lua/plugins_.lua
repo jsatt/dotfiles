@@ -80,12 +80,11 @@ utils.prepare_module('packer', function(packer)
     use 'glepnir/lspsaga.nvim'
 
     -- DAP
-    -- use {'mfussenegger/nvim-dap'}
-    -- use {'nvim-telescope/telescope-dap.nvim'}
-    -- use {'mfussenegger/nvim-dap-python'}
-    -- use {'theHamsta/nvim-dap-virtual-text'}
-    -- use {'rcarriga/nvim-dap-ui'}
-    -- use {'Pocco81/DAPInstall.nvim'}
+    use {'mfussenegger/nvim-dap'}
+    use {'nvim-telescope/telescope-dap.nvim'}
+    use {'mfussenegger/nvim-dap-python', branch = 'multi-session'}
+    use {'theHamsta/nvim-dap-virtual-text'}
+    use {'rcarriga/nvim-dap-ui'}
 
     -- Commands
     use 'lewis6991/impatient.nvim'
@@ -165,6 +164,7 @@ utils.prepare_module('telescope', function(telescope)
     }
   }
 	utils.prepare_module('aerial', function() telescope.load_extension('aerial') end)
+	utils.prepare_module('telescope._extensions.dap', function() telescope.load_extension('dap') end)
   utils.prepare_module('telescope-emoji', function() telescope.load_extension('emoji') end)
   utils.prepare_module('notify', function() telescope.load_extension('notify') end)
 	utils.prepare_module('possession', function() telescope.load_extension('possession') end)

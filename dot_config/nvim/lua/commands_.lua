@@ -25,6 +25,14 @@ vim.api.nvim_create_autocmd('BufWritePost', { -- auto-apply files managed by che
   command = '!chezmoi apply --source-path "%"',
 })
 
+vim.api.nvim_create_autocmd('FileType', { -- add completion in DAP Repl
+  group = vim.api.nvim_create_augroup('dap', {clear = true}),
+  pattern = 'dap-repl',
+  callback = function ()
+    require('dap.ext.autocompl').attach()
+  end,
+})
+
 vim.cmd [[
 function! DeleteInactiveBufs()
     "From tabpagebuflist() help, get a list of all buffers in all tabs
