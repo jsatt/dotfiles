@@ -7,6 +7,9 @@ local server_configs = {
   html = {},
   jsonls = {},
   pylsp = {
+    on_attach = function(client, bufnr)
+      client.resolved_capabilities.rename = false
+    end,
     settings = {
       pyls = {
         configurationSources = {"flake8"},
@@ -114,19 +117,19 @@ utils.prepare_module('mason', function(mason)
         return opts
       end
 
-      local opts = {
-        flags = {
-          debounce_text_changes = 150,
-        },
-        on_attach = function(client, bufnr)
-          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-          vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-          require('illuminate').on_attach(client)
-          require('aerial').on_attach(client, bufnr)
-        end,
-      }
-
       for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+        local opts = {
+          flags = {
+            debounce_text_changes = 150,
+          },
+          on_attach = function(client, bufnr)
+            vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+            vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+            require('illuminate').on_attach(client)
+            require('aerial').on_attach(client, bufnr)
+          end,
+        }
+
         if server_configs[server] ~= nil then
           opts = vim.tbl_deep_extend('force', opts, server_configs[server])
         end
@@ -151,7 +154,6 @@ utils.prepare_module('null-ls', function(null_ls)
 end)
 
 
--- require('lspsaga').init_lsp_saga()
 utils.prepare_module('lspsaga', function(lspsaga)
   lspsaga.init_lsp_saga {
     border_style = 'rounded',
@@ -168,7 +170,6 @@ utils.prepare_module('lspsaga', function(lspsaga)
       quit = {"<Esc>", "q"},
       exec = "<CR>",
     },
-    -- new config only
     show_diagnostic_source = true,
     diagnostic_source_bracket = {' ', ':'},
     code_action_lightbulb = {enable = false},
