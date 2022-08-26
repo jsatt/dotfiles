@@ -215,6 +215,7 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
       'lua',
       'make',
       'markdown',
+      'markdown_inline',
       'python',
       'query',
       'regex',
