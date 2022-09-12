@@ -75,10 +75,6 @@ local server_configs = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.foldingRange = {
---     dynamicRegistration = false,
---     lineFoldingOnly = true
--- }
 
 utils.prepare_module('mason', function(mason)
   mason.setup {
@@ -122,6 +118,10 @@ utils.prepare_module('mason', function(mason)
           flags = {
             debounce_text_changes = 150,
           },
+          handlers = {
+            ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'}),
+            ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded' }),
+          },
           on_attach = function(client, bufnr)
             vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
             vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
@@ -129,6 +129,9 @@ utils.prepare_module('mason', function(mason)
             require('aerial').on_attach(client, bufnr)
           end,
         }
+        utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
+            opts.handlers["textDocument/references"] = ts_builtin.lsp_references
+        end)
 
         if server_configs[server] ~= nil then
           opts = vim.tbl_deep_extend('force', opts, server_configs[server])
@@ -148,32 +151,7 @@ utils.prepare_module('null-ls', function(null_ls)
       null_ls.builtins.formatting.lua_format,
       null_ls.builtins.code_actions.gitrebase,
       null_ls.builtins.code_actions.gitsigns,
-      null_ls.builtins.code_actions.refactoring,
     }
-  }
-end)
-
-
-utils.prepare_module('lspsaga', function(lspsaga)
-  lspsaga.init_lsp_saga {
-    border_style = 'rounded',
-    finder_action_keys = {
-      open = "o",
-      vsplit = "v",
-      tabe = 't',
-      split = "s",
-      quit = "<Esc>",
-      scroll_down = "<C-f>",
-      scroll_up = "<C-d>",
-    },
-    code_action_keys = {
-      quit = "<Esc>",
-      exec = "<CR>",
-    },
-    show_diagnostic_source = true,
-    diagnostic_source_bracket = {' ', ':'},
-    code_action_lightbulb = {enable = false},
-    rename_action_quit = "<Esc>",
   }
 end)
 

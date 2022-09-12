@@ -77,7 +77,6 @@ utils.prepare_module('packer', function(packer)
     use 'williamboman/mason-lspconfig.nvim'
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
-    use 'glepnir/lspsaga.nvim'
 
     -- DAP
     use {'mfussenegger/nvim-dap'}
@@ -110,6 +109,7 @@ utils.prepare_module('packer', function(packer)
     use 'editorconfig/editorconfig-vim'
     use 'nvim-lualine/lualine.nvim'
     use 'sainnhe/sonokai'
+    use 'stevearc/dressing.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
@@ -119,6 +119,10 @@ utils.prepare_module('packer', function(packer)
   end)
 end)
 
+utils.prepare_module('dressing', function(dressing)
+  dressing.setup({
+  })
+end)
 
 utils.prepare_module('diffview', function(diffview)
   diffview.setup {
@@ -312,6 +316,13 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
         goto_previous_end = {
           ["[M"] = "@function.outer",
           ["[]"] = "@class.outer",
+        },
+      },
+      lsp_interop = {
+        enable = true,
+        border = 'rounded',
+        peek_definition_code = {
+          ["pd"] = "@block.outer",
         },
       },
     }

@@ -21,7 +21,10 @@ let m = matchadd('BadWhitespace', '\s\+$')
 let m = matchadd('BadWhitespace', '^\t\+')
 ]]
 
-vim.highlight.create('FloatBorder', {guifg = colors.grey.gui, ctermfg = colors.grey.term})
+-- vim.highlight.create('FloatBorder', {guifg = colors.grey.gui, ctermfg = colors.grey.term})
+vim.highlight.link('FloatBorder', 'Float', true)
+vim.highlight.link('FloatTitle', 'Normal', true)
+vim.highlight.link('NormalFloat', 'Normal', true)
 
 local sonokai_config = vim.fn['sonokai#get_configuration']()
 local colorscheme = vim.fn['sonokai#get_palette'](sonokai_config.style, sonokai_config.colors_override)

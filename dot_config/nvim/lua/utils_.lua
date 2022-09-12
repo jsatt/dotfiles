@@ -23,4 +23,18 @@ function M.noop(...)
   return nil
 end
 
+function M.open_in(target, callback)
+  local cmd = ''
+  if target == 'tab' then
+    cmd = 'tab split'
+  elseif target == 'split' then
+    cmd = 'split'
+  elseif target == 'vsplit' then
+    cmd = 'vsplit'
+  end
+
+  vim.cmd(cmd)
+  callback()
+end
+
 return M
