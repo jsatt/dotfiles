@@ -41,7 +41,7 @@ vim.keymap.set({'n', 'i'}, '<S-Down>', '<C-w>j')
 utils.prepare_module('osc52', function(osc52)
   vim.keymap.set('n', '<leader>y', osc52.copy_operator, {expr = true})
   vim.keymap.set('n', '<leader>yy', '<leader>y_', {remap = true})
-  vim.keymap.set('x', '<leader>y', osc52.copy_visual)
+  vim.keymap.set('v', '<leader>y', osc52.copy_visual)
 end)
 
 -- Telescope

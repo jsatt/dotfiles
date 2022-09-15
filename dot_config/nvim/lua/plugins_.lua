@@ -322,7 +322,7 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
         enable = true,
         border = 'rounded',
         peek_definition_code = {
-          ["pd"] = "@block.outer",
+          ["<leader>pd"] = "@block.outer",
         },
       },
     }
