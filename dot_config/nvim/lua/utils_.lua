@@ -19,6 +19,10 @@ function M.get_keys(tbl)
   return keys
 end
 
+function M.key_in_table(key, tbl)
+  return tbl[key] ~= nil
+end
+
 function M.noop(...)
   return nil
 end

@@ -114,6 +114,7 @@ utils.prepare_module('mason', function(mason)
       end
 
       for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+        local srv_opts = server_configs[server]
         local opts = {
           flags = {
             debounce_text_changes = 150,
@@ -122,20 +123,26 @@ utils.prepare_module('mason', function(mason)
             ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'}),
             ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded' }),
           },
-          on_attach = function(client, bufnr)
-            vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-            vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-            require('illuminate').on_attach(client)
-            require('aerial').on_attach(client, bufnr)
-          end,
         }
         utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
             opts.handlers["textDocument/references"] = ts_builtin.lsp_references
         end)
 
-        if server_configs[server] ~= nil then
-          opts = vim.tbl_deep_extend('force', opts, server_configs[server])
+        if srv_opts ~= nil then
+          opts = vim.tbl_deep_extend('force', opts, srv_opts)
         end
+
+        opts.on_attach = function(client, bufnr)
+          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+          vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+          utils.prepare_module('illuminate', function(mod) mod.on_attach(client) end)
+          utils.prepare_module('aerial', function(mod) mod.on_attach(client, bufnr) end)
+          utils.prepare_module('inlay-hints', function(mod) mod.on_attach(client, bufnr) end)
+          if utils.key_in_table('on_attach', srv_opts) then
+            srv_opts.on_attach(client, bufnr)
+          end
+        end
+
         lspconfig[server].setup(opts)
       end
     end)
