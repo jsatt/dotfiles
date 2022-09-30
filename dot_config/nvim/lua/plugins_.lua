@@ -350,10 +350,24 @@ end)
 
 -- Lualine
 utils.prepare_module('lualine', function(lualine)
+  function window_number()
+    return vim.api.nvim_win_get_number(0)
+  end
+  function searchCount()
+    local search = vim.fn.searchcount({ maxcount = 0 }) -- maxcount = 0 makes the number not be capped at 99
+    local searchCurrent = search.current
+    local searchTotal = search.total
+    if searchCurrent > 0 then
+      return "/"..vim.fn.getreg("/").." ["..searchCurrent.."/"..searchTotal.."]"
+    else
+      return ""
+    end
+  end
+
   lualine.setup {
     options = {
       theme = theme.lualine_theme,
-      globalstatus = true,
+      globalstatus = false,
       section_separators = {
         right = '',
         left = '',
@@ -367,6 +381,8 @@ utils.prepare_module('lualine', function(lualine)
       lualine_a = {'mode'},
       lualine_b = {
         {'branch', icon=''},
+      },
+      lualine_c = {
         {'diff',
           symbols = {
             added = theme.gitsigns.add.text .. ' ',
@@ -380,11 +396,8 @@ utils.prepare_module('lualine', function(lualine)
           }
         }
       },
-      lualine_c = {
-        {'filename', path=1, symbols={readonly=''}},
-        'aerial',
-      },
       lualine_x = {
+        searchCount,
         {
           'diagnostics',
           always_visible=true,
@@ -402,23 +415,51 @@ utils.prepare_module('lualine', function(lualine)
           },
         },
       },
-      lualine_y = {
+      lualine_y = {},
+      lualine_z = {},
+    },
+    inactive_sections = {},
+    tabline = {
+      lualine_a = {{'tabs', mode=2, max_length = vim.o.columns}},
+    },
+    winbar = {
+      lualine_b = {
+        window_number,
+        {'filename', path=1, symbols={readonly=''}},
+        'aerial',
+      },
+      lualine_x = {
         'filetype',
         'encoding',
         'fileformat'
       },
-      lualine_z = {
+      lualine_y = {
       'progress',
        {function() return ':%3l/%3L☰ :%-2v' end},  -- full file location
       },
+      lualine_z = {}
     },
-    tabline = {
-      lualine_a = {{'tabs', mode=2, max_length = vim.o.columns}},
+    inactive_winbar = {
+      lualine_b = {
+        window_number,
+        {'filename', path=1, symbols={readonly=''}},
+        'aerial',
+      },
+      lualine_x = {
+        'filetype',
+        'encoding',
+        'fileformat'
+      },
+      lualine_y = {
+      'progress',
+       {function() return ':%3l/%3L☰ :%-2v' end},  -- full file location
+      },
     },
     extensions = {
       'fugitive',
       'nvim-tree',
       'aerial',
+      'nvim-dap-ui',
     },
   }
 end)
