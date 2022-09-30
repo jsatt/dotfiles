@@ -23,6 +23,15 @@ function M.key_in_table(key, tbl)
   return tbl[key] ~= nil
 end
 
+function M.table_contains(tbl, val)
+  for i, v in ipairs(tbl) do
+    if v == val then
+      return true
+    end
+  end
+  return false
+end
+
 function M.noop(...)
   return nil
 end

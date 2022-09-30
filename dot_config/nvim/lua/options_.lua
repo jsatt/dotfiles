@@ -3,7 +3,7 @@ vim.cmd('filetype plugin indent on') -- enable filetype detection and fieltype s
 vim.opt.autoindent = true -- copy indent from current line when starting new line
 vim.opt.autoread = true -- auto-read if file has changed outside vim but not inside
 vim.opt.clipboard = 'unnamedplus' -- copy/paste to/from system clipboard
-vim.opt.cmdheight = 2 -- use 2 screen lines for command line
+vim.opt.cmdheight = 0 -- use 2 screen lines for command line
 vim.opt.completeopt='menu,menuone,noselect'
 vim.opt.cursorline = true -- highlight line that cursor is currently on
 vim.opt.encoding = 'utf8' -- use UTF-8 file encoding

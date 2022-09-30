@@ -1,3 +1,5 @@
+local utils = require('utils_')
+
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = vim.api.nvim_create_augroup('highlight_yank', {clear = true}),
     callback = function()
@@ -33,28 +35,26 @@ vim.api.nvim_create_autocmd('FileType', { -- add completion in DAP Repl
   end,
 })
 
-vim.cmd [[
-function! DeleteInactiveBufs()
-    "From tabpagebuflist() help, get a list of all buffers in all tabs
-    let tablist = []
-    for i in range(tabpagenr('$'))
-        call extend(tablist, tabpagebuflist(i + 1))
-    endfor
+local function delete_inactive_bufs()
+  local tablist = {}
+  for i = 1, vim.fn.tabpagenr('$') do
+    for _, t in ipairs(vim.fn.tabpagebuflist(i)) do
+      table.insert(tablist, t)
+    end
+  end
 
-    "Below originally inspired by Hara Krishna Dara and Keith Roberts
-    "http://tech.groups.yahoo.com/group/vim/message/56425
-    let nWipeouts = 0
-    for i in range(1, bufnr('$'))
-        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
-        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
-            silent exec 'bwipeout' i
-            let nWipeouts = nWipeouts + 1
-        endif
-    endfor
-    echomsg nWipeouts . ' buffer(s) wiped out'
-endfunction
+  local closed_tabs = 0
+  for _, i in ipairs(vim.api.nvim_list_bufs()) do
+    local buf_modified = vim.fn.getbufvar(i, '&mod') == 1
+    local buf_in_tab = utils.table_contains(tablist, i)
+    if not buf_modified and not buf_in_tab then
+      vim.fn.execute('bwipeout ' .. i)
+      closed_tabs = closed_tabs + 1
+    end
+  end
+  print(closed_tabs .. ' buffers closed')
+end
 
-command! Bdi :call DeleteInactiveBufs()
-command! CloseOthers :%bd|e#
-command! CloseBuffers :call DeleteInactiveBufs()
-]]
+vim.api.nvim_create_user_command('Bdi', delete_inactive_bufs, {})
+vim.api.nvim_create_user_command('CloseBuffers', delete_inactive_bufs, {})
+vim.api.nvim_create_user_command('CloseOthers', ':%bd|e#', {})

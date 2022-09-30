@@ -8,7 +8,7 @@ local server_configs = {
   jsonls = {},
   pylsp = {
     on_attach = function(client, bufnr)
-      client.resolved_capabilities.rename = false
+      client.server_capabilities.rename = false
     end,
     settings = {
       pyls = {
