@@ -1,4 +1,4 @@
-alias getip='wget -qO- icanhazip.com'aa
+alias getip='wget -qO- icanhazip.com'
 alias clearpyc='find . \( -type f -name "*.pyc" -o -type d -name __pycache__ \) -delete'
 alias manage='python manage.py'
 alias ipdbtest='manage test -sx --ipdb --ipdb-failures'
@@ -29,23 +29,23 @@ alias cmedit='chezmoi edit --apply'
 alias cmgit='chezmoi git'
 
 pip_exact_search() {
-    pip search $1 | rg $2 "^$1 \("
+    pip search "$1" | rg "$2" "^$1 \("
 }
 
 kubegetpod(){
-    kubectl get pods -l $1 -o jsonpath='{.items[0].metadata.name}'
+    kubectl get pods -l "$1" -o jsonpath='{.items[0].metadata.name}'
 }
 
 kubexec() {
-    kubectl exec -ti `kubegetpod $1` -- $2
+    kubectl exec -ti "$(kubegetpod "$1")" -- "$2"
 }
 
 kubelssecrets() {
-    kubectl get secrets $1 --template='{{range $k, $v := .data}}{{printf "%s\n" $k}}{{end}}'
+    kubectl get secrets "$1" --template='{{range $k, $v := .data}}{{printf "%s\n" $k}}{{end}}'
 }
 
 kubegetsecret() {
-    kubectl get secrets $1 --template="$2{{\"\n\"}}{{if .data.$2 }}encoded: {{.data.$2}}{{\"\n\"}}decoded: {{.data.$2 | base64decode}}{{else}}Not Found{{end}}{{\"\n\"}}"
+    kubectl get secrets "$1" --template='$2{{"\n"}}{{if .data.$2 }}encoded: {{.data.$2}}{{"\n"}}decoded: {{.data.$2 | base64decode}}{{else}}Not Found{{end}}{{"\n"}}'
 }
 
 # vim: set filetype=sh:
