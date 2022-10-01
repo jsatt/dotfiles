@@ -1,6 +1,7 @@
 local utils = require('utils_')
 
 local server_configs = {
+  bashls = {},
   cssls = {},
   dockerls = {},
   emmet_ls = {},

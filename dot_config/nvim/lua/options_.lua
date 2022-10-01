@@ -71,3 +71,9 @@ vim.diagnostic.config {
     -- prefix = "",
   },
 }
+
+vim.filetype.add({
+  extension = {
+    sls = 'yaml',
+  }
+})
