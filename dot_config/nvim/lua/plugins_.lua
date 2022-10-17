@@ -217,6 +217,7 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
       'comment',
       'css',
       'dockerfile',
+      'hcl',
       'html',
       'javascript',
       'json',
