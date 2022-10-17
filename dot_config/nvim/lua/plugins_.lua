@@ -88,9 +88,8 @@ utils.prepare_module('packer', function(packer)
     -- Commands
     use 'lewis6991/impatient.nvim'
     use {'jedrzejboczar/possession.nvim', requires = { 'nvim-lua/plenary.nvim' }}
-    use 'AndrewRadev/switch.vim'
+    use 'monaqa/dial.nvim'
     use 'tpope/vim-eunuch'
-    use 'tpope/vim-speeddating'
     use 'AndrewRadev/linediff.vim'
     use {'mg979/vim-visual-multi', branch = 'master'}
     use 'RRethy/vim-illuminate'
@@ -375,24 +374,30 @@ utils.prepare_module('possession', function(possession)
   }
 end)
 
--- Switch
-vim.g.switch_mapping = '='
-vim.g.switch_reverse_mapping = '+'
-vim.g.switch_no_builtins = 1
-vim.g.switch_custom_definitions = {
-  {'&&', '||'},
-  {['\\<and\\>'] = 'or', ['\\<or\\>'] = 'and'},
-  {['\\<on\\>'] = 'off', ['\\<off\\>'] = 'on'},
-  {['\\<On\\>'] = 'Off', ['\\<Off\\>'] = 'On'},
-  {['\\<yes\\>'] = 'no', ['\\<no\\>'] = 'yes'},
-  {['\\<Yes\\>'] = 'No', ['\\<No\\>'] = 'Yes'},
-  {['\\<true\\>'] = 'false', ['\\<false\\>'] = 'true'},
-  {['\\<True\\>'] = 'False', ['\\<False\\>'] = 'True'},
-  {
-    ['\\(\\k\\+\\) is \\(not\\)\\@!\\(\\k\\+\\)'] = '\\1 is not \\3',
-    ['\\(\\k\\+\\) is not \\(\\k\\+\\)'] = '\\1 is \\2',
-  },
-}
+-- Dial
+utils.prepare_module('dial.config', function(dial)
+  local augend = require('dial.augend')
+  dial.augends:register_group({
+    default = {
+      augend.constant.new({elements = {"true", "false"}, word=true, cyclic=true, preserve_case=true}),
+      augend.integer.alias.decimal_int,
+      augend.integer.alias.binary,
+      augend.integer.alias.hex,
+      augend.integer.alias.octal,
+      augend.date.alias["%m/%d/%Y"],
+      augend.date.alias["%Y-%m-%d"],
+      augend.date.alias["%m/%d"],
+      augend.date.alias["%H:%M"],
+      augend.date.alias["%H:%M:%S"],
+      augend.semver.alias.semver,
+      augend.constant.new({elements = {"and", "or"}, word=true, cyclic=true, preserve_case=true}),
+      augend.constant.new({elements = {"&&", "||"}, word=false, cyclic=true}),
+      augend.constant.new({elements = {"on", "off"}, word=true, cyclic=true, preserve_case=true}),
+      augend.constant.new({elements = {"yes", "no"}, word=true, cyclic=true, preserve_case=true}),
+      augend.constant.new({elements = {"is not", "is"}, word=true, cyclic=true, preserve_case=true}),
+    },
+  })
+end)
 
 
 -- Gitsigns

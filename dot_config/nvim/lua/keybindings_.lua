@@ -13,6 +13,14 @@ vim.keymap.set('n', '<leader>hcc', ':CoverageClear<CR>')
 vim.keymap.set('n', '<leader>/', ':let @/ = ""<CR>')
 
 vim.keymap.set('n', '<C-c>', '<C-a>', {}) -- remap increment to avoid clash with screen/tmux
+utils.prepare_module('dial.map', function(dial)
+  vim.keymap.set('n', '<C-c>', dial.inc_normal(), {noremap = true}) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('n', '<C-x>', dial.dec_normal(), {noremap = true}) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', '<C-c>', dial.inc_visual(), {noremap = true}) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', '<C-x>', dial.dec_visual(), {noremap = true}) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', 'g<C-c>', dial.inc_gvisual(), {noremap = true}) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', 'g<C-x>', dial.dec_gvisual(), {noremap = true}) -- remap increment to avoid clash with screen/tmux
+end)
 
 -- remap home and ending keys
 vim.keymap.set({'n', 'v'}, 'H', '^')
