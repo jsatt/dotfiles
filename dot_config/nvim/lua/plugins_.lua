@@ -57,7 +57,6 @@ utils.prepare_module('packer', function(packer)
     -- Code Completion
     -- use 'tpope/vim-surround'
     use 'kylechui/nvim-surround'
-    use 'mattn/emmet-vim'
     use 'numToStr/Comment.nvim'
     use 'dcampos/nvim-snippy'
     use 'honza/vim-snippets'
@@ -91,9 +90,8 @@ utils.prepare_module('packer', function(packer)
     use 'monaqa/dial.nvim'
     use 'tpope/vim-eunuch'
     use 'AndrewRadev/linediff.vim'
-    use {'mg979/vim-visual-multi', branch = 'master'}
+    use {'mg979/vim-visual-multi', branch = 'master', setup = function() vim.g.VM_default_mappings = 0 end }
     use 'RRethy/vim-illuminate'
-    -- use {'ojroques/vim-oscyank', branch = 'main'}
     use 'ojroques/nvim-osc52'
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'xiyaowong/telescope-emoji.nvim', requires = {'nvim-telescope/telescope.nvim'}}
@@ -199,6 +197,11 @@ utils.prepare_module('nvim-tree', function(nvim_tree)
           {key = 'v', cb = tree_cb('vsplit')},
           {key = 't', cb = tree_cb('tabnew')},
         },
+      },
+    },
+    actions = {
+      change_dir = {
+        enable = false,
       },
     },
   }
@@ -346,9 +349,6 @@ utils.prepare_module('osc52', function(osc52)
   }
 end)
 
--- ZenCoding
-vim.g.user_emmet_expandabbr_key='<c-e>' -- expand w/ Ctrl-e
-
 utils.prepare_module('nvim-surround', function(surround)
   surround.setup()
 end)
@@ -364,9 +364,14 @@ end)
 -- Possession
 utils.prepare_module('possession', function(possession)
   possession.setup {
+    autosave = {
+      current = true,
+      on_quit = true,
+    },
       commands = {
           save = 'SSave',
           load = 'SLoad',
+          close = 'SClose',
           delete = 'SDelete',
           show = 'SShow',
           list = 'SList',
