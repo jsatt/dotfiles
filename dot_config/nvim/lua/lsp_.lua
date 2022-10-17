@@ -3,6 +3,7 @@ local utils = require('utils_')
 local server_configs = {
   bashls = {},
   cssls = {},
+  cspell = {},
   dockerls = {},
   emmet_ls = {},
   html = {},
@@ -155,11 +156,16 @@ end)
 utils.prepare_module('null-ls', function(null_ls)
   null_ls.setup {
     sources = {
+      null_ls.builtins.code_actions.cspell,
+      null_ls.builtins.code_actions.gitrebase,
+      null_ls.builtins.code_actions.gitsigns,
+
+      null_ls.builtins.diagnostics.cspell.with({filetypes = {'text', 'markdown', 'gitcommit'}}),
+      null_ls.builtins.diagnostics.zsh,
+
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.json_tool,
       null_ls.builtins.formatting.lua_format,
-      null_ls.builtins.code_actions.gitrebase,
-      null_ls.builtins.code_actions.gitsigns,
     }
   }
 end)
