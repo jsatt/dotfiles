@@ -10,6 +10,7 @@ vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeToggle<CR>', {})
 vim.keymap.set('n', '<leader>hg', ':TSHighlightCapturesUnderCursor<CR>')
 vim.keymap.set('n', '<leader>hc', ':Coverage<CR>')
 vim.keymap.set('n', '<leader>hcc', ':CoverageClear<CR>')
+vim.keymap.set('n', '<leader>/', ':let @/ = ""<CR>')
 
 vim.keymap.set('n', '<C-c>', '<C-a>', {}) -- remap increment to avoid clash with screen/tmux
 

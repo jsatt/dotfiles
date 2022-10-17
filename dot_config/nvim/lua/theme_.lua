@@ -48,8 +48,8 @@ M.lualine_theme = {
   },
   inactive = {
     a = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui, gui = 'bold' },
-    b = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui },
-    c = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui },
+    b = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui , gui = 'bold'},
+    c = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui, gui = 'bold' },
   },
 }
 
