@@ -68,13 +68,13 @@ local server_configs = {
       }
     }
   },
+  terraformls = {},
   vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
   yamlls = {},
 }
 
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 utils.prepare_module('mason', function(mason)
@@ -135,8 +135,8 @@ utils.prepare_module('mason', function(mason)
         end
 
         opts.on_attach = function(client, bufnr)
-          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-          vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+          -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+          -- vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
           utils.prepare_module('illuminate', function(mod) mod.on_attach(client) end)
           utils.prepare_module('aerial', function(mod) mod.on_attach(client, bufnr) end)
           utils.prepare_module('inlay-hints', function(mod) mod.on_attach(client, bufnr) end)

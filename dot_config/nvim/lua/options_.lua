@@ -1,3 +1,5 @@
+local utils = require('utils_')
+
 vim.opt.secure = true -- limit commands .nvimrc can run
 vim.cmd('filetype plugin indent on') -- enable filetype detection and fieltype specific plugins and indents
 vim.opt.autoindent = true -- copy indent from current line when starting new line
@@ -17,7 +19,7 @@ vim.opt.hlsearch = true -- highlight matches when searching
 vim.opt.incsearch = true -- jump to next match when searching
 vim.opt.laststatus = 0 -- show status line
 vim.opt.linebreak = true -- visually wrap long lines on breakat characters
-vim.opt.mouse = 'a' -- enable mouse in all modes
+-- vim.opt.mouse = 'a' -- enable mouse in all modes
 vim.opt.number = true -- show line numbers
 vim.opt.numberwidth = 2 -- width of line number column
 vim.opt.scrolloff = 10 -- keep lines above and below cursor when scrolliing
@@ -27,14 +29,15 @@ vim.opt.shortmess:append('c') -- don't give |ins-completion-menu| messages
 vim.opt.signcolumn = 'yes' -- always show sign column, 2 columns wide
 vim.opt.smarttab = true -- use <BS> to delete shiftwidth worth of space at start of line
 vim.opt.softtabstop = 4 -- 4 spaces for tabsin INSERT mode
+vim.opt.spelllang = 'en_us' -- set spell check to US English
 vim.opt.splitbelow = true -- open new splits below instead of above
 vim.opt.splitright = true -- open new vsplits to the right instead of left
 vim.opt.swapfile = false -- diable swapfiles
 vim.opt.switchbuf = 'useopen,usetab,newtab' -- use open buffers when switching
 vim.opt.tabstop = 4 -- 4 spaces for tabs
 vim.opt.textwidth = 99 -- format lines to <100 characters
--- local softtextwidth = 90 -- start considering line length at 90
-vim.o.colorcolumn = '90,91,92,93,94,95,96,97,98,99' -- highlight columns to indicate long lines
+local softtextwidth = 90 -- start considering line length at 90
+vim.o.colorcolumn = table.concat(utils.range(softtextwidth, vim.opt.textwidth:get()), ',') -- highlight columns to indicate long lines
 vim.opt.timeoutlen = 500 -- drop keymap timeout to 500ms
 vim.opt.undodir = vim.fn.stdpath('data') .. '/undodir' -- keep undo files
 vim.opt.undofile = true -- save undos to files

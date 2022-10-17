@@ -2,17 +2,14 @@ local utils = require('utils_')
 local theme = require('theme_')
 
 utils.prepare_module('cmp', function(cmp)
-  -- local cmp_buffer = require('cmp_buffer')
   local snippy = require('snippy')
 
-  local cmp_default_config = require('cmp.config.default')()
-  local cmp_path_opts = {trailing_slash = true }
+  local cmp_path_opts = {trailing_slash = true, get_cwd = function(params) return vim.fn.getcwd() end}
 
   cmp.setup {
     snippet = {
       expand = function(args)
         snippy.expand_snippet(args.body)
-        -- luasnip.lsp_expand(args.body)
       end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -43,7 +40,6 @@ utils.prepare_module('cmp', function(cmp)
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      -- { name = 'luasnip' },
       { name = 'snippy' },
       { name = 'nvim_lua' },
     }, {
@@ -61,11 +57,9 @@ utils.prepare_module('cmp', function(cmp)
       }),
     },
     formatting = {
-      mttinields = { "kind", "abbr", "menu"},
+      fields = { "kind", "abbr", "menu"},
       format = function(entry, vim_item)
-        -- Kind icons
         vim_item.kind = string.format("%s", theme.kind_icons[vim_item.kind])
-        -- vim_item.kind = string.format('%s %s', theme.kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
           snippy = "[Snippet]",
@@ -77,15 +71,6 @@ utils.prepare_module('cmp', function(cmp)
     },
     experimental = {
       ghost_text = true,
-      native_menu = false,
-    },
-    sorting = {
-      comparators = vim.list_extend(
-        {
-          -- function(...) return cmp_buffer:compare_locality(...) end,
-        },
-        cmp_default_config.sorting.comparators
-      ),
     },
   }
 
@@ -104,7 +89,7 @@ utils.prepare_module('cmp', function(cmp)
       { name = 'path', option = cmp_path_opts}
     }, {
       { name = 'cmdline' }
-    })
+    }),
   })
 
   -- cmp.setup.filetype('gitcommit', {

@@ -20,6 +20,9 @@ function M.get_keys(tbl)
 end
 
 function M.key_in_table(key, tbl)
+  if tbl == nil then
+    return false
+  end
   return tbl[key] ~= nil
 end
 
@@ -48,6 +51,14 @@ function M.open_in(target, callback)
 
   vim.cmd(cmd)
   callback()
+end
+
+function M.range(start_pos, end_pos)
+  local ret = {}
+  for i = start_pos, end_pos do
+    table.insert(ret, i)
+  end
+  return ret
 end
 
 return M
