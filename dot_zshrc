@@ -77,6 +77,11 @@ zstyle :compinstall filename $HOME/.zshrc
 autoload -Uz compinit
 compinit
 
+# Until everything is on zsh 5.9+
+# https://github.com/ohmyzsh/ohmyzsh/issues/10156#issuecomment-912399945
+autoload +X -Uz _git && _git &>/dev/null
+functions[_git-stash]=${functions[_git-stash]//\\_git-notes /}
+
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # vim: ft=zsh :
