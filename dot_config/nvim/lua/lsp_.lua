@@ -136,11 +136,6 @@ utils.prepare_module('mason', function(mason)
         end
 
         opts.on_attach = function(client, bufnr)
-          -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-          -- vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-          utils.prepare_module('illuminate', function(mod) mod.on_attach(client) end)
-          utils.prepare_module('aerial', function(mod) mod.on_attach(client, bufnr) end)
-          utils.prepare_module('inlay-hints', function(mod) mod.on_attach(client, bufnr) end)
           if utils.key_in_table('on_attach', srv_opts) then
             srv_opts.on_attach(client, bufnr)
           end

@@ -421,7 +421,9 @@ end)
 -- Aerial
 utils.prepare_module('aerial', function(aerial)
   aerial.setup {
-    default_direction = 'prefer_left',
+    layout = {
+      default_direction = 'prefer_left',
+    },
     icons = theme.kind_icons,
     link_folds_to_tree = true,
     link_tree_to_folds = true,

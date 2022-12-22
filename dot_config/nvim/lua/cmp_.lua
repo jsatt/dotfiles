@@ -78,7 +78,7 @@ utils.prepare_module('cmp', function(cmp)
   cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-      { name = 'buffer' }
+      { name = 'buffer' },
     }
   })
 
@@ -86,9 +86,8 @@ utils.prepare_module('cmp', function(cmp)
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path', option = cmp_path_opts}
-    }, {
-      { name = 'cmdline' }
+      { name = 'path', option = cmp_path_opts},
+      { name = 'cmdline' },
     }),
   })
 
