@@ -38,6 +38,10 @@ vim.keymap.set('n', '<C-Right>', ':tabnext<CR>')
 vim.keymap.set('n', '<C-Left>', ':tabprevious<CR>')
 vim.keymap.set('i', '<C-Right>', '<Esc>:tabnext<CR>', {silent = true})
 vim.keymap.set('i', '<C-Left>', '<Esc>:tabprevious<CR>', {silent = true})
+vim.keymap.set('n', '<A-Right>', ':tabm +1<CR>')  -- terminal emulators don't pass S-C keys, use a different mapping
+vim.keymap.set('n', '<A-Left>', ':tabm -1<CR>')
+vim.keymap.set('i', '<A-Right>', '<Esc>:tabm +1<CR>', {silent = true})
+vim.keymap.set('i', '<A-Left>', '<Esc>:tabim -1<CR>', {silent = true})
 
 -- navigation between splits
 vim.keymap.set({'n', 'i'}, '<S-Left>', '<C-w>h')
