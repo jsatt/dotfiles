@@ -232,6 +232,7 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
       'python',
       'query',
       'regex',
+      'terraform',
       'vim',
       'yaml',
     },
@@ -335,6 +336,16 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
         },
       },
     }
+  }
+
+  local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
+  parser_config.gotmpl = {
+    install_info = {
+      url = "https://github.com/ngalaiko/tree-sitter-go-template",
+      files = {"src/parser.c"}
+    },
+    filetype = "gotmpl",
+    used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
   }
   vim.opt.foldmethod = 'expr'
   vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
