@@ -355,7 +355,7 @@ end)
 -- vim.g.oscyank_max_length = 1000000
 utils.prepare_module('osc52', function(osc52)
   osc52.setup {
-    max_length = 1000000,  -- Maximum length of selection
+    max_length = 0,  -- Maximum length of selection
     silent = false,        -- Disable message on successful copy
     trim = true,           -- Trim text before copy
   }
