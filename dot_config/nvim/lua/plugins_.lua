@@ -42,7 +42,7 @@ utils.prepare_module('packer', function(packer)
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/playground'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'p00f/nvim-ts-rainbow'
+    use 'mrjones2014/nvim-ts-rainbow'
 
     -- VCS
     use 'tpope/vim-fugitive'
@@ -76,7 +76,7 @@ utils.prepare_module('packer', function(packer)
     use 'williamboman/mason-lspconfig.nvim'
     use 'WhoIsSethDaniel/mason-tool-installer.nvim'
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
-    use 'j-hui/fidget.nvim'
+    -- use 'j-hui/fidget.nvim'
 
     -- DAP
     use {'mfussenegger/nvim-dap'}
