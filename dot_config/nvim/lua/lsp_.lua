@@ -1,14 +1,15 @@
 local utils = require('utils_')
 
-local server_configs = {
-  bashls = {},
-  cssls = {},
-  cspell = {},
-  dockerls = {},
-  emmet_ls = {},
-  html = {},
-  jsonls = {},
+local lsp_configs = {
+  bashls = {mason_name = 'bash-language-server'},
+  cssls = {mason_name = 'css-lsp'},
+  dockerls = {mason_name = 'dockerfile-language-server'},
+  emmet_ls = {mason_name = 'emmet-ls'},
+  html = {mason_name = 'html-lsp'},
+  jsonls = {mason_name = 'json-lsp'},
+  -- marksman = {mason_name = 'marksman'},
   pylsp = {
+    mason_name = 'python-lsp-server',
     on_attach = function(client, bufnr)
       client.server_capabilities.rename = false
     end,
@@ -31,6 +32,7 @@ local server_configs = {
     },
   },
   pyright = {
+    mason_name = 'pyright',
     settings = {
       python = {
         analysis = {
@@ -42,8 +44,9 @@ local server_configs = {
       }
     }
   },
-  salt_ls = {},
+  salt_ls = {mason_name = 'salt-lsp'},
   sumneko_lua = {
+    mason_name = 'lua-language-server',
     init_options = {
       embeddedLanguages = {
         vim = true,
@@ -69,9 +72,27 @@ local server_configs = {
       }
     }
   },
-  terraformls = {},
-  vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
-  yamlls = {},
+  terraformls = {
+    mason_name = 'terraform-ls',
+  },
+  vimls = {mason_name = 'vim-language-server', suggest = { fromRuntimepath = true, fromVimruntime = true }, },
+  yamlls = {
+    mason_name = 'yaml-language-server',
+    on_attach = function(client, bufnr)
+      if string.find(vim.api.nvim_buf_get_name(bufnr), 'k8s/helm') then
+        -- don't use diagnostics on helm files because the lsp can't handle templating
+        vim.diagnostic.disable(bufnr)
+      end
+    end,
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.20.13/all.json"] = "/k8s/**/*.yaml",
+            }
+        }
+    }
+  },
 }
 
 -- Add additional capabilities supported by nvim-cmp
@@ -87,12 +108,16 @@ utils.prepare_module('mason', function(mason)
         package_pending = "➜",
         package_uninstalled = "✗"
       }
-    }
+    },
+    providers = {
+      "mason.providers.client",
+      "mason.providers.registry-api"
+    },
   }
 
   utils.prepare_module('mason-lspconfig', function(mason_lspconfig)
     mason_lspconfig.setup {
-      ensure_installed = utils.get_keys(server_configs),
+      ensure_installed = utils.get_keys(lsp_configs),
       automatic_installation = true,
       ui = {
         icons = {
@@ -117,7 +142,7 @@ utils.prepare_module('mason', function(mason)
       end
 
       for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-        local srv_opts = server_configs[server]
+        local srv_opts = lsp_configs[server]
         local opts = {
           flags = {
             debounce_text_changes = 150,
@@ -150,21 +175,24 @@ end)
 
 utils.prepare_module('null-ls', function(null_ls)
   null_ls.setup {
+    debug = true,
+    log_level = 'debug',
     sources = {
       null_ls.builtins.code_actions.cspell,
       null_ls.builtins.code_actions.gitrebase,
       null_ls.builtins.code_actions.gitsigns,
 
-      null_ls.builtins.diagnostics.cspell.with({filetypes = {'text', 'markdown', 'gitcommit'}}),
+      null_ls.builtins.diagnostics.cspell.with({extra_filetypes = {'text', 'markdown', 'gitcommit'}}),
       null_ls.builtins.diagnostics.zsh,
 
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.json_tool,
       null_ls.builtins.formatting.lua_format,
+      null_ls.builtins.formatting.remark,
     }
   }
 end)
 
-utils.prepare_module('fidget', function(fidget)
-  fidget.setup({})
-end)
+-- utils.prepare_module('fidget', function(fidget)
+--   fidget.setup({})
+-- end)

@@ -74,6 +74,7 @@ utils.prepare_module('packer', function(packer)
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+    use 'WhoIsSethDaniel/mason-tool-installer.nvim'
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
     use 'j-hui/fidget.nvim'
 
