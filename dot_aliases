@@ -48,4 +48,8 @@ kubegetsecret() {
     kubectl get secrets "$1" --template='$2{{"\n"}}{{if .data.$2 }}encoded: {{.data.$2}}{{"\n"}}decoded: {{.data.$2 | base64decode}}{{else}}Not Found{{end}}{{"\n"}}'
 }
 
+kubeevent(){
+    kubectl get event --field-selector "involvedObject.name=$1"
+}
+
 # vim: set filetype=sh:
