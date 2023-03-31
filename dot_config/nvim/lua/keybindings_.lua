@@ -115,10 +115,10 @@ end)
 
 -- Diff navigation
 if vim.opt.diff:get() then
-    vim.keymap.set('n', '<leader>n', ']c', {expr = true})
-    vim.keymap.set('n', '<leader>p', '[c', {expr = true})
-    vim.keymap.set('n', '<leader>gl', ':diffg LOCAL<CR>', {silent = true})
-    vim.keymap.set('n', '<leader>gb', ':diffg BASE<CR>', {silent = true})
-    vim.keymap.set('n', '<leader>gr', ':diffg REMOTE<CR>', {silent = true})
-    vim.keymap.set('n', '<leader>du', ':diffupdate<CR>', {silent = true})
+    vim.keymap.set('n', '<leader>n', ']c', {})
+    vim.keymap.set('n', '<leader>p', '[c', {})
+    vim.keymap.set('n', '<leader>cl', ':diffg LOCAL<CR>', {silent = true})
+    vim.keymap.set('n', '<leader>cb', ':diffg BASE<CR>', {silent = true})
+    vim.keymap.set('n', '<leader>cr', ':diffg REMOTE<CR>', {silent = true})
+    vim.keymap.set('n', '<leader>cu', ':diffupdate<CR>', {silent = true})
 end

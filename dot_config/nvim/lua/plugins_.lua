@@ -124,11 +124,23 @@ utils.prepare_module('dressing', function(dressing)
 end)
 
 utils.prepare_module('diffview', function(diffview)
+  local actions = require('diffview.actions')
   diffview.setup {
     enhanced_diff_hl = true,
     view = {
       merge_tool = {
         layout = "diff4_mixed",
+      },
+    },
+    keymaps = {
+      view =  {
+        {'n', '<leader>n', actions.prev_conflict,},
+        {'n', '<leader>p', actions.next_conflict },
+        {'n', '<leader>cl', actions.conflict_choose('ours') },
+        {'n', '<leader>cb', actions.conflict_choose("theirs") },
+        {'n', '<leader>cr', actions.conflict_choose("base") },
+        {'n', '<leader>ca', actions.conflict_choose("all") },
+        {'n', '<leader>cx', actions.conflict_choose("none") },
       },
     },
   }
