@@ -76,6 +76,7 @@ utils.prepare_module('packer', function(packer)
     use 'williamboman/mason-lspconfig.nvim'
     use 'WhoIsSethDaniel/mason-tool-installer.nvim'
     use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
+    use 'towolf/vim-helm'
     -- use 'j-hui/fidget.nvim'
 
     -- DAP
@@ -338,15 +339,6 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
     }
   }
 
-  local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
-  parser_config.gotmpl = {
-    install_info = {
-      url = "https://github.com/ngalaiko/tree-sitter-go-template",
-      files = {"src/parser.c"}
-    },
-    filetype = "gotmpl",
-    used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
-  }
   vim.opt.foldmethod = 'expr'
   vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 end)
