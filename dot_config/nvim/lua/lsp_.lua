@@ -45,7 +45,7 @@ local lsp_configs = {
     }
   },
   salt_ls = {mason_name = 'salt-lsp'},
-  sumneko_lua = {
+  lua_ls = {
     mason_name = 'lua-language-server',
     init_options = {
       embeddedLanguages = {
