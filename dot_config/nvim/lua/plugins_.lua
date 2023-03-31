@@ -188,11 +188,11 @@ utils.prepare_module('telescope', function(telescope)
   utils.prepare_module('telescope-emoji', function() telescope.load_extension('emoji') end)
   utils.prepare_module('notify', function() telescope.load_extension('notify') end)
   utils.prepare_module('possession', function() telescope.load_extension('possession') end)
+  -- utils.prepare_module('noice', function() telescope.load_extension('noice') end)
 end)
 
 
 utils.prepare_module('nvim-tree', function(nvim_tree)
-  local tree_cb = require'nvim-tree.config'.nvim_tree_callback
   nvim_tree.setup {
     diagnostics = {
       enable = true,
@@ -201,16 +201,6 @@ utils.prepare_module('nvim-tree', function(nvim_tree)
         info = theme.signs.info.text,
         warning = theme.signs.warn.text,
         error = theme.signs.error.text,
-      },
-    },
-    view = {
-      mappings = {
-        list = {
-          {key = 'S', cb = tree_cb('system_open')},
-          {key = 's', cb = tree_cb('split')},
-          {key = 'v', cb = tree_cb('vsplit')},
-          {key = 't', cb = tree_cb('tabnew')},
-        },
       },
     },
     actions = {
