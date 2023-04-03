@@ -180,6 +180,8 @@ utils.prepare_module('telescope', function(telescope)
         '--line-number',
         '--column',
         '--smart-case',
+        '--hidden',
+        "--glob=!.git/",
       }
     }
   }
