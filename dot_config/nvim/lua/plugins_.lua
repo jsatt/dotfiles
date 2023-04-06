@@ -102,6 +102,7 @@ utils.prepare_module('packer', function(packer)
     use {"folke/which-key.nvim"}
     use {'andythigpen/nvim-coverage', requires = {'nvim-lua/plenary.nvim'}}
     use 'rcarriga/nvim-notify'
+    use 'taybart/b64.nvim'
 
     -- Vim Config
     use 'klen/nvim-config-local'
