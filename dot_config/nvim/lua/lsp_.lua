@@ -210,6 +210,7 @@ utils.prepare_module('null-ls', function(null_ls)
       null_ls.builtins.formatting.json_tool,
       null_ls.builtins.formatting.lua_format,
       null_ls.builtins.formatting.remark,
+      null_ls.builtins.formatting.yamlfmt,
     }
   }
 end)
