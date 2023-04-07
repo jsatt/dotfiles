@@ -40,7 +40,6 @@ utils.prepare_module('packer', function(packer)
 
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use 'nvim-treesitter/playground'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'mrjones2014/nvim-ts-rainbow'
 
@@ -51,7 +50,7 @@ utils.prepare_module('packer', function(packer)
 
     -- Sidebars
     use 'mbbill/undotree'
-    use {'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}}
+    use {'nvim-tree/nvim-tree.lua', requires = {'nvim-tree/nvim-web-devicons'}}
     use {'stevearc/aerial.nvim'}
 
     -- Code Completion
@@ -87,7 +86,6 @@ utils.prepare_module('packer', function(packer)
     use {'rcarriga/nvim-dap-ui'}
 
     -- Commands
-    use 'lewis6991/impatient.nvim'
     use {'jedrzejboczar/possession.nvim', requires = { 'nvim-lua/plenary.nvim' }}
     use 'monaqa/dial.nvim'
     use 'tpope/vim-eunuch'
@@ -103,11 +101,14 @@ utils.prepare_module('packer', function(packer)
     use {'andythigpen/nvim-coverage', requires = {'nvim-lua/plenary.nvim'}}
     use 'rcarriga/nvim-notify'
     use 'taybart/b64.nvim'
+    -- use {
+    --   "folke/noice.nvim",
+    --   requires = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp"},
+    -- }
 
     -- Vim Config
     use 'klen/nvim-config-local'
-    use 'editorconfig/editorconfig-vim'
-    use 'nvim-lualine/lualine.nvim'
+    use {'nvim-lualine/lualine.nvim', requires = {'nvim-tree/nvim-web-devicons', opt = true}}
     use 'sainnhe/sonokai'
     use 'stevearc/dressing.nvim'
 
@@ -345,7 +346,7 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
   }
 
   vim.opt.foldmethod = 'expr'
-  vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+  vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 end)
 
 -- OSC52
