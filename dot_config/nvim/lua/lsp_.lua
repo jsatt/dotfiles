@@ -196,8 +196,6 @@ end)
 
 utils.prepare_module('null-ls', function(null_ls)
   null_ls.setup {
-    debug = true,
-    log_level = 'debug',
     sources = {
       null_ls.builtins.code_actions.cspell,
       null_ls.builtins.code_actions.gitrebase,
@@ -214,7 +212,3 @@ utils.prepare_module('null-ls', function(null_ls)
     }
   }
 end)
-
--- utils.prepare_module('fidget', function(fidget)
---   fidget.setup({})
--- end)

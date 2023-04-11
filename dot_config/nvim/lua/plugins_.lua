@@ -101,10 +101,6 @@ utils.prepare_module('packer', function(packer)
     use {'andythigpen/nvim-coverage', requires = {'nvim-lua/plenary.nvim'}}
     use 'rcarriga/nvim-notify'
     use 'taybart/b64.nvim'
-    -- use {
-    --   "folke/noice.nvim",
-    --   requires = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp"},
-    -- }
 
     -- Vim Config
     use 'klen/nvim-config-local'
@@ -192,7 +188,6 @@ utils.prepare_module('telescope', function(telescope)
   utils.prepare_module('telescope-emoji', function() telescope.load_extension('emoji') end)
   utils.prepare_module('notify', function() telescope.load_extension('notify') end)
   utils.prepare_module('possession', function() telescope.load_extension('possession') end)
-  -- utils.prepare_module('noice', function() telescope.load_extension('noice') end)
 end)
 
 
