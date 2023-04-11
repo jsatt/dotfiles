@@ -48,38 +48,6 @@ vim.opt.undolevels = 1000 -- number of undos to keep
 vim.opt.updatetime = 300 -- milliseconds to wait before completing typed changes
 vim.opt.whichwrap = 'h,l,<,>' -- keys to change lines at start/end of a line
 vim.opt.wrap = true -- visually wrap
-vim.g.no_plugin_maps = true
 
-vim.g.border_style = 'rounded'
-
-local signs = require('theme_').signs
-
-for _, sign in pairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-end
-
-vim.diagnostic.config {
-  signs = {
-    active = signs,
-  },
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  virtual_text = {
-    source = 'always',
-  },
-  float = {
-    focusable = false,
-    -- style = "minimal",
-    border = "rounded",
-    source = 'always',
-    -- header = "",
-    -- prefix = "",
-  },
-}
-
-vim.filetype.add({
-  extension = {
-    sls = 'yaml',
-  }
-})
+vim.g.no_plugin_maps = true -- disable default mappings for specific filetypes
+vim.g.border_style = 'rounded' -- default borders to rounded

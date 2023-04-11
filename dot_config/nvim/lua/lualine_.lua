@@ -60,14 +60,14 @@ utils.prepare_module('lualine', function(lualine)
       lualine_c = {
         { 'diff',
           symbols = {
-            added = theme.statusline_gitsigns.add.text .. ' ',
-            modified = theme.statusline_gitsigns.change.text .. ' ',
-            removed = theme.statusline_gitsigns.delete.text .. ' ',
+            added = theme.signs.vcs.add.statusline_text .. ' ',
+            modified = theme.signs.vcs.change.statusline_text .. ' ',
+            removed = theme.signs.vcs.delete.statusline_text .. ' ',
           },
           diff_color = {
-            added = theme.statusline_gitsigns.add.hl,
-            modified = theme.statusline_gitsigns.change.hl,
-            removed = theme.statusline_gitsigns.delete.hl,
+            added = theme.signs.vcs.add.statusline_hl,
+            modified = theme.signs.vcs.change.statusline_hl,
+            removed = theme.signs.vcs.delete.statusline_hl,
           }
         }
       },
@@ -105,16 +105,16 @@ utils.prepare_module('lualine', function(lualine)
           'diagnostics',
           always_visible = true,
           diagnostics_color = {
-            error = theme.signs.error.ll_name,
-            warn  = theme.signs.warn.ll_name,
-            info  = theme.signs.info.ll_name,
-            hint  = theme.signs.hint.ll_name,
+            error = theme.signs.diagnostics.error.statusline_hl,
+            warn  = theme.signs.diagnostics.warn.statusline_hl,
+            info  = theme.signs.diagnostics.info.statusline_hl,
+            hint  = theme.signs.diagnostics.hint.statusline_hl,
           },
           symbols = {
-            error = theme.signs.error.text .. ' ',
-            warn = theme.signs.warn.text .. ' ',
-            info = theme.signs.info.text .. ' ',
-            hint = theme.signs.hint.text .. ' ',
+            error = theme.signs.diagnostics.error.statusline_text .. ' ',
+            warn = theme.signs.diagnostics.warn.statusline_text .. ' ',
+            info = theme.signs.diagnostics.info.statusline_text .. ' ',
+            hint = theme.signs.diagnostics.hint.statusline_text .. ' ',
           },
         },
         'filetype',

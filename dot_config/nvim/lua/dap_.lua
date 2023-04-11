@@ -21,7 +21,7 @@ utils.prepare_module('dap', function(dap)
     end;
   }}
 
-  local signs = require('theme_').dap_signs
+  local signs = require('theme_').signs.dap
   for _, sign in pairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.hl, text = sign.text, numhl = sign.numhl, linehl = sign.linehl })
   end

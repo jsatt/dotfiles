@@ -59,37 +59,127 @@ M.icons = {
   wrap = "↵",
   virtual_line = " ",
   vertical_border = "│",
+  vertical_border_dashed = "┆",
+  error =  "✗",
+  warn = "",
+  info = "",
+  hint = "",
+  add = '',
+  change = '',
+  delete = '',
 }
 
 M.signs = {
-  error = { name = "DiagnosticSignError", text = "✗", ll_name = 'LuaLineDiagnosticsError'},
-  warn = { name = "DiagnosticSignWarn", text = "", ll_name = 'LuaLineDiagnosticsWarn' },
-  info = { name = "DiagnosticSignInfo", text = "", ll_name = 'LuaLineDiagnosticsInfo' },
-  hint = { name = "DiagnosticSignHint", text = "", ll_name = 'LuaLineDiagnosticsHint' },
+  diagnostics = {
+    error = {
+      statuscolumn_text = M.icons.error,
+      statuscolumn_hl = "DiagnosticSignError",
+      statuscolumn_numhl = "DiagnosticSignError",
+      statusline_text = M.icons.warn,
+      statusline_hl = 'LuaLineDiagnosticsError',
+    },
+    warn = {
+      statuscolumn_text = M.icons.warn,
+      statuscolumn_hl = "DiagnosticSignWarn",
+      statuscolumn_numhl = "DiagnosticSignWarn",
+      statusline_text = M.icons.warn,
+      statusline_hl = 'LuaLineDiagnosticsWarn',
+    },
+    info = {
+      statuscolumn_text = M.icons.info,
+      statuscolumn_hl = "DiagnosticSignInfo",
+      statuscolumn_numhl = "DiagnosticSignInfo",
+      statusline_text = M.icons.info,
+      statusline_hl = 'LuaLineDiagnosticsInfo',
+    },
+    hint = {
+      statuscolumn_text = M.icons.hint,
+      statuscolumn_hl = "DiagnosticSignHint",
+      statuscolumn_numhl = "DiagnosticSignHint",
+      statusline_text = M.icons.hint,
+      statusline_hl = 'LuaLineDiagnosticsHint',
+    },
+  },
+  vcs = {
+    add = {
+      statuscolumn_text = M.icons.vertical_border,
+      statusline_text = M.icons.add,
+      statusline_hl = 'GitSignsAdd',
+      statuscolumn_hl = 'GitSignsAdd',
+      statuscolumn_numhl = 'GitSignsAddNr',
+      statuscolumn_linehl = 'GitSignsAddLn'
+    },
+    change = {
+      statuscolumn_text = M.icons.vertical_border,
+      statusline_text = M.icons.change,
+      statusline_hl = 'GitSignsChange',
+      statuscolumn_hl = 'GitSignsChange',
+      statuscolumn_numhl = 'GitSignsChangeNr',
+      statuscolumn_linehl = 'GitSignsChangeLn'
+    },
+    changedelete = {
+      statuscolumn_text = M.icons.vertical_border,
+      statuscolumn_hl = 'GitSignsChangedelete',
+      statuscolumn_numhl = 'GitSignsChangedeleteNr',
+      statuscolumn_linehl = 'GitSignsChangedeleteLn'
+    },
+    delete = {
+      statuscolumn_text = M.icons.vertical_border,
+      statusline_text = M.icons.delete,
+      statusline_hl = 'GitSignsDelete',
+      statuscolumn_hl = 'GitSignsDelete',
+      statuscolumn_numhl = 'GitSignsDeleteNr',
+      statuscolumn_linehl = 'GitSignsDeleteLn'
+    },
+    topdelete = {
+      statuscolumn_text = M.icons.vertical_border,
+      statuscolumn_hl = 'GitSignsDelete',
+      statuscolumn_numhl = 'GitSignsDeleteNr',
+      statuscolumn_linehl = 'GitSignsDeleteLn'
+    },
+    untracked = {
+      statuscolumn_text = M.icons.vertical_border_dashed
+    },
+  },
+  dap = {
+    breakpoint = {
+      name = 'DapBreakpoint',
+      text = '•',
+      hl = 'DiagnosticError',
+      numhl = '',
+      linehl = ''
+    },
+    cond_breakpoint = {
+      name = 'DapBreakpointCondition',
+      text = '•',
+      hl = 'DiagnosticWarn',
+      numhl = '',
+      linehl = ''
+    },
+    log_point = {
+      name = 'DapLogPoint',
+      text = '❏',
+      hl = 'DiagnosticHint',
+      numhl = '',
+      linehl = ''
+    },
+    stopped = {
+      name = 'DapStopped',
+      text = '',
+      hl = 'DiagnosticError',
+      numhl = '',
+      linehl = 'debugPC'
+    },
+    rejected = {
+      name = 'DapBreakpoint',
+      text = '🅧',
+      hl = 'DiagnosticError',
+      numhl = '',
+      linehl = ''
+    },
+  },
 }
 
-M.gitsigns = {
-  add = {text = M.icons.vertical_border, hl = 'GitSignsAdd', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn'},
-  change = {text = M.icons.vertical_border, hl = 'GitSignsChange', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
-  changedelete = {text = M.icons.vertical_border, hl = 'GitSignsChange', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
-  delete = {text = M.icons.vertical_border, hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
-  topdelete = {text = M.icons.vertical_border, hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
-  untracked = {text = M.icons.vertical_border},
-}
-
-M.statusline_gitsigns = {
-  add = {text = '', hl = 'GitSignsAdd', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn'},
-  change = {text = '', hl = 'GitSignsChange', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
-  delete = {text = '', hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
-}
-
-M.dap_signs = {
-  breakpoint = {name = 'DapBreakpoint', text = '•', hl = 'DiagnosticError', numhl = '', linehl = ''},
-  cond_breakpoint = {name = 'DapBreakpointCondition', text = '•', hl = 'DiagnosticWarn', numhl = '', linehl = ''},
-  log_point = {name = 'DapLogPoint', text = '❏', hl = 'DiagnosticHint', numhl = '', linehl = ''},
-  stopped = {name = 'DapStopped', text = '', hl = 'DiagnosticError', numhl = '', linehl = 'debugPC'},
-  rejected = {name = 'DapBreakpoint', text = '🅧', hl = 'DiagnosticError', numhl = '', linehl = ''},
-}
 
 M.kind_icons = {
   Text = "",

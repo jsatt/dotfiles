@@ -160,11 +160,11 @@ utils.prepare_module('notify', function(notify)
   notify.setup {
     stages = 'slide',
     icons = {
-      TRACE = theme.signs.error.text,
-      DEBUG = theme.signs.hint.text,
-      INFO = theme.signs.info.text,
-      WARN =  theme.signs.warn.text,
-      ERROR = theme.signs.error.text,
+      TRACE = theme.icons.error,
+      DEBUG = theme.icons.hint,
+      INFO = theme.icons.info,
+      WARN =  theme.icons.warn,
+      ERROR = theme.icons.error,
     }
 
   }
@@ -201,10 +201,10 @@ utils.prepare_module('nvim-tree', function(nvim_tree)
     diagnostics = {
       enable = true,
       icons = {
-        hint = theme.signs.hint.text,
-        info = theme.signs.info.text,
-        warning = theme.signs.warn.text,
-        error = theme.signs.error.text,
+        hint = theme.icons.hint,
+        info = theme.icons.info,
+        warning = theme.icons.warn,
+        error = theme.icons.error,
       },
     },
     actions = {
@@ -419,7 +419,14 @@ end)
 -- Gitsigns
 utils.prepare_module('gitsigns', function(gitsigns)
   gitsigns.setup {
-    signs = theme.gitsigns,
+    signs = {
+      add = { text = theme.signs.vcs.add.statuscolumn_text, hl = theme.signs.vcs.add.statuscolumn_hl, numhl = theme.signs.vcs.add.statuscolumn_numhl, linehl = theme.signs.vcs.add.statuscolumn_linehl},
+      change = { text = theme.signs.vcs.change.statuscolumn_text, hl = theme.signs.vcs.change.statuscolumn_hl, numhl = theme.signs.vcs.change.statuscolumn_numhl, linehl = theme.signs.vcs.change.statuscolumn_linehl},
+      changedelete = { text = theme.signs.vcs.changedelete.statuscolumn_text, hl = theme.signs.vcs.changedelete.statuscolumn_hl, numhl = theme.signs.vcs.changedelete.statuscolumn_numhl, linehl = theme.signs.vcs.changedelete.statuscolumn_linehl},
+      delete = { text = theme.signs.vcs.delete.statuscolumn_text, hl = theme.signs.vcs.delete.statuscolumn_hl, numhl = theme.signs.vcs.delete.statuscolumn_numhl, linehl = theme.signs.vcs.delete.statuscolumn_linehl},
+      topdelete = { text = theme.signs.vcs.changedelete.statuscolumn_text, hl = theme.signs.vcs.changedelete.statuscolumn_hl, numhl = theme.signs.vcs.changedelete.statuscolumn_numhl, linehl = theme.signs.vcs.changedelete.statuscolumn_linehl},
+      untracked = { text = theme.signs.vcs.untracked.statuscolumn_text, },
+    },
     numhl = true,
     preview_config = {
       border = 'rounded',
