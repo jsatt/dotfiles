@@ -138,11 +138,11 @@ utils.prepare_module('diffview', function(diffview)
       view =  {
         {'n', '<leader>n', actions.prev_conflict,},
         {'n', '<leader>p', actions.next_conflict },
-        {'n', '<leader>cl', actions.conflict_choose('ours') },
-        {'n', '<leader>cb', actions.conflict_choose("theirs") },
-        {'n', '<leader>cr', actions.conflict_choose("base") },
-        {'n', '<leader>ca', actions.conflict_choose("all") },
-        {'n', '<leader>cx', actions.conflict_choose("none") },
+        {'n', '<leader>gl', actions.conflict_choose('ours') },
+        {'n', '<leader>gr', actions.conflict_choose("theirs") },
+        {'n', '<leader>gb', actions.conflict_choose("base") },
+        {'n', '<leader>ga', actions.conflict_choose("all") },
+        {'n', '<leader>gx', actions.conflict_choose("none") },
       },
     },
   }
