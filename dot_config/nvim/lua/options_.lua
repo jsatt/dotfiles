@@ -11,7 +11,7 @@ vim.opt.cursorline = true -- highlight line that cursor is currently on
 vim.opt.diffopt:append('linematch:60')
 vim.opt.encoding = 'utf8' -- use UTF-8 file encoding
 vim.opt.expandtab = true -- use spaces instead of tabs
-vim.opt.foldcolumn = 'auto:9'
+vim.opt.foldcolumn = 'auto:9' -- enable fold tree column, automatically adjust up to 9
 vim.opt.foldenable = true -- enable folding
 vim.opt.foldmethod = 'indent' -- enable indent based code folding
 vim.opt.foldlevelstart = 6 -- don't automatically close folds on openunless 6 folds deep
@@ -28,13 +28,13 @@ vim.opt.scrolloff = 10 -- keep lines above and below cursor when scrolliing
 vim.opt.shiftwidth = 4 -- 4 spaces for indents when using << or >>
 vim.opt.shortmess:append('I') -- don't give intro message when starting
 vim.opt.shortmess:append('c') -- don't give |ins-completion-menu| messages
-vim.opt.signcolumn = 'yes' -- always show sign column, 2 columns wide
+vim.opt.signcolumn = 'yes:2' -- always show sign column, 2 columns wide
 vim.opt.smarttab = true -- use <BS> to delete shiftwidth worth of space at start of line
 vim.opt.softtabstop = 4 -- 4 spaces for tabsin INSERT mode
 vim.opt.spelllang = 'en_us' -- set spell check to US English
 vim.opt.splitbelow = true -- open new splits below instead of above
 vim.opt.splitright = true -- open new vsplits to the right instead of left
-vim.opt.statuscolumn = '%s%l%C'  -- statuscolumn = signs, line number, fold tree
+vim.opt.statuscolumn = '%s%l%C'  -- default statuscolumn = signs, line number, fold tree
 vim.opt.swapfile = false -- diable swapfiles
 vim.opt.switchbuf = 'useopen,usetab,newtab' -- use open buffers when switching
 vim.opt.tabstop = 4 -- 4 spaces for tabs

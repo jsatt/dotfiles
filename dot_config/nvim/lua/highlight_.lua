@@ -25,6 +25,8 @@ let m = matchadd('BadWhitespace', '^\t\+')
 vim.api.nvim_set_hl(0, 'FloatBorder', {link = 'Float'})
 vim.api.nvim_set_hl(0, 'FloatTitle', {link = 'Normal'})
 vim.api.nvim_set_hl(0, 'NormalFloat', {link = 'Normal'})
+vim.api.nvim_set_hl(0, 'VertSplit', {fg = colors.dim_yellow.gui})
+vim.api.nvim_set_hl(0, 'CursorLineFold', {link = 'CursorLineNr'})
 
 local sonokai_config = vim.fn['sonokai#get_configuration']()
 local colorscheme = vim.fn['sonokai#get_palette'](sonokai_config.style, sonokai_config.colors_override)

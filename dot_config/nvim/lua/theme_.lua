@@ -53,6 +53,14 @@ M.lualine_theme = {
   },
 }
 
+M.icons = {
+  collapsed = "",
+  expanded = "",
+  wrap = "↵",
+  virtual_line = " ",
+  vertical_border = "│",
+}
+
 M.signs = {
   error = { name = "DiagnosticSignError", text = "✗", ll_name = 'LuaLineDiagnosticsError'},
   warn = { name = "DiagnosticSignWarn", text = "", ll_name = 'LuaLineDiagnosticsWarn' },
@@ -61,11 +69,18 @@ M.signs = {
 }
 
 M.gitsigns = {
+  add = {text = M.icons.vertical_border, hl = 'GitSignsAdd', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn'},
+  change = {text = M.icons.vertical_border, hl = 'GitSignsChange', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
+  changedelete = {text = M.icons.vertical_border, hl = 'GitSignsChange', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
+  delete = {text = M.icons.vertical_border, hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
+  topdelete = {text = M.icons.vertical_border, hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
+  untracked = {text = M.icons.vertical_border},
+}
+
+M.statusline_gitsigns = {
   add = {text = '', hl = 'GitSignsAdd', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn'},
   change = {text = '', hl = 'GitSignsChange', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
-  changedelete = {text = '', hl = 'GitSignsChange', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
   delete = {text = '', hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
-  topdelete = {text = '', hl = 'GitSignsDelete', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
 }
 
 M.dap_signs = {

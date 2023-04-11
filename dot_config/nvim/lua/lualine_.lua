@@ -60,14 +60,14 @@ utils.prepare_module('lualine', function(lualine)
       lualine_c = {
         { 'diff',
           symbols = {
-            added = theme.gitsigns.add.text .. ' ',
-            modified = theme.gitsigns.change.text .. ' ',
-            removed = theme.gitsigns.delete.text .. ' ',
+            added = theme.statusline_gitsigns.add.text .. ' ',
+            modified = theme.statusline_gitsigns.change.text .. ' ',
+            removed = theme.statusline_gitsigns.delete.text .. ' ',
           },
           diff_color = {
-            added = theme.gitsigns.add.hl,
-            modified = theme.gitsigns.change.hl,
-            removed = theme.gitsigns.delete.hl,
+            added = theme.statusline_gitsigns.add.hl,
+            modified = theme.statusline_gitsigns.change.hl,
+            removed = theme.statusline_gitsigns.delete.hl,
           }
         }
       },
