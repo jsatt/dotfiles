@@ -241,6 +241,7 @@ utils.prepare_module('nvim-treesitter.configs', function(ts_configs)
       'regex',
       'terraform',
       'vim',
+      'vimdoc',
       'yaml',
     },
     highlight = {
