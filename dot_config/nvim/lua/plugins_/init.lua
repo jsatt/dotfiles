@@ -18,10 +18,6 @@ return {
     end,
   },
   'RRethy/vim-illuminate',
-  {
-    'NvChad/nvim-colorizer.lua',
-    config = function() require('colorizer').setup() end
-  },
   'taybart/b64.nvim',
   'sainnhe/sonokai',
 }
