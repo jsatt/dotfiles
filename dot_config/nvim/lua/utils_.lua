@@ -61,4 +61,22 @@ function M.range(start_pos, end_pos)
   return ret
 end
 
+function M.flatten_table(tbl, key)
+  local ret = {}
+  for i, v in pairs(tbl) do
+    table.insert(ret, v[key])
+  end
+  return ret
+end
+
+function M.merge_tables(tables)
+  local ret = {}
+  for _, t in pairs(tables) do
+    for k, v in pairs(t) do
+      table.insert(ret, k, v)
+    end
+  end
+  return ret
+end
+
 return M

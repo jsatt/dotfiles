@@ -96,28 +96,16 @@ local lsp_configs = {
   },
 }
 
--- local dap_configs = {
---   'bash-debug-adapter',
--- }
--- local linter_configs = {
---   'cspell',
--- }
--- local formatter_configs = {
---   'remark-cli',
---   'yamlfmt',
--- }
-
--- vim.notify(vim.inspect(utils.merge_tables(
--- function()
---   local ret = {}
---   for _, v in ipairs(lsp_configs) do
---     table.insert(ret, v['mason_name'] or '')
---   end
---   return ret
--- end,
--- dap_configs,
--- linter_configs,
--- formatter_configs)))
+local dap_configs = {
+  'bash-debug-adapter',
+}
+local linter_configs = {
+  'cspell',
+}
+local formatter_configs = {
+  'remark-cli',
+  'yamlfmt',
+}
 
 return {
   'williamboman/mason.nvim',
@@ -140,8 +128,6 @@ return {
     {
       'williamboman/mason-lspconfig.nvim',
       opts = {
-        ensure_installed = utils.get_keys(lsp_configs),
-        automatic_installation = true,
         ui = {
           icons = {
             server_installed = "✓",
@@ -184,9 +170,14 @@ return {
     },
     {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      -- opts =  {
-      --   ensure_installed = utils.get_keys(lsp_configs)
-      -- },
+      opts = {
+        ensure_installed = utils.merge_tables({
+          utils.flatten_table(lsp_configs, 'mason_name'),
+          dap_configs,
+          linter_configs,
+          formatter_configs,
+        })
+      },
     },
   }
 }
