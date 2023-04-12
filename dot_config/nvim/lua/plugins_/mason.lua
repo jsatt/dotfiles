@@ -173,7 +173,7 @@ return {
           end
 
           opts.on_attach = function(client, bufnr)
-            if utils.key_in_table('on_attach', srv_opts) then
+            if srv_opts and utils.key_in_table('on_attach', srv_opts) then
               srv_opts.on_attach(client, bufnr)
             end
           end
