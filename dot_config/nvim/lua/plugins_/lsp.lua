@@ -17,7 +17,7 @@ return {
         local _default_opts = lsp_win.default_opts
         lsp_win.default_opts = function(options)
           local opts = _default_opts(options)
-          opts.border = "rounded"
+          opts.border = require('theme_').opts.border_style
           return opts
         end
       end,

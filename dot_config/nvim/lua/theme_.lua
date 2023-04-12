@@ -1,5 +1,9 @@
 local M = {}
 
+M.opts = {
+  border_style = 'rounded',
+}
+
 M.colors = {
     black = {gui = '#000000', term = 16},
     near_black = {gui = '#141413', term = 232},
@@ -67,6 +71,7 @@ M.icons = {
   add = '',
   change = '',
   delete = '',
+  scrollbar = '┃',
 }
 
 M.signs = {

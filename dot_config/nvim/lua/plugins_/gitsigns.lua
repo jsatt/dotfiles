@@ -40,7 +40,7 @@ return {
     numhl = true,
     word_diff = true,
     preview_config = {
-      border = 'rounded',
+      border = theme.opts.border_style,
     },
   },
 }

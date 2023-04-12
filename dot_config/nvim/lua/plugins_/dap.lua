@@ -1,3 +1,4 @@
+local theme = require('theme_')
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
@@ -18,7 +19,7 @@ return {
       'rcarriga/nvim-dap-ui',
       opts = {
         floating = {
-          border = 'rounded',
+          border = theme.opts.border_style,
         }
       },
       config = function()
@@ -58,7 +59,7 @@ return {
       end,
     } }
 
-    local signs = require('theme_').signs.dap
+    local signs = theme.signs.dap
     for _, sign in pairs(signs) do
       vim.fn.sign_define(sign.name, { texthl = sign.hl, text = sign.text, numhl = sign.numhl, linehl = sign.linehl })
     end

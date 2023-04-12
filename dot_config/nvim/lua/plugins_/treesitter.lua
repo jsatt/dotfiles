@@ -127,7 +127,7 @@ return {
       },
       lsp_interop = {
         enable = true,
-        border = 'rounded',
+        border = require('theme_').opts.border_style,
         peek_definition_code = {
           ["<leader>pd"] = "@block.outer",
         },

@@ -57,12 +57,12 @@ return {
       }),
       window = {
         completion = cmp.config.window.bordered({
-          border = 'rounded',
-          scrollbar = '┃',
+          border = theme.opts.border_style,
+          scrollbar = theme.icons.scrollbar,
         }),
         documentation = cmp.config.window.bordered({
-          border = 'rounded',
-          scrollbar = '┃',
+          border = theme.opts.border_style,
+          scrollbar = theme.icons.scrollbar,
         }),
       },
       formatting = {

@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   import = 'plugins_',
   ui = {
-    border = 'rounded',
+    border = require('theme_').opts.border_style,
   },
   diff = {
     cmd = 'diffview.nvim',
