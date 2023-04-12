@@ -1,44 +1,49 @@
 local utils = require('utils_')
 local theme = require('theme_')
 
-utils.prepare_module('lualine', function(lualine)
-  local function window_number()
-    return vim.api.nvim_win_get_number(0)
-  end
+local function window_number()
+  return vim.api.nvim_win_get_number(0)
+end
 
-  local function search_count()
-    local search = vim.fn.searchcount({ maxcount = 0 }) -- maxcount = 0 makes the number not be capped at 99
-    local searchCurrent = search.current
-    local searchTotal = search.total
-    if searchCurrent > 0 then
-      return "/" .. vim.fn.getreg("/") .. " [" .. searchCurrent .. "/" .. searchTotal .. "]"
-    else
-      return ""
-    end
+local function search_count()
+  local search = vim.fn.searchcount({ maxcount = 0 }) -- maxcount = 0 makes the number not be capped at 99
+  local searchCurrent = search.current
+  local searchTotal = search.total
+  if searchCurrent > 0 then
+    return "/" .. vim.fn.getreg("/") .. " [" .. searchCurrent .. "/" .. searchTotal .. "]"
+  else
+    return ""
   end
+end
 
-  local function session_name()
-    return utils.prepare_module(
-      'possession.session',
-      function(session)
-        return session.session_name or ''
-      end) or ''
+local function session_name()
+  return utils.prepare_module(
+        'possession.session',
+        function(session)
+          return session.session_name or ''
+        end) or ''
+end
+
+local function cwd()
+  return vim.fn.fnamemodify(vim.fn.getcwd(), ':~') or ''
+end
+
+local function show_macro_recording()
+  local recording_register = vim.fn.reg_recording()
+  if recording_register == "" then
+    return ""
+  else
+    return "Recording @" .. recording_register
   end
+end
 
-  local function cwd()
-    return vim.fn.fnamemodify(vim.fn.getcwd(), ':~') or ''
-  end
-
-  local function show_macro_recording()
-    local recording_register = vim.fn.reg_recording()
-    if recording_register == "" then
-      return ""
-    else
-      return "Recording @" .. recording_register
-    end
-  end
-
-  lualine.setup {
+return {
+  'nvim-lualine/lualine.nvim',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+    lazy = true,
+  },
+  opts = {
     options = {
       theme = theme.lualine_theme,
       globalstatus = true,
@@ -58,7 +63,8 @@ utils.prepare_module('lualine', function(lualine)
         { 'branch', icon = '' },
       },
       lualine_c = {
-        { 'diff',
+        {
+          'diff',
           symbols = {
             added = theme.signs.vcs.add.statusline_text .. ' ',
             modified = theme.signs.vcs.change.statusline_text .. ' ',
@@ -149,4 +155,4 @@ utils.prepare_module('lualine', function(lualine)
       'nvim-dap-ui',
     },
   }
-end)
+}

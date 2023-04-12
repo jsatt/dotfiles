@@ -1,36 +1,36 @@
 local utils = require('utils_')
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-    group = vim.api.nvim_create_augroup('highlight_yank', {clear = true}),
-    callback = function()
-       vim.highlight.on_yank { higroup='HighlightedyankRegion', timeout=500 }
-    end
+  group = vim.api.nvim_create_augroup('highlight_yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank { higroup = 'HighlightedyankRegion', timeout = 500 }
+  end
 })
 vim.api.nvim_create_autocmd('BufWritePre', {
-    group = vim.api.nvim_create_augroup('clear_trailing_whitespace', {clear = true}),
-    command = [[%s/\s\+$//e]]
+  group = vim.api.nvim_create_augroup('clear_trailing_whitespace', { clear = true }),
+  command = [[%s/\s\+$//e]]
 })
-vim.api.nvim_create_autocmd('BufEnter', {  -- check for changes more often for autoread
-    group = vim.api.nvim_create_augroup('check_for_changes', {clear = true}),
-    command = 'checkt'
+vim.api.nvim_create_autocmd('BufEnter', { -- check for changes more often for autoread
+  group = vim.api.nvim_create_augroup('check_for_changes', { clear = true }),
+  command = 'checkt'
 })
 vim.api.nvim_create_autocmd('FileType', { -- don't automatically wrap long lines in INSERT
-    group = vim.api.nvim_create_augroup('no_wrap_in_insert', {clear = true}),
-    command = 'setlocal formatoptions-=t formatoptions+=l'
-        -- vim.bo.formatoptions:remove('t')
-        -- vim.bo.formatoptions:append('l')
+  group = vim.api.nvim_create_augroup('no_wrap_in_insert', { clear = true }),
+  command = 'setlocal formatoptions-=t formatoptions+=l'
+  -- vim.bo.formatoptions:remove('t')
+  -- vim.bo.formatoptions:append('l')
 })
 
 vim.api.nvim_create_autocmd('BufWritePost', { -- auto-apply files managed by chezmoi
-  group = vim.api.nvim_create_augroup('chezmoi', {clear = true}),
+  group = vim.api.nvim_create_augroup('chezmoi', { clear = true }),
   pattern = vim.fn.expand('~') .. '/.local/share/chezmoi/*',
   command = '!chezmoi apply --source-path "%"',
 })
 
 vim.api.nvim_create_autocmd('FileType', { -- add completion in DAP Repl
-  group = vim.api.nvim_create_augroup('dap', {clear = true}),
+  group = vim.api.nvim_create_augroup('dap', { clear = true }),
   pattern = 'dap-repl',
-  callback = function ()
+  callback = function()
     require('dap.ext.autocompl').attach()
   end,
 })
