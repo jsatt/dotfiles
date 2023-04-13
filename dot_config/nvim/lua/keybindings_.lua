@@ -62,13 +62,14 @@ utils.prepare_module('telescope', function(telescope)
   local telescope_builtin = require('telescope.builtin')
   vim.keymap.set('n', '<leader>lf', telescope_builtin.find_files, { silent = true, desc = 'Find Files' })
   vim.keymap.set('n', '<leader>lb', telescope_builtin.buffers, { silent = true, desc = 'Find Buffers' })
-  vim.keymap.set('n', '<leader>ls', telescope.extensions.aerial.aerial, { silent = true, desc = 'Find Symbols' })
   vim.keymap.set('n', '<leader>lr', telescope_builtin.oldfiles, { silent = true, desc = 'Find Recently Opened Files' })
   vim.keymap.set('n', '<leader>lg', telescope_builtin.live_grep, { silent = true, desc = 'Live Grep' })
   vim.keymap.set('n', '<leader>lc', telescope_builtin.git_commits, { silent = true, desc = 'Search Commits' })
   vim.keymap.set('n', '<leader>le', telescope.extensions.emoji.emoji, { silent = true, desc = 'Find Emoji' })
-  vim.keymap.set('n', '<leader>lt', function() telescope_builtin.builtin({ include_extensions = true }) end,
-  { silent = true, desc = 'Fine Telescope Picker' })
+  vim.keymap.set('n', '<leader>lt', function() telescope_builtin.builtin({ include_extensions = true }) end, { silent = true, desc = 'Fine Telescope Picker' })
+  utils.prepare_module('aerial', function(aerial)
+    vim.keymap.set('n', '<leader>ls', telescope.extensions.aerial.aerial, { silent = true, desc = 'Find Symbols' })
+  end)
 end)
 
 -- LSP
