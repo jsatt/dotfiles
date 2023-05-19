@@ -5,7 +5,6 @@ return {
   'rbong/vim-flog',
   'tpope/vim-eunuch',
   'AndrewRadev/linediff.vim',
-  'mbbill/undotree',
   {
     'stevearc/dressing.nvim',
     config = function() require('dressing').setup({}) end,
