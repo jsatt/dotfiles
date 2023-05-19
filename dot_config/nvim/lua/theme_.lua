@@ -68,9 +68,11 @@ M.icons = {
   warn = "",
   info = "",
   hint = "",
-  add = '',
-  change = '',
-  delete = '',
+  vcs_add = '',
+  vcs_change = '',
+  vcs_delete = '',
+  vcs_rename = '',
+  vcs_untracked = '',
   scrollbar = '┃',
 }
 
@@ -108,7 +110,7 @@ M.signs = {
   vcs = {
     add = {
       statuscolumn_text = M.icons.vertical_border,
-      statusline_text = M.icons.add,
+      statusline_text = M.icons.vcs_add,
       statusline_hl = 'GitSignsAdd',
       statuscolumn_hl = 'GitSignsAdd',
       statuscolumn_numhl = 'GitSignsAddNr',
@@ -116,7 +118,7 @@ M.signs = {
     },
     change = {
       statuscolumn_text = M.icons.vertical_border,
-      statusline_text = M.icons.change,
+      statusline_text = M.icons.vcs_change,
       statusline_hl = 'GitSignsChange',
       statuscolumn_hl = 'GitSignsChange',
       statuscolumn_numhl = 'GitSignsChangeNr',
@@ -130,7 +132,7 @@ M.signs = {
     },
     delete = {
       statuscolumn_text = M.icons.vertical_border,
-      statusline_text = M.icons.delete,
+      statusline_text = M.icons.vcs_delete,
       statusline_hl = 'GitSignsDelete',
       statuscolumn_hl = 'GitSignsDelete',
       statuscolumn_numhl = 'GitSignsDeleteNr',
