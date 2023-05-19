@@ -1,0 +1,8 @@
+snippet burninate
+        terraform {
+          source = "/modules//shared/burninate"
+        }
+
+        include {
+          path = find_in_parent_folders(get_env("TF_PARENT_NAME", ""), "/parent.unused.hcl")
+        }

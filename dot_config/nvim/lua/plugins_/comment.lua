@@ -1,6 +1,10 @@
 return {
   'numToStr/Comment.nvim',
-  opts = {
-    ignore = '^$',
-  },
+  config = function()
+    require('Comment').setup({
+      ignore = '^$',
+    })
+    local ft = require('Comment.ft')
+    ft.set('hcl', ft.get('terraform'))
+  end
 }
