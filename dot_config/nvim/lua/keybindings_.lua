@@ -8,7 +8,7 @@ vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>', { desc = 'Toggle Aeri
 vim.keymap.set('n', '<leader>tt', '<cmd>NeoTreeShowToggle filesystem<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set('n', '<leader>tg', '<cmd>Neotree float git_status<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set('n', '<leader>tb', '<cmd>NeoTreeShowToggle buffers<CR>', { desc = 'Toggle File Tree' })
-vim.keymap.set('n', '<leader>hg', ':Inspect', { desc = 'Inspect' })
+vim.keymap.set('n', '<leader>hg', ':Inspect<CR>', { desc = 'Inspect' })
 vim.keymap.set('n', '<leader>hc', ':Coverage<CR>', { desc = 'Show test coverage' })
 vim.keymap.set('n', '<leader>hcc', ':CoverageClear<CR>', { desc = 'Clear test coverage' })
 vim.keymap.set('n', '<leader>/', ':let @/ = ""<CR>', { desc = 'Clear search' })
