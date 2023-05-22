@@ -22,7 +22,7 @@ plugins=(
     encode64
     extract
     fd
-    gcloud
+    gitfast
     golang
     helm
     history-substring-search
@@ -31,6 +31,7 @@ plugins=(
     minikube
     npm
     pip
+    poetry
     python
     ripgrep
     sudo
@@ -38,6 +39,7 @@ plugins=(
 
     zshmarks
     zsh-kitty
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -74,6 +76,9 @@ unsetopt clobber
 # completion
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle :compinstall filename $HOME/.zshrc
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+__kitty_complete
 autoload -Uz compinit
 compinit
 
