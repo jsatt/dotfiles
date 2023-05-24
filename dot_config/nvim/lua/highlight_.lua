@@ -53,3 +53,6 @@ vim.api.nvim_set_hl(0, 'VirtualTextHint', { fg = colors.dim_green.gui })
 
 vim.api.nvim_set_hl(0, 'CoverageCovered', { link = 'GreenSign' })
 vim.api.nvim_set_hl(0, 'CoverageUncovered', { link = 'RedSign' })
+
+vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = colors.darker_grey.gui })
+vim.api.nvim_set_hl(0, 'IndentBlanklineContextChar', { fg = colors.dark_grey.gui })

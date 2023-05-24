@@ -11,7 +11,6 @@ vim.opt.cursorline = true -- highlight line that cursor is currently on
 vim.opt.diffopt:append('linematch:60')
 vim.opt.encoding = 'utf8' -- use UTF-8 file encoding
 vim.opt.expandtab = true -- use spaces instead of tabs
-vim.opt.foldcolumn = 'auto:9' -- enable fold tree column, automatically adjust up to 9
 vim.opt.foldenable = true -- enable folding
 vim.opt.foldmethod = 'indent' -- enable indent based code folding
 vim.opt.foldlevelstart = 6 -- don't automatically close folds on openunless 6 folds deep

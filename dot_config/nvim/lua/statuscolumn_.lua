@@ -46,7 +46,7 @@ function M.column()
     -- git sign
     -- git_sign and ("%#" .. git_sign.texthl .. "#" .. string.gsub(git_sign.text, '%s+', '') .. "%*") or "%#LineNr#" .. theme.icons.vertical_border .. "%*",
     M.get_gitsign(git_sign),
-    [[%C]], -- fold column, TODO add custom foldline builder, use gitsigns texthl to color
+    -- [[%C]], -- fold column, TODO add custom foldline builder, use gitsigns texthl to color
     -- diagnostics, uses 2 columns
     sign and ("%#" .. sign.texthl .. "#" .. sign.text .. "%*") or " ",
     [[%=]], -- right align numbers

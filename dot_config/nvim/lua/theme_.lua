@@ -8,7 +8,8 @@ M.colors = {
     black = {gui = '#000000', term = 16},
     near_black = {gui = '#141413', term = 232},
     darker_grey = {gui = '#242321', term = 235},
-    dark_grey = {gui = '#45413b', term = 238},
+    dark_grey = {gui = '#454545', term = 238},
+    dark_brown = {gui = '#45413b', term = 238},
     grey = {gui = '#5f5f5f', term = 59},
     light_yellow = {gui = '#f4cf86', term = 222},
     dim_yellow = {gui = '#756532', term = 3},
@@ -32,7 +33,7 @@ M.colors = {
 M.lualine_theme = {
   normal = {
     a = { fg = M.colors.near_black.gui , bg = M.colors.green.gui, gui = 'bold' },
-    b = { fg = M.colors.light_yellow.gui, bg = M.colors.dark_grey.gui },
+    b = { fg = M.colors.light_yellow.gui, bg = M.colors.dark_brown.gui },
     c = { fg = M.colors.seafoam.gui, bg = M.colors.darker_grey.gui },
   },
   insert = {
@@ -51,9 +52,9 @@ M.lualine_theme = {
     c = { fg = M.colors.light_blue.gui, bg = M.colors.darker_grey.gui },
   },
   inactive = {
-    a = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui, gui = 'bold' },
-    b = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui , gui = 'bold'},
-    c = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_grey.gui, gui = 'bold' },
+    a = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_brown.gui, gui = 'bold' },
+    b = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_brown.gui , gui = 'bold'},
+    c = { fg = M.colors.darker_grey.gui, bg = M.colors.dark_brown.gui, gui = 'bold' },
   },
 }
 
