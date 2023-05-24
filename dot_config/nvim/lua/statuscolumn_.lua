@@ -27,7 +27,7 @@ function M.get_gitsign(git_sign)
   if git_sign then
     s = "%#" .. git_sign.texthl .. "#" .. string.gsub(git_sign.text, '%s+', '') .. "%*"
   else
-    local hi = vim.v.lnum == vim.api.nvim_win_get_cursor(0)[1] and "CursorLineNr" or "LineNr"
+    local hi = vim.v.lnum == vim.api.nvim_win_get_cursor(0)[1] and "CursorStatusColumn" or "StatusColumn"
     s = "%#" .. hi .. "#" .. theme.icons.vertical_border .. "%*"
   end
   return s
