@@ -18,5 +18,4 @@ return {
   },
   'RRethy/vim-illuminate',
   'taybart/b64.nvim',
-  'sainnhe/sonokai',
 }

@@ -1,5 +1,9 @@
 local utils = require('utils_')
 
+vim.cmd [[
+syntax enable
+]]
+
 vim.opt.secure = true -- limit commands .nvimrc can run
 vim.cmd('filetype plugin indent on') -- enable filetype detection and fieltype specific plugins and indents
 vim.opt.autoindent = true -- copy indent from current line when starting new line
