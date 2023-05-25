@@ -23,7 +23,6 @@ vim.opt.hidden = true -- hide buffers when tab/window closed, needed on to gotod
 vim.opt.history = 1000 -- remember the last 1000 commands used
 vim.opt.hlsearch = true -- highlight matches when searching
 vim.opt.incsearch = true -- jump to next match when searching
-vim.opt.laststatus = 0 -- show status line
 vim.opt.linebreak = true -- visually wrap long lines on breakat characters
 -- vim.opt.mouse = 'a' -- enable mouse in all modes
 vim.opt.number = true -- show line numbers
