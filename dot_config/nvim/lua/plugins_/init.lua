@@ -7,7 +7,7 @@ return {
   'AndrewRadev/linediff.vim',
   {
     'stevearc/dressing.nvim',
-    config = function() require('dressing').setup({}) end,
+    config = function(_, opts) require('dressing').setup(opts) end,
   },
   {
     'mg979/vim-visual-multi',

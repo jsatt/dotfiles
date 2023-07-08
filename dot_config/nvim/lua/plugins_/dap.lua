@@ -17,13 +17,14 @@ return {
     },
     {
       'rcarriga/nvim-dap-ui',
-      config = function()
+      opts = {
+        floating = {
+          border = theme.opts.border_style,
+        }
+      },
+      config = function(_, opts)
         local dapui = require('dapui')
-        dapui.setup({
-          floating = {
-            border = theme.opts.border_style,
-          }
-        })
+        dapui.setup(opts)
         local dap = require('dap')
         dap.listeners.after.event_initialized["dapui_config"] = function()
           dapui.open()

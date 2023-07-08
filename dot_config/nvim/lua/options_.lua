@@ -2,6 +2,7 @@ local utils = require('utils_')
 
 vim.cmd [[
 syntax enable
+colorscheme monokai-pro
 ]]
 
 vim.opt.secure = true -- limit commands .nvimrc can run

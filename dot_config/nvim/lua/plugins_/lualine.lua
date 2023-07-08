@@ -18,10 +18,10 @@ end
 
 local function session_name()
   return utils.prepare_module(
-        'possession.session',
-        function(session)
-          return session.session_name or ''
-        end) or ''
+    'possession.session',
+    function(session)
+      return session.session_name or ''
+    end) or ''
 end
 
 local function cwd()
