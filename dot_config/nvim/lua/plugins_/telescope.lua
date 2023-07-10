@@ -1,3 +1,4 @@
+local theme = require('theme_')
 local utils = require('utils_')
 return {
   'nvim-telescope/telescope.nvim',
