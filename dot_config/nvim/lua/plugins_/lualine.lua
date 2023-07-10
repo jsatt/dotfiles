@@ -55,6 +55,16 @@ return {
         right = '',
         left = '',
       },
+      disabled_filetypes = {
+        winbar = {
+          'neo-tree',
+          'dapui_watches',
+          'dapui_stacks',
+          'dapui_breakpoints',
+          'dap-repl',
+          'dapui_console',
+        },
+      },
     },
     sections = {
       lualine_a = { 'mode' },
