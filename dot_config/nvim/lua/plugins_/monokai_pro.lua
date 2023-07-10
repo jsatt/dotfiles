@@ -32,6 +32,6 @@ return {
         CoverageCovered = { link = 'GreenSign' },
         CoverageUncovered = { link = 'RedSign' },
       }
-    end
+  end,
   },
 }
