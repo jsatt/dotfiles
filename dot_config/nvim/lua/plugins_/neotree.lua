@@ -57,5 +57,6 @@ return {
         highlight_opened_files = true,
       },
     },
+    source_selector = {winbar = true},
   },
 }
