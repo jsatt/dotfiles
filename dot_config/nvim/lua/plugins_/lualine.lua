@@ -5,6 +5,29 @@ local function window_number()
   return vim.api.nvim_win_get_number(0)
 end
 
+local function tabpage_window_count(tabnr)
+  local win_count = 0
+  for _, bufnr in ipairs(vim.fn.tabpagebuflist(tabnr)) do
+    if vim.fn.getbufvar(bufnr, '&buftype') == '' then
+      win_count = win_count + 1
+    end
+  end
+  return win_count
+end
+
+local function buffer_number()
+  return vim.api.nvim_buf_get_number(0)
+end
+
+local function tab_had_modified_bufs(tabnr)
+  for _, v in ipairs(vim.fn.tabpagebuflist(tabnr)) do
+    if vim.fn.getbufvar(v, '&mod') == 1 then
+      return true
+    end
+  end
+  return false
+end
+
 local function search_count()
   local search = vim.fn.searchcount({ maxcount = 0 }) -- maxcount = 0 makes the number not be capped at 99
   local searchCurrent = search.current
@@ -102,15 +125,19 @@ return {
       lualine_a = {
         {
           'tabs',
-          mode = 2,
+          mode = 1,
           max_length = vim.o.columns,
-          fmt = function(name) return ' ' .. name end
+          fmt = function(name, context)
+            local win_count = tabpage_window_count(context.tabnr)
+            local mod = tab_had_modified_bufs(context.tabnr) and ' [+]' or ''
+            return context.tabnr .. '' .. win_count .. '  ' .. name .. mod
+          end
         }
       },
     },
     winbar = {
       lualine_b = {
-        window_number,
+        buffer_number,
         { 'filename', path = 1, symbols = { readonly = '' } },
       },
       lualine_c = {
@@ -145,7 +172,7 @@ return {
     },
     inactive_winbar = {
       lualine_b = {
-        window_number,
+        buffer_number,
         { 'filename', path = 1, symbols = { readonly = '' } },
       },
       lualine_x = {
