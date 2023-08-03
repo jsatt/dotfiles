@@ -5,6 +5,7 @@ return {
     'mrjones2014/nvim-ts-rainbow',
   },
   build = ':TSUpdate',
+  main = 'nvim-treesitter.configs',
   opts = {
     ensure_installed = {
       'bash',
@@ -32,7 +33,7 @@ return {
     },
     indent = {
       enable = true,
-      disable = { 'python' },
+      -- disable = { 'python' },
     },
     incremental_selection = {
       enable = true,
