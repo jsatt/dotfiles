@@ -16,6 +16,7 @@ return {
         StatusColumn = { link = 'LineNr' },
         CursorStatusColumn = { link = 'CursorLineNr' },
         ColorColumn = { link = 'CursorLine' },
+        FloatBorder = { link = 'SPNormalFloat' },
 
         LuaLineDiagnosticsError = { bg = lualine_theme.normal.c.bg, fg = colorscheme.inputValidation.errorForeground },
         LuaLineDiagnosticsWarn = { bg = lualine_theme.normal.c.bg, fg = colorscheme.inputValidation.warningForeground },
@@ -32,6 +33,6 @@ return {
         CoverageCovered = { link = 'GreenSign' },
         CoverageUncovered = { link = 'RedSign' },
       }
-  end,
+    end,
   },
 }
