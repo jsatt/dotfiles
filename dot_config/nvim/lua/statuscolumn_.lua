@@ -1,6 +1,11 @@
 local theme = require('theme_')
+local utils = require('utils_')
 local M = {}
 _G.Status = M
+
+local exclude_filetypes = {
+  'neo-tree',
+}
 
 ---@return {name:string, text:string, texthl:string}[]
 function M.get_signs()
@@ -34,6 +39,12 @@ function M.get_gitsign(git_sign)
 end
 
 function M.column()
+  local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+  local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+  if utils.table_contains(exclude_filetypes, ft) then
+    return ''
+  end
+
   local sign, git_sign
   for _, s in ipairs(M.get_signs()) do
     if s.name:find("GitSign") then
@@ -43,10 +54,7 @@ function M.column()
     end
   end
   local components = {
-    -- git sign
-    -- git_sign and ("%#" .. git_sign.texthl .. "#" .. string.gsub(git_sign.text, '%s+', '') .. "%*") or "%#LineNr#" .. theme.icons.vertical_border .. "%*",
     M.get_gitsign(git_sign),
-    -- [[%C]], -- fold column, TODO add custom foldline builder, use gitsigns texthl to color
     -- diagnostics, uses 2 columns
     sign and ("%#" .. sign.texthl .. "#" .. sign.text .. "%*") or " ",
     [[%=]], -- right align numbers
