@@ -6,6 +6,7 @@ local lsp_configs = {
   cssls = { mason_name = 'css-lsp' },
   dockerls = { mason_name = 'dockerfile-language-server' },
   emmet_ls = { mason_name = 'emmet-ls' },
+  graphql = { mason_name = 'graphql-language-service-cli' },
   html = { mason_name = 'html-lsp' },
   jsonls = { mason_name = 'json-lsp' },
   -- marksman = {mason_name = 'marksman'},
@@ -15,10 +16,11 @@ local lsp_configs = {
       client.server_capabilities.rename = false
     end,
     settings = {
-      pyls = {
+      pylsp = {
         configurationSources = { "flake8" },
         plugins = {
           jedi_completion = { enabled = false },
+          jedi_definition = { enabled = false },
           jedi_hover = { enabled = false },
           jedi_references = { enabled = false },
           jedi_signature_help = { enabled = false },
@@ -26,7 +28,8 @@ local lsp_configs = {
           flake8 = { enabled = true },
           pylsp_mypy = { enabled = true },
           pylint = { enabled = true },
-          pydocstyle = { enabled = true },
+          pydocstyle = { enabled = false },
+          pyflakes = { enabled = false },
           rope_completion = { enabled = false }
         }
       }
@@ -76,6 +79,9 @@ local lsp_configs = {
   terraformls = {
     mason_name = 'terraform-ls',
   },
+  tsserver = { -- typescript
+    mason_name = 'typescript-language-server',
+  },
   vimls = { mason_name = 'vim-language-server', suggest = { fromRuntimepath = true, fromVimruntime = true }, },
   yamlls = {
     mason_name = 'yaml-language-server',
@@ -103,6 +109,7 @@ local linter_configs = {
   'cspell',
 }
 local formatter_configs = {
+  'prettierd',
   'remark-cli',
   'yamlfmt',
 }
