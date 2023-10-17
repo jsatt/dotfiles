@@ -18,6 +18,8 @@ return {
         ColorColumn = { link = 'CursorLine' },
         FloatBorder = { link = 'SPNormalFloat' },
 
+        DiffText = { bg = colorscheme.diffEditorOverview.modifiedForeground, fg = colorscheme.diffEditor.modifiedLineBackground },
+
         LuaLineDiagnosticsError = { bg = lualine_theme.normal.c.bg, fg = colorscheme.inputValidation.errorForeground },
         LuaLineDiagnosticsWarn = { bg = lualine_theme.normal.c.bg, fg = colorscheme.inputValidation.warningForeground },
         LuaLineDiagnosticsInfo = { bg = lualine_theme.normal.c.bg, fg = colorscheme.inputValidation.infoForeground },
@@ -28,11 +30,13 @@ return {
         DiagnosticVirtualTextHint = { fg = colorscheme.base.green },
         DiagnosticUnderlineHint = { sp = colorscheme.base.green, undercurl = true },
 
-        HighlightedyankRegion = { link = 'IncSearch' },
+        IblIndent = { link = 'IndentBlanklineChar' },
+        IblWhitespace = { link = 'IndentBlanklineSpaceChar' },
+        IblScope = { link = 'IndentBlanklineContextChar' },
 
-        CoverageCovered = { link = 'GreenSign' },
-        CoverageUncovered = { link = 'RedSign' },
+        HighlightedyankRegion = { link = 'IncSearch' },
       }
     end,
   },
 }
+

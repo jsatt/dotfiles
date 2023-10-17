@@ -33,6 +33,8 @@ M.colors = {
     yellow = {gui = '#fade3e', term = 221},
     dark_yellow = {gui = '#5f5f00', 58},
     green = {gui = '#aeee00', term = 154},
+    dark_green = {gui = '#006600', term = 154},
+    dark_red = { gui = '#992222', term = 1},
     orange = {gui = '#ffa724', term = 214},
     seafoam = {gui = '#8cffba', term = 121},
     pale_orange = {gui = '#b88853', term = 137},
