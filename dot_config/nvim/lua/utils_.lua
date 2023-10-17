@@ -79,4 +79,9 @@ function M.merge_tables(tables)
   return ret
 end
 
+function M.set_column_width_color(start_pos, end_pos)
+  vim.opt.textwidth = end_pos
+  vim.opt.colorcolumn = table.concat(M.range(start_pos, end_pos), ',')
+end
+
 return M
