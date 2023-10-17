@@ -171,7 +171,7 @@ return {
       end,
     },
     {
-      'jose-elias-alvarez/null-ls.nvim', -- for formatters and linters
+      'nvimtools/none-ls.nvim', -- for formatters and linters
       config = function()
         local null_ls = require('null-ls')
         null_ls.setup({
