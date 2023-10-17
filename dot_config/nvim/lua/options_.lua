@@ -55,3 +55,9 @@ vim.opt.wrap = true -- visually wrap
 
 vim.g.no_plugin_maps = true -- disable default mappings for specific filetypes
 vim.g.border_style = require('theme_').opts.border_style
+
+vim.filetype.add({
+  extension = {
+    sls = 'yaml',
+  }
+})

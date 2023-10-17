@@ -85,10 +85,4 @@ vim.diagnostic.config {
   },
 }
 
-vim.filetype.add({
-  extension = {
-    sls = 'yaml',
-  }
-})
-
 return M
