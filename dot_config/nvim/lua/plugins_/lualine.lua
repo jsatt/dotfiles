@@ -81,11 +81,6 @@ return {
       disabled_filetypes = {
         winbar = {
           'neo-tree',
-          'dapui_watches',
-          'dapui_stacks',
-          'dapui_breakpoints',
-          'dap-repl',
-          'dapui_console',
         },
       },
     },
@@ -187,9 +182,27 @@ return {
     },
     extensions = {
       'fugitive',
-      'nvim-tree',
-      'aerial',
-      'nvim-dap-ui',
+      'lazy',
+      'man',
+      'neo-tree',
+      'quickfix',
+      {
+        winbar = { lualine_b = { { 'filetype' } } },
+        filetypes = {
+          'aerial',
+        }
+      },
+      {
+        winbar = { lualine_b = { { 'filename', file_status = false } } },
+        filetypes = {
+          'dap-repl',
+          'dapui_console',
+          'dapui_watches',
+          'dapui_stacks',
+          'dapui_breakpoints',
+          'dapui_scopes',
+        }
+      },
     },
   }
 }
