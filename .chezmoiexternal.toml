@@ -20,10 +20,10 @@
     refreshPeriod = "168h"
 
 {{ if eq .chezmoi.os "linux" -}}
-["bin/nvim.appimage"]
-    type = "file"
-    url = "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
-    executable = true
+["bin/nvim-linux64"]
+    type = "archive"
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
+    stripComponents = 1
     refreshPeriod = "168h"
 {{ else if eq .chezmoi.os "darwin" -}}
 ["bin/nvim-macos"]
