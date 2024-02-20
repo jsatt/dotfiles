@@ -28,6 +28,8 @@ alias cm='chezmoi'
 alias cmedit='chezmoi edit --apply'
 alias cmgit='chezmoi git'
 
+alias fix_docker_socket='sudo chmod g+w /var/run/docker.sock'
+
 pip_exact_search() {
     pip search "$1" | rg "$2" "^$1 \("
 }
