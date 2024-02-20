@@ -16,10 +16,9 @@ return {
     colors.builtin.DiffChange = { bg=theme.colors.dark_yellow.gui, bold=true }
     colors.builtin.DiffDelete = { bg=theme.colors.dark_red.gui, bold=true }
     colors.builtin.DiffText = { fg = colors.builtin.DiffChange.bg, bg = colors.builtin.DiffChange.fg, bold=true }
+    colors.gitsigns.GitSignsChange = { fg = theme.colors.orange.gui, bg = colors.gitsigns.GitSignsChange.bg, bold=true }
 
     utils.apply_syntax({
-      FloatBorder = { link = 'SPNormalFloat' },
-
       DiagnosticSignError = {fg = colors.diagnostic.DiagnosticError.fg, bg = colors.builtin.SignColumn.bg},
       DiagnosticSignWarn = {fg = colors.diagnostic.DiagnosticWarn.fg, bg = colors.builtin.SignColumn.bg},
       DiagnosticSignInfo = {fg = colors.diagnostic.DiagnosticInfo.fg, bg = colors.builtin.SignColumn.bg},
@@ -29,6 +28,8 @@ return {
       LuaLineDiagnosticsWarn = { bg = theme.lualine_theme.normal.c.bg, fg = colors.diagnostic.DiagnosticWarn.fg },
       LuaLineDiagnosticsInfo = { bg = theme.lualine_theme.normal.c.bg, fg = colors.diagnostic.DiagnosticInfo.fg },
       LuaLineDiagnosticsHint = { bg = theme.lualine_theme.normal.c.bg, fg = colors.diagnostic.DiagnosticHint.fg },
+
+      TelescopeNormal = { bg = colors.telescope.TelescopeBorder.bg },
 
       IblIndent = { link = 'IndentBlanklineChar' },
       IblWhitespace = { link = 'IndentBlanklineSpaceChar' },

@@ -3,6 +3,7 @@ local lualine_theme = require('theme_').lualine_theme
 return {
   'loctvl842/monokai-pro.nvim',
   lazy = false,
+  enabled = false,
   priority = 1000,
   opts = {
     transparent_background = true,
