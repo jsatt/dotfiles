@@ -170,7 +170,7 @@ prompt_git(){
     local repo_path=$(git rev-parse --git-dir 2>/dev/null)
     local stashes=$(git stash list | wc -l)
     if [[ stashes -gt 0 ]]; then
-      echo -n "  $stashes "
+      echo -n " 󰋻 $stashes "
       prompt_segment $CURRENT_BG $CURRENT_FG
     fi
 
