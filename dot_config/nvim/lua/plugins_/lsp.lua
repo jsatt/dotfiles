@@ -2,16 +2,16 @@ local theme = require('theme_')
 local utils = require('utils_')
 
 local lsp_configs = {
-  bashls = { mason_name = 'bash-language-server' },
-  cssls = { mason_name = 'css-lsp' },
-  dockerls = { mason_name = 'dockerfile-language-server' },
-  emmet_ls = { mason_name = 'emmet-ls' },
-  graphql = { mason_name = 'graphql-language-service-cli' },
-  html = { mason_name = 'html-lsp' },
-  jsonls = { mason_name = 'json-lsp' },
-  -- marksman = {mason_name = 'marksman'},
+  bashls = {},
+  cssls = {},
+  dockerls = {},
+  docker_compose_language_service = {},
+  emmet_ls = {},
+  graphql = {},
+  html = {},
+  jsonls = {},
+  -- marksman = {},
   pylsp = {
-    mason_name = 'python-lsp-server',
     on_attach = function(client, bufnr)
       client.server_capabilities.rename = false
     end,
@@ -36,7 +36,6 @@ local lsp_configs = {
     },
   },
   pyright = {
-    mason_name = 'pyright',
     settings = {
       python = {
         analysis = {
@@ -48,9 +47,7 @@ local lsp_configs = {
       }
     }
   },
-  salt_ls = { mason_name = 'salt-lsp' },
   lua_ls = {
-    mason_name = 'lua-language-server',
     init_options = {
       embeddedLanguages = {
         vim = true,
@@ -76,15 +73,11 @@ local lsp_configs = {
       }
     }
   },
-  terraformls = {
-    mason_name = 'terraform-ls',
-  },
-  tsserver = { -- typescript
-    mason_name = 'typescript-language-server',
-  },
-  vimls = { mason_name = 'vim-language-server', suggest = { fromRuntimepath = true, fromVimruntime = true }, },
+  -- salt_ls = {},
+  terraformls = {},
+  tsserver = {},
+  vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
   yamlls = {
-    mason_name = 'yaml-language-server',
     on_attach = function(client, bufnr)
       if string.find(vim.api.nvim_buf_get_name(bufnr), 'k8s/helm') then
         -- don't use diagnostics on helm files because the lsp can't handle templating
@@ -127,8 +120,7 @@ return {
         },
         handlers = {
           ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = theme.opts.border_style }),
-          ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = theme.opts
-              .border_style }),
+          ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = theme.opts.border_style }),
         },
       }
       utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
@@ -213,16 +205,16 @@ return {
         require('mason-lspconfig').setup()
       end,
       dependencies = {
-        { 'williamboman/mason-lspconfig.nvim' },
+        {'williamboman/mason-lspconfig.nvim'},
         {
           'WhoIsSethDaniel/mason-tool-installer.nvim',
           opts = {
             ensure_installed = utils.merge_tables({
-              utils.flatten_table(lsp_configs, 'mason_name'),
+              utils.get_keys(lsp_configs),
               dap_configs,
               linter_configs,
               formatter_configs,
-            })
+            }),
           },
         },
       }
