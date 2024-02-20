@@ -1,7 +1,8 @@
 {{- $email := promptStringOnce . "email" "Email Address" -}}
 {{- $signing_key := promptStringOnce . "signing_key" "GPG Signing Key ID (gpg --list-secret-keys --keyid-format=long)" -}}
+{{- $term_font_size := promptInt "Terminal font size" 11 -}}
 
 [data]
 email = {{ $email | quote }}
 signing_key = {{ $signing_key | quote }}
-term_font_size = 10
+term_font_size = {{ $term_font_size }}
