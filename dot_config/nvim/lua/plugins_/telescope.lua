@@ -6,7 +6,11 @@ return {
     'nvim-lua/plenary.nvim',
     'xiyaowong/telescope-emoji.nvim',
     'nvim-telescope/telescope-dap.nvim',
-    "debugloop/telescope-undo.nvim",
+    'debugloop/telescope-undo.nvim',
+    {
+      'isak102/telescope-git-file-history.nvim',
+      dependencies = { "tpope/vim-fugitive" },
+    },
   },
   config = function(_, opts)
     local telescope = require('telescope')
@@ -41,6 +45,7 @@ return {
       },
     })
     telescope.load_extension('undo')
+    telescope.load_extension('git_file_history')
     utils.prepare_module('aerial', function() telescope.load_extension('aerial') end)
     utils.prepare_module('telescope._extensions.dap', function() telescope.load_extension('dap') end)
     utils.prepare_module('notify', function() telescope.load_extension('notify') end)
