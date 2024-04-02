@@ -17,6 +17,9 @@ return {
     },
     {
       'rcarriga/nvim-dap-ui',
+      dependencies = {
+        'nvim-neotest/nvim-nio',
+      },
       opts = {
         floating = {
           border = theme.opts.border_style,
