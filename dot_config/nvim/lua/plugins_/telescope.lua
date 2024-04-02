@@ -31,6 +31,7 @@ return {
           '--column',
           '--smart-case',
           '--hidden',
+          '--follow',
           "--glob=!.git/",
         }
       },
