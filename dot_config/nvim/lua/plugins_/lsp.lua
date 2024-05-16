@@ -81,7 +81,7 @@ local lsp_configs = {
     on_attach = function(client, bufnr)
       if string.find(vim.api.nvim_buf_get_name(bufnr), 'k8s/helm') then
         -- don't use diagnostics on helm files because the lsp can't handle templating
-        vim.diagnostic.disable(bufnr)
+        vim.diagnostic.enable(false, {bufnr = bufnr})
       end
     end,
     settings = {
@@ -105,6 +105,8 @@ local formatter_configs = {
   'remark-cli',
   'yamlfmt',
 }
+
+vim.lsp.inlay_hint.enable()
 
 return {
   'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client

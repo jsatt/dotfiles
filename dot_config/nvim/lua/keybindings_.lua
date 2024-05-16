@@ -49,12 +49,8 @@ vim.keymap.set({ 'n', 'i' }, '<S-Up>', '<C-w>k', { desc = 'Navigate splits - up'
 vim.keymap.set({ 'n', 'i' }, '<S-Down>', '<C-w>j', { desc = 'Navigate splits - down' })
 
 -- copy to terminal hosts clipboard
--- vim.keymap.set('v', '<leader>y', 'y:OSCYank<CR>', {silent = true})
-utils.prepare_module('osc52', function(osc52)
-  vim.keymap.set('n', '<leader>y', osc52.copy_operator, { expr = true, desc = 'Copy to system clipboard' })
-  vim.keymap.set('n', '<leader>yy', '<leader>y_', { remap = true, desc = 'Copy line to system clipboard' })
-  vim.keymap.set('v', '<leader>y', osc52.copy_visual, { desc = 'Copy selection to system clipboard' })
-end)
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
+vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Copy line to system clipboard' })
 
 -- Telescope
 utils.prepare_module('telescope', function(telescope)
@@ -81,10 +77,7 @@ vim.keymap.set('n', 'gi', function() utils.open_in('tab', vim.lsp.buf.implementa
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, { silent = true, desc = 'Show references' })
 vim.keymap.set('n', 'gy', function() utils.open_in('tab', vim.lsp.buf.type_definition) end, { silent = true, desc = 'Goto type definition' })
 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { silent = true, desc = 'Show signature' })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { silent = true, desc = 'Show line diagnostics' })
 vim.keymap.set({ 'n', 'v' }, '<leader>f', function() vim.lsp.buf.format({ async = true }) end, { silent = true, desc = 'Format' })
-vim.keymap.set('n', '<leader>lp', vim.diagnostic.goto_prev, { silent = true, desc = 'Goto previous diagnostic' })
-vim.keymap.set('n', '<leader>ln', vim.diagnostic.goto_next, { silent = true, desc = 'Goto next diagnostic' })
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, desc = 'Rename' })
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { silent = true, desc = 'Code Actions' })
 

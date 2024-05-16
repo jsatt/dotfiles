@@ -12,7 +12,7 @@ vim.opt.autoindent = true -- copy indent from current line when starting new lin
 vim.opt.autoread = true -- auto-read if file has changed outside vim but not inside
 vim.opt.clipboard = 'unnamedplus' -- copy/paste to/from system clipboard
 -- vim.opt.cmdheight = 0 -- use 2 screen lines for command line
-vim.opt.completeopt='menu,menuone,noselect'
+vim.opt.completeopt='menu,menuone,noselect,popup'
 vim.opt.cursorline = true -- highlight line that cursor is currently on
 vim.opt.diffopt:append('linematch:60')
 vim.opt.encoding = 'utf8' -- use UTF-8 file encoding
@@ -34,6 +34,7 @@ vim.opt.shortmess:append('I') -- don't give intro message when starting
 vim.opt.shortmess:append('c') -- don't give |ins-completion-menu| messages
 vim.opt.signcolumn = 'yes:2' -- always show sign column, 2 columns wide
 vim.opt.smarttab = true -- use <BS> to delete shiftwidth worth of space at start of line
+vim.opt.smoothscroll = true -- scroll by screen lines rather than editor lines (ie wrapped lines)
 vim.opt.softtabstop = 4 -- 4 spaces for tabsin INSERT mode
 vim.opt.spelllang = 'en_us' -- set spell check to US English
 vim.opt.splitbelow = true -- open new splits below instead of above
@@ -61,3 +62,15 @@ vim.filetype.add({
     sls = 'yaml',
   }
 })
+
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}

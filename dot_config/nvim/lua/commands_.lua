@@ -46,7 +46,7 @@ local function delete_inactive_bufs()
   local closed_tabs = 0
   for _, i in ipairs(vim.api.nvim_list_bufs()) do
     local buf_modified = vim.fn.getbufvar(i, '&mod') == 1
-    local buf_in_tab = utils.table_contains(tablist, i)
+    local buf_in_tab = vim.list_contains(tablist, i)
     if not buf_modified and not buf_in_tab then
       vim.fn.execute('bwipeout ' .. i)
       closed_tabs = closed_tabs + 1

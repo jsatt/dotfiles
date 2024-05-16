@@ -16,7 +16,7 @@ local function tabpage_window_count(tabnr)
 end
 
 local function buffer_number()
-  return vim.api.nvim_buf_get_number(0)
+  return vim.api.nvim_get_current_buf()
 end
 
 local function tab_had_modified_bufs(tabnr)
@@ -43,7 +43,7 @@ local function session_name()
   return utils.prepare_module(
     'possession.session',
     function(session)
-      return session.session_name or ''
+      return session.get_session_name() or ''
     end) or ''
 end
 

@@ -26,19 +26,6 @@ function M.key_in_table(key, tbl)
   return tbl[key] ~= nil
 end
 
-function M.table_contains(tbl, val)
-  for i, v in ipairs(tbl) do
-    if v == val then
-      return true
-    end
-  end
-  return false
-end
-
-function M.noop(...)
-  return nil
-end
-
 function M.open_in(target, callback)
   local cmd = ''
   if target == 'tab' then
@@ -57,14 +44,6 @@ function M.range(start_pos, end_pos)
   local ret = {}
   for i = start_pos, end_pos do
     table.insert(ret, i)
-  end
-  return ret
-end
-
-function M.flatten_table(tbl, key)
-  local ret = {}
-  for i, v in pairs(tbl) do
-    table.insert(ret, v[key])
   end
   return ret
 end

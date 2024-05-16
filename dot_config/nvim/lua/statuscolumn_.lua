@@ -1,5 +1,4 @@
 local theme = require('theme_')
-local utils = require('utils_')
 local M = {}
 _G.Status = M
 
@@ -40,8 +39,8 @@ end
 
 function M.column()
   local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-  local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
-  if utils.table_contains(exclude_filetypes, ft) then
+  local ft = vim.api.nvim_get_option_value('filetype', {buf = buf})
+  if vim.list_contains(exclude_filetypes, ft) then
     return ''
   end
 
@@ -80,14 +79,12 @@ vim.diagnostic.config {
   update_in_insert = false,
   underline = true,
   severity_sort = true,
-  virtual_text = {
-    source = 'always',
-  },
+  virtual_text = true,
   float = {
     focusable = false,
     -- style = "minimal",
     border = theme.opts.border_style,
-    source = 'always',
+    source = true,
     -- header = "",
     -- prefix = "",
   },
