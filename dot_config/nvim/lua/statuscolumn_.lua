@@ -9,9 +9,9 @@ local exclude_filetypes = {
 ---@return {name:string, text:string, texthl:string}[]
 function M.get_signs()
   local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-  return vim.tbl_map(function(sign)
+  return vim.iter(vim.fn.sign_getplaced(buf, { group = "*", lnum = vim.v.lnum })[1].signs):map(function(sign)
     return vim.fn.sign_getdefined(sign.name)[1]
-  end, vim.fn.sign_getplaced(buf, { group = "*", lnum = vim.v.lnum })[1].signs)
+  end):totable()
 end
 
 function M.get_lnum()

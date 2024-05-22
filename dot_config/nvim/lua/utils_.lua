@@ -11,14 +11,6 @@ function M.prepare_module(module_name, prepare_func, fallback_func)
   return prepare_func(module)
 end
 
-function M.get_keys(tbl)
-  local keys = {}
-  for key, _ in pairs(tbl) do
-    table.insert(keys, key)
-  end
-  return keys
-end
-
 function M.key_in_table(key, tbl)
   if tbl == nil then
     return false
@@ -44,16 +36,6 @@ function M.range(start_pos, end_pos)
   local ret = {}
   for i = start_pos, end_pos do
     table.insert(ret, i)
-  end
-  return ret
-end
-
-function M.merge_tables(tables)
-  local ret = {}
-  for _, t in pairs(tables) do
-    for k, v in pairs(t) do
-      table.insert(ret, k, v)
-    end
   end
   return ret
 end

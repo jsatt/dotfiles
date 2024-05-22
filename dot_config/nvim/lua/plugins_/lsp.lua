@@ -206,12 +206,13 @@ return {
         {
           'WhoIsSethDaniel/mason-tool-installer.nvim',
           opts = {
-            ensure_installed = utils.merge_tables({
-              utils.get_keys(lsp_configs),
+            ensure_installed = vim.tbl_extend(
+              'force',
+              vim.tbl_keys(lsp_configs),
               dap_configs,
               linter_configs,
-              formatter_configs,
-            }),
+              formatter_configs
+            ),
           },
         },
       }
