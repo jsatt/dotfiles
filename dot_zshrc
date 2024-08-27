@@ -21,7 +21,6 @@ plugins=(
     docker-compose
     encode64
     extract
-    fd
     gitfast
     golang
     helm
@@ -33,7 +32,6 @@ plugins=(
     pip
     poetry
     python
-    ripgrep
     sudo
     virtualenvwrapper
 
