@@ -29,6 +29,11 @@
 ["bin/nvim-macos"]
     type = "archive"
     exact = true
-    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-macos.tar.gz"
+    {{ if eq .chezmoi.arch "arm64" }}
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz"
+    {{ else }}
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-macos-x86_66.tar.gz"
+    {{ end -}}
+    stripComponents = 1
     refreshPeriod = "168h"
 {{ end -}}
