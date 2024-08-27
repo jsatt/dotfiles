@@ -178,7 +178,7 @@ prompt_git(){
     echo -n " $ref "
 
     local git_status=$(git status --porcelain 2>/dev/null)
-    [[ $(echo $git_status | grep -e "^??" | wc -l 2> /dev/null) -gt 0 ]] && echo -n "%F{cyan}%}•"
+    [[ $(echo $git_status | grep -e "^\?\?" | wc -l 2> /dev/null) -gt 0 ]] && echo -n "%F{cyan}%}•"
     [[ $(echo $git_status | grep -e "^ M" | wc -l 2> /dev/null) -gt 0 ]] && echo -n "%F{green}%}•"
     [[ $(echo $git_status | grep -e "^M " -e "^A " | wc -l 2> /dev/null) -gt 0 ]] && echo -n "%F{yellow}%}•"
 
