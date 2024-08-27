@@ -76,6 +76,7 @@ return {
             snippy = "[Snippet]",
             buffer = "[Buffer]",
             path = "[Path]",
+            cmdline = "[Cmd]",
           })[entry.source.name]
           return vim_item
         end,
@@ -97,8 +98,14 @@ return {
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        { name = 'path',   option = cmp_path_opts },
-        { name = 'cmdline' },
+        { name = 'path', option = cmp_path_opts },
+      }, {
+        {
+          name = 'cmdline',
+          option = {
+            treat_trailing_slash = false,
+          },
+        },
       }),
     })
 
