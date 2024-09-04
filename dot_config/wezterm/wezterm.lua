@@ -27,7 +27,7 @@ config.freetype_load_flags          = 'NO_BITMAP|NO_HINTING'
 --- Colors
 config.color_scheme                 = '3024 (dark) (terminal.sexy)'
 config.window_background_opacity    = .85
-config.inactive_pane_hsb = {
+config.inactive_pane_hsb            = {
   brightness = 0.5,
 }
 
@@ -37,10 +37,10 @@ config.exec_domains                 = domains.compute_exec_domains()
 config.default_domain               = domains.select_domain('docker:devbox-devbox-1', 'local', config.exec_domains)
 
 -- Bindings
-local bindings = require('bindings')
+local bindings                      = require('bindings')
 config.disable_default_key_bindings = true
-config.keys = bindings.keys
-config.key_tables = bindings.key_tables
-config.mouse_bindings = bindings.mouse
+config.keys                         = bindings.keys
+config.key_tables                   = bindings.key_tables
+config.mouse_bindings               = bindings.mouse
 
 return config

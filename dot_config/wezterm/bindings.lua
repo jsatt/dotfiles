@@ -37,7 +37,9 @@ return {
     { key = '0',          mods = 'SHIFT|CTRL', action = act.ResetFontSize },
 
     { key = 'c',          mods = 'SHIFT|CTRL', action = act.CopyTo 'Clipboard' },
+    { key = 'c',          mods = 'CMD',        action = act.CopyTo 'Clipboard' },
     { key = 'v',          mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
+    { key = 'v',          mods = 'CMD',        action = act.PasteFrom 'Clipboard' },
     { key = 'f',          mods = 'SHIFT|CTRL', action = act.Search 'CurrentSelectionOrEmptyString' },
     { key = 'u',          mods = 'SHIFT|CTRL', action = act.CharSelect { copy_on_select = true, copy_to = 'ClipboardAndPrimarySelection' } },
     { key = 'x',          mods = 'SHIFT|CTRL', action = act.ActivateCopyMode },
@@ -46,6 +48,8 @@ return {
 
     { key = 't',          mods = 'SHIFT|CTRL', action = act.SpawnTab 'CurrentPaneDomain' },
     { key = 'w',          mods = 'SHIFT|CTRL', action = act.CloseCurrentTab { confirm = true } },
+    { key = ',',          mods = 'SHIFT|CTRL', action = act.ActivateTabRelative(-1) },
+    { key = '.',          mods = 'SHIFT|CTRL', action = act.ActivateTabRelative(1) },
 
     { key = 'e',          mods = 'SHIFT|CTRL', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
     { key = 'o',          mods = 'SHIFT|CTRL', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
