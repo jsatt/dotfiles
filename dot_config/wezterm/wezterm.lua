@@ -15,6 +15,9 @@ config.window_padding               = {
   bottom = 0,
 }
 config.unzoom_on_switch_pane        = false
+config.use_fancy_tab_bar = false
+config.tab_max_width = 50
+require('tabline').setup()
 
 --- Font
 config.font                         = wezterm.font("AnonymicePro Nerd Font Mono", { weight = "Medium" })
