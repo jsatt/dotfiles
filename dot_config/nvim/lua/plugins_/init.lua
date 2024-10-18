@@ -10,7 +10,7 @@ return {
   -- VimScript
   'honza/vim-snippets', -- snippet pack
   'towolf/vim-helm',
-  'tpope/vim-fugitive',
+  -- 'tpope/vim-fugitive',
   'tpope/vim-eunuch',
   'AndrewRadev/linediff.vim',
   {

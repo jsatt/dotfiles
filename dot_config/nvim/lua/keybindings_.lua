@@ -10,6 +10,7 @@ vim.keymap.set('n', '<leader>hg', ':Inspect<CR>', { desc = 'Inspect' })
 vim.keymap.set('n', '<leader>hc', ':Coverage<CR>', { desc = 'Show test coverage' })
 vim.keymap.set('n', '<leader>hcc', ':CoverageClear<CR>', { desc = 'Clear test coverage' })
 vim.keymap.set('n', '<leader>/', ':let @/ = ""<CR>', { desc = 'Clear search' })
+vim.keymap.set('n', '<leader>gb', ':BlameToggle<CR>', { desc = 'Toggle Git Blame' })
 
 vim.keymap.set('n', '<C-c>', '<C-a>') -- remap increment to avoid clash with screen/tmux
 utils.prepare_module('dial.map', function(dial)
