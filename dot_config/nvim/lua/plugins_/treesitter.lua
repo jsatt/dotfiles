@@ -17,6 +17,7 @@ return {
       'gitignore',
       'git_config',
       'git_rebase',
+      'glimmer', -- handlebars/mustache/etc
       'graphql',
       'hcl',
       'html',

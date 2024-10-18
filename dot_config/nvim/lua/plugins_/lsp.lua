@@ -6,7 +6,9 @@ local lsp_configs = {
   cssls = {},
   dockerls = {},
   docker_compose_language_service = {},
-  emmet_ls = {},
+  emmet_ls = {
+    filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "svelte", "typescriptreact", "vue", "htmlangular", "glimmer" }
+  },
   graphql = {},
   html = {},
   jsonls = {},

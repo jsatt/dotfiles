@@ -60,6 +60,7 @@ vim.g.border_style = require('theme_').opts.border_style
 vim.filetype.add({
   extension = {
     sls = 'yaml',
+    mustache = 'glimmer'
   }
 })
 
