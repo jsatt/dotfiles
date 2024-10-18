@@ -212,9 +212,13 @@ return {
     },
     {
       'nvimtools/none-ls.nvim', -- for formatters and linters
+      dependencies = {
+        {"nvim-lua/plenary.nvim"},
+      },
       config = function()
         local null_ls = require('null-ls')
         null_ls.setup({
+          diagnostics_format = "#{s}: [#{c}] #{m} ",
           sources = {
             null_ls.builtins.code_actions.gitrebase,
             null_ls.builtins.code_actions.gitsigns,
