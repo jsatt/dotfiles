@@ -25,6 +25,7 @@ return {
   },
   opts = {
     filesystem = {
+      group_empty_dirs = true,
       bind_to_cwd = false,
       filtered_items = {
         hide_dotfiles = false,
