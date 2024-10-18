@@ -105,7 +105,7 @@ local lsp_configs = {
   vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
   yamlls = {
     on_attach = function(client, bufnr)
-      if string.find(vim.api.nvim_buf_get_name(bufnr), 'k8s/helm') then
+      if string.find(vim.api.nvim_buf_get_name(bufnr), 'k8s2?/helm') then
         -- don't use diagnostics on helm files because the lsp can't handle templating
         vim.diagnostic.enable(false, {bufnr = bufnr})
       end
@@ -114,7 +114,7 @@ local lsp_configs = {
       yaml = {
         schemas = {
           ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.20.13/all.json"] = "/k8s/**/*.yaml",
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1/all.json"] = {"/k8s/**/*.yaml", "/k8s2/**/*.yaml"},
         }
       }
     }
