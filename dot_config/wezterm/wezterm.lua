@@ -40,10 +40,11 @@ config.exec_domains                 = domains.compute_exec_domains()
 config.default_domain               = domains.select_domain('docker:devbox-devbox-1', 'local', config.exec_domains)
 
 -- Bindings
-local bindings                      = require('bindings')
-config.disable_default_key_bindings = true
-config.keys                         = bindings.keys
-config.key_tables                   = bindings.key_tables
-config.mouse_bindings               = bindings.mouse
+local bindings                          = require('bindings')
+config.disable_default_key_bindings     = true
+config.keys                             = bindings.keys
+config.key_tables                       = bindings.key_tables
+config.mouse_bindings                   = bindings.mouse
+config.bypass_mouse_reporting_modifiers = "SHIFT|CTRL"
 
 return config

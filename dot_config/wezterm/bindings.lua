@@ -59,7 +59,7 @@ return {
     { key = 'DownArrow',  mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Down' },
     { key = '<',          mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Prev' },
     { key = '>',          mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Next' },
-    { key = 'x',          mods = 'SHIFT|CTRL', action = act.TogglePaneZoomState },
+    { key = 'z',          mods = 'SHIFT|CTRL', action = act.TogglePaneZoomState },
 
     -- Defaults
     -- { key = '\"',         mods = 'ALT|CTRL',       action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
