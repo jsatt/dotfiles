@@ -24,6 +24,7 @@ return {
       'ini',
       'javascript',
       'json',
+      'kotlin',
       'lua',
       'make',
       'markdown',

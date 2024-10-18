@@ -8,3 +8,6 @@ stty -ixon  # disable tty flow control, ie. CTRL-S, CTRL-Q
 if [ -d $HOME/.krew ]; then
     path=(~/.krew/bin $path)
 fi
+if [ -d $HOME/.local/kotlinc/ ]; then
+    path=(~/.local/kotlinc/bin $path)
+fi

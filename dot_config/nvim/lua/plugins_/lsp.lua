@@ -47,17 +47,41 @@ local lsp_configs = {
       }
     }
   },
+  kotlin_language_server = {
+    settings = {
+      kotlin = {
+        codegen = {
+          enabled = true,
+        },
+        external_source = {
+          useKlsScheme = true,
+          autoConvertToKotlin = true,
+
+        },
+        inline_hints = {
+          typeHints = true,
+          parameterHints = true,
+          chainedHints = true,
+        },
+        compiler = {
+          jvm = {
+            target = "21",
+          }
+        }
+      }
+    }
+  },
   lua_ls = {
     init_options = {
       embeddedLanguages = {
         vim = true,
       }
     },
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim", "require" },
-        },
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim", "require" },
+          },
         color = {
           mode = "SemanticEnhanced"
         },
@@ -97,16 +121,37 @@ local lsp_configs = {
 
 local dap_configs = {
   'bash-debug-adapter',
+  'kotlin-debug-adapter',
 }
 local linter_configs = {
 }
 local formatter_configs = {
+  'ktlint',
   'prettierd',
   'remark-cli',
   'yamlfmt',
 }
 
 vim.lsp.inlay_hint.enable()
+
+vim.api.nvim_create_user_command(
+  'RestartKLS',
+  function()
+    for _, client in ipairs(vim.lsp.get_clients({name='kotlin_language_server'})) do
+      if not client.is_stopped() and client.name == 'kotlin_language_server' then
+        client.rpc.terminate()
+        vim.cmd.LspStop(client.id)
+        vim.wait(1000,
+          function()
+            return client.is_stopped()
+          end
+        )
+        vim.cmd.LspStart(client.name)
+      end
+    end
+  end,
+  {}
+)
 
 return {
   'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
@@ -171,12 +216,17 @@ return {
           sources = {
             null_ls.builtins.code_actions.gitrebase,
             null_ls.builtins.code_actions.gitsigns,
+
+            null_ls.builtins.completion.spell,
+
+            null_ls.builtins.diagnostics.ktlint,
             null_ls.builtins.diagnostics.zsh,
 
             null_ls.builtins.formatting.isort,
             null_ls.builtins.formatting.remark,
             null_ls.builtins.formatting.yamlfmt,
           }
+
         })
       end,
     },
