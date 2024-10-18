@@ -36,7 +36,6 @@ plugins=(
     virtualenvwrapper
 
     zshmarks
-    zsh-kitty
     zsh-syntax-highlighting
 )
 
@@ -76,7 +75,6 @@ zstyle ':completion:*' completer _expand _complete _ignored _correct _approximat
 zstyle :compinstall filename $HOME/.zshrc
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
-__kitty_complete
 autoload -Uz compinit
 compinit
 
