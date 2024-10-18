@@ -101,7 +101,7 @@ local lsp_configs = {
   },
   -- salt_ls = {},
   terraformls = {},
-  tsserver = {},
+  ts_ls = {},
   vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
   yamlls = {
     on_attach = function(client, bufnr)
