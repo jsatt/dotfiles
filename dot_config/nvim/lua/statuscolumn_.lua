@@ -3,6 +3,7 @@ local M = {}
 _G.Status = M
 
 local exclude_filetypes = {
+  'aerial',
   'neo-tree',
 }
 

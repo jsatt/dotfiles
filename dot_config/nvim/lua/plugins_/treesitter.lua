@@ -36,6 +36,7 @@ return {
       'query',
       'regex',
       'terraform',
+      'toml',
       'typescript',
       'vim',
       'vimdoc',

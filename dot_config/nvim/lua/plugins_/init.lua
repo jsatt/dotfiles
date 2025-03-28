@@ -13,6 +13,7 @@ return {
   -- 'tpope/vim-fugitive',
   'tpope/vim-eunuch',
   'AndrewRadev/linediff.vim',
+  'will133/vim-dirdiff',
   {
     'mg979/vim-visual-multi',
     branch = 'master',

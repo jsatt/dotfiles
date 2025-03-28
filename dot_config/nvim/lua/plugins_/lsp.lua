@@ -99,6 +99,7 @@ local lsp_configs = {
       }
     }
   },
+  -- remark_ls = {},
   -- salt_ls = {},
   terraformls = {},
   ts_ls = {},
@@ -214,16 +215,20 @@ return {
       'nvimtools/none-ls.nvim', -- for formatters and linters
       dependencies = {
         {"nvim-lua/plenary.nvim"},
+        {"davidmh/cspell.nvim"},
       },
       config = function()
         local null_ls = require('null-ls')
+        local cspell = require('cspell')
         null_ls.setup({
           diagnostics_format = "#{s}: [#{c}] #{m} ",
           sources = {
             null_ls.builtins.code_actions.gitrebase,
             null_ls.builtins.code_actions.gitsigns,
 
-            null_ls.builtins.completion.spell,
+            -- null_ls.builtins.completion.spell,
+            cspell.diagnostics,
+            cspell.code_actions,
 
             null_ls.builtins.diagnostics.ktlint,
             null_ls.builtins.diagnostics.zsh,
@@ -231,6 +236,7 @@ return {
             null_ls.builtins.formatting.isort,
             null_ls.builtins.formatting.remark,
             null_ls.builtins.formatting.yamlfmt,
+            -- null_ls.builtins.formatting.ktlint,
           }
 
         })

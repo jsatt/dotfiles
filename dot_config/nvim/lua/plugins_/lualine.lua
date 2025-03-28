@@ -124,8 +124,7 @@ return {
           max_length = vim.o.columns,
           fmt = function(name, context)
             local win_count = tabpage_window_count(context.tabnr)
-            local mod = tab_had_modified_bufs(context.tabnr) and ' [+]' or ''
-            return context.tabnr .. '' .. win_count .. '  ' .. name .. mod
+            return context.tabnr .. '' .. win_count .. '  ' .. name
           end
         }
       },
