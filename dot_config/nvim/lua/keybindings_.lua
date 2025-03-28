@@ -6,11 +6,11 @@ vim.keymap.set('n', '<leader>ld', ':Linediff<CR>', { silent = true, desc = 'Line
 vim.keymap.set('v', '<leader>ld', ":'<,'>Linediff<CR>", { silent = true, desc = 'Linediff' })
 vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>', { desc = 'Toggle Aerial' })
 vim.keymap.set('n', '<leader>t', '<cmd>Neotree toggle filesystem<CR>', { desc = 'Toggle File Tree' })
-vim.keymap.set('n', '<leader>hg', ':Inspect<CR>', { desc = 'Inspect' })
-vim.keymap.set('n', '<leader>hc', ':Coverage<CR>', { desc = 'Show test coverage' })
-vim.keymap.set('n', '<leader>hcc', ':CoverageClear<CR>', { desc = 'Clear test coverage' })
-vim.keymap.set('n', '<leader>/', ':let @/ = ""<CR>', { desc = 'Clear search' })
-vim.keymap.set('n', '<leader>gb', ':BlameToggle<CR>', { desc = 'Toggle Git Blame' })
+vim.keymap.set('n', '<leader>hg', ':Inspect<CR>', { silent = true, desc = 'Inspect' })
+vim.keymap.set('n', '<leader>hc', ':Coverage<CR>', { silent = true, desc = 'Show test coverage' })
+vim.keymap.set('n', '<leader>hcc', ':CoverageClear<CR>', { silent = true, desc = 'Clear test coverage' })
+vim.keymap.set('n', '<leader>/', ':let @/ = ""<CR>', { silent = true, desc = 'Clear search' })
+vim.keymap.set('n', '<leader>gb', ':BlameToggle<CR>', { silent = true, desc = 'Toggle Git Blame' })
 
 vim.keymap.set('n', '<C-c>', '<C-a>') -- remap increment to avoid clash with screen/tmux
 utils.prepare_module('dial.map', function(dial)
@@ -34,12 +34,12 @@ vim.keymap.set('n', '<Up>', 'v:count == 0 ? "gk": "k"', { expr = true })
 vim.keymap.set('n', '<Down>', 'v:count == 0 ? "gj": "j"', { expr = true })
 
 -- navigation between tabs
-vim.keymap.set('n', '<C-Right>', ':tabnext<CR>', { desc = 'Navigate tabs - right' })
-vim.keymap.set('n', '<C-Left>', ':tabprevious<CR>', { desc = 'Navigate tabs - left' })
+vim.keymap.set('n', '<C-Right>', ':tabnext<CR>', { silent = true, desc = 'Navigate tabs - right' })
+vim.keymap.set('n', '<C-Left>', ':tabprevious<CR>', { silent = true, desc = 'Navigate tabs - left' })
 vim.keymap.set('i', '<C-Right>', '<Esc>:tabnext<CR>', { silent = true, desc = 'Navigate tabs - right' })
 vim.keymap.set('i', '<C-Left>', '<Esc>:tabprevious<CR>', { silent = true, desc = 'Navigate tabs - left' })
-vim.keymap.set('n', '<A-Right>', ':tabm +1<CR>', { desc = 'Move tab right' })
-vim.keymap.set('n', '<A-Left>', ':tabm -1<CR>', { desc = 'Move tab right' })
+vim.keymap.set('n', '<A-Right>', ':tabm +1<CR>', { silent = true, desc = 'Move tab right' })
+vim.keymap.set('n', '<A-Left>', ':tabm -1<CR>', { silent = true, desc = 'Move tab right' })
 vim.keymap.set('i', '<A-Right>', '<Esc>:tabm +1<CR>', { silent = true, desc = 'Move tab right' })
 vim.keymap.set('i', '<A-Left>', '<Esc>:tabim -1<CR>', { silent = true, desc = 'Move tab left' })
 
