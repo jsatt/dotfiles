@@ -77,7 +77,13 @@ return {
             buffer = "[Buffer]",
             path = "[Path]",
             cmdline = "[Cmd]",
+            copilot = "[Copilot]",
+            codecompanion_slash_commands = "[CodeCompanion]",
+            codecompanion_tools = "[CodeCompanion]",
+            codecompanion_variables = "[CodeCompanion]",
+            codecompanion_models = "[CodeCompanion]",
           })[entry.source.name]
+
           return vim_item
         end,
       },

@@ -52,5 +52,7 @@ return {
     utils.prepare_module('telescope._extensions.dap', function() telescope.load_extension('dap') end)
     utils.prepare_module('notify', function() telescope.load_extension('notify') end)
     utils.prepare_module('possession', function() telescope.load_extension('possession') end)
+    utils.prepare_module('fidget', function() telescope.load_extension('fidget') end)
+    utils.prepare_module('codecompanion', function() telescope.load_extension('codecompanion') end)
   end,
 }

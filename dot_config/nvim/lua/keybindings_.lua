@@ -81,6 +81,12 @@ vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { silent = true, desc = 'S
 vim.keymap.set({ 'n', 'v' }, '<leader>f', function() vim.lsp.buf.format({ async = true }) end, { silent = true, desc = 'Format' })
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, desc = 'Rename' })
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { silent = true, desc = 'Code Actions' })
+vim.keymap.set('n', '<leader>sd', vim.diagnostic.open_float, { silent = true, desc = 'Show Diagnostics' })
+
+-- CodeCompanion
+utils.prepare_module('codecompanion', function(codecompanion)
+  vim.keymap.set({'n', 'v'}, '<leader>cc', ':CodeCompanionActions<CR>', { silent = true, desc = 'Move tab left' })
+end)
 
 -- DAP
 utils.prepare_module('dap', function(dap)
