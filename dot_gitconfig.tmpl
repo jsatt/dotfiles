@@ -36,6 +36,7 @@
 
 [merge]
     tool = nvimdiff
+    conflictstyle = zdiff3
 
 [alias]
     br = branch
@@ -62,11 +63,22 @@
 [push]
     default = simple
 
+[pull]
+    rebase = true
+
 [help]
     autocorrect = 15
+
 [diff]
+    algorithm = histogram
     compactionHeuristic = true
     colorMoved = default
+    renames = true
+    mnemonicPrefix = true
+
+[rerere]
+    enabled = true
+    autoupdate = true
 
 [interactive]
     diffFilter = delta --color-only
