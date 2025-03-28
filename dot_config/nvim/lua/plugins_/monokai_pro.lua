@@ -7,7 +7,7 @@ return {
   priority = 1000,
   opts = {
     transparent_background = true,
-    filter = 'spectrum',
+    filter = 'classic',
     background_clear = {
       "telescope",
       "neo-tree",
@@ -18,8 +18,6 @@ return {
         CursorStatusColumn = { link = 'CursorLineNr' },
         ColorColumn = { link = 'CursorLine' },
         FloatBorder = { link = 'SPNormalFloat' },
-
-        DiffText = { bg = colorscheme.diffEditorOverview.modifiedForeground, fg = colorscheme.diffEditor.modifiedLineBackground },
 
         LuaLineDiagnosticsError = { bg = lualine_theme.normal.c.bg, fg = colorscheme.inputValidation.errorForeground },
         LuaLineDiagnosticsWarn = { bg = lualine_theme.normal.c.bg, fg = colorscheme.inputValidation.warningForeground },

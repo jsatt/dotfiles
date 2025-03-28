@@ -2,6 +2,7 @@ local theme = require('theme_')
 
 return {
 'judaew/ronny.nvim',
+  enabled = false,
   lazy = false,
   priority = 1000,
   config = function()
@@ -15,7 +16,6 @@ return {
     colors.builtin.DiffAdd = { bg=theme.colors.dark_green.gui, bold=true }
     colors.builtin.DiffChange = { bg=theme.colors.dark_yellow.gui, bold=true }
     colors.builtin.DiffDelete = { bg=theme.colors.dark_red.gui, bold=true }
-    colors.builtin.DiffText = { fg = colors.builtin.DiffChange.bg, bg = colors.builtin.DiffChange.fg, bold=true }
     colors.gitsigns.GitSignsChange = { fg = theme.colors.orange.gui, bg = colors.gitsigns.GitSignsChange.bg, bold=true }
 
     utils.apply_syntax({
