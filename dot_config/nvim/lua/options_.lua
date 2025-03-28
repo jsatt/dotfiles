@@ -1,13 +1,12 @@
 local utils = require('utils_')
 
-vim.cmd [[
-syntax enable
-" colorscheme monokai-pro
-colorscheme ronny
-]]
+vim.cmd.syntax('enable')
+-- vim.cmd.colorscheme('monokai-pro')
+-- vim.cmd.colorscheme('ronny')
+vim.cmd.colorscheme('onedark')
 
 vim.opt.secure = true -- limit commands .nvimrc can run
-vim.cmd('filetype plugin indent on') -- enable filetype detection and fieltype specific plugins and indents
+vim.cmd.filetype('plugin indent on') -- enable filetype detection and fieltype specific plugins and indents
 vim.opt.autoindent = true -- copy indent from current line when starting new line
 vim.opt.autoread = true -- auto-read if file has changed outside vim but not inside
 vim.opt.clipboard = 'unnamedplus' -- copy/paste to/from system clipboard
@@ -25,7 +24,6 @@ vim.opt.history = 1000 -- remember the last 1000 commands used
 vim.opt.hlsearch = true -- highlight matches when searching
 vim.opt.incsearch = true -- jump to next match when searching
 vim.opt.linebreak = true -- visually wrap long lines on breakat characters
--- vim.opt.mouse = 'a' -- enable mouse in all modes
 vim.opt.number = true -- show line numbers
 vim.opt.numberwidth = 2 -- width of line number column
 vim.opt.scrolloff = 10 -- keep lines above and below cursor when scrolliing
@@ -41,7 +39,7 @@ vim.opt.splitbelow = true -- open new splits below instead of above
 vim.opt.splitright = true -- open new vsplits to the right instead of left
 vim.opt.statuscolumn = '%s%l%C'  -- default statuscolumn = signs, line number, fold tree
 vim.opt.swapfile = false -- diable swapfiles
-vim.opt.switchbuf = 'useopen,usetab,newtab' -- use open buffers when switching
+-- vim.opt.switchbuf = 'useopen,usetab,newtab' -- use open buffers when switching
 vim.opt.tabstop = 4 -- 4 spaces for tabs
 vim.opt.textwidth = 99 -- format lines to <100 characters
 local softtextwidth = 90 -- start considering line length at 90
