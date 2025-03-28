@@ -20,11 +20,17 @@
     refreshPeriod = "168h"
 
 {{ if eq .chezmoi.os "linux" -}}
-["bin/nvim-linux64"]
-    type = "archive"
-    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
-    stripComponents = 1
+
+["bin/nvim-linux.appimage"]
+    type = "file"
+    {{ if eq .chezmoi.arch "arm" }}
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage"
+    {{ else }}
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage"
+    {{ end -}}
+    executable = true
     refreshPeriod = "168h"
+
 {{ else if eq .chezmoi.os "darwin" -}}
 ["bin/nvim-macos"]
     type = "archive"
@@ -37,3 +43,57 @@
     stripComponents = 1
     refreshPeriod = "168h"
 {{ end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+["bin/code-minimap"]
+    type = "archive-file"
+    {{ if eq .chezmoi.arch "arm" }}
+    url = "https://github.com/wfxr/code-minimap/releases/download/v0.6.8/code-minimap-v0.6.8-aarch64-unknown-linux-musl.tar.gz"
+    {{ else }}
+    url = "https://github.com/wfxr/code-minimap/releases/download/v0.6.8/code-minimap-v0.6.8-x86_64-unknown-linux-musl.tar.gz"
+    {{ end -}}
+    path = "code-minimap"
+    stripComponents = 1
+    executable = false
+    refreshPeriod = "168h"
+{{ end -}}
+
+["bin/delta"]
+    type = "archive-file"
+{{ if eq .chezmoi.os "linux" -}}
+    {{ if eq .chezmoi.arch "arm" }}
+    url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-unknown-linux-gnu.tar.gz"
+    {{ else }}
+    url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-unknown-linux-musl.tar.gz"
+    {{ end -}}
+{{ else if eq .chezmoi.os "darwin" -}}
+    {{ if eq .chezmoi.arch "arm" }}
+    url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-apple-darwin.tar.gz"
+    {{ else }}
+    url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-apple-darwin.tar.gz"
+    {{ end -}}
+{{ end -}}
+    path = "delta"
+    stripComponents = 1
+    executable = true
+    refreshPeriod = "168h"
+
+["bin/rg"]
+    type = "archive-file"
+{{ if eq .chezmoi.os "linux" -}}
+    {{ if eq .chezmoi.arch "arm" }}
+    url = "https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-armv7-unknown-linux-musleabi.tar.gz"
+    {{ else }}
+    url = "https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz"
+    {{ end -}}
+{{ else if eq .chezmoi.os "darwin" -}}
+    {{ if eq .chezmoi.arch "arm" }}
+    url = "https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-aarch64-apple-darwin.tar.gz"
+    {{ else }}
+    url = "https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-apple-darwin.tar.gz"
+    {{ end -}}
+{{ end -}}
+    path = "rg"
+    stripComponents = 1
+    executable = true
+    refreshPeriod = "168h"
