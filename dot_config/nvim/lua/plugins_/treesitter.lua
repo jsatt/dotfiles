@@ -2,7 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    'mrjones2014/nvim-ts-rainbow',
+    'hiphish/rainbow-delimiters.nvim',
   },
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs',
