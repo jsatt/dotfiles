@@ -39,10 +39,10 @@ local lsp_configs = {
   },
   basedpyright = {
     settings = {
-      python = {
+      basedpyright = {
         analysis = {
-          -- logLevel = 'Trace',
-          --useLibraryCodeForTypes = true,
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
           diagnosticMode = 'openFilesOnly',
           -- diagnosticSeverityOverrides = 'none',
         },
