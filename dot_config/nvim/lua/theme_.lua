@@ -7,20 +7,6 @@ local border_styles = {
 }
 local border_style = 'edge_to_edge'
 
-M.opts = {
-  border_style = border_styles[border_style],
-  telescope_border_style = {
-    border_styles[border_style][2],
-    border_styles[border_style][4],
-    border_styles[border_style][6],
-    border_styles[border_style][8],
-    border_styles[border_style][1],
-    border_styles[border_style][3],
-    border_styles[border_style][5],
-    border_styles[border_style][7],
-  },
-}
-
 M.colors = {
     black = {gui = '#000000', term = 16},
     near_black = {gui = '#141413', term = 232},

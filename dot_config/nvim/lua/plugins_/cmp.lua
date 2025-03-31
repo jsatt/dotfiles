@@ -57,12 +57,10 @@ return {
       }),
       window = {
         completion = cmp.config.window.bordered({
-          border = theme.opts.border_style,
           scrollbar = theme.icons.scrollbar,
           winhighlight = 'Normal:Pmenu,FloarBorder:Pmenu,CursorLine:PmenuSel,Search:None',
         }),
         documentation = cmp.config.window.bordered({
-          border = theme.opts.border_style,
           scrollbar = theme.icons.scrollbar,
           winhighlight = 'Normal:Pmenu,FloarBorder:Pmenu,Search:None',
         }),

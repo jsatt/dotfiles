@@ -23,8 +23,5 @@ return {
       },
     },
     numhl = true,
-    preview_config = {
-      border = theme.opts.border_style,
-    },
   },
 }

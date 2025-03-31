@@ -167,10 +167,7 @@ return {
         flags = {
           debounce_text_changes = 150,
         },
-        handlers = {
-          ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = theme.opts.border_style }),
-          ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = theme.opts.border_style }),
-        },
+        handlers = {},
       }
       utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
         lsp_opts.handlers["textDocument/references"] = ts_builtin.lsp_references
@@ -249,7 +246,6 @@ return {
       build = ':MasonUpdate',
       opts = {
         ui = {
-          border = theme.opts.border_style,
           icons = {
             package_installed = "✓",
             package_pending = "➜",

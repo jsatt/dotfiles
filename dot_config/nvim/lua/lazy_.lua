@@ -17,9 +17,6 @@ require('lazy').setup({
   spec = {
     {import = 'plugins_'},
   },
-  ui = {
-    border = require('theme_').opts.border_style,
-  },
   diff = {
     cmd = 'diffview.nvim',
   },

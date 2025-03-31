@@ -87,7 +87,6 @@ vim.diagnostic.config {
   float = {
     focusable = false,
     -- style = "minimal",
-    border = theme.opts.border_style,
     source = true,
     -- header = "",
     -- prefix = "",

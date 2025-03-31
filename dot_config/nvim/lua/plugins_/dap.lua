@@ -20,11 +20,6 @@ return {
       dependencies = {
         'nvim-neotest/nvim-nio',
       },
-      opts = {
-        floating = {
-          border = theme.opts.border_style,
-        }
-      },
       config = function(_, opts)
         local dapui = require('dapui')
         dapui.setup(opts)
