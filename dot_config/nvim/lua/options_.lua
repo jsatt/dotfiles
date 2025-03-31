@@ -11,9 +11,8 @@ vim.opt.autoindent = true -- copy indent from current line when starting new lin
 vim.opt.autoread = true -- auto-read if file has changed outside vim but not inside
 vim.opt.clipboard = 'unnamedplus' -- copy/paste to/from system clipboard
 -- vim.opt.cmdheight = 0 -- use 2 screen lines for command line
-vim.opt.completeopt='menu,menuone,noselect,popup'
+vim.opt.completeopt='menu,menuone,noselect,popup,fuzzy'
 vim.opt.cursorline = true -- highlight line that cursor is currently on
-vim.opt.diffopt:append('linematch:60')
 vim.opt.encoding = 'utf8' -- use UTF-8 file encoding
 vim.opt.expandtab = true -- use spaces instead of tabs
 vim.opt.foldenable = true -- enable folding
@@ -40,6 +39,7 @@ vim.opt.splitright = true -- open new vsplits to the right instead of left
 vim.opt.statuscolumn = '%s%l%C'  -- default statuscolumn = signs, line number, fold tree
 vim.opt.swapfile = false -- diable swapfiles
 -- vim.opt.switchbuf = 'useopen,usetab,newtab' -- use open buffers when switching
+vim.opt.tabclose = 'uselast'
 vim.opt.tabstop = 4 -- 4 spaces for tabs
 vim.opt.textwidth = 99 -- format lines to <100 characters
 local softtextwidth = 90 -- start considering line length at 90
