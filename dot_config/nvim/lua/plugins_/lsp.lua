@@ -136,6 +136,24 @@ local formatter_configs = {
 }
 
 vim.lsp.inlay_hint.enable()
+vim.lsp.config('*', {
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
+utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
+  local orig_references = vim.lsp.buf.references
+  vim.lsp.buf.references = function(context, opts)
+    orig_references(context, vim.tbl_deep_extend('keep', opts or {}, {on_list = ts_builtin.lsp_references}))
+  end
+  local orig_doc_symbols = vim.lsp.buf.document_symbol
+  vim.lsp.buf.document_symbol = function(opts)
+    orig_doc_symbols(vim.tbl_deep_extend('keep', opts or {}, {on_list = ts_builtin.lsp_document_symbols}))
+  end
+end)
+for server, srv_opts in pairs(lsp_configs) do
+  vim.lsp.config(server, srv_opts)
+end
 
 vim.api.nvim_create_user_command(
   'RestartKLS',
@@ -158,47 +176,10 @@ vim.api.nvim_create_user_command(
 
 return {
   'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
-  config = function(_, opts)
-    local lspconfig = require('lspconfig')
-    local mason_lspconfig = require('mason-lspconfig')
-    for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-      local srv_opts = lsp_configs[server]
-      local lsp_opts = {
-        flags = {
-          debounce_text_changes = 150,
-        },
-        handlers = {},
-      }
-      utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
-        lsp_opts.handlers["textDocument/references"] = ts_builtin.lsp_references
-      end)
-
-      if srv_opts ~= nil then
-        lsp_opts = vim.tbl_deep_extend('force', lsp_opts, srv_opts)
-      end
-
-      lsp_opts.on_attach = function(client, bufnr)
-        if srv_opts and utils.key_in_table('on_attach', srv_opts) then
-          srv_opts.on_attach(client, bufnr)
-        end
-      end
-
-      lspconfig[server].setup(lsp_opts)
-    end
-  end,
   dependencies = {
     {
       'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
       config = function()
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-
-        local lspconfig = require('lspconfig')
-        lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-          capabilities = capabilities,
-        })
-
         local lsp_win = require('lspconfig.ui.windows')
         local _default_opts = lsp_win.default_opts
         lsp_win.default_opts = function(options)
@@ -242,7 +223,7 @@ return {
       end,
     },
     {
-      'williamboman/mason.nvim',
+      'mason-org/mason.nvim',
       build = ':MasonUpdate',
       opts = {
         ui = {
@@ -262,7 +243,7 @@ return {
         require('mason-lspconfig').setup()
       end,
       dependencies = {
-        {'williamboman/mason-lspconfig.nvim'},
+        { 'mason-org/mason-lspconfig.nvim' },
         {
           'WhoIsSethDaniel/mason-tool-installer.nvim',
           opts = {
