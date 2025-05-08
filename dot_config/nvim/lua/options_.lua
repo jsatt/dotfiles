@@ -76,7 +76,9 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
   },
   paste = {
-    ['+'] = paste,
-    ['*'] = paste,
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    -- ['+'] = paste,
+    -- ['*'] = paste,
   },
 }
