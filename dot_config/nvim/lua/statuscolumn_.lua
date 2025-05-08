@@ -64,33 +64,3 @@ function M.column()
 end
 
 vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
-
--- Diagnostics
-
-local diagnostic_signs = {}
-for name, sign in pairs(theme.signs.diagnostics) do
-  vim.fn.sign_define(sign.statuscolumn_hl, { texthl = sign.statuscolumn_hl, text = sign.statuscolumn_text, numhl = sign.statuscolumn_numhl })
-  diagnostic_signs[name] = { name = sign.statuscolumn_hl, text = sign.statuscolumn_text }
-end
-
-vim.diagnostic.config {
-  signs = {
-    active = diagnostic_signs,
-  },
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  virtual_text = true,
-  virtual_lines = {
-    current_line = true,
-  },
-  float = {
-    focusable = false,
-    -- style = "minimal",
-    source = true,
-    -- header = "",
-    -- prefix = "",
-  },
-}
-
-return M
