@@ -13,30 +13,30 @@ local lsp_configs = {
   html = {},
   jsonls = {},
   -- marksman = {},
-  pylsp = {
-    on_attach = function(client, bufnr)
-      client.server_capabilities.rename = false
-    end,
-    settings = {
-      pylsp = {
-        configurationSources = { "flake8" },
-        plugins = {
-          jedi_completion = { enabled = false },
-          jedi_definition = { enabled = false },
-          jedi_hover = { enabled = false },
-          jedi_references = { enabled = false },
-          jedi_signature_help = { enabled = false },
-          jedi_symbols = { enabled = false },
-          flake8 = { enabled = true },
-          pylsp_mypy = { enabled = true },
-          pylint = { enabled = true },
-          pydocstyle = { enabled = false },
-          pyflakes = { enabled = false },
-          rope_completion = { enabled = false }
-        }
-      }
-    },
-  },
+  -- pylsp = {
+  --   on_attach = function(client, bufnr)
+  --     client.server_capabilities.rename = false
+  --   end,
+  --   settings = {
+  --     pylsp = {
+  --       configurationSources = { "flake8" },
+  --       plugins = {
+  --         jedi_completion = { enabled = false },
+  --         jedi_definition = { enabled = false },
+  --         jedi_hover = { enabled = false },
+  --         jedi_references = { enabled = false },
+  --         jedi_signature_help = { enabled = false },
+  --         jedi_symbols = { enabled = false },
+  --         flake8 = { enabled = true },
+  --         pylsp_mypy = { enabled = true },
+  --         pylint = { enabled = true, executable = 'pylint' },
+  --         pydocstyle = { enabled = false },
+  --         pyflakes = { enabled = false },
+  --         rope_completion = { enabled = false }
+  --       }
+  --     }
+  --   },
+  -- },
   basedpyright = {
     settings = {
       basedpyright = {
@@ -44,6 +44,7 @@ local lsp_configs = {
           autoSearchPaths = true,
           useLibraryCodeForTypes = true,
           diagnosticMode = 'openFilesOnly',
+          typeCheckingMode = 'standard',
           -- diagnosticSeverityOverrides = 'none',
         },
       }
@@ -99,6 +100,24 @@ local lsp_configs = {
     }
   },
   -- remark_ls = {},
+  ruff = {
+    init_options = {
+      settings = {
+        configurationPreference = "filesystemFirst",
+        lineLength = 119,
+        configuration = {
+          lint = {
+            select = { "E", "F", "W", "I" },
+          },
+          format = {
+            ['quote-style'] = 'single',
+            ['indent-style'] = 'space',
+            ['line-ending'] = 'lf',
+          },
+        },
+      },
+    },
+  },
   -- salt_ls = {},
   terraformls = {},
   ts_ls = {},
@@ -205,14 +224,14 @@ return {
 
             -- null_ls.builtins.completion.spell,
             cspell.diagnostics.with({
-              filetypes = { 'text', 'markdown' },
+              filetypes = { 'text', 'markdown', 'gitcommit' },
             }),
             cspell.code_actions,
 
             null_ls.builtins.diagnostics.ktlint,
             null_ls.builtins.diagnostics.zsh,
 
-            null_ls.builtins.formatting.isort,
+            -- null_ls.builtins.formatting.isort,
             null_ls.builtins.formatting.remark,
             null_ls.builtins.formatting.yamlfmt,
             -- null_ls.builtins.formatting.ktlint,
