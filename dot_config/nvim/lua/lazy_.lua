@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Install your plugins here
 require('lazy').setup({
   spec = {
-    {import = 'plugins_'},
+    { import = 'plugins_' },
   },
   diff = {
     cmd = 'diffview.nvim',

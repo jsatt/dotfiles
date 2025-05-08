@@ -79,22 +79,21 @@ local lsp_configs = {
         vim = true,
       }
     },
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim", "require" },
-          },
-        color = {
-          mode = "SemanticEnhanced"
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim", "require" },
         },
-        telemetry = {
-          enable = false
-        },
-        workspace = {
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.stdpath('config') .. '/lua'] = true,
-          }
+        -- color = {
+        mode = "SemanticEnhanced"
+      },
+      telemetry = {
+        enable = false
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.stdpath('config') .. '/lua'] = true,
         }
       }
     }
@@ -108,14 +107,14 @@ local lsp_configs = {
     on_attach = function(client, bufnr)
       if string.find(vim.api.nvim_buf_get_name(bufnr), 'k8s2?/helm') then
         -- don't use diagnostics on helm files because the lsp can't handle templating
-        vim.diagnostic.enable(false, {bufnr = bufnr})
+        vim.diagnostic.enable(false, { bufnr = bufnr })
       end
     end,
     settings = {
       yaml = {
         schemas = {
           ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1/all.json"] = {"/k8s/**/*.yaml", "/k8s2/**/*.yaml"},
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1/all.json"] = { "/k8s/**/*.yaml", "/k8s2/**/*.yaml" },
         }
       }
     }
@@ -158,7 +157,7 @@ end
 vim.api.nvim_create_user_command(
   'RestartKLS',
   function()
-    for _, client in ipairs(vim.lsp.get_clients({name='kotlin_language_server'})) do
+    for _, client in ipairs(vim.lsp.get_clients({ name = 'kotlin_language_server' })) do
       if not client.is_stopped() and client.name == 'kotlin_language_server' then
         client.rpc.terminate()
         vim.cmd.LspStop(client.id)
@@ -192,8 +191,8 @@ return {
     {
       'nvimtools/none-ls.nvim', -- for formatters and linters
       dependencies = {
-        {"nvim-lua/plenary.nvim"},
-        {"davidmh/cspell.nvim"},
+        { "nvim-lua/plenary.nvim" },
+        { "davidmh/cspell.nvim" },
       },
       config = function()
         local null_ls = require('null-ls')

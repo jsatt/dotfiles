@@ -1,7 +1,7 @@
 local theme = require('theme_')
 local cmp_path_opts = {
   trailing_slash = true,
-  get_cwd = function(params) return vim.fn.getcwd() end
+  get_cwd = function(params) return vim.fn.getcwd() end,
 }
 
 return {

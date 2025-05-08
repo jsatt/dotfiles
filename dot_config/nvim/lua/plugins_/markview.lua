@@ -14,9 +14,9 @@ return {
       },
       preview = {
         icon_provider = 'devicons',
-        hybrid_modes = {'n', 'no', 'c'},
+        hybrid_modes = { 'n', 'no', 'c' },
         linewise_hybrid_mode = true,
-        filetypes = {'markdown', 'codecompanion'},
+        filetypes = { 'markdown', 'codecompanion' },
         ignore_buftypes = {},
       },
     })
