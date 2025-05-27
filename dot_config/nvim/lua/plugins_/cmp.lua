@@ -6,6 +6,7 @@ local cmp_path_opts = {
 
 return {
   'hrsh7th/nvim-cmp', -- Autocompletion plugin
+  enabled = false,
   dependencies = {
     'dcampos/cmp-snippy',
     'hrsh7th/cmp-nvim-lua',

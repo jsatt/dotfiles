@@ -1,0 +1,14 @@
+{
+  "burninate": {
+    "prefix": "burninate",
+    "body": [
+      "terraform {",
+      "\tsource = \"/modules//shared/burninate\"",
+      "}",
+      "",
+      "include {",
+      "\tpath = find_in_parent_folders(get_env(\"TF_PARENT_NAME\", \"\"), \"/parent.unused.hcl\")",
+      "}"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "pytest unit": {
+    "prefix": "pytunit",
+    "description": "Pytest unit test",
+    "body": [
+      "@pytest.mark.unit",
+      "def test_${1:name}(${2:self, }mocker, ${3:fixtures}):",
+      "\t${0}"
+    ]
+  },
+  "pytest integration": {
+    "prefix": "pytint",
+    "description": "Pytest integration test",
+    "body": [
+      "@pytest.mark.integration",
+      "def test_${1:name}(${2:self, }${3:fixtures}):",
+      "\t${0}"
+    ]
+  },
+  "pytest parametrized test": {
+    "prefix": "pytparam",
+    "description": "Pytest parametrized unit test",
+    "body": [
+      "@pytest.mark.unit",
+      "@pytest.mark.parametrize('${3:param_names}', [",
+      "\t(${4:params}),",
+      "])",
+      "def test_${1:name}(${2:self, }${3:param_names}):",
+      "\t${0}"
+    ]
+  }
+}

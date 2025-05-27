@@ -195,18 +195,18 @@ vim.api.nvim_create_user_command(
 return {
   'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
   dependencies = {
-    {
-      'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
-      config = function()
-        local lsp_win = require('lspconfig.ui.windows')
-        local _default_opts = lsp_win.default_opts
-        lsp_win.default_opts = function(options)
-          local opts = _default_opts(options)
-          opts.border = require('theme_').opts.border_style
-          return opts
-        end
-      end,
-    },
+    -- {
+    --   'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
+    --   config = function()
+    --     local lsp_win = require('lspconfig.ui.windows')
+    --     local _default_opts = lsp_win.default_opts
+    --     lsp_win.default_opts = function(options)
+    --       local opts = _default_opts(options)
+    --       opts.border = require('theme_').opts.border_style
+    --       return opts
+    --     end
+    --   end,
+    -- },
     {
       'nvimtools/none-ls.nvim', -- for formatters and linters
       dependencies = {

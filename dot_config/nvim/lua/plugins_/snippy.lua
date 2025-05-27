@@ -1,5 +1,6 @@
 return {
   'dcampos/nvim-snippy',
+  enabled = false,
   opts = {
     mappings = {
       is = {

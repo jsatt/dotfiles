@@ -83,6 +83,12 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, desc = 'R
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { silent = true, desc = 'Code Actions' })
 vim.keymap.set('n', '<leader>sd', vim.diagnostic.open_float, { silent = true, desc = 'Show Diagnostics' })
 
+utils.prepare_module('scissors', function(scissors)
+  vim.keymap.set('n', '<leader>se', function() scissors.editSnippet() end, { desc = 'Edit Snippet' })
+  vim.keymap.set('n', '<leader>sa', function() scissors.addNewSnippet() end, { desc = 'Add New Snippet' })
+  vim.keymap.set('v', '<leader>sa', ':ScissorsAddNewSnippet<CR>', { desc = 'Add New Snippet from selection' })
+end)
+
 -- CodeCompanion
 utils.prepare_module('codecompanion', function(codecompanion)
   vim.keymap.set({'n', 'v'}, '<leader>cc', ':CodeCompanionActions<CR>', { silent = true, desc = 'Move tab left' })
