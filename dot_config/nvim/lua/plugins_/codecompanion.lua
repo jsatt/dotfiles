@@ -14,7 +14,20 @@ return {
           -- filetypes = { ['*'] = false },
         })
       end,
-    }
+    },
+    {
+      "ravitemer/mcphub.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      build = "bundled_build.lua", -- Bundles `mcp-hub` binary along with the neovim plugin
+      config = function()
+        local mcphub = require("mcphub")
+        mcphub.setup({
+          use_bundled_binary = true, -- Use local `mcp-hub` binary
+        })
+      end,
+    },
   },
   init = function()
     require("plugins_.utils.codecompanion.fidget-spinner"):init()
@@ -53,6 +66,35 @@ return {
             }
           })
         end,
+      },
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            show_result_in_chat = true, -- Show mcp tool results in chat
+            make_vars = true,           -- Convert resources to #variables
+            make_slash_commands = true, -- Add prompts as /slash commands
+          }
+        }
+      },
+      prompt_library = {
+        ['research'] = {
+          stratgegy = 'chat',
+          description = 'does web research',
+          prompts = {
+            {
+              role = 'system',
+              content = [[
+                  A guided research prompt that helps neovim conduct thorough web research. The prompt instructs neovim to:
+                  • Start with broad searches to understand the topic landscape
+                  • Prioritize high-quality, authoritative sources
+                  • Iteratively refine the research direction based on findings
+                  • Keep you informed and let you guide the research interactively
+                  • Always cite sources with URLs
+              ]]
+            },
+          },
+        }
       }
     })
 
