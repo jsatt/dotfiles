@@ -58,9 +58,9 @@ return {
       end,
     } }
 
-    local signs = theme.signs.dap
-    for _, sign in pairs(signs) do
-      vim.fn.sign_define(sign.name, { texthl = sign.hl, text = sign.text, numhl = sign.numhl, linehl = sign.linehl })
-    end
+    -- local signs = theme.signs.dap
+    -- for _, sign in pairs(signs) do
+    --   vim.fn.sign_define(sign.name, { texthl = sign.hl, text = sign.text, numhl = sign.numhl, linehl = sign.linehl })
+    -- end
   end
 }
