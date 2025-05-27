@@ -7,17 +7,26 @@ return {
     require('markview').setup({
       markdown = {
         headings = vim.tbl_deep_extend('force', presets.headings.glow, {
-          heading_1 = { icon = '𝟭 ' },
-          heading_2 = { icon = '𝟮 ' },
-          heading_3 = { icon = '𝟯 ' },
-          heading_4 = { icon = '𝟰 ' },
-          heading_5 = { icon = '𝟱 ' },
-          heading_6 = { icon = '𝟲 ' },
+          heading_1 = { icon = '󰎦 ' },
+          heading_2 = { icon = '󰎩 ' },
+          heading_3 = { icon = '󰎬 ' },
+          heading_4 = { icon = '󰎮 ' },
+          heading_5 = { icon = '󰎰 ' },
+          heading_6 = { icon = '󰎵 ' },
 
         }),
         tables = presets.tables.single,
         list_items = {
           shift_width = 2,
+          marker_minus = {
+            text = ""
+          },
+          marker_plus = {
+            text = ""
+          },
+          marker_star = {
+            text = ""
+          },
         },
       },
       preview = {

@@ -82,3 +82,8 @@ vim.g.clipboard = {
     -- ['*'] = paste,
   },
 }
+
+vim.fn.setcellwidths({
+   {0xe000, 0xf8ff, 2 },
+   {0xf0000, 0xf1fff, 2 },
+})

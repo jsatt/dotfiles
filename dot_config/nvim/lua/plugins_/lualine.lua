@@ -124,7 +124,7 @@ return {
           max_length = vim.o.columns,
           fmt = function(name, context)
             local win_count = tabpage_window_count(context.tabnr)
-            return context.tabnr .. '' .. win_count .. '  ' .. name
+            return context.tabnr .. '•' .. win_count .. '  ' .. name
           end
         }
       },

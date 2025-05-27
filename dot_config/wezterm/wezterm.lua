@@ -21,10 +21,16 @@ config.tab_max_width                = 50
 require('tabline').setup()
 
 --- Font
-config.font                             = wezterm.font("AnonymicePro Nerd Font Mono")
+config.font                             = wezterm.font("Anonymous Pro")
 config.font_size                        = 11
+config.allow_square_glyphs_to_overflow_width = "Always"
 config.line_height                      = 1.1
 config.cell_width                       = 1.1
+-- Update this after any wezterm relase in 2025
+-- config.cell_widths = {
+--   { first = 0xe000, last = 0xf8ff, width = 2 },
+--   { first = 0xf0000, last = 0xf1fff, width = 2 },
+-- }
 config.freetype_load_target             = "Light"
 config.freetype_load_flags              = 'NO_BITMAP|NO_HINTING'
 
