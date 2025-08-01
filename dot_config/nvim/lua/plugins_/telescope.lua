@@ -129,5 +129,14 @@ return {
     utils.prepare_module('possession', function() telescope.load_extension('possession') end)
     utils.prepare_module('fidget', function() telescope.load_extension('fidget') end)
     utils.prepare_module('codecompanion', function() telescope.load_extension('codecompanion') end)
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'TelescopePreviewerLoaded',
+      callback = function(args)
+        if args.data.filetype ~= 'help' then
+          vim.wo.number = true
+        end
+      end,
+    })
   end,
 }
