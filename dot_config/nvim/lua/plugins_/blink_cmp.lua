@@ -56,7 +56,16 @@ return {
       preset = 'enter',
       ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
       ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-      ['<Esc>'] = {'hide', 'fallback'},
+      -- ['<Esc>'] = { 'cancel', 'fallback' },
+      ["<ESC>"] = {
+        function(cmp)
+          if cmp.is_visible() then
+            cmp.cancel()
+          else
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
+          end
+        end,
+      },
     },
     signature  = {
       enabled = true,
