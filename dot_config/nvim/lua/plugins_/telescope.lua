@@ -63,7 +63,6 @@ return {
 
     telescope.setup({
       defaults = {
-        border = false, -- until https://github.com/nvim-lua/plenary.nvim/pull/649 is released
         mappings = {
           i = {
             ["<C-Down>"] = require('telescope.actions').cycle_history_next,
