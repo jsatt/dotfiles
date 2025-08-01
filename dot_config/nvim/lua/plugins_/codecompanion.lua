@@ -4,18 +4,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     {
-      'zbirenbaum/copilot.lua',
-      cmd = "CopilotLua",
-      event = "InsertEnter",
-      config = function()
-        require("copilot").setup({
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-          -- filetypes = { ['*'] = false },
-        })
-      end,
-    },
-    {
       "ravitemer/mcphub.nvim",
       dependencies = {
         "nvim-lua/plenary.nvim",
