@@ -77,25 +77,6 @@ return {
           }
         }
       },
-      prompt_library = {
-        ['research'] = {
-          stratgegy = 'chat',
-          description = 'does web research',
-          prompts = {
-            {
-              role = 'system',
-              content = [[
-                  A guided research prompt that helps neovim conduct thorough web research. The prompt instructs neovim to:
-                  • Start with broad searches to understand the topic landscape
-                  • Prioritize high-quality, authoritative sources
-                  • Iteratively refine the research direction based on findings
-                  • Keep you informed and let you guide the research interactively
-                  • Always cite sources with URLs
-              ]]
-            },
-          },
-        }
-      }
     })
 
 
