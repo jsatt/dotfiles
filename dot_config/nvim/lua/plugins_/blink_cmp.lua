@@ -67,9 +67,6 @@ return {
         end,
       },
     },
-    signature  = {
-      enabled = true,
-    },
     sources    = {
       providers = {
         buffer = {
