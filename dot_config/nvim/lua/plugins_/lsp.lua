@@ -50,30 +50,31 @@ local lsp_configs = {
       }
     }
   },
-  kotlin_language_server = {
-    settings = {
-      kotlin = {
-        codegen = {
-          enabled = true,
-        },
-        external_source = {
-          useKlsScheme = true,
-          autoConvertToKotlin = true,
-
-        },
-        inline_hints = {
-          typeHints = true,
-          parameterHints = true,
-          chainedHints = true,
-        },
-        compiler = {
-          jvm = {
-            target = "21",
-          }
-        }
-      }
-    }
-  },
+  kotlin_lsp = {},
+  -- kotlin_language_server = {
+  --   settings = {
+  --     kotlin = {
+  --       codegen = {
+  --         enabled = true,
+  --       },
+  --       external_source = {
+  --         useKlsScheme = true,
+  --         autoConvertToKotlin = true,
+  --
+  --       },
+  --       inline_hints = {
+  --         typeHints = true,
+  --         parameterHints = true,
+  --         chainedHints = true,
+  --       },
+  --       compiler = {
+  --         jvm = {
+  --           target = "21",
+  --         }
+  --       }
+  --     }
+  --   }
+  -- },
   lua_ls = {
     init_options = {
       embeddedLanguages = {
