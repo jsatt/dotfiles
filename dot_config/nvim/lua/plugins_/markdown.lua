@@ -1,10 +1,38 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
-  enabled = false,
-  dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  -- enabled = false,
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter',
+    -- 'nvim-tree/nvim-web-devicons'
+  },
   config = function()
     require('render-markdown').setup({
-      ft = { "markdown", "codecompanion" },
+      file_types = { "markdown", "codecompanion" },
+      sign = { enabled = false },
+      heading = {
+        icons = {
+          '󰎦 ', '󰎩 ', '󰎬 ', '󰎮 ', '󰎰 ', '󰎵 ',
+        },
+      },
+      latex = { enabled = false },
+      checkbox = {
+        checked = { icon = '󰗡' },
+        unchecked = { icon = '󰄰' },
+        custom = {
+          todo = {},
+          in_progress = { raw = '[/]', rendered = '󱎖', highlight = 'RenderMarkdownTodo' },
+          strike = { raw = '[-]', rendered = '󱃓', highlight = 'RenderMarkdownError', scope_highlight = 'RenderMarkdownStrike' },
+        },
+      },
+      completions = {
+        lsp = {
+          enabled = true,
+        },
+
+        blink = {
+          enabled = true,
+        },
+      },
     })
   end,
 }

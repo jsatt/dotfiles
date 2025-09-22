@@ -1,7 +1,11 @@
 return {
   'OXY2DEV/markview.nvim',
-  -- enabled = false,
+  dependencies = {
+    'saghen/blink.cmp',
+  },
+  enabled = false,
   lazy = false,
+  priority = 49,
   config = function()
     local presets = require('markview.presets')
     require('markview').setup({
@@ -13,7 +17,6 @@ return {
           heading_4 = { icon = '󰎮 ' },
           heading_5 = { icon = '󰎰 ' },
           heading_6 = { icon = '󰎵 ' },
-
         }),
         tables = presets.tables.single,
         list_items = {
