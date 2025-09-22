@@ -3,7 +3,7 @@ local utils = require('utils_')
 vim.cmd.syntax('enable')
 -- vim.cmd.colorscheme('monokai-pro')
 -- vim.cmd.colorscheme('ronny')
-vim.cmd.colorscheme('onedark')
+vim.cmd.colorscheme('onedark_dark')
 
 vim.opt.secure = true -- limit commands .nvimrc can run
 vim.cmd.filetype('plugin indent on') -- enable filetype detection and fieltype specific plugins and indents
