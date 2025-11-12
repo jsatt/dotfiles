@@ -42,6 +42,10 @@ return {
       LuaLineDiagnosticsInfo = { bg = theme.lualine_theme.normal.c.bg, fg = '${blue}' },
       LuaLineDiagnosticsHint = { bg = theme.lualine_theme.normal.c.bg, fg = '${green}' },
 
+      LuaLineDiffAdd = { bg = theme.lualine_theme.normal.c.bg, fg = '${green}' },
+      LuaLineDiffChange = { bg = theme.lualine_theme.normal.c.bg, fg = '${yellow}' },
+      LuaLineDiffDelete = { bg = theme.lualine_theme.normal.c.bg, fg = '${red}' },
+
       TelescopeTitle = { fg = '${red}' },
       TelescopeBorder = { fg = '${cyan}' },
 

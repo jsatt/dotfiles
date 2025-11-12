@@ -84,6 +84,8 @@ vim.g.clipboard = {
 }
 
 vim.fn.setcellwidths({
-   {0xe000, 0xf8ff, 2 },
+   {0xe000, 0xe0af, 2 },
+   {0xe0b0, 0xe0d7, 1 },  -- don't doublespace lualine theme icons
+   {0xe0d8, 0xf8ff, 2 },
    {0xf0000, 0xf1fff, 2 },
 })
