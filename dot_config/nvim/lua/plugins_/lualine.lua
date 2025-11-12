@@ -106,8 +106,26 @@ return {
         }
       },
       lualine_x = {
+        {
+          'diagnostics',
+          always_visible = true,
+          diagnostics_color = {
+            error = theme.signs.diagnostics.error.statusline_hl,
+            warn  = theme.signs.diagnostics.warn.statusline_hl,
+            info  = theme.signs.diagnostics.info.statusline_hl,
+            hint  = theme.signs.diagnostics.hint.statusline_hl,
+          },
+          symbols = {
+            error = theme.signs.diagnostics.error.statusline_text .. ' ',
+            warn = theme.signs.diagnostics.warn.statusline_text .. ' ',
+            info = theme.signs.diagnostics.info.statusline_text .. ' ',
+            hint = theme.signs.diagnostics.hint.statusline_text .. ' ',
+          },
+        },
       },
       lualine_y = {
+        'progress',
+        { function() return ':%3l/%3L☰ :%-2v' end }, -- full file location
         session_name,
       },
       lualine_z = {
@@ -138,29 +156,11 @@ return {
         { 'aerial', colored = false },
       },
       lualine_x = {
-        {
-          'diagnostics',
-          always_visible = true,
-          diagnostics_color = {
-            error = theme.signs.diagnostics.error.statusline_hl,
-            warn  = theme.signs.diagnostics.warn.statusline_hl,
-            info  = theme.signs.diagnostics.info.statusline_hl,
-            hint  = theme.signs.diagnostics.hint.statusline_hl,
-          },
-          symbols = {
-            error = theme.signs.diagnostics.error.statusline_text .. ' ',
-            warn = theme.signs.diagnostics.warn.statusline_text .. ' ',
-            info = theme.signs.diagnostics.info.statusline_text .. ' ',
-            hint = theme.signs.diagnostics.hint.statusline_text .. ' ',
-          },
-        },
+      },
+      lualine_y = {
         'filetype',
         'encoding',
         'fileformat'
-      },
-      lualine_y = {
-        'progress',
-        { function() return ':%3l/%3L☰ :%-2v' end }, -- full file location
       },
       lualine_z = {}
     },
@@ -170,13 +170,11 @@ return {
         { 'filename', path = 1, symbols = { readonly = '' } },
       },
       lualine_x = {
+      },
+      lualine_y = {
         'filetype',
         'encoding',
         'fileformat'
-      },
-      lualine_y = {
-        'progress',
-        { function() return ':%3l/%3L☰ :%-2v' end }, -- full file location
       },
     },
     extensions = {
