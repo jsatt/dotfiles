@@ -141,17 +141,17 @@ local lsp_configs = {
   },
 }
 
-local dap_configs = {
+local mason_install = {
+  -- dap
   'bash-debug-adapter',
   'kotlin-debug-adapter',
-}
-local linter_configs = {
-}
-local formatter_configs = {
+  -- formatter
   'ktlint',
   'prettierd',
   'remark-cli',
   'yamlfmt',
+  -- other
+  'tree-sitter-cli',
 }
 
 vim.lsp.inlay_hint.enable()
@@ -163,11 +163,11 @@ vim.lsp.config('*', {
 utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
   local orig_references = vim.lsp.buf.references
   vim.lsp.buf.references = function(context, opts)
-    orig_references(context, vim.tbl_deep_extend('keep', opts or {}, {on_list = ts_builtin.lsp_references}))
+    orig_references(context, vim.tbl_deep_extend('keep', opts or {}, { on_list = ts_builtin.lsp_references }))
   end
   local orig_doc_symbols = vim.lsp.buf.document_symbol
   vim.lsp.buf.document_symbol = function(opts)
-    orig_doc_symbols(vim.tbl_deep_extend('keep', opts or {}, {on_list = ts_builtin.lsp_document_symbols}))
+    orig_doc_symbols(vim.tbl_deep_extend('keep', opts or {}, { on_list = ts_builtin.lsp_document_symbols }))
   end
 end)
 for server, srv_opts in pairs(lsp_configs) do
@@ -269,9 +269,7 @@ return {
             ensure_installed = vim.tbl_extend(
               'force',
               vim.tbl_keys(lsp_configs),
-              dap_configs,
-              linter_configs,
-              formatter_configs
+              mason_install
             ),
           },
         },
