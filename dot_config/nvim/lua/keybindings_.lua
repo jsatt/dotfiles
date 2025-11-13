@@ -89,6 +89,40 @@ utils.prepare_module('scissors', function(scissors)
   vim.keymap.set('v', '<leader>sa', ':ScissorsAddNewSnippet<CR>', { desc = 'Add New Snippet from selection' })
 end)
 
+-- Treesitter
+utils.prepare_module('nvim-treesitter-textobjects', function(ts_textobjects)
+  -- Select
+  vim.keymap.set({ "x", "o" }, "af", function() require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects") end)
+  vim.keymap.set({ "x", "o" }, "if", function() require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects") end)
+  vim.keymap.set({ "x", "o" }, "ac", function() require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects") end)         -- class
+  vim.keymap.set({ "x", "o" }, "ic", function() require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects") end)
+  vim.keymap.set({ "x", "o" }, "ax", function() require("nvim-treesitter-textobjects.select").select_textobject("@block.outer", "textobjects") end)         -- function or class
+  vim.keymap.set({ "x", "o" }, "ix", function() require("nvim-treesitter-textobjects.select").select_textobject("@block.inner", "textobjects") end)
+  vim.keymap.set({ "x", "o" }, "ai", function() require("nvim-treesitter-textobjects.select").select_textobject("@conditional.outer", "textobjects") end)   -- if statment
+  vim.keymap.set({ "x", "o" }, "ii", function() require("nvim-treesitter-textobjects.select").select_textobject("@conditional.inner", "textobjects") end)
+  vim.keymap.set({ "x", "o" }, "al", function() require("nvim-treesitter-textobjects.select").select_textobject("@loop.outer", "textobjects") end)          -- loop, but not comprehensions
+  vim.keymap.set({ "x", "o" }, "il", function() require("nvim-treesitter-textobjects.select").select_textobject("@loop.inner", "textobjects") end)
+
+  -- Swap
+  vim.keymap.set('n', 'ma', function() require('nvim-treesitter-textobjects.swap').swap_next("@parameter.inner") end)   -- single call arg
+  vim.keymap.set('n', 'mf', function() require('nvim-treesitter-textobjects.swap').swap_next("@function.outer") end)
+  vim.keymap.set('n', 'mc', function() require('nvim-treesitter-textobjects.swap').swap_next("@class.outer") end)
+  vim.keymap.set('n', 'Ma', function() require('nvim-treesitter-textobjects.swap').swap_previous("@parameter.inner") end)
+  vim.keymap.set('n', 'Mf', function() require('nvim-treesitter-textobjects.swap').swap_previous("@function.outer") end)
+  vim.keymap.set('n', 'Mc', function() require('nvim-treesitter-textobjects.swap').swap_previous("@class.outer") end)
+
+  -- Move
+  vim.keymap.set({ 'n', 'x', 'o' }, ']m', function() require('nvim-treesitter-textobjects.move').goto_next_start("@function.outer") end)
+  vim.keymap.set({ 'n', 'x', 'o' }, ']]', function() require('nvim-treesitter-textobjects.move').goto_next_start("@class.outer") end)
+  vim.keymap.set({ 'n', 'x', 'o' }, ']M', function() require('nvim-treesitter-textobjects.move').goto_next_end("@function.outer") end)
+  vim.keymap.set({ 'n', 'x', 'o' }, '][', function() require('nvim-treesitter-textobjects.move').goto_next_end("@class.outer") end)
+  vim.keymap.set({ 'n', 'x', 'o' }, '[m', function() require('nvim-treesitter-textobjects.move').goto_previous_start("@function.outer") end)
+  vim.keymap.set({ 'n', 'x', 'o' }, '[[', function() require('nvim-treesitter-textobjects.move').goto_previous_start("@class.outer") end)
+  vim.keymap.set({ 'n', 'x', 'o' }, '[M', function() require('nvim-treesitter-textobjects.move').goto_previous_end("@function.outer") end)
+  vim.keymap.set({ 'n', 'x', 'o' }, '[]', function() require('nvim-treesitter-textobjects.move').goto_previous_end("@class.outer") end)
+
+end)
+
 -- CodeCompanion
 utils.prepare_module('codecompanion', function(codecompanion)
   vim.keymap.set({'n', 'v'}, '<leader>cc', ':CodeCompanionActions<CR>', { silent = true, desc = 'Move tab left' })
