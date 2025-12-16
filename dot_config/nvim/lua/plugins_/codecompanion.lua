@@ -3,6 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "ravitemer/codecompanion-history.nvim",
     {
       "ravitemer/mcphub.nvim",
       dependencies = {
@@ -58,6 +59,9 @@ return {
         },
       },
       extensions = {
+        history = {
+          enabled = true,
+        },
         mcphub = {
           callback = "mcphub.extensions.codecompanion",
           opts = {

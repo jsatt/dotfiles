@@ -43,9 +43,10 @@ return {
       },
     },
     fuzzy      = {
-      prebuilt_binaries = {
-        force_version = 'v1.2.0',
-      },
+      implementation = 'lua',
+      -- prebuilt_binaries = {
+      --   force_version = 'v1.3.0',
+      -- },
       sorts = {
         'exact',
         'score',
