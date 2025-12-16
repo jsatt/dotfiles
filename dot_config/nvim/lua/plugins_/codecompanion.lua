@@ -4,19 +4,28 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/codecompanion-history.nvim",
-    {
-      "ravitemer/mcphub.nvim",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-      },
-      build = "bundled_build.lua", -- Bundles `mcp-hub` binary along with the neovim plugin
-      config = function()
-        local mcphub = require("mcphub")
-        mcphub.setup({
-          use_bundled_binary = true, -- Use local `mcp-hub` binary
-        })
-      end,
-    },
+    -- {
+    --   "ravitemer/mcphub.nvim",
+    --   dependencies = {
+    --     "nvim-lua/plenary.nvim",
+    --   },
+    --   build = "bundled_build.lua", -- Bundles `mcp-hub` binary along with the neovim plugin
+    --   config = function()
+    --     local mcphub = require("mcphub")
+    --     mcphub.setup({
+    --       use_bundled_binary = true, -- Use local `mcp-hub` binary
+    --     })
+    --   end,
+    -- },
+    -- {
+    --   "Davidyz/VectorCode",
+    --   dependencies = { "nvim-lua/plenary.nvim" },
+    --   config = function()
+    --     require('vectorcode').setup({
+    --       async_backend = 'lsp',
+    --     })
+    --   end,
+    -- }
   },
   init = function()
     require("plugins_.utils.codecompanion.fidget-spinner"):init()
@@ -62,14 +71,21 @@ return {
         history = {
           enabled = true,
         },
-        mcphub = {
-          callback = "mcphub.extensions.codecompanion",
-          opts = {
-            show_result_in_chat = true, -- Show mcp tool results in chat
-            make_vars = true,           -- Convert resources to #variables
-            make_slash_commands = true, -- Add prompts as /slash commands
-          }
-        }
+        -- mcphub = {
+        --   callback = "mcphub.extensions.codecompanion",
+        --   opts = {
+        --     show_result_in_chat = true, -- Show mcp tool results in chat
+        --     make_vars = true,           -- Convert resources to #variables
+        --     make_slash_commands = true, -- Add prompts as /slash commands
+        --   }
+        -- },
+        -- vectorcode = {
+        --   opts = {
+        --     tool_group = {
+        --       enabled = true,
+        --     }
+        --   },
+        -- }
       },
     })
   end
