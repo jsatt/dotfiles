@@ -3,6 +3,10 @@ local utils = require('utils_')
 
 local lsp_configs = {
   bashls = {},
+  cspell_ls = {
+    cmd = {"cspell-lsp", "--stdio"},
+    filetypes = { 'text', 'comment', 'markdown', 'gitcommit', },
+  },
   cssls = {},
   dockerls = {},
   docker_compose_language_service = {},
@@ -212,11 +216,9 @@ return {
       'nvimtools/none-ls.nvim', -- for formatters and linters
       dependencies = {
         { "nvim-lua/plenary.nvim" },
-        { "davidmh/cspell.nvim" },
       },
       config = function()
         local null_ls = require('null-ls')
-        local cspell = require('cspell')
         null_ls.setup({
           diagnostics_format = "#{s}: [#{c}] #{m} ",
           sources = {
@@ -224,10 +226,6 @@ return {
             null_ls.builtins.code_actions.gitsigns,
 
             -- null_ls.builtins.completion.spell,
-            cspell.diagnostics.with({
-              filetypes = { 'text', 'markdown', 'gitcommit' },
-            }),
-            cspell.code_actions,
 
             null_ls.builtins.diagnostics.ktlint,
             null_ls.builtins.diagnostics.zsh,
