@@ -33,6 +33,10 @@ return {
           enabled = true,
         },
       },
+      pipe_table = {
+        -- render_modes = true,
+        border_virtual = true,
+      },
     })
   end,
 }
