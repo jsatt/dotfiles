@@ -1,6 +1,7 @@
 [core]
     excludesFile = ~/.gitignore
     pager = delta
+    trustctime = false
 
 [init]
     defaultBranch = main
@@ -35,8 +36,11 @@
     gpgsign = true
 
 [merge]
-    tool = nvimdiff
+    tool = nvim-codediff
     conflictstyle = zdiff3
+
+[mergetool "nvim-codediff"]
+	cmd = nvim \"$MERGED\" -c \"CodeDiff merge \\\"$MERGED\\\"\"
 
 [alias]
     br = branch
@@ -75,6 +79,10 @@
     colorMoved = default
     renames = true
     mnemonicPrefix = true
+    tool = nvim-codediff
+
+[difftool "nvim-codediff"]
+	cmd = nvim \"$LOCAL\" \"$REMOTE\" +\"CodeDiff file $LOCAL $REMOTE\"
 
 [rerere]
     enabled = true
