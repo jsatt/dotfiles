@@ -58,8 +58,14 @@ vim.o.winborder = 'rounded'
 vim.filetype.add({
   extension = {
     sls = 'yaml',
-    mustache = 'glimmer'
-  }
+    mustache = 'glimmer',
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
 })
 
 local function paste()

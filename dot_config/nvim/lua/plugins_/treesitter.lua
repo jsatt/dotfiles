@@ -9,8 +9,10 @@ local ensure_installed = {
   'git_config',
   'git_rebase',
   'glimmer', -- handlebars/mustache/etc
+  'gotmpl',
   'graphql',
   'hcl',
+  'helm',
   'html',
   'htmldjango',
   'ini',
