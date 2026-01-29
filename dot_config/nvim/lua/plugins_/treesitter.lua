@@ -45,6 +45,25 @@ return {
       branch = 'main',
     },
     'hiphish/rainbow-delimiters.nvim',
+    {
+      'MeanderingProgrammer/treesitter-modules.nvim',
+      opts = {
+        ensure_installed = ensure_installed,
+        auto_install = true,
+        fold = {
+          enabled = true,
+        },
+        highlight = {
+          enabled = true,
+        },
+        incremental_selection = {
+          enable = true,
+        },
+        indent = {
+          enabled = true,
+        },
+      },
+    }
   },
   lazy = false,
   branch = 'main',
