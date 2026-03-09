@@ -2,19 +2,30 @@ local wezterm = require("wezterm")
 
 local M = {}
 
+
+
 local function docker_list()
   local docker_list = {}
   local success, stdout, stderr = wezterm.run_child_process {
-    '/usr/local/bin/docker',
-    'container',
-    'ls',
-    '--format',
-    '{{.ID}}:{{.Names}}',
+    'which',
+    'docker',
   }
-  for _, line in ipairs(wezterm.split_by_newlines(stdout)) do
-    local id, name = line:match '(.-):(.+)'
-    if id and name then
-      docker_list[id] = name
+  if success then
+    local docker_exec = wezterm.split_by_newlines(stdout)[1]
+    if docker_exec then
+      local success, stdout, stderr = wezterm.run_child_process {
+        docker_exec,
+        'container',
+        'ls',
+        '--format',
+        '{{.ID}}:{{.Names}}',
+      }
+      for _, line in ipairs(wezterm.split_by_newlines(stdout)) do
+        local id, name = line:match '(.-):(.+)'
+        if id and name then
+          docker_list[id] = name
+        end
+      end
     end
   end
   return docker_list
