@@ -7,7 +7,7 @@ config.term                         = 'xterm-256color'
 config.audible_bell                 = "Disabled"
 config.default_cursor_style         = 'BlinkingBlock'
 config.hide_tab_bar_if_only_one_tab = true
-config.unicode_version              = 14
+config.unicode_version              = 17
 config.window_close_confirmation    = 'NeverPrompt'
 config.window_padding               = {
   left = 3,
@@ -22,7 +22,7 @@ require('tabline').setup()
 
 --- Font
 config.font                             = wezterm.font("Anonymous Pro")
-config.font_size                        = 11
+config.font_size                        = 9
 config.allow_square_glyphs_to_overflow_width = "Always"
 config.line_height                      = 1.1
 config.cell_width                       = 1.1
