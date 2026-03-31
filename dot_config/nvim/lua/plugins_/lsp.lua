@@ -54,7 +54,7 @@ local lsp_configs = {
       }
     }
   },
-  kotlin_lsp = {},
+  -- kotlin_lsp = {},
   -- kotlin_language_server = {
   --   settings = {
   --     kotlin = {
@@ -148,9 +148,9 @@ local lsp_configs = {
 local mason_install = {
   -- dap
   'bash-debug-adapter',
-  'kotlin-debug-adapter',
+  -- 'kotlin-debug-adapter',
   -- formatter
-  'ktlint',
+  -- 'ktlint',
   'prettierd',
   'remark-cli',
   'yamlfmt',
@@ -227,7 +227,7 @@ return {
 
             -- null_ls.builtins.completion.spell,
 
-            null_ls.builtins.diagnostics.ktlint,
+            -- null_ls.builtins.diagnostics.ktlint,
             null_ls.builtins.diagnostics.zsh,
 
             -- null_ls.builtins.formatting.isort,
