@@ -26,6 +26,14 @@ return {
     --     })
     --   end,
     -- }
+    -- {  -- May be needed to setup Copliot Auth
+    --   "zbirenbaum/copilot.lua",
+    --   cmd = "Copilot",
+    --   event = "InsertEnter",
+    --   config = function()
+    --     require("copilot").setup({})
+    --   end,
+    -- }
   },
   init = function()
     require("plugins_.utils.codecompanion.fidget-spinner"):init()
@@ -42,7 +50,7 @@ return {
           -- start_in_insert_mode = false,
         },
       },
-      strategies = {
+      interactions = {
         chat = {
           keymaps = {
             send = {
@@ -60,7 +68,7 @@ return {
             return require('codecompanion.adapters').extend('copilot', {
               schema = {
                 model = {
-                  default = "claude-sonnet-4.5",
+                  default = "claude-haiku-4.5",
                 }
               }
             })
