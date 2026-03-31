@@ -54,4 +54,48 @@ kubeevent(){
     kubectl get event --field-selector "involvedObject.name=$1"
 }
 
+convert_to_h265(){
+    local src="$1"
+    local filename="${src:t}"
+    local target="$2"
+    local dest_file="$target/$filename"
+
+    ffmpeg \
+        -hwaccel vaapi \
+        -hwaccel_output_format vaapi \
+        -i "$src" \
+        -vf 'format=vaapi,hwupload' \
+        -c:v hevc_vaapi \
+        -rc_mode CQP \
+        -qp 32 \
+        -c:a copy \
+        -c:s copy \
+        -map 0 \
+        -c:d copy \
+        -movflags +faststart \
+        -vtag hvc1 \
+        "$dest_file"
+}
+
+convert_dir_to_h265() {
+    local source_dir="${1:-.}"
+    local dest_dir="${2:-converted}"
+
+    source_dir="${source_dir%/}"
+    mkdir -p "$dest_dir"
+
+    for file in $source_dir/**/*(.); do
+        local relative_path="${file#$source_dir/}"
+        local dest_file="$dest_dir/$relative_path"
+
+        if [[ "$file" =~ \.(mkv|avi|mp4)$ ]]; then
+            mkdir -p "$(dirname "$dest_file")"
+            convert_to_h265 "$file" "$dest_dir/$( dirname "$relative_path")"
+        else
+            mkdir -p "$(dirname "$dest_file")"
+            cp -p "$file" "$dest_file"
+        fi
+    done
+}
+
 # vim: set filetype=sh:
