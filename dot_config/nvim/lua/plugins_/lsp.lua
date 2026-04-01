@@ -4,7 +4,7 @@ local utils = require('utils_')
 local lsp_configs = {
   bashls = {},
   cspell_ls = {
-    cmd = {"cspell-lsp", "--stdio"},
+    cmd = { "cspell-lsp", "--stdio" },
     filetypes = { 'text', 'comment', 'markdown', 'gitcommit', },
   },
   cssls = {},
@@ -159,6 +159,8 @@ local mason_install = {
 }
 
 vim.lsp.inlay_hint.enable()
+vim.lsp.on_type_formatting.enable()
+vim.lsp.inline_completion.enable()
 vim.lsp.config('*', {
   flags = {
     debounce_text_changes = 150,
