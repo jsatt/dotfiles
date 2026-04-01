@@ -56,9 +56,6 @@ return {
         highlight = {
           enabled = true,
         },
-        incremental_selection = {
-          enable = true,
-        },
         indent = {
           enabled = true,
         },
@@ -73,17 +70,19 @@ return {
 
     treesitter.setup()
     treesitter.install(ensure_installed)
-    -- local installed = require('nvim-treesitter.config').get_installed()
-    -- local not_installed = vim.tbl_filter(
-    --   function(parser) return not vim.tbl_contains(installed, parser) end,
-    --   ensure_installed
-    -- )
-    -- if #not_installed > 0 then require('nvim-treesitter').install(not_installed) end
 
     vim.api.nvim_create_autocmd('FileType', {
       pattern = ensure_installed,
-      callback = function()
-        vim.treesitter.start()
+      callback = function(args)
+        local lang = vim.treesitter.language.get_lang(args.match)
+        if not lang then
+          return
+        end
+        if not vim.treesitter.language.add(lang) then
+          return
+        end
+
+        vim.treesitter.start(args.buf, lang)
         vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
@@ -98,10 +97,11 @@ return {
       },
     })
 
-    require('rainbow-delimiters.setup').setup {
-      strategy = {
-        [''] = 'rainbow-delimiters.strategy.local',
-      },
-    }
+    -- local strategy breaks after upgrade to nvim 0.12, test later to see if fixed
+    -- require('rainbow-delimiters.setup').setup {
+    --   strategy = {
+    --     [''] = 'rainbow-delimiters.strategy.local',
+    --   },
+    -- }
   end,
 }

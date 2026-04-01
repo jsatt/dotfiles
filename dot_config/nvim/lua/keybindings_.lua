@@ -55,13 +55,6 @@ vim.keymap.set({ 'n', 'i' }, '<S-Down>', '<C-w>j', { desc = 'Navigate splits - d
 vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
 vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Copy line to system clipboard' })
 
--- incremental selection
-utils.prepare_module('treesitter-modules', function(treesitter_mod)
-  vim.keymap.set('x', 'an', treesitter_mod.node_incremental)
-  vim.keymap.set('x', 'aN', treesitter_mod.node_decremental)
-  vim.keymap.set('x', 'in', treesitter_mod.scope_incremental)
-end)
-
 -- Telescope
 utils.prepare_module('telescope', function(telescope)
   local telescope_builtin = require('telescope.builtin')
