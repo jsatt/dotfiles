@@ -4,7 +4,6 @@ return {
   dependencies = {
     {
       'mfussenegger/nvim-dap-python',
-      branch = 'multi-session',
       config = function()
         require('dap-python').setup('python')
       end
