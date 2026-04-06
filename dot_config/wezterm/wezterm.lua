@@ -44,7 +44,7 @@ config.inactive_pane_hsb                = {
 -- Domains
 local domains                           = require('domains')
 config.exec_domains                     = domains.compute_exec_domains()
-config.default_domain                   = domains.select_domain('docker:devbox-devbox-1', 'local', config.exec_domains)
+config.default_domain                   = domains.select_domain('docker:docker-devbox-devbox-1', 'local', config.exec_domains)
 
 -- Bindings
 local bindings                          = require('bindings')

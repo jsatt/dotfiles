@@ -3,69 +3,85 @@ local wezterm = require("wezterm")
 local M = {}
 
 
+local docker_path = ''
 
-local function docker_list()
-  local docker_list = {}
-  local success, stdout, stderr = wezterm.run_child_process {
-    'which',
-    'docker',
+local function find_docker_exec()
+  local docker_paths = {
+    '/usr/local/bin/docker',
+    '/usr/bin/docker',
   }
-  if success then
-    local docker_exec = wezterm.split_by_newlines(stdout)[1]
-    if docker_exec then
-      local success, stdout, stderr = wezterm.run_child_process {
-        docker_exec,
-        'container',
-        'ls',
-        '--format',
-        '{{.ID}}:{{.Names}}',
-      }
-      for _, line in ipairs(wezterm.split_by_newlines(stdout)) do
-        local id, name = line:match '(.-):(.+)'
-        if id and name then
-          docker_list[id] = name
-        end
-      end
+  for _, path in ipairs(docker_paths) do
+    local success, stdout, stderr = wezterm.run_child_process { path, 'version' }
+    if success then
+      return path
     end
   end
-  return docker_list
+end
+
+
+local function docker_list()
+  local containers = {}
+  local docker_exec = find_docker_exec()
+  if docker_exec then
+    local success, stdout, stderr = wezterm.run_child_process {
+      docker_exec,
+      'container',
+      'ls',
+      '--format',
+      '{{.ID}}:{{.Names}}',
+    }
+    for _, line in ipairs(wezterm.split_by_newlines(stdout)) do
+      local id, name = line:match '(.-):(.+)'
+      if id and name then
+        containers[id] = name
+      end
+    end
+    print('---', containers)
+    return containers
+  end
 end
 
 local function make_docker_label_func(id)
   return function(name)
-    local success, stdout, stderr = wezterm.run_child_process {
-      '/usr/local/bin/docker',
-      'inspect',
-      '--format',
-      '{{.State.Running}}',
-      id,
-    }
-    local running = stdout == 'true\n'
-    local color = running and 'Green' or 'Red'
-    return wezterm.format {
-      { Foreground = { AnsiColor = color } },
-      { Text = 'docker container named ' .. name },
-    }
+    local docker_exec = find_docker_exec()
+    if docker_exec then
+      local success, stdout, stderr = wezterm.run_child_process {
+        docker_exec,
+        'inspect',
+        '--format',
+        '{{.State.Running}}',
+        id,
+      }
+      local running = stdout == 'true\n'
+      local color = running and 'Green' or 'Red'
+      return wezterm.format {
+        { Foreground = { AnsiColor = color } },
+        { Text = 'docker container named ' .. name },
+      }
+    end
   end
 end
 
 local function make_docker_fixup_func(id)
   return function(cmd)
-    cmd.args = cmd.args or { '/bin/zsh' }
-    local wrapped = {
-      '/usr/local/bin/docker',
-      'exec',
-      '-it',
-      '-e',
-      'TERM=xterm-256color',
-      id,
-    }
-    for _, arg in ipairs(cmd.args) do
-      table.insert(wrapped, arg)
-    end
+    local docker_exec = find_docker_exec()
+    if docker_exec then
+      cmd.args = cmd.args or { '/bin/zsh' }
+      local wrapped = {
+        docker_exec,
+        'exec',
+        '-it',
+        '-e',
+        'TERM=xterm-256color',
+        id,
+      }
+      for _, arg in ipairs(cmd.args) do
+        table.insert(wrapped, arg)
+      end
 
-    cmd.args = wrapped
-    return cmd
+      cmd.args = wrapped
+      return cmd
+    end
   end
 end
 
