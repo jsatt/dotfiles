@@ -33,6 +33,7 @@ plugins=(
     poetry
     python
     sudo
+    uv
     virtualenvwrapper
 
     zshmarks
