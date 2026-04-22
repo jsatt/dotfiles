@@ -94,9 +94,9 @@ return {
         {
           'diff',
           symbols = {
-            added = theme.signs.vcs.add.statusline_text .. ' ',
-            modified = theme.signs.vcs.change.statusline_text .. ' ',
-            removed = theme.signs.vcs.delete.statusline_text .. ' ',
+            added = theme.signs.vcs.add.statusline_text .. '',
+            modified = theme.signs.vcs.change.statusline_text .. '',
+            removed = theme.signs.vcs.delete.statusline_text .. '',
           },
           diff_color = {
             added = theme.signs.vcs.add.statusline_hl,
@@ -116,10 +116,10 @@ return {
             hint  = theme.signs.diagnostics.hint.statusline_hl,
           },
           symbols = {
-            error = theme.signs.diagnostics.error.statusline_text .. ' ',
-            warn = theme.signs.diagnostics.warn.statusline_text .. ' ',
-            info = theme.signs.diagnostics.info.statusline_text .. ' ',
-            hint = theme.signs.diagnostics.hint.statusline_text .. ' ',
+            error = theme.signs.diagnostics.error.statusline_text .. '',
+            warn = theme.signs.diagnostics.warn.statusline_text .. '',
+            info = theme.signs.diagnostics.info.statusline_text .. '',
+            hint = theme.signs.diagnostics.hint.statusline_text .. '',
           },
         },
       },

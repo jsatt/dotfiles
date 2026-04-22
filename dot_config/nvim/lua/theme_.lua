@@ -61,7 +61,7 @@ M.icons = {
   virtual_line = " ",
   vertical_border = "│",
   vertical_border_dashed = "┆",
-  error =  "✗",
+  error =  "✗ ",
   warn = "",
   info = "",
   hint = "",
@@ -79,7 +79,7 @@ M.signs = {
       statuscolumn_text = M.icons.error,
       statuscolumn_hl = "DiagnosticSignError",
       statuscolumn_numhl = "DiagnosticSignError",
-      statusline_text = M.icons.warn,
+      statusline_text = M.icons.error,
       statusline_hl = 'LuaLineDiagnosticsError',
     },
     warn = {
