@@ -41,19 +41,19 @@ local lsp_configs = {
   --     }
   --   },
   -- },
-  basedpyright = {
-    settings = {
-      basedpyright = {
-        analysis = {
-          autoSearchPaths = true,
-          useLibraryCodeForTypes = true,
-          diagnosticMode = 'openFilesOnly',
-          typeCheckingMode = 'standard',
-          -- diagnosticSeverityOverrides = 'none',
-        },
-      }
-    }
-  },
+  -- basedpyright = {
+  --   settings = {
+  --     basedpyright = {
+  --       analysis = {
+  --         autoSearchPaths = true,
+  --         useLibraryCodeForTypes = true,
+  --         diagnosticMode = 'openFilesOnly',
+  --         typeCheckingMode = 'standard',
+  --         -- diagnosticSeverityOverrides = 'none',
+  --       },
+  --     }
+  --   }
+  -- },
   -- kotlin_lsp = {},
   -- kotlin_language_server = {
   --   settings = {
@@ -126,6 +126,7 @@ local lsp_configs = {
   -- salt_ls = {},
   terraformls = {},
   ts_ls = {},
+  ty = {},
   vimls = { suggest = { fromRuntimepath = true, fromVimruntime = true }, },
   yamlls = {
     on_attach = function(client, bufnr)
