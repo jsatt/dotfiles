@@ -1,0 +1,31 @@
+font-family = AnonymicePro Nerd Font
+font-size = 12
+
+term = xterm-256color
+
+theme = 3024 Night
+background = #000000
+background-opacity = .8
+unfocused-split-opacity = .5
+
+cursor-style = block
+cursor-style-blink = true
+
+bell-features = no-audio
+
+
+keybind = ctrl+shift+arrow_down=goto_split:down
+keybind = ctrl+shift+arrow_up=goto_split:up
+keybind = ctrl+shift+arrow_left=goto_split:left
+keybind = ctrl+shift+arrow_right=goto_split:right
+keybind = ctrl+alt+arrow_down=unbind
+keybind = ctrl+alt+arrow_up=unbind
+keybind = ctrl+alt+arrow_left=unbind
+keybind = ctrl+alt+arrow_right=unbind
+keybind = ctrl+shift+z=toggle_split_zoom
+keybind = ctrl+shift+enter=unbind
+
+keybind = ctrl+shift+r=reload_config
+keybind = ctrl+shift+.=next_tab
+keybind = ctrl+shift+,=previous_tab
+
