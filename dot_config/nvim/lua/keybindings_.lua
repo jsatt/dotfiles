@@ -70,6 +70,11 @@ utils.prepare_module('telescope', function(telescope)
   utils.prepare_module('aerial', function(aerial)
     vim.keymap.set('n', '<leader>ls', telescope.extensions.aerial.aerial, { silent = true, desc = 'Find Symbols' })
   end)
+
+  -- Git Worktrees
+  vim.keymap.set("n", "<leader>wt", telescope.extensions.git_worktree.git_worktrees, { desc = "Switch git worktree" })
+
+  vim.keymap.set("n", "<leader>wn", telescope.extensions.git_worktree.create_git_worktree, { desc = "Create git worktree" })
 end)
 
 -- LSP
