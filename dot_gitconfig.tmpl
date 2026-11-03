@@ -99,8 +99,3 @@
     line-numbers = True
     side-by-side = True
     inspect-raw-lines = false
-
-{{ if eq .chezmoi.hostname "applejack" -}}
-[includeIf "gitdir:~/dev/pton/"]
-    path = ~/.pton.gitconfig
-{{ end -}}
