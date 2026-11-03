@@ -92,3 +92,15 @@
     stripComponents = 1
     executable = true
     refreshPeriod = "168h"
+
+["bin/kubectl-ctx"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/weibeld/kubectl-ctx/master/kubectl-ctx"
+    refreshPeriod = "168h"
+    executable = true
+
+["bin/kubectl-ns"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/weibeld/kubectl-ns/master/kubectl-ns"
+    refreshPeriod = "168h"
+    executable = true
