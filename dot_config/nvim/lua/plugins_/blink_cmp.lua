@@ -1,6 +1,9 @@
 return {
   'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    'saghen/blink.lib',
+    'rafamadriz/friendly-snippets',
+  },
   opts = {
     cmdline    = {
       enabled = true,
@@ -43,7 +46,8 @@ return {
       },
     },
     fuzzy      = {
-      implementation = 'lua',
+      -- implementation = 'lua',
+      implementation = 'prefer_rust',
       -- prebuilt_binaries = {
       --   force_version = 'v1.3.0',
       -- },
