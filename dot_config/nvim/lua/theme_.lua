@@ -169,7 +169,7 @@ M.signs = {
     },
     stopped = {
       name = 'DapStopped',
-      text = '',
+      text = '󰏤',
       hl = 'DiagnosticError',
       numhl = '',
       linehl = 'debugPC'
@@ -202,7 +202,7 @@ M.kind_icons = {
   Keyword = "",
   Snippet = "",
   Color = "󰏘",
-  File = "",
+  File = "󰈙",
   Reference = "",
   Folder = "󰉋",
   EnumMember = "",
