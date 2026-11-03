@@ -21,8 +21,8 @@ config.tab_max_width                = 50
 require('tabline').setup()
 
 --- Font
-config.font                             = wezterm.font("Anonymous Pro")
-config.font_size                        = 9
+config.font                             = wezterm.font("AnonymicePro Nerd Font")
+config.font_size                        = 12
 config.allow_square_glyphs_to_overflow_width = "Always"
 config.line_height                      = 1.1
 config.cell_width                       = 1.1
@@ -43,8 +43,8 @@ config.inactive_pane_hsb                = {
 
 -- Domains
 local domains                           = require('domains')
-config.exec_domains                     = domains.compute_exec_domains()
-config.default_domain                   = domains.select_domain('docker:docker-devbox-devbox-1', 'local', config.exec_domains)
+-- config.exec_domains                     = domains.compute_exec_domains()
+-- config.default_domain                   = domains.select_domain('docker:docker-devbox-devbox-1', 'local', config.exec_domains)
 
 -- Bindings
 local bindings                          = require('bindings')

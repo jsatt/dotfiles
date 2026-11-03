@@ -5,12 +5,13 @@ local M = {}
 
 local docker_path = ''
 
-local function find_docker_exec()
+function M.find_docker_exec()
   local docker_paths = {
-    '/usr/local/bin/docker',
+    -- '/usr/local/bin/docker',
     '/usr/bin/docker',
   }
   for _, path in ipairs(docker_paths) do
+
     local success, stdout, stderr = wezterm.run_child_process { path, 'version' }
     if success then
       return path
