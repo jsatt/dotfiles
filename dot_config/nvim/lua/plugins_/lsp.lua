@@ -200,6 +200,49 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+local active_count = 0
+local clear_timer = nil
+
+local function clear_progress()
+  if clear_timer then
+    clear_timer:stop()
+    clear_timer = nil
+  end
+  vim.api.nvim_ui_send("\027]9;4;0\027\\")
+end
+
+vim.api.nvim_create_autocmd('LspProgress', {
+  callback = function(ev)
+    local value = ev.data.params.value
+
+    if clear_timer then
+      clear_timer:stop()
+      clear_timer = nil
+    end
+
+    if value.kind == "begin" then
+      active_count = active_count + 1
+      if value.percentage then
+        vim.api.nvim_ui_send(string.format("\027]9;4;1;%d\027\\", value.percentage))
+      else
+        vim.api.nvim_ui_send("\027]9;4;3\027\\")
+      end
+    elseif value.kind == "report" then
+      if value.percentage then
+        vim.api.nvim_ui_send(string.format("\027]9;4;1;%d\027\\", value.percentage))
+      else
+        vim.api.nvim_ui_send("\027]9;4;3\027\\")
+      end
+    elseif value.kind == "end" then
+      active_count = math.max(0, active_count - 1)
+      if active_count == 0 then
+        vim.api.nvim_ui_send("\027]9;4;1;100\027\\")
+        clear_timer = vim.uv.new_timer()
+        clear_timer:start(1500, 0, vim.schedule_wrap(clear_progress))
+      end
+    end
+  end,
+})
 return {
   'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
   dependencies = {
