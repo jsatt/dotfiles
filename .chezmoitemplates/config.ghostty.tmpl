@@ -1,5 +1,5 @@
 font-family = AnonymicePro Nerd Font
-font-size = 12
+font-size = {{ .term_font_size }}
 
 term = xterm-256color
 
@@ -14,6 +14,7 @@ cursor-style-blink = true
 bell-features = no-audio
 mouse-scroll-multiplier = .5
 
+keybind = clear
 keybind = super+ctrl+shift+arrow_down=resize_split:down,10
 keybind = super+ctrl+shift+arrow_left=resize_split:left,10
 keybind = super+ctrl+shift+arrow_right=resize_split:right,10
@@ -74,15 +75,15 @@ keybind = ctrl+tab=next_tab
 keybind = ctrl+insert=copy_to_clipboard:mixed
 keybind = ctrl+page_down=next_tab
 keybind = ctrl+page_up=previous_tab
-keybind = shift+end=scroll_to_bottom
-keybind = shift+home=scroll_to_top
-keybind = shift+insert=paste_from_selection
-keybind = shift+page_down=scroll_page_down
-keybind = shift+page_up=scroll_page_up
-keybind = shift+arrow_down=adjust_selection:down
-keybind = shift+arrow_left=adjust_selection:left
-keybind = shift+arrow_right=adjust_selection:right
-keybind = shift+arrow_up=adjust_selection:up
-keybind = escape=end_search
-keybind = copy=copy_to_clipboard:mixed
-keybind = paste=paste_from_clipboard
+#keybind = shift+end=scroll_to_bottom
+#keybind = shift+home=scroll_to_top
+#keybind = shift+insert=paste_from_selection
+#keybind = shift+page_down=scroll_page_down
+#keybind = shift+page_up=scroll_page_up
+#keybind = shift+arrow_down=adjust_selection:down
+#keybind = shift+arrow_left=adjust_selection:left
+#keybind = shift+arrow_right=adjust_selection:right
+#keybind = shift+arrow_up=adjust_selection:up
+#keybind = escape=end_search
+#keybind = copy=copy_to_clipboard:mixed
+#keybind = paste=paste_from_clipboard
