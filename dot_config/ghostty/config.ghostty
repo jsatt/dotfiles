@@ -6,12 +6,13 @@ term = xterm-256color
 theme = 3024 Night
 background = #000000
 background-opacity = .8
-unfocused-split-opacity = .5
+unfocused-split-opacity = .7
 
 cursor-style = block
 cursor-style-blink = true
 
 bell-features = no-audio
+mouse-scroll-multiplier = .5
 
 
 keybind = ctrl+shift+arrow_down=goto_split:down
