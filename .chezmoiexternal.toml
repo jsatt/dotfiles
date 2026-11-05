@@ -93,6 +93,28 @@
     executable = true
     refreshPeriod = "168h"
 
+["bin/kubectl-krew"]
+    type = "archive-file"
+{{ if eq .chezmoi.os "linux" -}}
+    {{ if eq .chezmoi.arch "arm64" }}
+    url = 'https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_arm64.tar.gz'
+    path = "krew-linux_arm64"
+    {{ else }}
+    url = 'https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz'
+    path = "krew-linux_amd64"
+    {{ end -}}
+{{ else if eq .chezmoi.os "darwin" -}}
+    {{ if eq .chezmoi.arch "arm64" }}
+    url = 'https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-darwin_arm64.tar.gz'
+    path = "krew-darwin_arm64"
+    {{ else }}
+    url = 'https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-darwin_amd64.tar.gz'
+    path = "krew-darwin_amd64"
+    {{ end -}}
+{{ end -}}
+    executable = true
+    refreshPeriod = "168h"
+
 ["bin/kubectl-ctx"]
     type = "file"
     url = "https://raw.githubusercontent.com/weibeld/kubectl-ctx/master/kubectl-ctx"
