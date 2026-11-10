@@ -147,6 +147,9 @@ local lsp_configs = {
 }
 
 local mason_install = {
+  -- ai
+  'claude-agent-acp',
+  'codex-acp',
   -- dap
   'bash-debug-adapter',
   -- 'kotlin-debug-adapter',
