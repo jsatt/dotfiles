@@ -1,6 +1,3 @@
-local theme = require('theme_')
-local utils = require('utils_')
-
 local lsp_configs = {
   bashls = {},
   cspell_ls = {
@@ -51,31 +48,6 @@ local lsp_configs = {
   --         typeCheckingMode = 'standard',
   --         -- diagnosticSeverityOverrides = 'none',
   --       },
-  --     }
-  --   }
-  -- },
-  -- kotlin_lsp = {},
-  -- kotlin_language_server = {
-  --   settings = {
-  --     kotlin = {
-  --       codegen = {
-  --         enabled = true,
-  --       },
-  --       external_source = {
-  --         useKlsScheme = true,
-  --         autoConvertToKotlin = true,
-  --
-  --       },
-  --       inline_hints = {
-  --         typeHints = true,
-  --         parameterHints = true,
-  --         chainedHints = true,
-  --       },
-  --       compiler = {
-  --         jvm = {
-  --           target = "21",
-  --         }
-  --       }
   --     }
   --   }
   -- },
@@ -152,9 +124,7 @@ local mason_install = {
   'codex-acp',
   -- dap
   'bash-debug-adapter',
-  -- 'kotlin-debug-adapter',
   -- formatter
-  -- 'ktlint',
   'prettierd',
   'remark-cli',
   'yamlfmt',
@@ -162,46 +132,6 @@ local mason_install = {
   'tree-sitter-cli',
 }
 
-vim.lsp.inlay_hint.enable()
-vim.lsp.on_type_formatting.enable()
-vim.lsp.inline_completion.enable()
-vim.lsp.config('*', {
-  flags = {
-    debounce_text_changes = 150,
-  },
-})
-utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
-  local orig_references = vim.lsp.buf.references
-  vim.lsp.buf.references = function(context, opts)
-    orig_references(context, vim.tbl_deep_extend('keep', opts or {}, { on_list = ts_builtin.lsp_references }))
-  end
-  local orig_doc_symbols = vim.lsp.buf.document_symbol
-  vim.lsp.buf.document_symbol = function(opts)
-    orig_doc_symbols(vim.tbl_deep_extend('keep', opts or {}, { on_list = ts_builtin.lsp_document_symbols }))
-  end
-end)
-for server, srv_opts in pairs(lsp_configs) do
-  vim.lsp.config(server, srv_opts)
-end
-
-vim.api.nvim_create_user_command(
-  'RestartKLS',
-  function()
-    for _, client in ipairs(vim.lsp.get_clients({ name = 'kotlin_language_server' })) do
-      if not client.is_stopped() and client.name == 'kotlin_language_server' then
-        client.rpc.terminate()
-        vim.cmd.LspStop(client.id)
-        vim.wait(1000,
-          function()
-            return client.is_stopped()
-          end
-        )
-        vim.cmd.LspStart(client.name)
-      end
-    end
-  end,
-  {}
-)
 
 local active_count = 0
 local clear_timer = nil
@@ -246,6 +176,7 @@ vim.api.nvim_create_autocmd('LspProgress', {
     end
   end,
 })
+
 return {
   'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
   dependencies = {
@@ -313,8 +244,7 @@ return {
         {
           'WhoIsSethDaniel/mason-tool-installer.nvim',
           opts = {
-            ensure_installed = vim.tbl_extend(
-              'force',
+            ensure_installed = vim.list_extend(
               vim.tbl_keys(lsp_configs),
               mason_install
             ),
@@ -323,4 +253,30 @@ return {
       }
     }
   },
+  config = function()
+    local utils = require('utils_')
+
+    utils.prepare_module('telescope.builtin', function(ts_builtin) -- use telescope for reference lookup
+      local orig_references = vim.lsp.buf.references
+      vim.lsp.buf.references = function(context, opts)
+        orig_references(context, vim.tbl_deep_extend('keep', opts or {}, { on_list = ts_builtin.lsp_references }))
+      end
+      local orig_doc_symbols = vim.lsp.buf.document_symbol
+      vim.lsp.buf.document_symbol = function(opts)
+        orig_doc_symbols(vim.tbl_deep_extend('keep', opts or {}, { on_list = ts_builtin.lsp_document_symbols }))
+      end
+    end)
+    for server, srv_opts in pairs(lsp_configs) do
+      vim.lsp.config(server, srv_opts)
+    end
+
+    vim.lsp.inlay_hint.enable()
+    vim.lsp.on_type_formatting.enable()
+    vim.lsp.inline_completion.enable()
+    vim.lsp.config('*', {
+      flags = {
+        debounce_text_changes = 150,
+      },
+    })
+  end
 }
