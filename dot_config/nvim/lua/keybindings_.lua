@@ -13,14 +13,14 @@ vim.keymap.set('n', '<leader>/', ':let @/ = ""<CR>', { silent = true, desc = 'Cl
 vim.keymap.set('n', '<leader>gb', ':BlameToggle<CR>', { silent = true, desc = 'Toggle Git Blame' })
 
 vim.keymap.set('n', '<C-c>', '<C-a>') -- remap increment to avoid clash with screen/tmux
-utils.prepare_module('dial.map', function(dial)
-  vim.keymap.set('n', '<C-c>', dial.inc_normal(), { noremap = true, desc = 'Increment' }) -- remap increment to avoid clash with screen/tmux
-  vim.keymap.set('n', '<C-x>', dial.dec_normal(), { noremap = true, desc = 'Decrement' }) -- remap increment to avoid clash with screen/tmux
-  vim.keymap.set('v', '<C-c>', dial.inc_visual(), { noremap = true, desc = 'Increment' }) -- remap increment to avoid clash with screen/tmux
-  vim.keymap.set('v', '<C-x>', dial.dec_visual(), { noremap = true, desc = 'Decrement' }) -- remap increment to avoid clash with screen/tmux
-  vim.keymap.set('v', 'g<C-c>', dial.inc_gvisual(), { noremap = true, desc = 'Increment' }) -- remap increment to avoid clash with screen/tmux
-  vim.keymap.set('v', 'g<C-x>', dial.dec_gvisual(), { noremap = true, desc = 'Decrement' }) -- remap increment to avoid clash with screen/tmux
-end)
+if utils.has_plugin('dial.nvim') then
+  vim.keymap.set('n', '<C-c>', function() return require('dial.map').inc_normal() end, { expr = true, desc = 'Increment' }) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('n', '<C-x>', function() return require('dial.map').dec_normal() end, { expr = true, desc = 'Decrement' }) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', '<C-c>', function() return require('dial.map').inc_visual() end, { expr = true, desc = 'Increment' }) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', '<C-x>', function() return require('dial.map').dec_visual() end, { expr = true, desc = 'Decrement' }) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', 'g<C-c>', function() return require('dial.map').inc_gvisual() end, { expr = true, desc = 'Increment' }) -- remap increment to avoid clash with screen/tmux
+  vim.keymap.set('v', 'g<C-x>', function() return require('dial.map').dec_gvisual() end, { expr = true, desc = 'Decrement' }) -- remap increment to avoid clash with screen/tmux
+end
 
 -- remap home and ending keys
 vim.keymap.set({ 'n', 'v' }, 'H', '^', { desc = 'Goto start of line' })
@@ -41,9 +41,9 @@ vim.keymap.set('n', '<C-Left>', ':tabprevious<CR>', { silent = true, desc = 'Nav
 vim.keymap.set('i', '<C-Right>', '<Esc>:tabnext<CR>', { silent = true, desc = 'Navigate tabs - right' })
 vim.keymap.set('i', '<C-Left>', '<Esc>:tabprevious<CR>', { silent = true, desc = 'Navigate tabs - left' })
 vim.keymap.set('n', '<A-Right>', ':tabm +1<CR>', { silent = true, desc = 'Move tab right' })
-vim.keymap.set('n', '<A-Left>', ':tabm -1<CR>', { silent = true, desc = 'Move tab right' })
+vim.keymap.set('n', '<A-Left>', ':tabm -1<CR>', { silent = true, desc = 'Move tab left' })
 vim.keymap.set('i', '<A-Right>', '<Esc>:tabm +1<CR>', { silent = true, desc = 'Move tab right' })
-vim.keymap.set('i', '<A-Left>', '<Esc>:tabim -1<CR>', { silent = true, desc = 'Move tab left' })
+vim.keymap.set('i', '<A-Left>', '<Esc>:tabm -1<CR>', { silent = true, desc = 'Move tab left' })
 
 -- navigation between splits
 vim.keymap.set({ 'n', 'i' }, '<S-Left>', '<C-w>h', { desc = 'Navigate splits - left' })
@@ -56,26 +56,33 @@ vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = 'Copy to system clipboar
 vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Copy line to system clipboard' })
 
 -- Telescope
-utils.prepare_module('telescope', function(telescope)
-  local telescope_builtin = require('telescope.builtin')
-  vim.keymap.set('n', '<C-z>', telescope.extensions.undo.undo, { silent = true, desc = 'Toggle Undotree' })
-  vim.keymap.set('n', '<leader>lf', telescope_builtin.find_files, { silent = true, desc = 'Find Files' })
-  vim.keymap.set('n', '<leader>lb', telescope_builtin.buffers, { silent = true, desc = 'Find Buffers' })
-  vim.keymap.set('n', '<leader>lr', telescope_builtin.oldfiles, { silent = true, desc = 'Find Recently Opened Files' })
-  vim.keymap.set('n', '<leader>lg', telescope_builtin.live_grep, { silent = true, desc = 'Live Grep' })
-  vim.keymap.set('n', '<leader>lc', telescope_builtin.git_commits, { silent = true, desc = 'Search Commits' })
-  vim.keymap.set('n', '<leader>lfc', telescope.extensions.git_file_history.git_file_history, { silent = true, desc = 'Search Commits' })
-  vim.keymap.set('n', '<leader>le', telescope.extensions.emoji.emoji, { silent = true, desc = 'Find Emoji' })
-  vim.keymap.set('n', '<leader>lt', function() telescope_builtin.builtin({ include_extensions = true }) end, { silent = true, desc = 'Fine Telescope Picker' })
-  utils.prepare_module('aerial', function(aerial)
-    vim.keymap.set('n', '<leader>ls', telescope.extensions.aerial.aerial, { silent = true, desc = 'Find Symbols' })
-  end)
+if utils.has_plugin('telescope.nvim') then
+  local function builtin(picker, opts)
+    return function() require('telescope.builtin')[picker](opts) end
+  end
+  local function ext(name, picker)
+    return function() require('telescope').extensions[name][picker]() end
+  end
+  vim.keymap.set('n', '<C-z>', ext('undo', 'undo'), { silent = true, desc = 'Toggle Undotree' })
+  vim.keymap.set('n', '<leader>lf', builtin('find_files'), { silent = true, desc = 'Find Files' })
+  vim.keymap.set('n', '<leader>lb', builtin('buffers'), { silent = true, desc = 'Find Buffers' })
+  vim.keymap.set('n', '<leader>lr', builtin('oldfiles'), { silent = true, desc = 'Find Recently Opened Files' })
+  vim.keymap.set('n', '<leader>lg', builtin('live_grep'), { silent = true, desc = 'Live Grep' })
+  vim.keymap.set('n', '<leader>lc', builtin('git_commits'), { silent = true, desc = 'Search Commits' })
+  vim.keymap.set('n', '<leader>lfc', ext('git_file_history', 'git_file_history'), { silent = true, desc = 'Search File History' })
+  vim.keymap.set('n', '<leader>le', ext('emoji', 'emoji'), { silent = true, desc = 'Find Emoji' })
+  vim.keymap.set('n', '<leader>lt', builtin('builtin', { include_extensions = true }), { silent = true, desc = 'Fine Telescope Picker' })
+  if utils.has_plugin('aerial.nvim') then
+    vim.keymap.set('n', '<leader>ls', ext('aerial', 'aerial'), { silent = true, desc = 'Find Symbols' })
+  end
 
   -- Git Worktrees
-  vim.keymap.set("n", "<leader>wt", telescope.extensions.git_worktree.git_worktrees, { desc = "Switch git worktree" })
+  if utils.has_plugin('git-worktree.nvim') then
+    vim.keymap.set("n", "<leader>wt", ext('git_worktree', 'git_worktrees'), { desc = "Switch git worktree" })
 
-  vim.keymap.set("n", "<leader>wn", telescope.extensions.git_worktree.create_git_worktree, { desc = "Create git worktree" })
-end)
+    vim.keymap.set("n", "<leader>wn", ext('git_worktree', 'create_git_worktree'), { desc = "Create git worktree" })
+  end
+end
 
 -- LSP
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { silent = true, desc = 'Show hover info' })
@@ -90,14 +97,14 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, desc = 'R
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { silent = true, desc = 'Code Actions' })
 vim.keymap.set('n', '<leader>sd', vim.diagnostic.open_float, { silent = true, desc = 'Show Diagnostics' })
 
-utils.prepare_module('scissors', function(scissors)
-  vim.keymap.set('n', '<leader>se', function() scissors.editSnippet() end, { desc = 'Edit Snippet' })
-  vim.keymap.set('n', '<leader>sa', function() scissors.addNewSnippet() end, { desc = 'Add New Snippet' })
+if utils.has_plugin('nvim-scissors') then
+  vim.keymap.set('n', '<leader>se', function() require('scissors').editSnippet() end, { desc = 'Edit Snippet' })
+  vim.keymap.set('n', '<leader>sa', function() require('scissors').addNewSnippet() end, { desc = 'Add New Snippet' })
   vim.keymap.set('v', '<leader>sa', ':ScissorsAddNewSnippet<CR>', { desc = 'Add New Snippet from selection' })
-end)
+end
 
 -- Treesitter
-utils.prepare_module('nvim-treesitter-textobjects', function(ts_textobjects)
+if utils.has_plugin('nvim-treesitter-textobjects') then
   -- Select
   vim.keymap.set({ "x", "o" }, "af", function() require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects") end)
   vim.keymap.set({ "x", "o" }, "if", function() require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects") end)
@@ -128,40 +135,40 @@ utils.prepare_module('nvim-treesitter-textobjects', function(ts_textobjects)
   vim.keymap.set({ 'n', 'x', 'o' }, '[M', function() require('nvim-treesitter-textobjects.move').goto_previous_end("@function.outer") end)
   vim.keymap.set({ 'n', 'x', 'o' }, '[]', function() require('nvim-treesitter-textobjects.move').goto_previous_end("@class.outer") end)
 
-end)
+end
 
 -- CodeCompanion
-utils.prepare_module('codecompanion', function(codecompanion)
-  vim.keymap.set({'n', 'v'}, '<leader>cc', ':CodeCompanionActions<CR>', { silent = true, desc = 'Move tab left' })
-end)
+if utils.has_plugin('codecompanion.nvim') then
+  vim.keymap.set({'n', 'v'}, '<leader>cc', ':CodeCompanionActions<CR>', { silent = true, desc = 'CodeCompanion actions' })
+end
 
 -- DAP
-utils.prepare_module('dap', function(dap)
-  vim.keymap.set('n', '<leader>dd', dap.disconnect, { silent = true, desc = 'Disconnect DAP' })
-  vim.keymap.set('n', '<leader>dc', dap.continue, { silent = true, desc = 'DAP - Continue' })
-  vim.keymap.set('n', '<leader>dn', dap.step_over, { silent = true, desc = 'DAP - Step over' })
-  vim.keymap.set('n', '<leader>ds', dap.step_into, { silent = true, desc = 'DAP - Step into' })
-  vim.keymap.set('n', '<leader>du', dap.step_out, { silent = true, desc = 'DAP - Step out' })
-  vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { silent = true, desc = 'DAP - toggle_breakpoint' })
-  vim.keymap.set('n', '<leader>dB', function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { silent = true, desc = 'DAP - Set conditional breakpoint' })
-  vim.keymap.set('n', '<leader>dl', function() dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, { silent = true, desc = 'DAP - Set log point' })
-  vim.keymap.set('n', '<leader>dr', dap.repl.open, { silent = true, desc = 'DAP - Open REPL' })
+if utils.has_plugin('nvim-dap') then
+  vim.keymap.set('n', '<leader>dd', function() require('dap').disconnect() end, { silent = true, desc = 'Disconnect DAP' })
+  vim.keymap.set('n', '<leader>dc', function() require('dap').continue() end, { silent = true, desc = 'DAP - Continue' })
+  vim.keymap.set('n', '<leader>dn', function() require('dap').step_over() end, { silent = true, desc = 'DAP - Step over' })
+  vim.keymap.set('n', '<leader>ds', function() require('dap').step_into() end, { silent = true, desc = 'DAP - Step into' })
+  vim.keymap.set('n', '<leader>du', function() require('dap').step_out() end, { silent = true, desc = 'DAP - Step out' })
+  vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() end, { silent = true, desc = 'DAP - toggle_breakpoint' })
+  vim.keymap.set('n', '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { silent = true, desc = 'DAP - Set conditional breakpoint' })
+  vim.keymap.set('n', '<leader>dl', function() require('dap').set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, { silent = true, desc = 'DAP - Set log point' })
+  vim.keymap.set('n', '<leader>dr', function() require('dap').repl.open() end, { silent = true, desc = 'DAP - Open REPL' })
 
-  utils.prepare_module('dapui', function(dapui)
-    vim.keymap.set('n', '<leader>di', dapui.toggle, { silent = true, desc = 'DAP - Open UI' })
-    vim.keymap.set('n', '<leader>de', dapui.eval, { silent = true, desc = 'DAP - Evaluate' })
-    vim.keymap.set('n', '<leader>dhs', function() dapui.float_element('scopes') end, { silent = true, desc = 'Show DAP scopes' })
-    vim.keymap.set('n', '<leader>dhf', function() dapui.float_element('stacks') end, { silent = true, desc = 'Show DAP stacks' })
-    vim.keymap.set('n', '<leader>dhw', function() dapui.float_element('watched') end, { silent = true, desc = 'Show DAP watches' })
-    vim.keymap.set('n', '<leader>dht', function() dapui.float_element('threads') end, { silent = true, desc = 'Show DAP threads' })
-  end)
+  if utils.has_plugin('nvim-dap-ui') then
+    vim.keymap.set('n', '<leader>di', function() require('dapui').toggle() end, { silent = true, desc = 'DAP - Open UI' })
+    vim.keymap.set('n', '<leader>de', function() require('dapui').eval() end, { silent = true, desc = 'DAP - Evaluate' })
+    vim.keymap.set('n', '<leader>dhs', function() require('dapui').float_element('scopes') end, { silent = true, desc = 'Show DAP scopes' })
+    vim.keymap.set('n', '<leader>dhf', function() require('dapui').float_element('stacks') end, { silent = true, desc = 'Show DAP stacks' })
+    vim.keymap.set('n', '<leader>dhw', function() require('dapui').float_element('watched') end, { silent = true, desc = 'Show DAP watches' })
+    vim.keymap.set('n', '<leader>dht', function() require('dapui').float_element('threads') end, { silent = true, desc = 'Show DAP threads' })
+  end
 
   -- telescope-dap
   vim.keymap.set('n', '<leader>dcc', '<cmd>lua require"telescope".extensions.dap.commands{}<CR>', { silent = true, desc = 'Find DAP commands' })
   vim.keymap.set('n', '<leader>dco', '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>', { silent = true, desc = 'Find DAP configurations' })
   vim.keymap.set('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>', { silent = true, desc = 'Find DAP variables' })
   vim.keymap.set('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>', { silent = true, desc = 'Find DAP frames' })
-end)
+end
 
 -- Diff navigation
 if vim.opt.diff:get() then

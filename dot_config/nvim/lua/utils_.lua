@@ -6,9 +6,20 @@ function M.prepare_module(module_name, prepare_func, fallback_func)
   end
   local status_ok, module = pcall(require, module_name)
   if not status_ok then
+    -- only stay quiet when this exact module is missing
+    if not tostring(module):find("module '" .. module_name .. "' not found", 1, true) then
+      vim.notify(
+        ("prepare_module('%s') failed:\n%s"):format(module_name, module),
+        vim.log.levels.ERROR
+      )
+    end
     return fallback_func()
   end
   return prepare_func(module)
+end
+
+function M.has_plugin(name)
+  return require('lazy.core.config').plugins[name] ~= nil
 end
 
 function M.key_in_table(key, tbl)

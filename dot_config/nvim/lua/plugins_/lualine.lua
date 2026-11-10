@@ -1,4 +1,3 @@
-local utils = require('utils_')
 local theme = require('theme_')
 
 local function window_number()
@@ -40,11 +39,8 @@ local function search_count()
 end
 
 local function session_name()
-  return utils.prepare_module(
-    'possession.session',
-    function(session)
-      return session.get_session_name() or ''
-    end) or ''
+  local session = package.loaded['possession.session']
+  return session and session.get_session_name() or ''
 end
 
 local function cwd()

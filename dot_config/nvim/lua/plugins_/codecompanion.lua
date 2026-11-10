@@ -96,5 +96,6 @@ return {
         -- }
       },
     })
+    utils.prepare_module('telescope', function(telescope) telescope.load_extension('codecompanion') end)
   end
 }
