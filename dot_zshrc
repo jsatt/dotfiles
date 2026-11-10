@@ -21,6 +21,7 @@ plugins=(
     docker-compose
     encode64
     extract
+    gcloud
     gitfast
     golang
     helm
