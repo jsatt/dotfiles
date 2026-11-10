@@ -3,6 +3,7 @@ README.md
 {{- if ne .chezmoi.os "darwin" }}
 Library/
 Applications/
+Brewfile
 {{ end }}
 {{- if ne .chezmoi.os "linux" }}
 .config/ghostty/config.ghostty
